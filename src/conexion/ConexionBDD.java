@@ -12,8 +12,8 @@ public class ConexionBDD {
         try {
             
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/contol_hornos", "root", "");
-            JOptionPane.showMessageDialog(null, "conexión establecida");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto", "root", "");
+            JOptionPane.showMessageDialog(null, "Conexión establecida");
         
         } catch (ClassNotFoundException | SQLException e) {
             JOptionPane.showMessageDialog(null, "error de conexión: " + e);
