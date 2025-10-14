@@ -2,7 +2,8 @@ package clases;
 
 public class horno {
     private int reflectores;
-    private String tipo, materiales, dimensiones, sistema_aislamiento, fecha;
+    private String tipo, materiales, sistema_aislamiento, fecha;
+    private double dimensiones;
     
     public int getReflectores() {
         return reflectores;
@@ -28,11 +29,11 @@ public class horno {
         this.materiales = materiales;
     }
 
-    public String getDimensiones() {
+    public double getDimensiones() {
         return dimensiones;
     }
 
-    public void setDimensiones(String dimensiones) {
+    public void setDimensiones(double dimensiones) {
         this.dimensiones = dimensiones;
     }
 
