@@ -1,14 +1,15 @@
 package interfaces;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
+import clases.ambiente;
+import conexion.ConexionBDD;
+import java.awt.Color;
+import java.awt.HeadlessException;
+import java.awt.event.FocusEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author 57742324
- */
 public class Ambiente extends javax.swing.JDialog {
 
     /**
@@ -45,6 +46,11 @@ public class Ambiente extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
         jLabel1.setText("ID del horno");
@@ -220,6 +226,39 @@ public class Ambiente extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String sql;
+        ambiente a=new ambiente();
+        a.setIdh(Integer.parseInt(txtidhorno.getText()));
+        a.setIntensidad_solar(txtintensidadsolar.getText());
+        a.setTemperatura_ambiente(Integer.parseInt(txttemperatura.getText()));
+        a.setAngulo(Integer.parseInt(txtangulo.getText()));
+        a.setDireccion_sol(txtdireccion.getText());
+        a.setFecha_registro(txtfecharegistro.getText());
+        ConexionBDD nuevoc=new ConexionBDD();
+        Connection con = nuevoc.conectar();
+        sql="insert into ambiente(IDH, intensidad_solar, temperatura_ambiente, angulo, direccion_sol, fecha_registro) values(?,?,?,?,?,?)";
+        
+        
+        try{
+            PreparedStatement pst = con.prepareStatement(sql);
+            
+            pst.setInt(1, a.getIdh());
+            pst.setString(2, a.getIntensidad_solar());
+            pst.setInt(3, a.getTemperatura_ambiente());
+            pst.setInt(4, a.getAngulo());
+            pst.setString(5, a.getDireccion_sol());
+            pst.setString(6, a.getFecha_registro());
+            
+            int n = pst.executeUpdate();
+            if(n > 0){
+                JOptionPane.showMessageDialog(null, "Ambiente del horno ingresado");
+            }else{
+                JOptionPane.showMessageDialog(null, "El ambiente del horno no pudo ser ingresado");
+            }
+        }catch(SQLException | HeadlessException e){
+            JOptionPane.showMessageDialog(null, "Error: " + e);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtdireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdireccionActionPerformed
@@ -232,7 +271,35 @@ public class Ambiente extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        menu m=new menu();
+        m.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        txtfecharegistro.setText("AAAA-MM-DD");
+        txtfecharegistro.setForeground(Color.LIGHT_GRAY);
+        
+        txtfecharegistro.addFocusListener(new java.awt.event.FocusAdapter(){
+            @Override
+            public void focusGained(FocusEvent e){
+                if(txtfecharegistro.getText().equals("AAAA-MM-DD")){
+                    txtfecharegistro.setText("");
+                    txtfecharegistro.setForeground(Color.BLACK);
+                
+                }
+            }  
+            
+            public void focuslost(FocusEvent e){
+                if(txtfecharegistro.getText().isEmpty()){
+                    txtfecharegistro.setText("AAAA-MM-DD");
+                    txtfecharegistro.setForeground(Color.LIGHT_GRAY);
+                }
+            }
+ 
+        });
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
