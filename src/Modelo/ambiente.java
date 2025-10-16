@@ -2,16 +2,8 @@ package Modelo;
 
 
 public class ambiente {
-    private int idh, angulo, temperatura_ambiente;
+    private int angulo, temperatura_ambiente;
     private String intensidad_solar, direccion_sol, fecha_registro;
-
-    public int getIdh() {
-        return idh;
-    }
-
-    public void setIdh(int idh) {
-        this.idh = idh;
-    }
 
     public int getAngulo() {
         return angulo;

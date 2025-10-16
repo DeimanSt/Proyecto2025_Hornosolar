@@ -29,10 +29,8 @@ public class Ambiente extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        txtidhorno = new javax.swing.JTextField();
         txtintensidadsolar = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -52,9 +50,6 @@ public class Ambiente extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
-        jLabel1.setText("ID del horno");
-
         jLabel2.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
         jLabel2.setText("Ambiente del Horno");
 
@@ -64,13 +59,6 @@ public class Ambiente extends javax.swing.JDialog {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
-            }
-        });
-
-        txtidhorno.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
-        txtidhorno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtidhornoActionPerformed(evt);
             }
         });
 
@@ -140,16 +128,12 @@ public class Ambiente extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1)
                     .addComponent(jLabel4)
                     .addComponent(txttemperatura, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                     .addComponent(jLabel6)
-                    .addComponent(txtdireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
-                    .addComponent(txtidhorno))
+                    .addComponent(txtdireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(txtintensidadsolar, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(txtangulo, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
@@ -165,7 +149,13 @@ public class Ambiente extends javax.swing.JDialog {
                         .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(165, 165, 165)
-                        .addComponent(jLabel2)))
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(217, 217, 217)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(185, 185, 185)
+                        .addComponent(txtintensidadsolar, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -174,13 +164,9 @@ public class Ambiente extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1))
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtintensidadsolar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtidhorno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtintensidadsolar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -207,10 +193,6 @@ public class Ambiente extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtidhornoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidhornoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtidhornoActionPerformed
-
     private void txtintensidadsolarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtintensidadsolarActionPerformed
         // TODO add your handling code here:
         
@@ -228,7 +210,6 @@ public class Ambiente extends javax.swing.JDialog {
         // TODO add your handling code here:
         String sql;
         ambiente a=new ambiente();
-        a.setIdh(Integer.parseInt(txtidhorno.getText()));
         a.setIntensidad_solar(txtintensidadsolar.getText());
         a.setTemperatura_ambiente(Integer.parseInt(txttemperatura.getText()));
         a.setAngulo(Integer.parseInt(txtangulo.getText()));
@@ -236,18 +217,17 @@ public class Ambiente extends javax.swing.JDialog {
         a.setFecha_registro(txtfecharegistro.getText());
         ConexionBDD nuevoc=new ConexionBDD();
         Connection con = nuevoc.conectar();
-        sql="insert into ambiente(IDH, intensidad_solar, temperatura_ambiente, angulo, direccion_sol, fecha_registro) values(?,?,?,?,?,?)";
+        sql="insert into ambiente(intensidad_solar, temperatura_ambiente, angulo, direccion_sol, fecha_registro) values(?,?,?,?,?,?)";
         
         
         try{
             PreparedStatement pst = con.prepareStatement(sql);
             
-            pst.setInt(1, a.getIdh());
-            pst.setString(2, a.getIntensidad_solar());
-            pst.setInt(3, a.getTemperatura_ambiente());
-            pst.setInt(4, a.getAngulo());
-            pst.setString(5, a.getDireccion_sol());
-            pst.setString(6, a.getFecha_registro());
+            pst.setString(1, a.getIntensidad_solar());
+            pst.setInt(2, a.getTemperatura_ambiente());
+            pst.setInt(3, a.getAngulo());
+            pst.setString(4, a.getDireccion_sol());
+            pst.setString(5, a.getFecha_registro());
             
             int n = pst.executeUpdate();
             if(n > 0){
@@ -346,7 +326,6 @@ public class Ambiente extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -356,7 +335,6 @@ public class Ambiente extends javax.swing.JDialog {
     private javax.swing.JTextField txtangulo;
     private javax.swing.JTextField txtdireccion;
     private javax.swing.JTextField txtfecharegistro;
-    private javax.swing.JTextField txtidhorno;
     private javax.swing.JTextField txtintensidadsolar;
     private javax.swing.JTextField txttemperatura;
     // End of variables declaration//GEN-END:variables
