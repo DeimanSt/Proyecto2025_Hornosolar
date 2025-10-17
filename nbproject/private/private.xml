@@ -3,13 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/57969275/Documents/GitHub/Proyecto-2025--Ale--Dominique--I-aki--Maxi-/src/interfaces/Hornos.java</file>
-            <file>file:/C:/Users/57969275/Documents/GitHub/Proyecto-2025--Ale--Dominique--I-aki--Maxi-/src/interfaces/menu.java</file>
-            <file>file:/C:/Users/57969275/Documents/GitHub/Proyecto-2025--Ale--Dominique--I-aki--Maxi-/src/clases/autosustentable.java</file>
-            <file>file:/C:/Users/57969275/Documents/GitHub/Proyecto-2025--Ale--Dominique--I-aki--Maxi-/src/clases/ambiente.java</file>
-            <file>file:/C:/Users/57969275/Documents/GitHub/Proyecto-2025--Ale--Dominique--I-aki--Maxi-/src/interfaces/Ambiente.java</file>
-=======
             <file>file:/C:/Users/d3ima/Documents/NetBeansProjects/CONTROL_HORNOS_SOLARES_(proyecto_bd_y_prog)/Proyecto-2025--Ale--Dominique--I-aki--Maxi-/src/Modelo/autosustentable.java</file>
             <file>file:/C:/Users/d3ima/Documents/NetBeansProjects/CONTROL_HORNOS_SOLARES_(proyecto_bd_y_prog)/Proyecto-2025--Ale--Dominique--I-aki--Maxi-/src/Modelo/ambiente.java</file>
             <file>file:/C:/Users/d3ima/Documents/NetBeansProjects/CONTROL_HORNOS_SOLARES_(proyecto_bd_y_prog)/Proyecto-2025--Ale--Dominique--I-aki--Maxi-/src/Controlador/ConexionBDD.java</file>
@@ -22,7 +15,13 @@
             <file>file:/C:/Users/d3ima/Documents/NetBeansProjects/CONTROL_HORNOS_SOLARES_(proyecto_bd_y_prog)/Proyecto-2025--Ale--Dominique--I-aki--Maxi-/src/Vista/Mantenimiento.java</file>
             <file>file:/C:/Users/d3ima/Documents/NetBeansProjects/CONTROL_HORNOS_SOLARES_(proyecto_bd_y_prog)/Proyecto-2025--Ale--Dominique--I-aki--Maxi-/src/Controlador/ClaseConsulta.java</file>
             <file>file:/C:/Users/d3ima/Documents/NetBeansProjects/CONTROL_HORNOS_SOLARES_(proyecto_bd_y_prog)/Proyecto-2025--Ale--Dominique--I-aki--Maxi-/src/Vista/Ambiente.java</file>
->>>>>>> e1a4d052822f18eed98b57c4224772baf4a97da7
+            <file>file:/C:/Users/d3ima/Documents/NetBeansProjects/CONTROL_HORNOS_SOLARES_(proyecto_bd_y_prog)/Proyecto-2025--Ale--Dominique--I-aki--Maxi-/src/Vista/Autosustentable.java</file>
+            <file>file:/C:/Users/d3ima/Documents/NetBeansProjects/CONTROL_HORNOS_SOLARES_(proyecto_bd_y_prog)/Proyecto-2025--Ale--Dominique--I-aki--Maxi-/src/img/carbon--sustainability.png</file>
+            <file>file:/C:/Users/d3ima/Documents/NetBeansProjects/CONTROL_HORNOS_SOLARES_(proyecto_bd_y_prog)/Proyecto-2025--Ale--Dominique--I-aki--Maxi-/src/img/ix--maintenance-filled.png</file>
+            <file>file:/C:/Users/d3ima/Documents/NetBeansProjects/CONTROL_HORNOS_SOLARES_(proyecto_bd_y_prog)/Proyecto-2025--Ale--Dominique--I-aki--Maxi-/src/img/lsicon--operation-filled.png</file>
+            <file>file:/C:/Users/d3ima/Documents/NetBeansProjects/CONTROL_HORNOS_SOLARES_(proyecto_bd_y_prog)/Proyecto-2025--Ale--Dominique--I-aki--Maxi-/src/img/ph--oven-fill.png</file>
+            <file>file:/C:/Users/d3ima/Documents/NetBeansProjects/CONTROL_HORNOS_SOLARES_(proyecto_bd_y_prog)/Proyecto-2025--Ale--Dominique--I-aki--Maxi-/src/img/streamline-plump--sun-remix.png</file>
+            <file>file:/C:/Users/d3ima/Documents/NetBeansProjects/CONTROL_HORNOS_SOLARES_(proyecto_bd_y_prog)/Proyecto-2025--Ale--Dominique--I-aki--Maxi-/src/img/tdesign--undertake-environment-protection-filled.png</file>
         </group>
     </open-files>
 </project-private>

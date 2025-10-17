@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-10-2025 a las 16:27:06
+-- Tiempo de generación: 17-10-2025 a las 12:26:05
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `ambiente` (
   `IDAM` int(11) NOT NULL,
+  `IDH` int(11) DEFAULT NULL,
   `intensidad_solar` varchar(20) DEFAULT NULL,
   `temperatura_ambiente` int(11) DEFAULT NULL,
   `angulo` int(11) DEFAULT NULL,
@@ -77,7 +78,6 @@ CREATE TABLE `funcionamiento` (
 
 CREATE TABLE `hornos` (
   `IDH` int(100) NOT NULL,
-  `IDAM` int(100) DEFAULT NULL,
   `tipo` varchar(25) DEFAULT NULL,
   `materiales` varchar(50) DEFAULT NULL,
   `dimensiones` double DEFAULT NULL,
@@ -108,7 +108,8 @@ CREATE TABLE `mantenimientos` (
 -- Indices de la tabla `ambiente`
 --
 ALTER TABLE `ambiente`
-  ADD PRIMARY KEY (`IDAM`);
+  ADD PRIMARY KEY (`IDAM`),
+  ADD UNIQUE KEY `IDH` (`IDH`);
 
 --
 -- Indices de la tabla `autosustentable`
@@ -128,8 +129,7 @@ ALTER TABLE `funcionamiento`
 -- Indices de la tabla `hornos`
 --
 ALTER TABLE `hornos`
-  ADD PRIMARY KEY (`IDH`),
-  ADD UNIQUE KEY `IDAM` (`IDAM`);
+  ADD PRIMARY KEY (`IDH`);
 
 --
 -- Indices de la tabla `mantenimientos`

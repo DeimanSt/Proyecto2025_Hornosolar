@@ -53,6 +53,16 @@ public class menu extends javax.swing.JFrame {
         jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Proyecto horno");
+        setBackground(new java.awt.Color(153, 153, 153));
+        setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setName("Programa_Horno"); // NOI18N
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                formComponentHidden(evt);
+            }
+        });
 
         jMenuBar1.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
@@ -64,12 +74,11 @@ public class menu extends javax.swing.JFrame {
             }
         });
 
+        jMenu3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jMenu3.setText("Ingreso");
-        jMenu3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ph--oven-fill.png"))); // NOI18N
-        jMenu3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ph--oven-fill.png"))); // NOI18N
-        jMenu3.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ph--oven-fill.png"))); // NOI18N
-        jMenu3.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ph--oven-fill.png"))); // NOI18N
+        jMenu3.setBorderPainted(false);
 
+        ing_Ambiente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ph - oven-fill.png"))); // NOI18N
         ing_Ambiente1.setText("Ingresar Horno");
         ing_Ambiente1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,6 +87,7 @@ public class menu extends javax.swing.JFrame {
         });
         jMenu3.add(ing_Ambiente1);
 
+        ing_Ambiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/streamline-plump - sun-remix.png"))); // NOI18N
         ing_Ambiente.setText("Ingresar Ambiente");
         ing_Ambiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +96,7 @@ public class menu extends javax.swing.JFrame {
         });
         jMenu3.add(ing_Ambiente);
 
+        Ing_Funcionamiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lsicon - operation-filled.png"))); // NOI18N
         Ing_Funcionamiento.setText("Ingresar Funcionamiento");
         Ing_Funcionamiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,6 +105,7 @@ public class menu extends javax.swing.JFrame {
         });
         jMenu3.add(Ing_Funcionamiento);
 
+        ing_Mantenimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ix - maintenance-filled.png"))); // NOI18N
         ing_Mantenimiento.setText("Ingresar Mantenimiento");
         ing_Mantenimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,6 +114,7 @@ public class menu extends javax.swing.JFrame {
         });
         jMenu3.add(ing_Mantenimiento);
 
+        ing_Autosustentable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carbon - sustainability.png"))); // NOI18N
         ing_Autosustentable.setText("Ingresar Autosustentable");
         ing_Autosustentable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,6 +174,9 @@ public class menu extends javax.swing.JFrame {
   Hornos h=new Hornos(this, true);
         h.setVisible(true);
     }//GEN-LAST:event_ing_Ambiente1ActionPerformed
+
+    private void formComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentHidden
+    }//GEN-LAST:event_formComponentHidden
 
     /**
      * @param args the command line arguments
