@@ -8,6 +8,11 @@ import java.awt.event.FocusEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Ambiente extends javax.swing.JDialog {
@@ -208,26 +213,27 @@ public class Ambiente extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String sql;
-        ambiente a=new ambiente();
-        a.setIntensidad_solar(txtintensidadsolar.getText());
-        a.setTemperatura_ambiente(Integer.parseInt(txttemperatura.getText()));
-        a.setAngulo(Integer.parseInt(txtangulo.getText()));
-        a.setDireccion_sol(txtdireccion.getText());
-        a.setFecha_registro(txtfecharegistro.getText());
-        ConexionBDD nuevoc=new ConexionBDD();
-        Connection con = nuevoc.conectar();
-        sql="insert into ambiente(intensidad_solar, temperatura_ambiente, angulo, direccion_sol, fecha_registro) values(?,?,?,?,?,?)";
-        
+       
         
         try{
+            String sql;
+            ambiente a=new ambiente();
+            a.setIntensidad_solar(txtintensidadsolar.getText());
+            a.setTemperatura_ambiente(Integer.parseInt(txttemperatura.getText()));
+            a.setAngulo(Integer.parseInt(txtangulo.getText()));
+            a.setDireccion_sol(txtdireccion.getText());
+            a.setFecha_registro(new SimpleDateFormat("dd/MM/yyyy").parse(txtfecharegistro.getText()));
+            ConexionBDD nuevoc=new ConexionBDD();
+            Connection con = nuevoc.conectar();
+            sql="insert into ambiente(intensidad_solar, temperatura_ambiente, angulo, direccion_sol, fecha_registro) values(?,?,?,?,?,?)";
+        
             PreparedStatement pst = con.prepareStatement(sql);
             
             pst.setString(1, a.getIntensidad_solar());
             pst.setInt(2, a.getTemperatura_ambiente());
             pst.setInt(3, a.getAngulo());
             pst.setString(4, a.getDireccion_sol());
-            pst.setString(5, a.getFecha_registro());
+            pst.setDate(5, (java.sql.Date) (Date) a.getFecha_registro());
             
             int n = pst.executeUpdate();
             if(n > 0){
@@ -235,10 +241,9 @@ public class Ambiente extends javax.swing.JDialog {
             }else{
                 JOptionPane.showMessageDialog(null, "El ambiente del horno no pudo ser ingresado");
             }
-        }catch(SQLException | HeadlessException e){
+        }catch(ParseException | SQLException | HeadlessException e){
             JOptionPane.showMessageDialog(null, "Error: " + e);
-        }
-        
+        }    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtdireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdireccionActionPerformed

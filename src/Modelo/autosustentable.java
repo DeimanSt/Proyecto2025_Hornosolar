@@ -5,27 +5,10 @@ import java.util.Date;
 
 
 public class autosustentable {
-    protected int IDF, consumo_energetico, energia_almacenada;
+    protected int consumo_energetico, energia_almacenada;
     protected String energia_solar_recibida;
     protected double eficiencia_energetica;
     protected Date fecha_evaluacion;
-
-    public autosustentable(int IDF, double eficiencia_energetica, String energia_solar_recibida,int consumo_energetico,int energia_almacenada, Date fecha_evaluacion) {
-        this.IDF = IDF;
-        this.consumo_energetico = consumo_energetico;
-        this.energia_almacenada = energia_almacenada;
-        this.energia_solar_recibida = energia_solar_recibida;
-        this.eficiencia_energetica = eficiencia_energetica;
-        this.fecha_evaluacion = fecha_evaluacion;
-    }
-
-    public int getIDF() {
-        return IDF;
-    }
-
-    public void setIDF(int IDF) {
-        this.IDF = IDF;
-    }
 
     public int getConsumo_energetico() {
         return consumo_energetico;
@@ -66,5 +49,6 @@ public class autosustentable {
     public void setFecha_evaluacion(Date fecha_evaluacion) {
         this.fecha_evaluacion = fecha_evaluacion;
     }
+
     
 }

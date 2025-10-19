@@ -1,9 +1,12 @@
 package Modelo;
 
+import java.util.Date;
+
 
 public class ambiente {
     private int angulo, temperatura_ambiente;
-    private String intensidad_solar, direccion_sol, fecha_registro;
+    private String intensidad_solar, direccion_sol;
+    private Date fecha_registro;
 
     public int getAngulo() {
         return angulo;
@@ -37,12 +40,13 @@ public class ambiente {
         this.direccion_sol = direccion_sol;
     }
 
-    public String getFecha_registro() {
+    public Date getFecha_registro() {
         return fecha_registro;
     }
 
-    public void setFecha_registro(String fecha_registro) {
+    public void setFecha_registro(Date fecha_registro) {
         this.fecha_registro = fecha_registro;
     }
+
     
 }
