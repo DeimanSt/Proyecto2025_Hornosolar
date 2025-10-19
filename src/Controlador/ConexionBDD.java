@@ -16,7 +16,7 @@ public class ConexionBDD {
             JOptionPane.showMessageDialog(null, "Conexión establecida");
         
         } catch (ClassNotFoundException | SQLException e) {
-            JOptionPane.showMessageDialog(null, "error de conexión: " + e);
+            JOptionPane.showMessageDialog(null, "Error de conexión: " + e);
         }
         
         return con;

@@ -3,23 +3,13 @@ package Modelo;
 import java.util.*;
 
 public class mantenimiento {
-   protected int idh;
    protected String detalles_reparacion, materiales_reemplazados;
    protected Date fecha_creacion;
 
-    public mantenimiento(int idh, String detalles_reparacion, String materiales_reemplazados, Date fecha_creacion) {
-        this.idh = idh;
+    public mantenimiento(String detalles_reparacion, String materiales_reemplazados, Date fecha_creacion) {
         this.detalles_reparacion = detalles_reparacion;
         this.materiales_reemplazados = materiales_reemplazados;
         this.fecha_creacion = fecha_creacion;
-    }
-
-    public int getIdh() {
-        return idh;
-    }
-
-    public void setIdh(int idh) {
-        this.idh = idh;
     }
 
     public String getDetalles_reparacion() {

@@ -51,10 +51,10 @@ public class menu extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         ing_Ambiente1 = new javax.swing.JMenuItem();
-        ing_Ambiente = new javax.swing.JMenuItem();
         Ing_Funcionamiento = new javax.swing.JMenuItem();
-        ing_Mantenimiento = new javax.swing.JMenuItem();
+        ing_Ambiente = new javax.swing.JMenuItem();
         ing_Autosustentable = new javax.swing.JMenuItem();
+        ing_Mantenimiento = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
@@ -133,15 +133,6 @@ public class menu extends javax.swing.JFrame {
         });
         jMenu3.add(ing_Ambiente1);
 
-        ing_Ambiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/streamline-plump - sun-remix.png"))); // NOI18N
-        ing_Ambiente.setText("Ingresar Ambiente");
-        ing_Ambiente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ing_AmbienteActionPerformed(evt);
-            }
-        });
-        jMenu3.add(ing_Ambiente);
-
         Ing_Funcionamiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lsicon - operation-filled.png"))); // NOI18N
         Ing_Funcionamiento.setText("Ingresar Funcionamiento");
         Ing_Funcionamiento.addActionListener(new java.awt.event.ActionListener() {
@@ -151,14 +142,14 @@ public class menu extends javax.swing.JFrame {
         });
         jMenu3.add(Ing_Funcionamiento);
 
-        ing_Mantenimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ix - maintenance-filled.png"))); // NOI18N
-        ing_Mantenimiento.setText("Ingresar Mantenimiento");
-        ing_Mantenimiento.addActionListener(new java.awt.event.ActionListener() {
+        ing_Ambiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/streamline-plump - sun-remix.png"))); // NOI18N
+        ing_Ambiente.setText("Ingresar Ambiente");
+        ing_Ambiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ing_MantenimientoActionPerformed(evt);
+                ing_AmbienteActionPerformed(evt);
             }
         });
-        jMenu3.add(ing_Mantenimiento);
+        jMenu3.add(ing_Ambiente);
 
         ing_Autosustentable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carbon - sustainability.png"))); // NOI18N
         ing_Autosustentable.setText("Ingresar Autosustentable");
@@ -168,6 +159,15 @@ public class menu extends javax.swing.JFrame {
             }
         });
         jMenu3.add(ing_Autosustentable);
+
+        ing_Mantenimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ix - maintenance-filled.png"))); // NOI18N
+        ing_Mantenimiento.setText("Ingresar Mantenimiento");
+        ing_Mantenimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ing_MantenimientoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(ing_Mantenimiento);
 
         jMenuBar1.add(jMenu3);
 

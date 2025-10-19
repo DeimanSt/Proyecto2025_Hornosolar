@@ -3,7 +3,6 @@ package Vista;
 import Controlador.ConexionBDD;
 import Modelo.autosustentable;
 import java.awt.HeadlessException;
-import java.awt.event.FocusEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -12,8 +11,6 @@ import java.awt.event.FocusEvent;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
@@ -267,7 +264,7 @@ public class Autosustentable extends javax.swing.JDialog {
             a.setEnergia_almacenada(Integer.parseInt(txtenergiaalmacenada.getText()));
             a.setEnergia_solar_recibida(txtenergiarecibida.getText());
             a.setEficiencia_energetica(Double.parseDouble(txteficienciaenergetica.getText()));
-            a.setFecha_evaluacion(new SimpleDateFormat("dd/MM/yyyy").parse(txtfecha.getText()));
+            a.setFecha_evaluacion(new SimpleDateFormat("yyyy/MM/dd").parse(txtfecha.getText()));
             
             PreparedStatement pst= con.prepareStatement(sql);
             
@@ -283,10 +280,17 @@ public class Autosustentable extends javax.swing.JDialog {
             }else{
                 JOptionPane.showMessageDialog(null, "La Autosustentabilidad del Horno no se ha podido ingresar");
             }
+            
+            txtconsumoe.setText(null);
+            txtenergiaalmacenada.setText(null);
+            txtenergiarecibida.setText(null);
+            txteficienciaenergetica.setText(null);
+            txtfecha.setText(null);
         } catch (ParseException | SQLException | HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
-     
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtconsumoeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtconsumoeActionPerformed

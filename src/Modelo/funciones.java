@@ -18,7 +18,7 @@ public class funciones {
         this.fechaOperacion = fechaOperacion;
         this.horaOperacion = horaOperacion;
     }
-
+    
     public int getTemperaturaInterna() {
         return temperaturaInterna;
     }
