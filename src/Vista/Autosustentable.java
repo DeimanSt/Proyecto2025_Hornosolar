@@ -69,6 +69,11 @@ public class Autosustentable extends javax.swing.JDialog {
         jLabel1.setText("Autosustentabilidad del horno");
 
         txtconsumoe.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        txtconsumoe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtconsumoeActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
         jLabel2.setText("Consumo Energetico");
@@ -209,7 +214,8 @@ public class Autosustentable extends javax.swing.JDialog {
                 }
             }  
             
-            public void focuslost(FocusEvent e){
+            @Override
+            public void focusLost(FocusEvent e){
                 if(txtenergiarecibida.getText().isEmpty()){
                     txtenergiarecibida.setText("Alta, Media o Baja");
                     txtenergiarecibida.setForeground(Color.LIGHT_GRAY);
@@ -230,7 +236,8 @@ public class Autosustentable extends javax.swing.JDialog {
                 }
             }  
             
-            public void focuslost(FocusEvent e){
+            @Override
+            public void focusLost(FocusEvent e){
                 if(txtfecha.getText().isEmpty()){
                     txtfecha.setText("AAAA-MM-DD");
                     txtfecha.setForeground(Color.LIGHT_GRAY);
@@ -281,6 +288,10 @@ public class Autosustentable extends javax.swing.JDialog {
         }
      
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtconsumoeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtconsumoeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtconsumoeActionPerformed
 
     /**
      * @param args the command line arguments

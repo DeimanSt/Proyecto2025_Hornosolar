@@ -4,30 +4,19 @@ package Modelo;
 import java.sql.*;
 
 public class funciones {
-    protected int IDH, temperaturaInterna, tiempoCoccion;
+    protected int temperaturaInterna, tiempoCoccion;
     protected String tipoAlimento,estadoHorno;
     protected Date fechaOperacion;
     protected Time horaOperacion;
 
   
-    public funciones(int IDH, int temperaturaInterna, int tiempoCoccion,
-                 String tipoAlimento, String estadoHorno, Date fechaOperacion, Time horaOperacion) {
-        this.IDH = IDH;
+    public funciones(int temperaturaInterna, int tiempoCoccion, String tipoAlimento, String estadoHorno, Date fechaOperacion, Time horaOperacion) {
         this.temperaturaInterna = temperaturaInterna;
         this.tiempoCoccion = tiempoCoccion;
         this.tipoAlimento = tipoAlimento;
         this.estadoHorno = estadoHorno;
         this.fechaOperacion = fechaOperacion;
         this.horaOperacion = horaOperacion;
-    }
-
-    // Getters y setters
-    public int getIDH() {
-        return IDH;
-    }
-
-    public void setIDH(int IDH) {
-        this.IDH = IDH;
     }
 
     public int getTemperaturaInterna() {

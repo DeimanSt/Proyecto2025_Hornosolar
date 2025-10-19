@@ -276,7 +276,8 @@ public class Ambiente extends javax.swing.JDialog {
                 }
             }  
             
-            public void focuslost(FocusEvent e){
+            @Override
+            public void focusLost(FocusEvent e){
                 if(txtfecharegistro.getText().isEmpty()){
                     txtfecharegistro.setText("AAAA-MM-DD");
                     txtfecharegistro.setForeground(Color.LIGHT_GRAY);
