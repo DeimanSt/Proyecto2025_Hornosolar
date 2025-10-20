@@ -210,7 +210,6 @@ public class Hornos extends javax.swing.JDialog {
     private void btn_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingresarActionPerformed
       
         horno h= new horno(
-        // El orden se ajustó para coincidir con tu constructor
         Integer.parseInt(txb_reflectores.getText()),   
         txb_tipo.getText(),                            
         txb_materiales.getText(),                      
@@ -228,8 +227,8 @@ public class Hornos extends javax.swing.JDialog {
             pst.setString(2, h.getMateriales());
             pst.setDouble(3, h.getDimensiones());
             pst.setString(4, h.getSistema_aislamiento());
-            pst.setInt(6, h.getReflectores());
-            pst.setString(5, h.getFecha());
+            pst.setInt(5, h.getReflectores());
+            pst.setString(6, h.getFecha());
 
             int n = pst.executeUpdate();
             if (n > 0) {
