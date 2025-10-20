@@ -221,7 +221,7 @@ public class Funcionamiento extends javax.swing.JDialog {
             funciones f = new funciones(Integer.parseInt(txb_temperaturai.getText()), Integer.parseInt(txb_tiempoc.getText()), txb_tipodealimento.getText(), txb_estadohorno.getText(), new SimpleDateFormat("yyyy/MM/dd").format(jb_fechaoperacion.getDate()), new SimpleDateFormat("HH:mm:ss").format(js_Hora.getValue()));          
             ConexionBDD nuevoc=new ConexionBDD();
             Connection con = nuevoc.conectar();        
-            sql="insert into ambiente(temperatura_interna, tiempo_coccion, tipo_alimento, estado_horno, fecha_operacion, hora_operacion) values(?,?,?,?,?,?,?)";
+            sql="insert into funcionamiento(temperatura_interna, tiempo_coccion, tipo_alimento, estado_horno, fecha_operacion, hora_operacion) values(?,?,?,?,?,?)";
             
             PreparedStatement pst = con.prepareStatement(sql);
             
