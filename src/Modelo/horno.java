@@ -4,6 +4,15 @@ public class horno {
     private int reflectores;
     private String tipo, materiales, sistema_aislamiento, fecha;
     private double dimensiones;
+
+    public horno(int reflectores, String tipo, String materiales, String sistema_aislamiento, String fecha, double dimensiones) {
+        this.reflectores = reflectores;
+        this.tipo = tipo;
+        this.materiales = materiales;
+        this.sistema_aislamiento = sistema_aislamiento;
+        this.fecha = fecha;
+        this.dimensiones = dimensiones;
+    }
     
     public int getReflectores() {
         return reflectores;

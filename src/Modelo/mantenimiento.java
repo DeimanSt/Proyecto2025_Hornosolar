@@ -3,10 +3,9 @@ package Modelo;
 import java.util.*;
 
 public class mantenimiento {
-   protected String detalles_reparacion, materiales_reemplazados;
-   protected Date fecha_creacion;
+   protected String detalles_reparacion, materiales_reemplazados, fecha_creacion;
 
-    public mantenimiento(String detalles_reparacion, String materiales_reemplazados, Date fecha_creacion) {
+    public mantenimiento(String detalles_reparacion, String materiales_reemplazados, String fecha_creacion) {
         this.detalles_reparacion = detalles_reparacion;
         this.materiales_reemplazados = materiales_reemplazados;
         this.fecha_creacion = fecha_creacion;
@@ -28,12 +27,13 @@ public class mantenimiento {
         this.materiales_reemplazados = materiales_reemplazados;
     }
 
-    public Date getFecha_creacion() {
+    public String getFecha_creacion() {
         return fecha_creacion;
     }
 
-    public void setFecha_creacion(Date fecha_creacion) {
+    public void setFecha_creacion(String fecha_creacion) {
         this.fecha_creacion = fecha_creacion;
     }
+
    
 }

@@ -2,17 +2,9 @@ package Vista;
 
 import Modelo.ambiente;
 import Controlador.ConexionBDD;
-import java.awt.Color;
 import java.awt.HeadlessException;
-import java.awt.event.FocusEvent;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.text.ParseException;
+import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Ambiente extends javax.swing.JDialog {
@@ -35,18 +27,18 @@ public class Ambiente extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        txtintensidadsolar = new javax.swing.JTextField();
+        btn_Ingresar = new javax.swing.JButton();
+        txb_intensidadsolar = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txttemperatura = new javax.swing.JTextField();
+        txb_temperatura = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtangulo = new javax.swing.JTextField();
+        txb_angulo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtdireccion = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        txtfecharegistro = new javax.swing.JTextField();
+        txb_direccion = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        Jd_fecha = new com.toedter.calendar.JDateChooser();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -58,19 +50,19 @@ public class Ambiente extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
         jLabel2.setText("Ambiente del Horno");
 
-        jButton1.setBackground(new java.awt.Color(0, 204, 0));
-        jButton1.setFont(new java.awt.Font("Ebrima", 1, 38)); // NOI18N
-        jButton1.setText("Ingresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_Ingresar.setBackground(new java.awt.Color(0, 204, 0));
+        btn_Ingresar.setFont(new java.awt.Font("Ebrima", 1, 38)); // NOI18N
+        btn_Ingresar.setText("Ingresar");
+        btn_Ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_IngresarActionPerformed(evt);
             }
         });
 
-        txtintensidadsolar.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
-        txtintensidadsolar.addActionListener(new java.awt.event.ActionListener() {
+        txb_intensidadsolar.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        txb_intensidadsolar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtintensidadsolarActionPerformed(evt);
+                txb_intensidadsolarActionPerformed(evt);
             }
         });
 
@@ -80,40 +72,30 @@ public class Ambiente extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
         jLabel4.setText("Temperatura Ambiente");
 
-        txttemperatura.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
-        txttemperatura.addActionListener(new java.awt.event.ActionListener() {
+        txb_temperatura.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        txb_temperatura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txttemperaturaActionPerformed(evt);
+                txb_temperaturaActionPerformed(evt);
             }
         });
 
         jLabel5.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
         jLabel5.setText("Angulo");
 
-        txtangulo.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
-        txtangulo.addActionListener(new java.awt.event.ActionListener() {
+        txb_angulo.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        txb_angulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtanguloActionPerformed(evt);
+                txb_anguloActionPerformed(evt);
             }
         });
 
         jLabel6.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
         jLabel6.setText("Direccion del sol");
 
-        txtdireccion.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
-        txtdireccion.addActionListener(new java.awt.event.ActionListener() {
+        txb_direccion.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        txb_direccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtdireccionActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
-        jLabel7.setText("Fecha Registro");
-
-        txtfecharegistro.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
-        txtfecharegistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtfecharegistroActionPerformed(evt);
+                txb_direccionActionPerformed(evt);
             }
         });
 
@@ -126,31 +108,19 @@ public class Ambiente extends javax.swing.JDialog {
             }
         });
 
+        Jd_fecha.setDateFormatString("yyyy-MM-dd");
+
+        jLabel8.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
+        jLabel8.setText("Fecha creacion");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4)
-                    .addComponent(txttemperatura, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtdireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(txtangulo, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtfecharegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(165, 165, 165)
                 .addComponent(jLabel2)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -158,11 +128,28 @@ public class Ambiente extends javax.swing.JDialog {
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(185, 185, 185)
-                        .addComponent(txtintensidadsolar, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txb_intensidadsolar, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(229, 229, 229)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn_Ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4)
+                    .addComponent(txb_temperatura, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                    .addComponent(jLabel6)
+                    .addComponent(txb_direccion, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(txb_angulo, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(Jd_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,25 +159,27 @@ public class Ambiente extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtintensidadsolar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txb_intensidadsolar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txttemperatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtangulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txb_temperatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txb_angulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtfecharegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txb_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Jd_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_Ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(jButton2))
         );
@@ -198,99 +187,74 @@ public class Ambiente extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtintensidadsolarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtintensidadsolarActionPerformed
+    private void txb_intensidadsolarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txb_intensidadsolarActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_txtintensidadsolarActionPerformed
 
-    private void txttemperaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttemperaturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txttemperaturaActionPerformed
+    }//GEN-LAST:event_txb_intensidadsolarActionPerformed
 
-    private void txtanguloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtanguloActionPerformed
+    private void txb_temperaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txb_temperaturaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtanguloActionPerformed
+    }//GEN-LAST:event_txb_temperaturaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void txb_anguloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txb_anguloActionPerformed
         // TODO add your handling code here:
-       
-        
-        try{
+    }//GEN-LAST:event_txb_anguloActionPerformed
+
+    private void btn_IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarActionPerformed
+        // TODO add your handling code here:
+
+        try {
             String sql;
-            ambiente a=new ambiente();
-            a.setIntensidad_solar(txtintensidadsolar.getText());
-            a.setTemperatura_ambiente(Integer.parseInt(txttemperatura.getText()));
-            a.setAngulo(Integer.parseInt(txtangulo.getText()));
-            a.setDireccion_sol(txtdireccion.getText());
-            a.setFecha_registro(new SimpleDateFormat("yyyy/MM/dd").parse(txtfecharegistro.getText()));
-            ConexionBDD nuevoc=new ConexionBDD();
+            ambiente a = new ambiente(
+                    txb_intensidadsolar.getText(),
+                    Integer.parseInt(txb_temperatura.getText()),
+                    Integer.parseInt(txb_angulo.getText()),
+                    txb_direccion.getText(),
+                    new SimpleDateFormat("yyyy/MM/dd").format(Jd_fecha.getDate())
+            );
+            ConexionBDD nuevoc = new ConexionBDD();
             Connection con = nuevoc.conectar();
-            sql="insert into ambiente(intensidad_solar, temperatura_ambiente, angulo, direccion_sol, fecha_registro) values(?,?,?,?,?,?)";
-        
+            sql = "insert into ambiente(intensidad_solar, temperatura_ambiente, angulo, direccion_sol, fecha_registro) values(?,?,?,?,?,?)";
+
             PreparedStatement pst = con.prepareStatement(sql);
-            
+
             pst.setString(1, a.getIntensidad_solar());
             pst.setInt(2, a.getTemperatura_ambiente());
             pst.setInt(3, a.getAngulo());
             pst.setString(4, a.getDireccion_sol());
-            pst.setDate(5, (java.sql.Date) (Date) a.getFecha_registro());
-            
+            pst.setString(5, a.getFecha_registro());
+
             int n = pst.executeUpdate();
-            if(n > 0){
+            if (n > 0) {
                 JOptionPane.showMessageDialog(null, "Ambiente del horno ingresado");
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "El ambiente del horno no pudo ser ingresado");
             }
-            
-            txtintensidadsolar.setText(null);
-            txttemperatura.setText(null);
-            txtangulo.setText(null);
-            txtdireccion.setText(null);
-            txtfecharegistro.setText(null);
-        }catch(ParseException | SQLException | HeadlessException e){
+            con.close();
+            pst.close();
+            txb_intensidadsolar.setText(null);
+            txb_temperatura.setText(null);
+            txb_angulo.setText(null);
+            txb_direccion.setText(null);
+            Jd_fecha.setDate(null);
+        } catch (SQLException | HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
-        }    
-    }//GEN-LAST:event_jButton1ActionPerformed
+        }
+    }//GEN-LAST:event_btn_IngresarActionPerformed
 
-    private void txtdireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdireccionActionPerformed
+    private void txb_direccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txb_direccionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtdireccionActionPerformed
-
-    private void txtfecharegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfecharegistroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtfecharegistroActionPerformed
+    }//GEN-LAST:event_txb_direccionActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        menu m=new menu();
+        menu m = new menu();
         m.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-        txtfecharegistro.setText("AAAA-MM-DD");
-        txtfecharegistro.setForeground(Color.LIGHT_GRAY);
-        
-        txtfecharegistro.addFocusListener(new java.awt.event.FocusAdapter(){
-            @Override
-            public void focusGained(FocusEvent e){
-                if(txtfecharegistro.getText().equals("AAAA-MM-DD")){
-                    txtfecharegistro.setText("");
-                    txtfecharegistro.setForeground(Color.BLACK);
-                
-                }
-            }  
-            
-            @Override
-            public void focusLost(FocusEvent e){
-                if(txtfecharegistro.getText().isEmpty()){
-                    txtfecharegistro.setText("AAAA-MM-DD");
-                    txtfecharegistro.setForeground(Color.LIGHT_GRAY);
-                }
-            }
- 
-        });
+      
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -336,18 +300,18 @@ public class Ambiente extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private com.toedter.calendar.JDateChooser Jd_fecha;
+    private javax.swing.JButton btn_Ingresar;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField txtangulo;
-    private javax.swing.JTextField txtdireccion;
-    private javax.swing.JTextField txtfecharegistro;
-    private javax.swing.JTextField txtintensidadsolar;
-    private javax.swing.JTextField txttemperatura;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JTextField txb_angulo;
+    private javax.swing.JTextField txb_direccion;
+    private javax.swing.JTextField txb_intensidadsolar;
+    private javax.swing.JTextField txb_temperatura;
     // End of variables declaration//GEN-END:variables
 }

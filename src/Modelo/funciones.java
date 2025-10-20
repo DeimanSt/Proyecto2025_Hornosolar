@@ -5,12 +5,10 @@ import java.sql.*;
 
 public class funciones {
     protected int temperaturaInterna, tiempoCoccion;
-    protected String tipoAlimento,estadoHorno;
-    protected Date fechaOperacion;
-    protected Time horaOperacion;
+    protected String tipoAlimento,estadoHorno, fechaOperacion, horaOperacion;
 
   
-    public funciones(int temperaturaInterna, int tiempoCoccion, String tipoAlimento, String estadoHorno, Date fechaOperacion, Time horaOperacion) {
+    public funciones(int temperaturaInterna, int tiempoCoccion, String tipoAlimento, String estadoHorno, String fechaOperacion, String horaOperacion) {
         this.temperaturaInterna = temperaturaInterna;
         this.tiempoCoccion = tiempoCoccion;
         this.tipoAlimento = tipoAlimento;
@@ -51,19 +49,19 @@ public class funciones {
         this.estadoHorno = estadoHorno;
     }
 
-    public Date getFechaOperacion() {
+    public String getFechaOperacion() {
         return fechaOperacion;
     }
 
-    public void setFechaOperacion(Date fechaOperacion) {
+    public void setFechaOperacion(String fechaOperacion) {
         this.fechaOperacion = fechaOperacion;
     }
 
-    public Time getHoraOperacion() {
+    public String getHoraOperacion() {
         return horaOperacion;
     }
 
-    public void setHoraOperacion(Time horaOperacion) {
+    public void setHoraOperacion(String horaOperacion) {
         this.horaOperacion = horaOperacion;
     }
 
