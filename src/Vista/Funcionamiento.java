@@ -116,9 +116,10 @@ public class Funcionamiento extends javax.swing.JDialog {
 
         jb_fechaoperacion.setDateFormatString("yyyy-MM-dd");
 
-        js_Hora.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(), new java.util.Date(), java.util.Calendar.HOUR));
-        js_Hora.setDateFormatString("");
-        js_Hora.setName(""); // NOI18N
+        js_Hora.setDateFormatString("HH:mm:ss");
+        js_Hora.setEditor(new javax.swing.JSpinner.DateEditor(js_Hora, "HH:mm:ss"));
+        js_Hora.setMaxSelectableDate(new java.util.Date(253370861999000L));
+        js_Hora.setMinSelectableDate(new java.util.Date(-62135758800000L));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,11 +131,11 @@ public class Funcionamiento extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(235, 235, 235)
-                                .addComponent(btn_ingresar))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(88, 88, 88)
-                                .addComponent(jLabel1)))
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(235, 235, 235)
+                                .addComponent(btn_ingresar)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,7 +155,7 @@ public class Funcionamiento extends javax.swing.JDialog {
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txb_estadohorno, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
-                            .addComponent(js_Hora, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(js_Hora, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(19, 19, 19))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -244,7 +245,6 @@ public class Funcionamiento extends javax.swing.JDialog {
             txb_tipodealimento.setText(null);
             txb_estadohorno.setText(null);
             jb_fechaoperacion.setDate(null);
-            js_Hora.setDate(null);
         }catch(SQLException | HeadlessException e){
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
