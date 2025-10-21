@@ -214,7 +214,7 @@ public class Hornos extends javax.swing.JDialog {
         txb_tipo.getText(),                            
         txb_materiales.getText(),                      
         txb_aislamiento.getText(),                   
-            new SimpleDateFormat("yyyy-MM-dd").format(Jd_fecha.getDate()), 
+        new SimpleDateFormat("yyyy-MM-dd").format(Jd_fecha.getDate()), 
         Double.parseDouble(txb_dimenciones.getText())   
     );
       

@@ -48,6 +48,9 @@ public class menu extends javax.swing.JFrame {
         jMenu11 = new javax.swing.JMenu();
         jMenu12 = new javax.swing.JMenu();
         jSeparator1 = new javax.swing.JSeparator();
+        jMenuBar5 = new javax.swing.JMenuBar();
+        jMenu13 = new javax.swing.JMenu();
+        jMenu14 = new javax.swing.JMenu();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         ing_Ambiente1 = new javax.swing.JMenuItem();
@@ -56,6 +59,7 @@ public class menu extends javax.swing.JFrame {
         ing_Autosustentable = new javax.swing.JMenuItem();
         ing_Mantenimiento = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenu15 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -97,6 +101,12 @@ public class menu extends javax.swing.JFrame {
 
         jMenu12.setText("Edit");
         jMenuBar4.add(jMenu12);
+
+        jMenu13.setText("File");
+        jMenuBar5.add(jMenu13);
+
+        jMenu14.setText("Edit");
+        jMenuBar5.add(jMenu14);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Proyecto horno");
@@ -173,6 +183,7 @@ public class menu extends javax.swing.JFrame {
 
         jMenu4.setText("Modificar / Eliminar");
         jMenuBar1.add(jMenu4);
+        jMenuBar1.add(jMenu15);
 
         setJMenuBar(jMenuBar1);
 
@@ -270,6 +281,9 @@ public class menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu12;
+    private javax.swing.JMenu jMenu13;
+    private javax.swing.JMenu jMenu14;
+    private javax.swing.JMenu jMenu15;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -282,6 +296,7 @@ public class menu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuBar jMenuBar4;
+    private javax.swing.JMenuBar jMenuBar5;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
