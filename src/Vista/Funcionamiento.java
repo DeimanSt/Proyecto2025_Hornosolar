@@ -6,13 +6,8 @@ import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.awt.Color;
-import java.awt.event.FocusEvent;
-import java.sql.Date;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
-import java.sql.Time;
 public class Funcionamiento extends javax.swing.JDialog {
 
     /**
@@ -32,21 +27,23 @@ public class Funcionamiento extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSpinField1 = new com.toedter.components.JSpinField();
+        jSpinFieldBeanInfo1 = new com.toedter.components.JSpinFieldBeanInfo();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txttemperaturai = new javax.swing.JTextField();
+        txb_temperaturai = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txttiempoc = new javax.swing.JTextField();
+        txb_tiempoc = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txttipodealimento = new javax.swing.JTextField();
+        txb_tipodealimento = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtestadohorno = new javax.swing.JTextField();
-        txtfechaoperacion = new javax.swing.JTextField();
+        txb_estadohorno = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txthoraoperacion = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_ingresar = new javax.swing.JButton();
+        btn_salir = new javax.swing.JButton();
+        jb_fechaoperacion = new com.toedter.calendar.JDateChooser();
+        js_Hora = new com.toedter.calendar.JSpinnerDateEditor();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -61,42 +58,35 @@ public class Funcionamiento extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
         jLabel2.setText("Temperatura Interna");
 
-        txttemperaturai.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        txb_temperaturai.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
         jLabel3.setText("Tiempo de Coccion");
 
-        txttiempoc.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        txttiempoc.addActionListener(new java.awt.event.ActionListener() {
+        txb_tiempoc.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        txb_tiempoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txttiempocActionPerformed(evt);
+                txb_tiempocActionPerformed(evt);
             }
         });
 
         jLabel4.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
         jLabel4.setText("Tipo de Alimento");
 
-        txttipodealimento.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        txttipodealimento.addActionListener(new java.awt.event.ActionListener() {
+        txb_tipodealimento.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        txb_tipodealimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txttipodealimentoActionPerformed(evt);
+                txb_tipodealimentoActionPerformed(evt);
             }
         });
 
         jLabel5.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
         jLabel5.setText("Estado del Horno");
 
-        txtestadohorno.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        txtestadohorno.addActionListener(new java.awt.event.ActionListener() {
+        txb_estadohorno.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        txb_estadohorno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtestadohornoActionPerformed(evt);
-            }
-        });
-
-        txtfechaoperacion.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        txtfechaoperacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtfechaoperacionActionPerformed(evt);
+                txb_estadohornoActionPerformed(evt);
             }
         });
 
@@ -106,30 +96,29 @@ public class Funcionamiento extends javax.swing.JDialog {
         jLabel7.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
         jLabel7.setText("Hora de la Operacion");
 
-        txthoraoperacion.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        txthoraoperacion.addActionListener(new java.awt.event.ActionListener() {
+        btn_ingresar.setBackground(new java.awt.Color(0, 204, 0));
+        btn_ingresar.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
+        btn_ingresar.setText("Ingresar");
+        btn_ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txthoraoperacionActionPerformed(evt);
+                btn_ingresarActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(0, 204, 0));
-        jButton1.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
-        jButton1.setText("Ingresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_salir.setBackground(new java.awt.Color(255, 0, 0));
+        btn_salir.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        btn_salir.setText("Salir");
+        btn_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_salirActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 0, 0));
-        jButton2.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
-        jButton2.setText("Salir");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        jb_fechaoperacion.setDateFormatString("yyyy-MM-dd");
+
+        js_Hora.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(), new java.util.Date(), java.util.Calendar.HOUR));
+        js_Hora.setDateFormatString("");
+        js_Hora.setName(""); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,38 +126,40 @@ public class Funcionamiento extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txttipodealimento, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txttemperaturai)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtfechaoperacion, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(txttiempoc, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtestadohorno, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txthoraoperacion, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(19, 19, 19))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(235, 235, 235)
+                                .addComponent(btn_ingresar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(88, 88, 88)
+                                .addComponent(jLabel1)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txb_tipodealimento, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txb_temperaturai)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jb_fechaoperacion, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(txb_tiempoc, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txb_estadohorno, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(js_Hora, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btn_salir)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(230, 230, 230)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,65 +172,56 @@ public class Funcionamiento extends javax.swing.JDialog {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txttemperaturai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txttiempoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txb_temperaturai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txb_tiempoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txttipodealimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtestadohorno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txb_tipodealimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txb_estadohorno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txthoraoperacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(js_Hora, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtfechaoperacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(42, 42, 42)
-                .addComponent(jButton1)
+                        .addComponent(jb_fechaoperacion, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(btn_ingresar)
                 .addGap(25, 25, 25)
-                .addComponent(jButton2)
+                .addComponent(btn_salir)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txttiempocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttiempocActionPerformed
+    private void txb_tiempocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txb_tiempocActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txttiempocActionPerformed
+    }//GEN-LAST:event_txb_tiempocActionPerformed
 
-    private void txttipodealimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttipodealimentoActionPerformed
+    private void txb_tipodealimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txb_tipodealimentoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txttipodealimentoActionPerformed
+    }//GEN-LAST:event_txb_tipodealimentoActionPerformed
 
-    private void txtestadohornoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtestadohornoActionPerformed
+    private void txb_estadohornoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txb_estadohornoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtestadohornoActionPerformed
+    }//GEN-LAST:event_txb_estadohornoActionPerformed
 
-    private void txtfechaoperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfechaoperacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtfechaoperacionActionPerformed
-
-    private void txthoraoperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txthoraoperacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txthoraoperacionActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingresarActionPerformed
         // TODO add your handling code here:
         try{
             String sql;
-            funciones f=new funciones(Integer.parseInt(txttemperaturai.getText()), Integer.parseInt(txttiempoc.getText()), txttipodealimento.getText(), txtestadohorno.getText(), (Date) new SimpleDateFormat("yyyy/MM/dd").parse(txtfechaoperacion.getText()), Time.valueOf(txthoraoperacion.getText()));
+            funciones f = new funciones(Integer.parseInt(txb_temperaturai.getText()), Integer.parseInt(txb_tiempoc.getText()), txb_tipodealimento.getText(), txb_estadohorno.getText(), new SimpleDateFormat("yyyy/MM/dd").format(jb_fechaoperacion.getDate()), new SimpleDateFormat("HH:mm:ss").format(js_Hora.getValue()));          
             ConexionBDD nuevoc=new ConexionBDD();
             Connection con = nuevoc.conectar();        
-            sql="insert into ambiente(temperatura_interna, tiempo_coccion, tipo_alimento, estado_horno, fecha_operacion, hora_operacion) values(?,?,?,?,?,?,?)";
+            sql="insert into funcionamiento(temperatura_interna, tiempo_coccion, tipo_alimento, estado_horno, fecha_operacion, hora_operacion) values(?,?,?,?,?,?)";
             
             PreparedStatement pst = con.prepareStatement(sql);
             
@@ -247,8 +229,8 @@ public class Funcionamiento extends javax.swing.JDialog {
             pst.setInt(2, f.getTiempoCoccion());
             pst.setString(3, f.getTipoAlimento());
             pst.setString(4, f.getEstadoHorno());
-            pst.setDate(5, f.getFechaOperacion());
-            pst.setTime(6, f.getHoraOperacion());
+            pst.setString(5, f.getFechaOperacion());
+            pst.setString(6, f.getHoraOperacion());
             
             int n = pst.executeUpdate();
             if(n > 0){
@@ -257,48 +239,26 @@ public class Funcionamiento extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Funcionamiento del horno no se ha podido ingresar");
             }
             
-            txttemperaturai.setText(null);
-            txttiempoc.setText(null);
-            txttipodealimento.setText(null);
-            txtestadohorno.setText(null);
-            txtfechaoperacion.setText(null);
-            txthoraoperacion.setText(null);
-        }catch(ParseException | SQLException | HeadlessException e){
+            txb_temperaturai.setText(null);
+            txb_tiempoc.setText(null);
+            txb_tipodealimento.setText(null);
+            txb_estadohorno.setText(null);
+            jb_fechaoperacion.setDate(null);
+            js_Hora.setDate(null);
+        }catch(SQLException | HeadlessException e){
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_ingresarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
         // TODO add your handling code here:
         menu m=new menu();
         m.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btn_salirActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-        txtfechaoperacion.setText("AAAA-MM-DD");
-        txtfechaoperacion.setForeground(Color.LIGHT_GRAY);
-        
-        txtfechaoperacion.addFocusListener(new java.awt.event.FocusAdapter(){
-            @Override
-            public void focusGained(FocusEvent e){
-                if(txtfechaoperacion.getText().equals("AAAA-MM-DD")){
-                    txtfechaoperacion.setText("");
-                    txtfechaoperacion.setForeground(Color.BLACK);
-                }
-            }  
-            
-            @Override
-            public void focusLost(FocusEvent e){
-                if(txtfechaoperacion.getText().isEmpty()){
-                    txtfechaoperacion.setText("AAAA-MM-DD");
-                    txtfechaoperacion.setForeground(Color.LIGHT_GRAY);
-                }
-            }
- 
-        });
         
     }//GEN-LAST:event_formWindowOpened
 
@@ -345,8 +305,8 @@ public class Funcionamiento extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btn_ingresar;
+    private javax.swing.JButton btn_salir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -354,11 +314,13 @@ public class Funcionamiento extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField txtestadohorno;
-    private javax.swing.JTextField txtfechaoperacion;
-    private javax.swing.JTextField txthoraoperacion;
-    private javax.swing.JTextField txttemperaturai;
-    private javax.swing.JTextField txttiempoc;
-    private javax.swing.JTextField txttipodealimento;
+    private com.toedter.components.JSpinField jSpinField1;
+    private com.toedter.components.JSpinFieldBeanInfo jSpinFieldBeanInfo1;
+    private com.toedter.calendar.JDateChooser jb_fechaoperacion;
+    private com.toedter.calendar.JSpinnerDateEditor js_Hora;
+    private javax.swing.JTextField txb_estadohorno;
+    private javax.swing.JTextField txb_temperaturai;
+    private javax.swing.JTextField txb_tiempoc;
+    private javax.swing.JTextField txb_tipodealimento;
     // End of variables declaration//GEN-END:variables
 }

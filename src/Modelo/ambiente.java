@@ -4,9 +4,21 @@ import java.util.Date;
 
 
 public class ambiente {
-    private int angulo, temperatura_ambiente;
-    private String intensidad_solar, direccion_sol;
-    private Date fecha_registro;
+
+    // Variables de instancia (atributos)
+    private String intensidad_solar;
+    private int temperatura_ambiente;
+    private int angulo;
+    private String direccion_sol, fecha_registro;
+
+    // Constructor
+    public ambiente(String intensidad_solar, int temperatura_ambiente, int angulo, String direccion_sol, String fecha_registro) {
+        this.intensidad_solar = intensidad_solar;
+        this.temperatura_ambiente = temperatura_ambiente;
+        this.angulo = angulo;
+        this.direccion_sol = direccion_sol;
+        this.fecha_registro = fecha_registro;
+    }
 
     public int getAngulo() {
         return angulo;
@@ -40,13 +52,15 @@ public class ambiente {
         this.direccion_sol = direccion_sol;
     }
 
-    public Date getFecha_registro() {
+    public String getFecha_registro() {
         return fecha_registro;
     }
 
-    public void setFecha_registro(Date fecha_registro) {
+    public void setFecha_registro(String fecha_registro) {
         this.fecha_registro = fecha_registro;
     }
+
+
 
     
 }

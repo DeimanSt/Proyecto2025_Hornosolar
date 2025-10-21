@@ -1,16 +1,12 @@
 package Vista;
 import Controlador.ConexionBDD;
 import Modelo.horno;
-import java.awt.Color;
 import java.awt.HeadlessException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import javax.swing.JOptionPane;
+import java.text.*;
 
 public class Hornos extends javax.swing.JDialog {
-    horno h = new horno();
-
     public Hornos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();       
@@ -27,19 +23,21 @@ public class Hornos extends javax.swing.JDialog {
 
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        txttipo = new javax.swing.JTextField();
+        txb_tipo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtdimenciones = new javax.swing.JTextField();
+        txb_dimenciones = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtaislamiento = new javax.swing.JTextField();
+        txb_aislamiento = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtreflectores = new javax.swing.JTextField();
+        txb_reflectores = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtmateriales = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        txb_materiales = new javax.swing.JTextArea();
+        btn_ingresar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btn_salir = new javax.swing.JButton();
+        Jd_fecha = new com.toedter.calendar.JDateChooser();
+        jLabel7 = new javax.swing.JLabel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -53,15 +51,15 @@ public class Hornos extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
         jLabel2.setText("Tipo");
 
-        txttipo.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
-        txttipo.addFocusListener(new java.awt.event.FocusAdapter() {
+        txb_tipo.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        txb_tipo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txttipoFocusGained(evt);
+                txb_tipoFocusGained(evt);
             }
         });
-        txttipo.addActionListener(new java.awt.event.ActionListener() {
+        txb_tipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txttipoActionPerformed(evt);
+                txb_tipoActionPerformed(evt);
             }
         });
 
@@ -71,50 +69,64 @@ public class Hornos extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
         jLabel4.setText("Dimensiones");
 
-        txtdimenciones.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        txb_dimenciones.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
         jLabel5.setText("Sistema de aislamiento");
 
-        txtaislamiento.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        txb_aislamiento.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
         jLabel6.setText("Reflectores");
 
-        txtreflectores.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        txb_reflectores.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
 
-        txtmateriales.setColumns(20);
-        txtmateriales.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
-        txtmateriales.setLineWrap(true);
-        txtmateriales.setRows(5);
-        txtmateriales.setWrapStyleWord(true);
-        jScrollPane1.setViewportView(txtmateriales);
+        txb_materiales.setColumns(20);
+        txb_materiales.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        txb_materiales.setLineWrap(true);
+        txb_materiales.setRows(5);
+        txb_materiales.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(txb_materiales);
 
-        jButton1.setBackground(new java.awt.Color(0, 204, 0));
-        jButton1.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
-        jButton1.setText("Ingresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_ingresar.setBackground(new java.awt.Color(0, 204, 0));
+        btn_ingresar.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
+        btn_ingresar.setText("Ingresar");
+        btn_ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_ingresarActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
         jLabel1.setText("Ingreso de los Hornos Solares");
 
-        jButton2.setBackground(new java.awt.Color(255, 0, 0));
-        jButton2.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
-        jButton2.setText("Salir");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_salir.setBackground(new java.awt.Color(255, 0, 0));
+        btn_salir.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        btn_salir.setText("Salir");
+        btn_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_salirActionPerformed(evt);
             }
         });
+
+        Jd_fecha.setDateFormatString("yyyy-MM-dd");
+
+        jLabel7.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
+        jLabel7.setText("Fecha creacion");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(172, 172, 172))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(323, 323, 323)
+                .addComponent(btn_ingresar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_salir))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -122,80 +134,90 @@ public class Hornos extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtdimenciones, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(49, 49, 49)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(txtreflectores, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtaislamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txb_dimenciones, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(txb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(323, 323, 323)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(223, 223, 223)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txttipo, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))))
-                .addContainerGap(45, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(172, 172, 172))))
+                        .addGap(56, 56, 56)
+                        .addComponent(jLabel2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6)
+                    .addComponent(txb_reflectores)
+                    .addComponent(txb_aislamiento)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Jd_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel1)
-                .addGap(24, 24, 24)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txttipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtdimenciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtaislamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtreflectores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
-                .addComponent(jButton1)
-                .addGap(62, 62, 62)
-                .addComponent(jButton2)
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txb_dimenciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txb_aislamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txb_reflectores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Jd_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_ingresar)
+                    .addComponent(btn_salir))
+                .addGap(5, 5, 5))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void txttipoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txttipoFocusGained
-    }//GEN-LAST:event_txttipoFocusGained
-    private void txttipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttipoActionPerformed
-    }//GEN-LAST:event_txttipoActionPerformed
+    private void txb_tipoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txb_tipoFocusGained
+    }//GEN-LAST:event_txb_tipoFocusGained
+    private void txb_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txb_tipoActionPerformed
+    }//GEN-LAST:event_txb_tipoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
     }//GEN-LAST:event_formWindowOpened
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        h.setTipo(txttipo.getText());
-        h.setMateriales(txtmateriales.getText());
-        h.setDimensiones(Double.parseDouble(txtdimenciones.getText()));
-        h.setSistema_aislamiento(txtaislamiento.getText());
-        h.setReflectores(Integer.parseInt(txtreflectores.getText()));
+    private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
+        // TODO add your handling code here:
+        menu m=new menu();
+        m.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_salirActionPerformed
+
+    private void btn_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingresarActionPerformed
+      
+        horno h= new horno(
+        Integer.parseInt(txb_reflectores.getText()),   
+        txb_tipo.getText(),                            
+        txb_materiales.getText(),                      
+        txb_aislamiento.getText(),                   
+            new SimpleDateFormat("yyyy-MM-dd").format(Jd_fecha.getDate()), 
+        Double.parseDouble(txb_dimenciones.getText())   
+    );
+      
         ConexionBDD nuevoc = new ConexionBDD();
         Connection con = nuevoc.conectar();
 
@@ -207,7 +229,7 @@ public class Hornos extends javax.swing.JDialog {
             pst.setString(4, h.getSistema_aislamiento());
             pst.setInt(5, h.getReflectores());
             pst.setString(6, h.getFecha());
-            
+
             int n = pst.executeUpdate();
             if (n > 0) {
                 JOptionPane.showMessageDialog(this, "horno ingresado"); //this lo pone en el medio del jframe
@@ -215,17 +237,12 @@ public class Hornos extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "horno no ingresado");
             }
             con.close();
+            pst.close();
+
         } catch (SQLException | HeadlessException e) {
             JOptionPane.showMessageDialog(this, "error: " + e);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        menu m=new menu();
-        m.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btn_ingresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,8 +287,9 @@ public class Hornos extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private com.toedter.calendar.JDateChooser Jd_fecha;
+    private javax.swing.JButton btn_ingresar;
+    private javax.swing.JButton btn_salir;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -279,11 +297,12 @@ public class Hornos extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtaislamiento;
-    private javax.swing.JTextField txtdimenciones;
-    private javax.swing.JTextArea txtmateriales;
-    private javax.swing.JTextField txtreflectores;
-    private javax.swing.JTextField txttipo;
+    private javax.swing.JTextField txb_aislamiento;
+    private javax.swing.JTextField txb_dimenciones;
+    private javax.swing.JTextArea txb_materiales;
+    private javax.swing.JTextField txb_reflectores;
+    private javax.swing.JTextField txb_tipo;
     // End of variables declaration//GEN-END:variables
 }

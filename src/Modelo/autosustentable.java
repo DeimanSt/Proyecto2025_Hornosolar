@@ -1,14 +1,19 @@
 
 package Modelo;
 
-import java.util.Date;
-
-
 public class autosustentable {
     protected int consumo_energetico, energia_almacenada;
     protected String energia_solar_recibida;
     protected double eficiencia_energetica;
-    protected Date fecha_evaluacion;
+    protected String fecha_evaluacion;
+
+    public autosustentable(int consumo_energetico, int energia_almacenada, String energia_solar_recibida, double eficiencia_energetica, String fecha_evaluacion) {
+        this.consumo_energetico = consumo_energetico;
+        this.energia_almacenada = energia_almacenada;
+        this.energia_solar_recibida = energia_solar_recibida;
+        this.eficiencia_energetica = eficiencia_energetica;
+        this.fecha_evaluacion = fecha_evaluacion;
+    }
 
     public int getConsumo_energetico() {
         return consumo_energetico;
@@ -42,11 +47,11 @@ public class autosustentable {
         this.eficiencia_energetica = eficiencia_energetica;
     }
 
-    public Date getFecha_evaluacion() {
+    public String getFecha_evaluacion() {
         return fecha_evaluacion;
     }
 
-    public void setFecha_evaluacion(Date fecha_evaluacion) {
+    public void setFecha_evaluacion(String fecha_evaluacion) {
         this.fecha_evaluacion = fecha_evaluacion;
     }
 

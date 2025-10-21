@@ -3,13 +3,7 @@ package Vista;
 import Controlador.ConexionBDD;
 import Modelo.autosustentable;
 import java.awt.HeadlessException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.awt.Color;
-import java.awt.event.FocusEvent;
-import java.sql.Date;
-import java.text.ParseException;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
@@ -42,18 +36,18 @@ public class Autosustentable extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtconsumoe = new javax.swing.JTextField();
+        txb_consumoe = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtenergiaalmacenada = new javax.swing.JTextField();
+        txb_energiaalmacenada = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtenergiarecibida = new javax.swing.JTextField();
-        txteficienciaenergetica = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        txtfecha = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_ingresar = new javax.swing.JButton();
+        btn_salir = new javax.swing.JButton();
+        Jd_fecha = new com.toedter.calendar.JDateChooser();
+        jLabel7 = new javax.swing.JLabel();
+        cb_eficienciaenergetica = new javax.swing.JComboBox<>();
+        cb_energiarecibida = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -65,10 +59,10 @@ public class Autosustentable extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
         jLabel1.setText("Autosustentabilidad del horno");
 
-        txtconsumoe.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        txtconsumoe.addActionListener(new java.awt.event.ActionListener() {
+        txb_consumoe.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        txb_consumoe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtconsumoeActionPerformed(evt);
+                txb_consumoeActionPerformed(evt);
             }
         });
 
@@ -78,88 +72,77 @@ public class Autosustentable extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
         jLabel3.setText("Energia Almacenada");
 
-        txtenergiaalmacenada.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        txb_energiaalmacenada.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
         jLabel4.setText("Energia Solar Recibida");
 
-        txtenergiarecibida.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-
-        txteficienciaenergetica.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-
         jLabel5.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
         jLabel5.setText("Eficiencia Energetica");
 
-        jLabel6.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
-        jLabel6.setText("Fecha Evaluacion");
-
-        txtfecha.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-
-        jButton1.setBackground(new java.awt.Color(0, 204, 0));
-        jButton1.setFont(new java.awt.Font("Ebrima", 1, 38)); // NOI18N
-        jButton1.setText("Ingresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_ingresar.setBackground(new java.awt.Color(0, 204, 0));
+        btn_ingresar.setFont(new java.awt.Font("Ebrima", 1, 38)); // NOI18N
+        btn_ingresar.setText("Ingresar");
+        btn_ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_ingresarActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 0, 0));
-        jButton2.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
-        jButton2.setText("Salir");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_salir.setBackground(new java.awt.Color(255, 0, 0));
+        btn_salir.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        btn_salir.setText("Salir");
+        btn_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_salirActionPerformed(evt);
             }
         });
+
+        Jd_fecha.setDateFormatString("yyyy-MM-dd");
+
+        jLabel7.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
+        jLabel7.setText("Fecha creacion");
+
+        cb_eficienciaenergetica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Alta", "Media", "Baja" }));
+
+        cb_energiarecibida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Alta", "Media", "Baja" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(jLabel1)
+                .addContainerGap(112, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(229, 229, 229)
+                .addComponent(btn_ingresar)
+                .addGap(0, 254, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_salir))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(txtenergiaalmacenada, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(txteficienciaenergetica, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtconsumoe, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jLabel2)
+                            .addComponent(cb_energiarecibida, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txb_consumoe, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(txb_energiaalmacenada, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(cb_eficienciaenergetica, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(txtenergiarecibida, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Jd_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel4))
                         .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(219, 219, 219)
-                        .addComponent(jLabel6)))
-                .addContainerGap(112, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(200, 200, 200)
-                        .addComponent(txtfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(229, 229, 229)
-                        .addComponent(jButton1)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton2))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,107 +155,63 @@ public class Autosustentable extends javax.swing.JDialog {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtconsumoe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtenergiaalmacenada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txb_consumoe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txb_energiaalmacenada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txteficienciaenergetica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtenergiarecibida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cb_eficienciaenergetica, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_energiarecibida, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addContainerGap())
+                .addComponent(Jd_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(btn_ingresar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(btn_salir))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-        txtenergiarecibida.setText("Alta, Media o Baja");
-        txtenergiarecibida.setForeground(Color.LIGHT_GRAY);
-        
-        txtenergiarecibida.addFocusListener(new java.awt.event.FocusAdapter(){
-            @Override
-            public void focusGained(FocusEvent e){
-                if(txtenergiarecibida.getText().equals("Alta, Media o Baja")){
-                    txtenergiarecibida.setText("");
-                    txtenergiarecibida.setForeground(Color.BLACK);
-                
-                }
-            }  
-            
-            @Override
-            public void focusLost(FocusEvent e){
-                if(txtenergiarecibida.getText().isEmpty()){
-                    txtenergiarecibida.setText("Alta, Media o Baja");
-                    txtenergiarecibida.setForeground(Color.LIGHT_GRAY);
-                }
-            }
- 
-        });
-        txtfecha.setText("AAAA-MM-DD");
-        txtfecha.setForeground(Color.LIGHT_GRAY);
-        
-        txtfecha.addFocusListener(new java.awt.event.FocusAdapter(){
-            @Override
-            public void focusGained(FocusEvent e){
-                if(txtfecha.getText().equals("AAAA-MM-DD")){
-                    txtfecha.setText("");
-                    txtfecha.setForeground(Color.BLACK);
-                
-                }
-            }  
-            
-            @Override
-            public void focusLost(FocusEvent e){
-                if(txtfecha.getText().isEmpty()){
-                    txtfecha.setText("AAAA-MM-DD");
-                    txtfecha.setForeground(Color.LIGHT_GRAY);
-                }
-            }
- 
-        });
+        // TODO add your handling code here
     }//GEN-LAST:event_formWindowOpened
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
         // TODO add your handling code here:
         menu m=new menu();
         m.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btn_salirActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingresarActionPerformed
         // TODO add your handling code here:
         
         try {
             String sql;
+           autosustentable a = new autosustentable(
+        Integer.parseInt(txb_consumoe.getText()),
+        Integer.parseInt(txb_energiaalmacenada.getText()),
+        cb_eficienciaenergetica.getActionCommand(),
+        Double.parseDouble(cb_eficienciaenergetica.getActionCommand()),
+        new SimpleDateFormat("yyyy/MM/dd").format(Jd_fecha.getDate())
+    );
             ConexionBDD nuevoc=new ConexionBDD();
             Connection con = nuevoc.conectar();        
-            sql="insert into ambiente(eficiencia_termica, energia_solar_recibida, consumo_energetico, energia_almacenada, fecha_evaluacion) values(?,?,?,?,?,?)";
-            autosustentable a=new autosustentable();
-            a.setConsumo_energetico(Integer.parseInt(txtconsumoe.getText()));
-            a.setEnergia_almacenada(Integer.parseInt(txtenergiaalmacenada.getText()));
-            a.setEnergia_solar_recibida(txtenergiarecibida.getText());
-            a.setEficiencia_energetica(Double.parseDouble(txteficienciaenergetica.getText()));
-            a.setFecha_evaluacion(new SimpleDateFormat("yyyy/MM/dd").parse(txtfecha.getText()));
-            
+            sql="insert into autosustentable(eficiencia_termica, energia_solar_recibida, consumo_energetico, energia_almacenada, fecha_evaluacion) values(?,?,?,?,?,?)";
+          
             PreparedStatement pst= con.prepareStatement(sql);
             
             pst.setDouble(1, a.getEficiencia_energetica());
             pst.setString(2, a.getEnergia_solar_recibida());
             pst.setInt(3, a.getConsumo_energetico());
             pst.setInt(4, a.getEnergia_almacenada());
-            pst.setDate(5, (Date) a.getFecha_evaluacion());
+            pst.setString(5, a.getFecha_evaluacion());
             
             int n = pst.executeUpdate();
             if(n > 0){
@@ -280,22 +219,24 @@ public class Autosustentable extends javax.swing.JDialog {
             }else{
                 JOptionPane.showMessageDialog(null, "La Autosustentabilidad del Horno no se ha podido ingresar");
             }
-            
-            txtconsumoe.setText(null);
-            txtenergiaalmacenada.setText(null);
-            txtenergiarecibida.setText(null);
-            txteficienciaenergetica.setText(null);
-            txtfecha.setText(null);
-        } catch (ParseException | SQLException | HeadlessException e) {
+            con.close();
+            pst.close();
+
+            txb_consumoe.setText(null);
+            txb_energiaalmacenada.setText(null);
+            cb_energiarecibida.setAction(null);
+            cb_eficienciaenergetica.setAction(null);
+            Jd_fecha.setDate(null);
+        } catch (SQLException | HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
         
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_ingresarActionPerformed
 
-    private void txtconsumoeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtconsumoeActionPerformed
+    private void txb_consumoeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txb_consumoeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtconsumoeActionPerformed
+    }//GEN-LAST:event_txb_consumoeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -340,18 +281,18 @@ public class Autosustentable extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private com.toedter.calendar.JDateChooser Jd_fecha;
+    private javax.swing.JButton btn_ingresar;
+    private javax.swing.JButton btn_salir;
+    private javax.swing.JComboBox<String> cb_eficienciaenergetica;
+    private javax.swing.JComboBox<String> cb_energiarecibida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField txtconsumoe;
-    private javax.swing.JTextField txteficienciaenergetica;
-    private javax.swing.JTextField txtenergiaalmacenada;
-    private javax.swing.JTextField txtenergiarecibida;
-    private javax.swing.JTextField txtfecha;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JTextField txb_consumoe;
+    private javax.swing.JTextField txb_energiaalmacenada;
     // End of variables declaration//GEN-END:variables
 }
