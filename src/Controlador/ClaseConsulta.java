@@ -1,11 +1,8 @@
 package Controlador;
 
-import Modelo.horno;
+import Modelo.*;
 import java.awt.HeadlessException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import javax.swing.JOptionPane;
 
 public class ClaseConsulta {
@@ -104,9 +101,7 @@ public class ClaseConsulta {
         }
     }
     
-    /**
-     * Busca un horno por su 'tipo' y devuelve el objeto.
-     */
+ 
     public horno buscarHornoPorTipo(String tipoDeHorno) {
         ConexionBDD nuevoc = new ConexionBDD();
         Connection con = nuevoc.conectar();
@@ -143,6 +138,32 @@ public class ClaseConsulta {
         } catch (SQLException | HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error al buscar: " + e);
             return null;
+        }
+    }
+    public void IngAmbiente (ambiente a){
+        
+        ConexionBDD nuevoc = new ConexionBDD();
+        Connection con = nuevoc.conectar();
+        PreparedStatement pst = null;
+try{
+           String sql = "insert into ambiente(intensidad_solar, temperatura_ambiente, angulo, direccion_sol, fecha_registro) values(?,?,?,?,?)";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, a.getIntensidad_solar());
+            pst.setInt(2, a.getTemperatura_ambiente());
+            pst.setInt(3, a.getAngulo());
+            pst.setString(4, a.getDireccion_sol());
+            pst.setString(5, a.getFecha_registro());
+
+            int n = pst.executeUpdate();
+            if (n > 0) {
+                JOptionPane.showMessageDialog(null, "Ambiente del horno ingresado");
+            } else {
+                JOptionPane.showMessageDialog(null, "El ambiente del horno no pudo ser ingresado");
+            }
+            con.close();
+            pst.close();
+        } catch (SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e);
         }
     }
 }

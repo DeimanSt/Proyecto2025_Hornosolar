@@ -20,7 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `proyecto`
 --
-
 -- --------------------------------------------------------
 
 --
@@ -36,6 +35,7 @@ CREATE TABLE `ambiente` (
   `direccion_sol` varchar(20) DEFAULT NULL,
   `fecha_registro` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 -- --------------------------------------------------------
 
