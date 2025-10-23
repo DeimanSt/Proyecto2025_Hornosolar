@@ -9,7 +9,8 @@ import java.text.*;
 public class Hornos extends javax.swing.JDialog {
     public Hornos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();       
+        initComponents();      
+        
     }
 
     /**

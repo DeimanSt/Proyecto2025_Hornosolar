@@ -12,7 +12,7 @@ public class horno {
         this.sistema_aislamiento = sistema_aislamiento;
         this.fecha = fecha;
         this.dimensiones = dimensiones;
-    }
+     }
     
     public int getReflectores() {
         return reflectores;

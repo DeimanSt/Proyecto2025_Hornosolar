@@ -61,7 +61,7 @@ public class Ambiente extends javax.swing.JDialog {
                 btn_IngresarActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_Ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 280, 63));
+        getContentPane().add(btn_Ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 280, 63));
 
         jLabel3.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 282, -1, -1));

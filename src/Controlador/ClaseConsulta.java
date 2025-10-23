@@ -3,7 +3,9 @@ package Controlador;
 import Modelo.*;
 import java.awt.HeadlessException;
 import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class ClaseConsulta {
 
@@ -140,6 +142,8 @@ public class ClaseConsulta {
             return null;
         }
     }
+    
+    
     public void IngAmbiente (ambiente a){
         
         ConexionBDD nuevoc = new ConexionBDD();
