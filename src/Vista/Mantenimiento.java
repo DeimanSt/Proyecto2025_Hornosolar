@@ -28,15 +28,15 @@ public class Mantenimiento extends javax.swing.JDialog {
         jSpinner1 = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txb_detallesr = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txb_materialesr = new javax.swing.JTextArea();
         btn_ingresar = new javax.swing.JButton();
-        btn_salir = new javax.swing.JButton();
         Jd_fecha = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txb_detallesr = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txb_materialesr = new javax.swing.JTextArea();
+        btn_salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -49,20 +49,10 @@ public class Mantenimiento extends javax.swing.JDialog {
         jLabel1.setText("Mantenimiento de los hornos");
 
         jLabel2.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
-        jLabel2.setText("Detalles de la Reparacion");
-
-        txb_detallesr.setColumns(20);
-        txb_detallesr.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txb_detallesr.setRows(5);
-        jScrollPane1.setViewportView(txb_detallesr);
+        jLabel2.setText("Detalles de Reparacion");
 
         jLabel3.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
         jLabel3.setText("Materiales Remplazados");
-
-        txb_materialesr.setColumns(20);
-        txb_materialesr.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txb_materialesr.setRows(5);
-        jScrollPane2.setViewportView(txb_materialesr);
 
         btn_ingresar.setBackground(new java.awt.Color(0, 204, 0));
         btn_ingresar.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
@@ -73,8 +63,27 @@ public class Mantenimiento extends javax.swing.JDialog {
             }
         });
 
-        btn_salir.setBackground(new java.awt.Color(255, 0, 0));
-        btn_salir.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        Jd_fecha.setDateFormatString("yyyy-MM-dd");
+
+        jLabel7.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
+        jLabel7.setText("Fecha creacion");
+
+        txb_detallesr.setColumns(20);
+        txb_detallesr.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        txb_detallesr.setLineWrap(true);
+        txb_detallesr.setRows(5);
+        txb_detallesr.setWrapStyleWord(true);
+        jScrollPane3.setViewportView(txb_detallesr);
+
+        txb_materialesr.setColumns(20);
+        txb_materialesr.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        txb_materialesr.setLineWrap(true);
+        txb_materialesr.setRows(5);
+        txb_materialesr.setWrapStyleWord(true);
+        jScrollPane4.setViewportView(txb_materialesr);
+
+        btn_salir.setBackground(new java.awt.Color(255, 71, 71));
+        btn_salir.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btn_salir.setText("Salir");
         btn_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,88 +91,67 @@ public class Mantenimiento extends javax.swing.JDialog {
             }
         });
 
-        Jd_fecha.setDateFormatString("yyyy-MM-dd");
-
-        jLabel7.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
-        jLabel7.setText("Fecha creacion");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(43, 43, 43))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))))
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_salir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btn_ingresar)
-                        .addGap(286, 286, 286))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btn_salir)
-                        .addContainerGap())))
+                        .addComponent(jLabel1)
+                        .addGap(104, 104, 104))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
-                        .addComponent(jLabel1))
+                        .addGap(203, 203, 203)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(Jd_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(217, 217, 217)
-                        .addComponent(Jd_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(259, 259, 259)
+                        .addComponent(btn_ingresar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel7)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
                 .addComponent(jLabel1)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
-                .addComponent(Jd_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(btn_ingresar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(btn_salir)
-                .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel7)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Jd_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addComponent(btn_ingresar)
+                        .addGap(30, 30, 30))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
-        // TODO add your handling code here:
-        menu m=new menu();
-        m.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btn_salirActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
   
@@ -174,8 +162,8 @@ public class Mantenimiento extends javax.swing.JDialog {
         try{
             String sql;
             mantenimiento m= new mantenimiento(
-                    txb_detallesr.getText(), 
-                    txb_materialesr.getText(), 
+                    x.getText(), 
+                    xx.getText(), 
                     new SimpleDateFormat("yyyy-MM-dd").format(Jd_fecha.getDate())
             );
             ConexionBDD nuevoc=new ConexionBDD();
@@ -195,13 +183,20 @@ public class Mantenimiento extends javax.swing.JDialog {
                JOptionPane.showMessageDialog(null, "Mantenimiento del horno no se ha podido ingresar");
             }
             con.close();
-            txb_detallesr.setText(null);
-            txb_materialesr.setText(null);
+            x.setText(null);
+            xx.setText(null);
             Jd_fecha.setDate(null);
         }catch(SQLException | HeadlessException e){
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
     }//GEN-LAST:event_btn_ingresarActionPerformed
+
+    private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
+        // TODO add your handling code here:
+        menu m=new menu();
+        m.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_salirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,8 +248,8 @@ public class Mantenimiento extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextArea txb_detallesr;
     private javax.swing.JTextArea txb_materialesr;
