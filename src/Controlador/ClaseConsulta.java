@@ -3,7 +3,6 @@ package Controlador;
 import Modelo.*;
 import java.awt.HeadlessException;
 import java.sql.*;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -150,13 +149,14 @@ public class ClaseConsulta {
         Connection con = nuevoc.conectar();
         PreparedStatement pst = null;
 try{
-           String sql = "insert into ambiente(intensidad_solar, temperatura_ambiente, angulo, direccion_sol, fecha_registro) values(?,?,?,?,?)";
+           String sql = "insert into ambiente(idh, intensidad_solar, temperatura_ambiente, angulo, direccion_sol, fecha_registro) values(?,?,?,?,?,?)";
             pst = con.prepareStatement(sql);
-            pst.setString(1, a.getIntensidad_solar());
-            pst.setInt(2, a.getTemperatura_ambiente());
-            pst.setInt(3, a.getAngulo());
-            pst.setString(4, a.getDireccion_sol());
-            pst.setString(5, a.getFecha_registro());
+            pst.setInt(1, a.getIDH);
+            pst.setString(2, a.getIntensidad_solar());
+            pst.setInt(3, a.getTemperatura_ambiente());
+            pst.setInt(4, a.getAngulo());
+            pst.setString(5, a.getDireccion_sol());
+            pst.setString(6, a.getFecha_registro());
 
             int n = pst.executeUpdate();
             if (n > 0) {
@@ -170,4 +170,47 @@ try{
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
     }
-}
+
+
+
+    public DefaultTableModel consultarHornos() {
+        
+        // 1. Definir las columnas
+        String[] titulos = {"ID", "Tipo Horno"};
+        
+        // 2. Crear el DefaultTableModel (no editable)
+        DefaultTableModel modelo = new DefaultTableModel(null, titulos);
+        
+        // 3. Definir la consulta SQL
+        String sql = "SELECT idh, tipo FROM `hornos`";
+        
+        // 4. Conexión y ejecución (¡Usando try-with-resources
+        //    para cerrar la conexión automáticamente!)
+        ConexionBDD nuevaC = new ConexionBDD();
+        
+        try (Connection con = nuevaC.conectar();
+             PreparedStatement pst = con.prepareStatement(sql);
+             ResultSet rs = pst.executeQuery()) {
+
+            // 5. Recorrer el ResultSet y llenar el modelo
+            while (rs.next()) {
+                Object[] fila = new Object[2]; // Correcto (2 columnas)
+                fila[0] = rs.getInt("idh");
+                fila[1] = rs.getString("tipo");
+                modelo.addRow(fila);
+            }
+            
+        } catch (SQLException e) {
+            // Es mejor mostrar el error en una ventana
+            JOptionPane.showMessageDialog(null, 
+                "Error al consultar datos de hornos: " + e.getMessage(), 
+                "Error de Base de Datos", 
+                JOptionPane.ERROR_MESSAGE);
+            System.err.println("Error al cargar datos de hornos: " + e.getMessage());
+        }
+                return modelo;
+    }
+
+    
+ }
+

@@ -1,18 +1,15 @@
 package Modelo;
 
-import java.util.Date;
-
 
 public class ambiente {
 
-    // Variables de instancia (atributos)
     private String intensidad_solar;
-    private int temperatura_ambiente;
+    private int temperatura_ambiente, IDH;
     private int angulo;
     private String direccion_sol, fecha_registro;
 
-    // Constructor
-    public ambiente(String intensidad_solar, int temperatura_ambiente, int angulo, String direccion_sol, String fecha_registro) {
+    public ambiente(int IDH, String intensidad_solar, int temperatura_ambiente, int angulo, String direccion_sol, String fecha_registro) {
+        this.IDH = IDH;
         this.intensidad_solar = intensidad_solar;
         this.temperatura_ambiente = temperatura_ambiente;
         this.angulo = angulo;
@@ -58,6 +55,14 @@ public class ambiente {
 
     public void setFecha_registro(String fecha_registro) {
         this.fecha_registro = fecha_registro;
+    }
+
+    public int getIDH() {
+        return IDH;
+    }
+
+    public void setIDH(int IDH) {
+        this.IDH = IDH;
     }
 
 
