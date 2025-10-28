@@ -51,6 +51,7 @@ public class menu extends javax.swing.JFrame {
         jMenuBar5 = new javax.swing.JMenuBar();
         jMenu13 = new javax.swing.JMenu();
         jMenu14 = new javax.swing.JMenu();
+        jLabel7 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         ing_Ambiente1 = new javax.swing.JMenuItem();
@@ -119,6 +120,9 @@ public class menu extends javax.swing.JFrame {
                 formComponentHidden(evt);
             }
         });
+
+        jLabel7.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
+        jLabel7.setText("<html> Software de gestión </br> de Hornos solares</html>");
 
         jMenuBar1.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
@@ -191,11 +195,17 @@ public class menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         pack();
@@ -277,6 +287,7 @@ public class menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem ing_Autosustentable;
     private javax.swing.JMenuItem ing_Mantenimiento;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;

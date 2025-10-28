@@ -1,14 +1,22 @@
 package Modelo;
 
-import java.util.*;
-
 public class mantenimiento {
-   protected String detalles_reparacion, materiales_reemplazados, fecha_creacion;
+   private int IDH;
+   private String detalles_reparacion, materiales_reemplazados, fecha_creacion;
 
     public mantenimiento(String detalles_reparacion, String materiales_reemplazados, String fecha_creacion) {
+        this.IDH = IDH;
         this.detalles_reparacion = detalles_reparacion;
         this.materiales_reemplazados = materiales_reemplazados;
         this.fecha_creacion = fecha_creacion;
+    }
+
+    public int getIDH() {
+        return IDH;
+    }
+
+    public void setIDH(int IDH) {
+        this.IDH = IDH;
     }
 
     public String getDetalles_reparacion() {

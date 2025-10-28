@@ -1,9 +1,9 @@
 package Vista;
-
 import Modelo.*;
 import Controlador.*;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Ambiente extends javax.swing.JDialog {
 
@@ -13,7 +13,11 @@ public class Ambiente extends javax.swing.JDialog {
     public Ambiente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        ClaseConsulta misConsultas = new ClaseConsulta();
+        tblDato.setModel(misConsultas.conexionHornos());
     }
+        
+    
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -37,6 +41,10 @@ public class Ambiente extends javax.swing.JDialog {
         txb_temperatura = new javax.swing.JSpinner();
         txb_intensidadsolar = new javax.swing.JComboBox<>();
         Jd_fecha = new com.toedter.calendar.JDateChooser();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblDato = new javax.swing.JTable();
+        txtID = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -46,9 +54,9 @@ public class Ambiente extends javax.swing.JDialog {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
-        jLabel2.setText("Ambiente del Horno");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 330, -1));
+        jLabel2.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
+        jLabel2.setText("Lista de hornos ingresados");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, -1, -1));
 
         btn_Ingresar.setBackground(new java.awt.Color(51, 153, 0));
         btn_Ingresar.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
@@ -93,7 +101,7 @@ public class Ambiente extends javax.swing.JDialog {
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel12.setText("Angulo Solar");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 57, -1, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel13.setText("Temperatura");
@@ -120,6 +128,20 @@ public class Ambiente extends javax.swing.JDialog {
         Jd_fecha.setDateFormatString("yyyy-MM-dd");
         getContentPane().add(Jd_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 160, 40));
 
+        tblDato.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDatoMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblDato);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, 220, 210));
+        getContentPane().add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 150, -1));
+
+        jLabel7.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
+        jLabel7.setText("Ambiente del Horno");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 330, -1));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -127,10 +149,9 @@ public class Ambiente extends javax.swing.JDialog {
     private void btn_IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarActionPerformed
         // TODO add your handling code here:
         try {
-             ClaseConsulta INGA = new ClaseConsulta();
-            String sql;
-            ambiente a;
-            a = new ambiente(
+             ClaseConsulta INGA = new ClaseConsulta();    
+          ambiente  a = new ambiente(
+                    Integer.parseInt(txtID.getText()),
                     (String) txb_intensidadsolar.getSelectedItem(),
                     (int) txb_angulo.getValue(), 
                     (int) txb_temperatura.getValue(),
@@ -146,6 +167,13 @@ public class Ambiente extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
     }//GEN-LAST:event_formWindowOpened
+
+    private void tblDatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoMouseClicked
+        int filaSeleccionada = tblDato.getSelectedRow();
+        DefaultTableModel modelo = (DefaultTableModel) tblDato.getModel();
+        Object idObjeto = modelo.getValueAt(filaSeleccionada, 0);
+        txtID.setText(String.valueOf(idObjeto));
+    }//GEN-LAST:event_tblDatoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -202,12 +230,16 @@ public class Ambiente extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JTable tblDato;
     private javax.swing.JSpinner txb_angulo;
     private javax.swing.JComboBox<String> txb_direccion;
     private javax.swing.JComboBox<String> txb_intensidadsolar;
     private javax.swing.JSpinner txb_temperatura;
+    private javax.swing.JTextField txtID;
     // End of variables declaration//GEN-END:variables
 }

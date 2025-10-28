@@ -1,20 +1,27 @@
 
 package Modelo;
 
-import java.sql.*;
-
 public class funciones {
-    protected int temperaturaInterna, tiempoCoccion;
-    protected String tipoAlimento,estadoHorno, fechaOperacion, horaOperacion;
+    private int IDF, temperaturaInterna;
+    private String tiempoCoccion, tipoAlimento,estadoHorno, fechaOperacion, horaOperacion;
 
   
-    public funciones(int temperaturaInterna, int tiempoCoccion, String tipoAlimento, String estadoHorno, String fechaOperacion, String horaOperacion) {
+    public funciones(int IDF, int temperaturaInterna, String tiempoCoccion, String tipoAlimento, String estadoHorno, String fechaOperacion, String horaOperacion) {
+        this.IDF = IDF;
         this.temperaturaInterna = temperaturaInterna;
         this.tiempoCoccion = tiempoCoccion;
         this.tipoAlimento = tipoAlimento;
         this.estadoHorno = estadoHorno;
         this.fechaOperacion = fechaOperacion;
         this.horaOperacion = horaOperacion;
+    }
+
+    public int getIDF() {
+        return IDF;
+    }
+
+    public void setIDF(int IDF) {
+        this.IDF = IDF;
     }
     
     public int getTemperaturaInterna() {
@@ -25,11 +32,11 @@ public class funciones {
         this.temperaturaInterna = temperaturaInterna;
     }
 
-    public int getTiempoCoccion() {
+    public String getTiempoCoccion() {
         return tiempoCoccion;
     }
 
-    public void setTiempoCoccion(int tiempoCoccion) {
+    public void setTiempoCoccion(String tiempoCoccion) {
         this.tiempoCoccion = tiempoCoccion;
     }
 

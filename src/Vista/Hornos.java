@@ -1,17 +1,18 @@
 package Vista;
-import Controlador.ConexionBDD;
-import Modelo.horno;
+import Controlador.*;
+import Modelo.*;
 import java.awt.HeadlessException;
-import java.sql.*;
 import javax.swing.JOptionPane;
 import java.text.*;
-
 public class Hornos extends javax.swing.JDialog {
     public Hornos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();      
-        
+          ClaseConsulta misConsultas = new ClaseConsulta();
+        tblDato.setModel(misConsultas.MostrarHornos());
+
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,22 +28,32 @@ public class Hornos extends javax.swing.JDialog {
         txb_tipo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txb_dimenciones = new javax.swing.JTextField();
+        txb_dimensiones = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txb_aislamiento = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txb_reflectores = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txb_materiales = new javax.swing.JTextArea();
-        btn_ingresar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btn_salir = new javax.swing.JButton();
         Jd_fecha = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        btn_Ingresar = new javax.swing.JButton();
+        cb_estadohorno = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblDato = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(2000, 503));
+        setPreferredSize(new java.awt.Dimension(1500, 503));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -50,7 +61,6 @@ public class Hornos extends javax.swing.JDialog {
         });
 
         jLabel2.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
-        jLabel2.setText("Tipo");
 
         txb_tipo.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
         txb_tipo.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -65,20 +75,19 @@ public class Hornos extends javax.swing.JDialog {
         });
 
         jLabel3.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
-        jLabel3.setText("Materiales");
 
         jLabel4.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
-        jLabel4.setText("Dimensiones");
 
-        txb_dimenciones.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        txb_dimensiones.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        txb_dimensiones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txb_dimensionesActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
-        jLabel5.setText("Sistema de aislamiento");
-
-        txb_aislamiento.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
-        jLabel6.setText("Reflectores");
 
         txb_reflectores.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
 
@@ -89,161 +98,227 @@ public class Hornos extends javax.swing.JDialog {
         txb_materiales.setWrapStyleWord(true);
         jScrollPane1.setViewportView(txb_materiales);
 
-        btn_ingresar.setBackground(new java.awt.Color(0, 204, 0));
-        btn_ingresar.setFont(new java.awt.Font("Ebrima", 1, 36)); // NOI18N
-        btn_ingresar.setText("Ingresar");
-        btn_ingresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ingresarActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
         jLabel1.setText("Ingreso de los Hornos Solares");
-
-        btn_salir.setBackground(new java.awt.Color(255, 0, 0));
-        btn_salir.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
-        btn_salir.setText("Salir");
-        btn_salir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_salirActionPerformed(evt);
-            }
-        });
 
         Jd_fecha.setDateFormatString("yyyy-MM-dd");
 
         jLabel7.setFont(new java.awt.Font("SimSun-ExtG", 1, 24)); // NOI18N
-        jLabel7.setText("Fecha creacion");
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel16.setText("Tipo");
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel17.setText("Materiales");
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel18.setText("Dimensiones");
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel19.setText("Fecha creacion");
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel20.setText("Reflectores");
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel21.setText("Sistema de aislamiento");
+
+        btn_Ingresar.setBackground(new java.awt.Color(51, 153, 0));
+        btn_Ingresar.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
+        btn_Ingresar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Ingresar.setText("Ingresar");
+        btn_Ingresar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_Ingresar.setBorderPainted(false);
+        btn_Ingresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_IngresarActionPerformed(evt);
+            }
+        });
+
+        cb_estadohorno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Aislamiento por material", "Doble cubierta transparente", "Sellado hermético", "Aislamiento reflectante" }));
+
+        tblDato.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDatoMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblDato);
+
+        jLabel8.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
+        jLabel8.setText("Lista de hornos ingresados");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(172, 172, 172))
             .addGroup(layout.createSequentialGroup()
-                .addGap(323, 323, 323)
-                .addComponent(btn_ingresar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_salir))
-            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txb_dimenciones, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(txb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(103, 103, 103)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jLabel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel6)
-                    .addComponent(txb_reflectores)
-                    .addComponent(txb_aislamiento)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Jd_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(32, 32, 32))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(75, 75, 75)
+                                        .addComponent(jLabel16))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(44, 44, 44)
+                                        .addComponent(jLabel17))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(15, 15, 15)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(29, 29, 29)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(txb_dimensiones, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                    .addGap(13, 13, 13)
+                                                    .addComponent(jLabel18)))
+                                            .addComponent(txb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(36, 36, 36)
+                                        .addComponent(txb_reflectores, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(48, 48, 48)
+                                        .addComponent(jLabel20))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel21)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(23, 23, 23)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(jLabel19)
+                                                    .addComponent(Jd_fecha, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                                                    .addComponent(cb_estadohorno, 0, 0, Short.MAX_VALUE)))))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(btn_Ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(192, 192, 192)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel6)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel1)
-                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel1))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel18)
+                                .addGap(10, 10, 10)
+                                .addComponent(txb_dimensiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(24, 24, 24)
+                                    .addComponent(jLabel8)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(35, 35, 35)
+                                            .addComponent(jLabel6)
+                                            .addGap(69, 69, 69)
+                                            .addComponent(jLabel7))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(24, 24, 24)
+                                            .addComponent(jLabel20)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txb_reflectores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jLabel21)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(cb_estadohorno, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jLabel19)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(Jd_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(34, 34, 34)
+                                            .addComponent(btn_Ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(32, 32, 32))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txb_dimenciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(72, 72, 72))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txb_aislamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txb_reflectores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Jd_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_ingresar)
-                    .addComponent(btn_salir))
-                .addGap(5, 5, 5))
+                        .addGap(242, 242, 242))))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    private void txb_tipoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txb_tipoFocusGained
-    }//GEN-LAST:event_txb_tipoFocusGained
-    private void txb_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txb_tipoActionPerformed
-    }//GEN-LAST:event_txb_tipoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
     }//GEN-LAST:event_formWindowOpened
 
-    private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
-        // TODO add your handling code here:
-        menu m=new menu();
-        m.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btn_salirActionPerformed
+    private void txb_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txb_tipoActionPerformed
 
-    private void btn_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingresarActionPerformed
-      
-        horno h= new horno(
-        Integer.parseInt(txb_reflectores.getText()),   
-        txb_tipo.getText(),                            
-        txb_materiales.getText(),                      
-        txb_aislamiento.getText(),                   
-        new SimpleDateFormat("yyyy-MM-dd").format(Jd_fecha.getDate()), 
-        Double.parseDouble(txb_dimenciones.getText())   
-    );
-      
-        ConexionBDD nuevoc = new ConexionBDD();
-        Connection con = nuevoc.conectar();
+    }//GEN-LAST:event_txb_tipoActionPerformed
 
-        try {
-            PreparedStatement pst = con.prepareStatement("insert into hornos(tipo, materiales, dimensiones, sistema_aislamiento, reflectores, fecha_creacion) values(?,?,?,?,?,?)");
-            pst.setString(1, h.getTipo());
-            pst.setString(2, h.getMateriales());
-            pst.setDouble(3, h.getDimensiones());
-            pst.setString(4, h.getSistema_aislamiento());
-            pst.setInt(5, h.getReflectores());
-            pst.setString(6, h.getFecha());
+    private void txb_tipoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txb_tipoFocusGained
 
-            int n = pst.executeUpdate();
-            if (n > 0) {
-                JOptionPane.showMessageDialog(this, "horno ingresado"); //this lo pone en el medio del jframe
-            } else {
-                JOptionPane.showMessageDialog(this, "horno no ingresado");
-            }
-            con.close();
-            pst.close();
+    }//GEN-LAST:event_txb_tipoFocusGained
 
-        } catch (SQLException | HeadlessException e) {
+    private void btn_IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarActionPerformed
+        try{
+            ClaseConsulta INH = new ClaseConsulta();
+            horno h= new horno(
+                Integer.parseInt(txb_reflectores.getText()),
+                txb_tipo.getText(),
+                txb_materiales.getText(),
+                (String)cb_estadohorno.getSelectedItem(),
+                new SimpleDateFormat("yyyy-MM-dd").format(Jd_fecha.getDate()),
+                Double.parseDouble(txb_dimensiones.getText())
+
+            );
+            INH.registrarHorno(h);
+            tblDato.setModel(INH.MostrarHornos());
+
+        }catch(HeadlessException e) {
             JOptionPane.showMessageDialog(this, "error: " + e);
         }
-    }//GEN-LAST:event_btn_ingresarActionPerformed
+    }//GEN-LAST:event_btn_IngresarActionPerformed
+
+    private void tblDatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoMouseClicked
+
+    }//GEN-LAST:event_tblDatoMouseClicked
+
+    private void txb_dimensionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txb_dimensionesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txb_dimensionesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -289,19 +364,27 @@ public class Hornos extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser Jd_fecha;
-    private javax.swing.JButton btn_ingresar;
-    private javax.swing.JButton btn_salir;
+    private javax.swing.JButton btn_Ingresar;
+    private javax.swing.JComboBox<String> cb_estadohorno;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txb_aislamiento;
-    private javax.swing.JTextField txb_dimenciones;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tblDato;
+    private javax.swing.JTextField txb_dimensiones;
     private javax.swing.JTextArea txb_materiales;
     private javax.swing.JTextField txb_reflectores;
     private javax.swing.JTextField txb_tipo;

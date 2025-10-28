@@ -13,7 +13,7 @@ public class ClaseConsulta {
         Connection con = nuevoc.conectar();
         PreparedStatement pst = null;
 
-        String sql = "insert into hornos(tipo, materiales, dimensiones, sistema_aislamiento, reflectores, fecha) values(?,?,?,?,?,?)";
+        String sql = "insert into hornos(tipo, materiales, dimensiones, sistema_aislamiento, reflectores, fecha_creacion) values(?,?,?,?,?,?)";
 
         try {
             pst = con.prepareStatement(sql);
@@ -103,44 +103,7 @@ public class ClaseConsulta {
     }
     
  
-    public horno buscarHornoPorTipo(String tipoDeHorno) {
-        ConexionBDD nuevoc = new ConexionBDD();
-        Connection con = nuevoc.conectar();
-        PreparedStatement pst = null;
-        ResultSet rs = null;
-        horno hornoEncontrado = null;
-
-        String sql = "select * from hornos where tipo = ?";
-
-        try {
-            pst = con.prepareStatement(sql);
-            pst.setString(1, tipoDeHorno);
-            rs = pst.executeQuery();
-
-            if (rs.next()) {
-                // Se extraen los datos del resultado
-                String tipo = rs.getString("tipo");
-                String materiales = rs.getString("materiales");
-                String sistema_aislamiento = rs.getString("sistema_aislamiento");
-                String fecha = rs.getString("fecha");
-                double dimensiones = rs.getDouble("dimensiones");
-                int reflectores = rs.getInt("reflectores");
-
-                // Se usa tu constructor para crear el objeto
-                hornoEncontrado = new horno(reflectores, tipo, materiales, sistema_aislamiento, fecha, dimensiones);
-            }
-            
-            rs.close();
-            pst.close();
-            con.close();
-            
-            return hornoEncontrado;
-
-        } catch (SQLException | HeadlessException e) {
-            JOptionPane.showMessageDialog(null, "Error al buscar: " + e);
-            return null;
-        }
-    }
+ 
     
     
     public void IngAmbiente (ambiente a){
@@ -151,7 +114,7 @@ public class ClaseConsulta {
 try{
            String sql = "insert into ambiente(idh, intensidad_solar, temperatura_ambiente, angulo, direccion_sol, fecha_registro) values(?,?,?,?,?,?)";
             pst = con.prepareStatement(sql);
-            pst.setInt(1, a.getIDH);
+            pst.setInt(1, a.getIDH());
             pst.setString(2, a.getIntensidad_solar());
             pst.setInt(3, a.getTemperatura_ambiente());
             pst.setInt(4, a.getAngulo());
@@ -170,22 +133,101 @@ try{
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
     }
+    
+public void IngresarAutosustentable(autosustentable au){
+     try {
+            String sql;
+            ConexionBDD nuevoc=new ConexionBDD();
+            Connection con = nuevoc.conectar();        
+            sql="insert into autosustentable(eficiencia_termica, energia_solar_recibida, consumo_energetico, energia_almacenada, fecha_evaluacion) values(?,?,?,?,?,?)";
+          
+            PreparedStatement pst= con.prepareStatement(sql);
+            
+            pst.setDouble(1, au.getEficiencia_energetica());
+            pst.setString(2, au.getEnergia_solar_recibida());
+            pst.setInt(3, au.getConsumo_energetico());
+            pst.setInt(4, au.getEnergia_almacenada());
+            pst.setString(5, au.getFecha_evaluacion());
+            
+            int n = pst.executeUpdate();
+            if(n > 0){
+                JOptionPane.showMessageDialog(null, "La Autosustentabilidad del Horno ha sido ingresada");
+            }else{
+                JOptionPane.showMessageDialog(null, "La Autosustentabilidad del Horno no se ha podido ingresar");
+            }
+            con.close();
+            pst.close();
 
+         
+        } catch (SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e);
+        }
+} 
+public void InsertarFuncion(funciones f){
+        try{
+            String sql;
+            ConexionBDD nuevoc=new ConexionBDD();
+            Connection con = nuevoc.conectar();        
+            sql="insert into funcionamiento(IDH, temperatura_interna, tiempo_coccion, tipo_alimento, estado_horno, fecha_operacion, hora_operacion) values(?,?,?,?,?,?,?)";
+            
+            PreparedStatement pst = con.prepareStatement(sql);
+             pst.setInt(1, f.getTemperaturaInterna());
+            pst.setInt(2, f.getTemperaturaInterna());
+            pst.setString(3, f.getTiempoCoccion());
+            pst.setString(4, f.getTipoAlimento());
+            pst.setString(5, f.getEstadoHorno());
+            pst.setString(6, f.getFechaOperacion());
+            pst.setString(7, f.getHoraOperacion());
+            
+            int n = pst.executeUpdate();
+            if(n > 0){
+                JOptionPane.showMessageDialog(null, "Funcionamiento del horno ingresado existosamente");
+            }else{
+                JOptionPane.showMessageDialog(null, "Funcionamiento del horno no se ha podido ingresar");
+            }
+              } catch (SQLException | HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e);
+        }
+}
 
+public void InsertarMante(mantenimiento m){
+    
 
-    public DefaultTableModel consultarHornos() {
+try{
+            ConexionBDD nuevoc=new ConexionBDD();
+            Connection con = nuevoc.conectar();        
+          String  sql="insert into mantenimientos(idh, detalles_reparacion, materiales_remplazados, fecha_creacion) values(?,?,?,?)";  
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(0, m.getIDH());
+            pst.setString(1, m.getDetalles_reparacion());
+            pst.setString(2, m.getMateriales_reemplazados());
+            pst.setString(3, m.getFecha_creacion());
+            
+            int n = pst.executeUpdate();
+            if(n > 0){
+                JOptionPane.showMessageDialog(null, "Mantenimiento del horno ingresado existosamente");
+            }else{
+               JOptionPane.showMessageDialog(null, "Mantenimiento del horno no se ha podido ingresar");
+            }
+            con.close();
+        }catch(SQLException | HeadlessException e){
+            JOptionPane.showMessageDialog(null, "Error: " + e);
+        }
+}
+
+    public DefaultTableModel conexionHornos() {
         
-        // 1. Definir las columnas
         String[] titulos = {"ID", "Tipo Horno"};
         
-        // 2. Crear el DefaultTableModel (no editable)
-        DefaultTableModel modelo = new DefaultTableModel(null, titulos);
-        
-        // 3. Definir la consulta SQL
+DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; 
+            }
+    };
         String sql = "SELECT idh, tipo FROM `hornos`";
         
-        // 4. Conexión y ejecución (¡Usando try-with-resources
-        //    para cerrar la conexión automáticamente!)
+       
         ConexionBDD nuevaC = new ConexionBDD();
         
         try (Connection con = nuevaC.conectar();
@@ -201,12 +243,52 @@ try{
             }
             
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, 
+                "Error al consultar datos de hornos: " + e.getMessage(), 
+                "Error de Base de Datos", 
+                JOptionPane.ERROR_MESSAGE);
+           JOptionPane.showMessageDialog(null, "Error al cargar datos de hornos: " + e.getMessage());
+        }
+                return modelo;
+    }
+
+     public DefaultTableModel MostrarHornos() {
+        
+        String[] titulos = {"Tipo", "Materiales", "Dimensiones", "Sistema Aislamiento", "Reflectores", "Fecha"};
+        
+               
+        DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; 
+            }
+    };
+        
+        String sql = "SELECT tipo, materiales, dimensiones, sistema_aislamiento, reflectores, fecha_creacion FROM hornos";
+        ConexionBDD nuevaC = new ConexionBDD();
+        
+        try (Connection con = nuevaC.conectar();
+             PreparedStatement pst = con.prepareStatement(sql);
+             ResultSet rs = pst.executeQuery()) {
+
+            while (rs.next()) {
+                Object[] fila = new Object[6]; 
+                fila[0] = rs.getString("tipo");
+                fila[1] = rs.getString("materiales");
+                fila[2] = rs.getString("dimensiones");
+                fila[3] = rs.getString("sistema_aislamiento");
+                fila[4] = rs.getString("reflectores");
+                fila[5] = rs.getString("fecha_creacion");
+                modelo.addRow(fila);
+            }
+            
+        } catch (SQLException e) {
             // Es mejor mostrar el error en una ventana
             JOptionPane.showMessageDialog(null, 
                 "Error al consultar datos de hornos: " + e.getMessage(), 
                 "Error de Base de Datos", 
                 JOptionPane.ERROR_MESSAGE);
-            System.err.println("Error al cargar datos de hornos: " + e.getMessage());
+           JOptionPane.showMessageDialog(null, "Error al cargar datos de hornos: " + e.getMessage());
         }
                 return modelo;
     }

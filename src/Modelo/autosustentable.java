@@ -2,10 +2,10 @@
 package Modelo;
 
 public class autosustentable {
-    protected int consumo_energetico, energia_almacenada;
-    protected String energia_solar_recibida;
-    protected double eficiencia_energetica;
-    protected String fecha_evaluacion;
+    private int consumo_energetico, energia_almacenada;
+    private String energia_solar_recibida;
+    private double eficiencia_energetica;
+    private String fecha_evaluacion;
 
     public autosustentable(int consumo_energetico, int energia_almacenada, String energia_solar_recibida, double eficiencia_energetica, String fecha_evaluacion) {
         this.consumo_energetico = consumo_energetico;

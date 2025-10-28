@@ -1,15 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Vista;
-import Controlador.ClaseConsulta;
-import Controlador.ConexionBDD;
-import Modelo.horno;
-import java.sql.*;
-import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JOptionPane;
+import Controlador.*;
 
 public class Pruebita extends javax.swing.JFrame {
 
@@ -25,50 +16,6 @@ public class Pruebita extends javax.swing.JFrame {
 
     }
     
-    public void cargarDatosHornos() {
-    
-    // 1. Definir las columnas para el modelo de la tabla
-    // Estas deben coincidir con los datos que quieres mostrar 
-    String[] titulos = {"ID", "Tipo Horno"};
-    
-    // 2. Crear el DefaultTableModel (no editable por defecto)
-    DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            // Para que el usuario no pueda editar la tabla directamente
-            return false; 
-        }
-    };
-    
-    // 3. Definir la consulta SQL
-    // (Asegúrate que tu tabla en MySQL se llame 'hornos' o similar)
-     PreparedStatement pst;
-ConexionBDD nuevaC = new ConexionBDD();
-Connection con = nuevaC.conectar();
-
-try {
-    pst = con.prepareStatement("SELECT  idh, tipo FROM `hornos` ");
-    ResultSet rs = pst.executeQuery();
-
-        // 5. Recorrer el ResultSet y llenar el modelo
-        while (rs.next()) {
-            Object[] fila = new Object[2]; // Array para guardar la fila
-            
-            // Llenamos la fila con los datos de la BD 
-            fila[0] = rs.getInt("idh");
-            fila[1] = rs.getString("tipo");
-            // Agregamos la fila al modelo
-            modelo.addRow(fila);
-        }
-        
-    } catch (SQLException e) {
-        // Manejo básico de errores (idealmente, usa un JOptionPane)
-        System.err.println("Error al cargar datos de hornos: " + e.getMessage());
-    }
-        tblDato.setModel(modelo);
-
-    // 6. Asignar el modelo al JTable (el que nombramos 'tblHornos')
-}
 
 
     /**
@@ -80,70 +27,21 @@ try {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblDato = new javax.swing.JTable();
-        txtID = new javax.swing.JTextField();
-        txtTipo = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        txtTipo = new javax.swing.JTextField();
+        txtID = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblDato = new javax.swing.JTable();
+        jButton4 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel1.setBackground(new java.awt.Color(153, 51, 0));
-
-        jButton3.setText("jButton3");
-
-        tblDato.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDatoMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tblDato);
-
-        txtTipo.setMinimumSize(new java.awt.Dimension(100, 50));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(242, 242, 242)
-                        .addComponent(jButton3))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(81, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(140, 140, 140))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(113, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 570, 390));
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -161,20 +59,70 @@ try {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
+        jPanel1.setBackground(new java.awt.Color(153, 51, 0));
+
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 610, Short.MAX_VALUE)
+            .addGap(0, 420, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 370, Short.MAX_VALUE)
+            .addGap(0, 334, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 610, 370));
+        txtTipo.setMinimumSize(new java.awt.Dimension(100, 50));
+
+        tblDato.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDatoMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblDato);
+
+        jButton4.setText("jButton3");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 190, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(146, 146, 146)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButton4)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(100, 100, 100)
+                            .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap(146, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(19, 19, 19)
+                    .addComponent(jButton4)
+                    .addGap(87, 87, 87)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(36, 36, 36)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 610, 340));
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -188,10 +136,12 @@ try {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      ClaseConsulta misConsultas = new ClaseConsulta();
+        tblDato.setModel(misConsultas.conexionHornos());
         jPanel1.setVisible(true);
         jPanel2.setVisible(false);
-        cargarDatosHornos();
-        
+       
+           
 
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -202,50 +152,8 @@ try {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void tblDatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoMouseClicked
-int filaSeleccionada = tblDato.getSelectedRow();
-    
-    // 2. Validar que el usuario seleccionó una fila válida
-    // (si hace clic en el encabezado, getSelectedRow() devuelve -1)
-    if (filaSeleccionada >= 0) {
-        
-        try {
-            // 3. Obtener el modelo de la tabla (el que usamos para llenarla)
-            DefaultTableModel modelo = (DefaultTableModel) tblDato.getModel();
-            
-            /*
-             * 4. Obtener los datos de la fila seleccionada.
-             * Usamos el índice de la columna que definiste al crear la tabla:
-             * Columna 0 es "ID" (idh)
-             * Columna 1 es "Tipo Horno" (tipo)
-             */
-            
-            // Obtenemos el ID (columna 0)
-            Object idObjeto = modelo.getValueAt(filaSeleccionada, 0);
-            
-            // Obtenemos el Tipo (columna 1)
-            Object tipoObjeto = modelo.getValueAt(filaSeleccionada, 1);
-
-            /*
-             * 5. Poner los datos en los JTextField.
-             * * ¡IMPORTANTE! Reemplaza "txtID" y "txtTipo" con los
-             * nombres de las variables de tus campos de texto.
-             * * Usamos String.valueOf() para convertir el Object a String
-             * de forma segura, incluso si el valor fuera nulo (null).
-             */
-            
-            txtID.setText(String.valueOf(idObjeto));
-            txtTipo.setText(String.valueOf(tipoObjeto));
-
-        } catch (Exception e) {
-            // Un JOptionPane es bueno para notificar al usuario si algo falla
-            JOptionPane.showMessageDialog(
-                    this, // 'this' se refiere al JFrame actual
-                    "Error al seleccionar datos: " + e.getMessage(), 
-                    "Error", 
-                    JOptionPane.ERROR_MESSAGE
-            );
-        }
-    }    }//GEN-LAST:event_tblDatoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblDatoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -285,13 +193,13 @@ int filaSeleccionada = tblDato.getSelectedRow();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblDato;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtTipo;
