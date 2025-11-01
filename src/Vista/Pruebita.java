@@ -19,8 +19,14 @@ public class Pruebita extends javax.swing.JFrame {
     jPanelFuncionamiento.setVisible(false);
     jPanelAmbiente.setVisible(false);
     jPanelAutosustentable.setVisible(false);
-    
-      
+    ClaseConsulta misConsultas = new ClaseConsulta();
+    tblDatoHorno.setModel(misConsultas.MostrarHornos());
+    tblDatoReparacion.setModel(misConsultas.MostrarReparacion());
+    tblDatoFuncionamiento.setModel(misConsultas.consultaHornos());        
+    tblDatoAutosustentable.setModel(misConsultas.consultaAutosustentable());
+    tblDatoAmbiente.setModel(misConsultas.consultaHornos());
+    tblDatoMantenimiento.setModel(misConsultas.consultaHornos());
+
     }
     
 
@@ -34,39 +40,6 @@ public class Pruebita extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton9 = new javax.swing.JButton();
-        jPanelMantenimiento1 = new javax.swing.JPanel();
-        txtID1 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        Jd_fecha2 = new com.toedter.calendar.JDateChooser();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        btn_Ingresar2 = new javax.swing.JButton();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        tblDato2 = new javax.swing.JTable();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        txb_detallesr1 = new javax.swing.JTextArea();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        txb_materialesr1 = new javax.swing.JTextArea();
-        jPanelMantenimiento2 = new javax.swing.JPanel();
-        txtID2 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        Jd_fecha3 = new com.toedter.calendar.JDateChooser();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        btn_Ingresar3 = new javax.swing.JButton();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        tblDato3 = new javax.swing.JTable();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        txb_detallesr2 = new javax.swing.JTextArea();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        txb_materialesr2 = new javax.swing.JTextArea();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanelHornosSolares = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
@@ -78,7 +51,7 @@ public class Pruebita extends javax.swing.JFrame {
         cb_estadohorno = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        tblDato1 = new javax.swing.JTable();
+        tblDatoHorno = new javax.swing.JTable();
         Jd_fecha1 = new com.toedter.calendar.JDateChooser();
         txb_tipo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -87,26 +60,29 @@ public class Pruebita extends javax.swing.JFrame {
         txb_dimensiones = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jPanelMantenimiento = new javax.swing.JPanel();
-        txtID = new javax.swing.JTextField();
+        txtIDMantenimiento = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         Jd_fecha = new com.toedter.calendar.JDateChooser();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        btn_IngresarMantenimiento = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tblDato = new javax.swing.JTable();
+        tblDatoReparacion = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
         txb_detallesr = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         txb_materialesr = new javax.swing.JTextArea();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        tblDatoMantenimiento = new javax.swing.JTable();
+        jLabel31 = new javax.swing.JLabel();
+        btn_IngresarMantenimiento = new javax.swing.JButton();
         jPanelFuncionamiento = new javax.swing.JPanel();
         jScrollPane15 = new javax.swing.JScrollPane();
-        tblDato5 = new javax.swing.JTable();
+        tblDatoFuncionamiento = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        txtID4 = new javax.swing.JTextField();
+        txtIDFuncionamiento = new javax.swing.JTextField();
         jLabel35 = new javax.swing.JLabel();
         btn_IngresarFuncionamiento = new javax.swing.JButton();
         txb_tiempoc = new com.toedter.calendar.JSpinnerDateEditor();
@@ -140,6 +116,10 @@ public class Pruebita extends javax.swing.JFrame {
         jLabel48 = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        tblDatoAutosustentable = new javax.swing.JTable();
+        jLabel51 = new javax.swing.JLabel();
+        txtIDAutosustentable = new javax.swing.JTextField();
         jPanelAmbiente = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
         btn_IngresarAmbiente = new javax.swing.JButton();
@@ -156,309 +136,45 @@ public class Pruebita extends javax.swing.JFrame {
         txb_intensidadsolar = new javax.swing.JComboBox<>();
         Jd_fecha6 = new com.toedter.calendar.JDateChooser();
         jScrollPane12 = new javax.swing.JScrollPane();
-        tblDato4 = new javax.swing.JTable();
-        txtID3 = new javax.swing.JTextField();
+        tblDatoAmbiente = new javax.swing.JTable();
+        txtIDAmbiente = new javax.swing.JTextField();
         jLabel60 = new javax.swing.JLabel();
         jPanelPrincipal = new javax.swing.JPanel();
-        btnFuncionamiento = new javax.swing.JButton();
-        btnAmbiente = new javax.swing.JButton();
-        btnHorno = new javax.swing.JButton();
-        btnAutosustentable = new javax.swing.JButton();
+        lblMantenimiento = new javax.swing.JLabel();
+        lblHorno = new javax.swing.JLabel();
+        lblFuncionamiento = new javax.swing.JLabel();
+        lblAmbiente = new javax.swing.JLabel();
+        lblAutosustentable = new javax.swing.JLabel();
         jPanelFondo = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-
-        jButton9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ph - oven-fill.png"))); // NOI18N
-        jButton9.setText("Ingresar horno");
-        jButton9.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton9.setBorderPainted(false);
-        jButton9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
-            }
-        });
-
-        jPanelMantenimiento1.setBackground(new java.awt.Color(102, 102, 102));
-
-        jLabel10.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
-        jLabel10.setText("Lista de hornos ingresados");
-
-        Jd_fecha2.setDateFormatString("yyyy-MM-dd");
-
-        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel25.setText("Detalles de la Reparacion");
-
-        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel26.setText("Materiales Remplazados");
-
-        jLabel4.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
-        jLabel4.setText("Mantenimiento de los hornos");
-
-        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel27.setText("Fecha creacion");
-
-        btn_Ingresar2.setBackground(new java.awt.Color(51, 153, 0));
-        btn_Ingresar2.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
-        btn_Ingresar2.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Ingresar2.setText("Ingresar");
-        btn_Ingresar2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_Ingresar2.setBorderPainted(false);
-        btn_Ingresar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Ingresar2ActionPerformed(evt);
-            }
-        });
-
-        tblDato2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDato2MouseClicked(evt);
-            }
-        });
-        jScrollPane6.setViewportView(tblDato2);
-
-        txb_detallesr1.setColumns(20);
-        txb_detallesr1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txb_detallesr1.setRows(5);
-        jScrollPane7.setViewportView(txb_detallesr1);
-
-        txb_materialesr1.setColumns(20);
-        txb_materialesr1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txb_materialesr1.setRows(5);
-        jScrollPane8.setViewportView(txb_materialesr1);
-
-        jPanelMantenimiento2.setBackground(new java.awt.Color(102, 102, 102));
-
-        jLabel11.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
-        jLabel11.setText("Lista de hornos ingresados");
-
-        Jd_fecha3.setDateFormatString("yyyy-MM-dd");
-
-        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel28.setText("Detalles de la Reparacion");
-
-        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel29.setText("Materiales Remplazados");
-
-        jLabel5.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
-        jLabel5.setText("Mantenimiento de los hornos");
-
-        jLabel30.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel30.setText("Fecha creacion");
-
-        btn_Ingresar3.setBackground(new java.awt.Color(51, 153, 0));
-        btn_Ingresar3.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
-        btn_Ingresar3.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Ingresar3.setText("Ingresar");
-        btn_Ingresar3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_Ingresar3.setBorderPainted(false);
-        btn_Ingresar3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Ingresar3ActionPerformed(evt);
-            }
-        });
-
-        tblDato3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDato3MouseClicked(evt);
-            }
-        });
-        jScrollPane9.setViewportView(tblDato3);
-
-        txb_detallesr2.setColumns(20);
-        txb_detallesr2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txb_detallesr2.setRows(5);
-        jScrollPane10.setViewportView(txb_detallesr2);
-
-        txb_materialesr2.setColumns(20);
-        txb_materialesr2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txb_materialesr2.setRows(5);
-        jScrollPane11.setViewportView(txb_materialesr2);
-
-        javax.swing.GroupLayout jPanelMantenimiento2Layout = new javax.swing.GroupLayout(jPanelMantenimiento2);
-        jPanelMantenimiento2.setLayout(jPanelMantenimiento2Layout);
-        jPanelMantenimiento2Layout.setHorizontalGroup(
-            jPanelMantenimiento2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMantenimiento2Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jLabel5)
-                .addGap(0, 77, Short.MAX_VALUE))
-            .addGroup(jPanelMantenimiento2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelMantenimiento2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelMantenimiento2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(96, 96, 96)
-                        .addComponent(txtID2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelMantenimiento2Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel28))
-                    .addGroup(jPanelMantenimiento2Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel29))
-                    .addGroup(jPanelMantenimiento2Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel30))
-                    .addComponent(Jd_fecha3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMantenimiento2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_Ingresar3, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(192, 192, 192))
-            .addGroup(jPanelMantenimiento2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMantenimiento2Layout.createSequentialGroup()
-                    .addContainerGap(333, Short.MAX_VALUE)
-                    .addGroup(jPanelMantenimiento2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanelMantenimiento2Layout.createSequentialGroup()
-                            .addGap(28, 28, 28)
-                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel11))
-                    .addContainerGap()))
-        );
-        jPanelMantenimiento2Layout.setVerticalGroup(
-            jPanelMantenimiento2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMantenimiento2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(jLabel28)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel29)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelMantenimiento2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelMantenimiento2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel30)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMantenimiento2Layout.createSequentialGroup()
-                        .addComponent(txtID2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23)))
-                .addComponent(Jd_fecha3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_Ingresar3)
-                .addGap(9, 9, 9))
-            .addGroup(jPanelMantenimiento2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelMantenimiento2Layout.createSequentialGroup()
-                    .addGap(63, 63, 63)
-                    .addComponent(jLabel11)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(211, Short.MAX_VALUE)))
-        );
-
-        javax.swing.GroupLayout jPanelMantenimiento1Layout = new javax.swing.GroupLayout(jPanelMantenimiento1);
-        jPanelMantenimiento1.setLayout(jPanelMantenimiento1Layout);
-        jPanelMantenimiento1Layout.setHorizontalGroup(
-            jPanelMantenimiento1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMantenimiento1Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jLabel4)
-                .addGap(0, 77, Short.MAX_VALUE))
-            .addGroup(jPanelMantenimiento1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelMantenimiento1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelMantenimiento1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(96, 96, 96)
-                        .addComponent(txtID1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelMantenimiento1Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel25))
-                    .addGroup(jPanelMantenimiento1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel26))
-                    .addGroup(jPanelMantenimiento1Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel27))
-                    .addComponent(Jd_fecha2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMantenimiento1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_Ingresar2, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(192, 192, 192))
-            .addGroup(jPanelMantenimiento1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMantenimiento1Layout.createSequentialGroup()
-                    .addContainerGap(333, Short.MAX_VALUE)
-                    .addGroup(jPanelMantenimiento1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanelMantenimiento1Layout.createSequentialGroup()
-                            .addGap(28, 28, 28)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel10))
-                    .addContainerGap()))
-            .addGroup(jPanelMantenimiento1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelMantenimiento1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanelMantenimiento2, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanelMantenimiento1Layout.setVerticalGroup(
-            jPanelMantenimiento1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMantenimiento1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(jLabel25)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel26)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelMantenimiento1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelMantenimiento1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel27)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMantenimiento1Layout.createSequentialGroup()
-                        .addComponent(txtID1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23)))
-                .addComponent(Jd_fecha2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_Ingresar2)
-                .addGap(9, 9, 9))
-            .addGroup(jPanelMantenimiento1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelMantenimiento1Layout.createSequentialGroup()
-                    .addGap(63, 63, 63)
-                    .addComponent(jLabel10)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(211, Short.MAX_VALUE)))
-            .addGroup(jPanelMantenimiento1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelMantenimiento1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanelMantenimiento2, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        jFormattedTextField1.setText("jFormattedTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanelHornosSolares.setBackground(new java.awt.Color(102, 102, 102));
+        jPanelHornosSolares.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel19.setBackground(new java.awt.Color(255, 255, 255));
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Fecha creacion");
+        jPanelHornosSolares.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 229, -1, -1));
 
         jLabel23.setBackground(new java.awt.Color(255, 255, 255));
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Reflectores");
+        jPanelHornosSolares.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 88, -1, -1));
 
         txb_reflectores.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        jPanelHornosSolares.add(txb_reflectores, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 116, 153, -1));
 
         jLabel24.setBackground(new java.awt.Color(255, 255, 255));
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("Sistema de aislamiento");
+        jPanelHornosSolares.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 155, -1, -1));
 
         txb_materiales.setColumns(20);
         txb_materiales.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
@@ -466,6 +182,8 @@ public class Pruebita extends javax.swing.JFrame {
         txb_materiales.setRows(5);
         txb_materiales.setWrapStyleWord(true);
         jScrollPane4.setViewportView(txb_materiales);
+
+        jPanelHornosSolares.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 254, 156, 65));
 
         btn_IngresarHornos.setBackground(new java.awt.Color(51, 153, 0));
         btn_IngresarHornos.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
@@ -478,22 +196,28 @@ public class Pruebita extends javax.swing.JFrame {
                 btn_IngresarHornosActionPerformed(evt);
             }
         });
+        jPanelHornosSolares.add(btn_IngresarHornos, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 354, 280, 63));
 
         cb_estadohorno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Aislamiento por material", "Doble cubierta transparente", "Sellado hermético", "Aislamiento reflectante" }));
+        jPanelHornosSolares.add(cb_estadohorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 183, 153, 40));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ingreso de los Hornos Solares");
+        jPanelHornosSolares.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 6, -1, -1));
 
-        tblDato1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblDatoHorno.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDato1MouseClicked(evt);
+                tblDatoHornoMouseClicked(evt);
             }
         });
-        jScrollPane5.setViewportView(tblDato1);
+        jScrollPane5.setViewportView(tblDatoHorno);
+
+        jPanelHornosSolares.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 276, 131));
 
         Jd_fecha1.setDateFormatString("yyyy-MM-dd");
+        jPanelHornosSolares.add(Jd_fecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 257, 153, 46));
 
         txb_tipo.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
         txb_tipo.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -506,21 +230,25 @@ public class Pruebita extends javax.swing.JFrame {
                 txb_tipoActionPerformed(evt);
             }
         });
+        jPanelHornosSolares.add(txb_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 129, -1));
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Lista de hornos ingresados");
+        jPanelHornosSolares.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(409, 82, -1, -1));
 
         jLabel16.setBackground(new java.awt.Color(255, 255, 255));
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Tipo");
+        jPanelHornosSolares.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 82, -1, -1));
 
         jLabel17.setBackground(new java.awt.Color(255, 255, 255));
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Materiales");
+        jPanelHornosSolares.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 226, -1, -1));
 
         txb_dimensiones.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
         txb_dimensiones.addActionListener(new java.awt.event.ActionListener() {
@@ -528,140 +256,92 @@ public class Pruebita extends javax.swing.JFrame {
                 txb_dimensionesActionPerformed(evt);
             }
         });
+        jPanelHornosSolares.add(txb_dimensiones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 181, 129, -1));
 
         jLabel18.setBackground(new java.awt.Color(255, 255, 255));
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Dimensiones");
-
-        javax.swing.GroupLayout jPanelHornosSolaresLayout = new javax.swing.GroupLayout(jPanelHornosSolares);
-        jPanelHornosSolares.setLayout(jPanelHornosSolaresLayout);
-        jPanelHornosSolaresLayout.setHorizontalGroup(
-            jPanelHornosSolaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelHornosSolaresLayout.createSequentialGroup()
-                .addGap(404, 404, 404)
-                .addGroup(jPanelHornosSolaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(0, 390, Short.MAX_VALUE))
-            .addGroup(jPanelHornosSolaresLayout.createSequentialGroup()
-                .addGroup(jPanelHornosSolaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelHornosSolaresLayout.createSequentialGroup()
-                        .addGap(194, 194, 194)
-                        .addComponent(btn_IngresarHornos, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelHornosSolaresLayout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addComponent(jLabel2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanelHornosSolaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelHornosSolaresLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jPanelHornosSolaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanelHornosSolaresLayout.createSequentialGroup()
-                            .addGap(60, 60, 60)
-                            .addComponent(jLabel16))
-                        .addGroup(jPanelHornosSolaresLayout.createSequentialGroup()
-                            .addGap(29, 29, 29)
-                            .addComponent(jLabel17))
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanelHornosSolaresLayout.createSequentialGroup()
-                            .addGap(14, 14, 14)
-                            .addGroup(jPanelHornosSolaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanelHornosSolaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txb_dimensiones, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelHornosSolaresLayout.createSequentialGroup()
-                                        .addGap(13, 13, 13)
-                                        .addComponent(jLabel18)))
-                                .addComponent(txb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanelHornosSolaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanelHornosSolaresLayout.createSequentialGroup()
-                            .addGap(48, 48, 48)
-                            .addComponent(jLabel23))
-                        .addGroup(jPanelHornosSolaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelHornosSolaresLayout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(txb_reflectores, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelHornosSolaresLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanelHornosSolaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel24)
-                                    .addGroup(jPanelHornosSolaresLayout.createSequentialGroup()
-                                        .addGap(23, 23, 23)
-                                        .addGroup(jPanelHornosSolaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel19)
-                                            .addComponent(Jd_fecha1, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                                            .addComponent(cb_estadohorno, 0, 0, Short.MAX_VALUE)))))))
-                    .addContainerGap(689, Short.MAX_VALUE)))
-        );
-        jPanelHornosSolaresLayout.setVerticalGroup(
-            jPanelHornosSolaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelHornosSolaresLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addGap(31, 31, 31)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
-                .addComponent(btn_IngresarHornos, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
-            .addGroup(jPanelHornosSolaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelHornosSolaresLayout.createSequentialGroup()
-                    .addGroup(jPanelHornosSolaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanelHornosSolaresLayout.createSequentialGroup()
-                            .addGap(82, 82, 82)
-                            .addComponent(jLabel16)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel18)
-                            .addGap(10, 10, 10)
-                            .addComponent(txb_dimensiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(12, 12, 12)
-                            .addComponent(jLabel17)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanelHornosSolaresLayout.createSequentialGroup()
-                            .addGap(88, 88, 88)
-                            .addComponent(jLabel23)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txb_reflectores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel24)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(cb_estadohorno, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel19)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(Jd_fecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(121, Short.MAX_VALUE)))
-        );
+        jPanelHornosSolares.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 149, -1, -1));
 
         getContentPane().add(jPanelHornosSolares, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 1070, 440));
 
         jPanelMantenimiento.setBackground(new java.awt.Color(91, 91, 91));
+        jPanelMantenimiento.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanelMantenimiento.add(txtIDMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, 85, -1));
 
         jLabel8.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Lista de hornos ingresados");
+        jLabel8.setText("Hornos reparados");
+        jPanelMantenimiento.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 60, -1, -1));
 
         Jd_fecha.setDateFormatString("yyyy-MM-dd");
+        jPanelMantenimiento.add(Jd_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 313, 194, 33));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Detalles de la Reparacion");
+        jPanelMantenimiento.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 76, -1, -1));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Materiales Remplazados");
+        jPanelMantenimiento.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 201, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Mantenimiento de los hornos");
+        jPanelMantenimiento.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, -1, -1));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Fecha creacion");
+        jPanelMantenimiento.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(76, 285, -1, -1));
+
+        tblDatoReparacion.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tblDatoReparacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDatoReparacionMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tblDatoReparacion);
+
+        jPanelMantenimiento.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 110, 420, 210));
+
+        txb_detallesr.setColumns(20);
+        txb_detallesr.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txb_detallesr.setRows(5);
+        jScrollPane1.setViewportView(txb_detallesr);
+
+        jPanelMantenimiento.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 104, 268, -1));
+
+        txb_materialesr.setColumns(20);
+        txb_materialesr.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txb_materialesr.setRows(5);
+        jScrollPane2.setViewportView(txb_materialesr);
+
+        jPanelMantenimiento.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 229, 268, 50));
+
+        tblDatoMantenimiento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDatoMantenimientoMouseClicked(evt);
+            }
+        });
+        jScrollPane13.setViewportView(tblDatoMantenimiento);
+
+        jPanelMantenimiento.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 220, 130));
+
+        jLabel31.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel31.setText("Lista de hornos ingresados");
+        jPanelMantenimiento.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, -1));
 
         btn_IngresarMantenimiento.setBackground(new java.awt.Color(51, 153, 0));
         btn_IngresarMantenimiento.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
@@ -674,119 +354,49 @@ public class Pruebita extends javax.swing.JFrame {
                 btn_IngresarMantenimientoActionPerformed(evt);
             }
         });
-
-        tblDato.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDatoMouseClicked(evt);
-            }
-        });
-        jScrollPane3.setViewportView(tblDato);
-
-        txb_detallesr.setColumns(20);
-        txb_detallesr.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txb_detallesr.setRows(5);
-        jScrollPane1.setViewportView(txb_detallesr);
-
-        txb_materialesr.setColumns(20);
-        txb_materialesr.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txb_materialesr.setRows(5);
-        jScrollPane2.setViewportView(txb_materialesr);
-
-        javax.swing.GroupLayout jPanelMantenimientoLayout = new javax.swing.GroupLayout(jPanelMantenimiento);
-        jPanelMantenimiento.setLayout(jPanelMantenimientoLayout);
-        jPanelMantenimientoLayout.setHorizontalGroup(
-            jPanelMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMantenimientoLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPanelMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelMantenimientoLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel22))
-                    .addComponent(Jd_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelMantenimientoLayout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanelMantenimientoLayout.createSequentialGroup()
-                        .addGroup(jPanelMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelMantenimientoLayout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(jLabel20))
-                            .addGroup(jPanelMantenimientoLayout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(jLabel21))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelMantenimientoLayout.createSequentialGroup()
-                                .addGap(119, 119, 119)
-                                .addComponent(jLabel8))
-                            .addGroup(jPanelMantenimientoLayout.createSequentialGroup()
-                                .addGap(147, 147, 147)
-                                .addGroup(jPanelMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMantenimientoLayout.createSequentialGroup()
-                                .addComponent(btn_IngresarMantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(158, 158, 158)))))
-                .addContainerGap(401, Short.MAX_VALUE))
-        );
-        jPanelMantenimientoLayout.setVerticalGroup(
-            jPanelMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMantenimientoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMantenimientoLayout.createSequentialGroup()
-                        .addComponent(jLabel20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMantenimientoLayout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelMantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel22)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Jd_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_IngresarMantenimiento)
-                .addGap(43, 43, 43))
-        );
+        jPanelMantenimiento.add(btn_IngresarMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, 232, -1));
 
         getContentPane().add(jPanelMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 1100, 440));
 
         jPanelFuncionamiento.setBackground(new java.awt.Color(102, 102, 102));
         jPanelFuncionamiento.setForeground(new java.awt.Color(255, 255, 255));
+        jPanelFuncionamiento.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tblDato5.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblDatoFuncionamiento.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tblDatoFuncionamiento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDato5MouseClicked(evt);
+                tblDatoFuncionamientoMouseClicked(evt);
             }
         });
-        jScrollPane15.setViewportView(tblDato5);
+        jScrollPane15.setViewportView(tblDatoFuncionamiento);
+
+        jPanelFuncionamiento.add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(474, 99, 220, 210));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Funcionamiento del Horno");
+        jPanelFuncionamiento.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, -1, -1));
 
         jLabel34.setBackground(new java.awt.Color(255, 255, 255));
         jLabel34.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(255, 255, 255));
         jLabel34.setText("Temperatura Interna");
+        jPanelFuncionamiento.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 139, -1, -1));
+        jPanelFuncionamiento.add(txtIDFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(474, 315, 56, -1));
 
         jLabel35.setBackground(new java.awt.Color(255, 255, 255));
         jLabel35.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(255, 255, 255));
         jLabel35.setText("Datos operación");
+        jPanelFuncionamiento.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 219, -1, -1));
 
         btn_IngresarFuncionamiento.setBackground(new java.awt.Color(51, 153, 0));
         btn_IngresarFuncionamiento.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
@@ -799,33 +409,41 @@ public class Pruebita extends javax.swing.JFrame {
                 btn_IngresarFuncionamientoActionPerformed(evt);
             }
         });
+        jPanelFuncionamiento.add(btn_IngresarFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, 280, 63));
 
         txb_tiempoc.setDateFormatString("HH:mm:ss");
         txb_tiempoc.setEditor(new javax.swing.JSpinner.DateEditor(txb_tiempoc, "HH:mm:ss"));
         txb_tiempoc.setMaxSelectableDate(new java.util.Date(253370861999000L));
         txb_tiempoc.setMinSelectableDate(new java.util.Date(-62135758800000L));
+        jPanelFuncionamiento.add(txb_tiempoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 167, 100, 39));
 
         js_temperaturai.setModel(new javax.swing.SpinnerNumberModel(0, 0, 360, 1));
         js_temperaturai.setName(""); // NOI18N
+        jPanelFuncionamiento.add(js_temperaturai, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 168, 97, 36));
 
         cb_tipodealimento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Carnes y Aves", "Pescados y Verduras", "Panadería y", "Repostería", "Pastas", "Arroces y Guisos", "Otros" }));
+        jPanelFuncionamiento.add(cb_tipodealimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 97, 109, 40));
 
         cb_estadohorno1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buen Estado", "Estado Decente", "Estado Regular", "Estado mal", "Estado para reparar" }));
+        jPanelFuncionamiento.add(cb_estadohorno1, new org.netbeans.lib.awtextra.AbsoluteConstraints(252, 97, 99, 40));
 
         jLabel37.setBackground(new java.awt.Color(255, 255, 255));
         jLabel37.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel37.setForeground(new java.awt.Color(255, 255, 255));
         jLabel37.setText("Estado del Horno");
+        jPanelFuncionamiento.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(227, 69, -1, -1));
 
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
         jLabel13.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Lista de hornos ingresados");
+        jPanelFuncionamiento.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(429, 69, -1, -1));
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Tipo de Alimento");
+        jPanelFuncionamiento.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 69, -1, -1));
 
         rbManual.setForeground(new java.awt.Color(255, 255, 255));
         rbManual.setText("Ingreso manual de fechas");
@@ -909,119 +527,33 @@ public class Pruebita extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanelFuncionamiento.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 247, -1, -1));
+
         jLabel38.setBackground(new java.awt.Color(255, 255, 255));
         jLabel38.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel38.setForeground(new java.awt.Color(255, 255, 255));
         jLabel38.setText("Tiempo de Coccion");
-
-        javax.swing.GroupLayout jPanelFuncionamientoLayout = new javax.swing.GroupLayout(jPanelFuncionamiento);
-        jPanelFuncionamiento.setLayout(jPanelFuncionamientoLayout);
-        jPanelFuncionamientoLayout.setHorizontalGroup(
-            jPanelFuncionamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelFuncionamientoLayout.createSequentialGroup()
-                .addGroup(jPanelFuncionamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelFuncionamientoLayout.createSequentialGroup()
-                        .addGroup(jPanelFuncionamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelFuncionamientoLayout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(cb_tipodealimento, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(94, 94, 94)
-                                .addComponent(cb_estadohorno1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelFuncionamientoLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanelFuncionamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanelFuncionamientoLayout.createSequentialGroup()
-                                        .addGap(43, 43, 43)
-                                        .addComponent(js_temperaturai, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(104, 104, 104)
-                                        .addComponent(txb_tiempoc, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanelFuncionamientoLayout.createSequentialGroup()
-                                        .addGroup(jPanelFuncionamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel34)
-                                            .addGroup(jPanelFuncionamientoLayout.createSequentialGroup()
-                                                .addGap(16, 16, 16)
-                                                .addComponent(jLabel14)))
-                                        .addGap(28, 28, 28)
-                                        .addGroup(jPanelFuncionamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel37)
-                                            .addComponent(jLabel38)))))
-                            .addGroup(jPanelFuncionamientoLayout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelFuncionamientoLayout.createSequentialGroup()
-                                .addGap(133, 133, 133)
-                                .addComponent(jLabel35)))
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanelFuncionamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13)
-                            .addGroup(jPanelFuncionamientoLayout.createSequentialGroup()
-                                .addGap(45, 45, 45)
-                                .addGroup(jPanelFuncionamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtID4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanelFuncionamientoLayout.createSequentialGroup()
-                        .addGap(214, 214, 214)
-                        .addComponent(btn_IngresarFuncionamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelFuncionamientoLayout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(jLabel7)))
-                .addGap(35, 35, 35))
-        );
-        jPanelFuncionamientoLayout.setVerticalGroup(
-            jPanelFuncionamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelFuncionamientoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addGap(18, 18, 18)
-                .addGroup(jPanelFuncionamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelFuncionamientoLayout.createSequentialGroup()
-                        .addGroup(jPanelFuncionamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel37)
-                            .addComponent(jLabel14))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelFuncionamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cb_tipodealimento, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cb_estadohorno1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(2, 2, 2)
-                        .addGroup(jPanelFuncionamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel34)
-                            .addComponent(jLabel38))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelFuncionamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(js_temperaturai, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txb_tiempoc, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel35)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelFuncionamientoLayout.createSequentialGroup()
-                        .addGroup(jPanelFuncionamientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel13)
-                            .addGroup(jPanelFuncionamientoLayout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtID4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(btn_IngresarFuncionamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jPanelFuncionamiento.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(227, 139, -1, -1));
 
         getContentPane().add(jPanelFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 900, 440));
 
         jPanelAutosustentable.setBackground(new java.awt.Color(71, 71, 71));
+        jPanelAutosustentable.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel44.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel44.setForeground(new java.awt.Color(255, 255, 255));
         jLabel44.setText("Eficiencia Energetica");
+        jPanelAutosustentable.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(259, 175, -1, -1));
 
         jLabel45.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel45.setForeground(new java.awt.Color(255, 255, 255));
         jLabel45.setText("Consumo Energetico");
+        jPanelAutosustentable.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 84, -1, -1));
 
         jLabel46.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel46.setForeground(new java.awt.Color(255, 255, 255));
         jLabel46.setText("%");
+        jPanelAutosustentable.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 142, -1, -1));
 
         btn_IngresarAutosustentable.setBackground(new java.awt.Color(51, 153, 0));
         btn_IngresarAutosustentable.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
@@ -1034,17 +566,21 @@ public class Pruebita extends javax.swing.JFrame {
                 btn_IngresarAutosustentableActionPerformed(evt);
             }
         });
+        jPanelAutosustentable.add(btn_IngresarAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 350, 280, 63));
 
         js_energiarecibida.setModel(new javax.swing.SpinnerNumberModel(0, 0, 360, 1));
         js_energiarecibida.setName(""); // NOI18N
+        jPanelAutosustentable.add(js_energiarecibida, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 210, 82, 30));
 
         jLabel47.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel47.setForeground(new java.awt.Color(255, 255, 255));
         jLabel47.setText("w");
+        jPanelAutosustentable.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 218, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Autosustentabilidad del horno");
+        jPanelAutosustentable.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, -1));
 
         txb_consumoe.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         txb_consumoe.addActionListener(new java.awt.event.ActionListener() {
@@ -1052,128 +588,70 @@ public class Pruebita extends javax.swing.JFrame {
                 txb_consumoeActionPerformed(evt);
             }
         });
+        jPanelAutosustentable.add(txb_consumoe, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 129, 79, -1));
 
         txb_energiaalmacenada.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jPanelAutosustentable.add(txb_energiaalmacenada, new org.netbeans.lib.awtextra.AbsoluteConstraints(312, 129, 84, -1));
 
         Jd_fecha4.setDateFormatString("yyyy-MM-dd");
+        jPanelAutosustentable.add(Jd_fecha4, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 289, 229, 38));
 
         cb_eficienciaenergetica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Alta", "Media", "Baja" }));
+        jPanelAutosustentable.add(cb_eficienciaenergetica, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 203, 119, 40));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Fecha creacion");
+        jPanelAutosustentable.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 261, -1, -1));
 
         jLabel48.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel48.setForeground(new java.awt.Color(255, 255, 255));
         jLabel48.setText("w");
+        jPanelAutosustentable.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 142, -1, -1));
 
         jLabel49.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel49.setForeground(new java.awt.Color(255, 255, 255));
         jLabel49.setText("Energia Solar Recibida");
+        jPanelAutosustentable.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 175, -1, -1));
 
         jLabel50.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel50.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel50.setText("Energia Almacenada");
+        jLabel50.setText("Lista de funciones");
+        jPanelAutosustentable.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, -1, -1));
 
-        javax.swing.GroupLayout jPanelAutosustentableLayout = new javax.swing.GroupLayout(jPanelAutosustentable);
-        jPanelAutosustentable.setLayout(jPanelAutosustentableLayout);
-        jPanelAutosustentableLayout.setHorizontalGroup(
-            jPanelAutosustentableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAutosustentableLayout.createSequentialGroup()
-                .addGroup(jPanelAutosustentableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelAutosustentableLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(jPanelAutosustentableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelAutosustentableLayout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addGroup(jPanelAutosustentableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanelAutosustentableLayout.createSequentialGroup()
-                                        .addGroup(jPanelAutosustentableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel45)
-                                            .addComponent(jLabel49)
-                                            .addGroup(jPanelAutosustentableLayout.createSequentialGroup()
-                                                .addGap(58, 58, 58)
-                                                .addComponent(js_energiarecibida, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel47))
-                                            .addGroup(jPanelAutosustentableLayout.createSequentialGroup()
-                                                .addGap(63, 63, 63)
-                                                .addComponent(txb_consumoe, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel48)))
-                                        .addGroup(jPanelAutosustentableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanelAutosustentableLayout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addGroup(jPanelAutosustentableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAutosustentableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel50)
-                                                        .addGroup(jPanelAutosustentableLayout.createSequentialGroup()
-                                                            .addGap(49, 49, 49)
-                                                            .addComponent(txb_energiaalmacenada, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                            .addComponent(jLabel46)))
-                                                    .addComponent(jLabel44)))
-                                            .addGroup(jPanelAutosustentableLayout.createSequentialGroup()
-                                                .addGap(41, 41, 41)
-                                                .addComponent(cb_eficienciaenergetica, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(jPanelAutosustentableLayout.createSequentialGroup()
-                                        .addGap(92, 92, 92)
-                                        .addComponent(Jd_fecha4, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanelAutosustentableLayout.createSequentialGroup()
-                                .addGap(136, 136, 136)
-                                .addComponent(jLabel12))
-                            .addComponent(jLabel6)))
-                    .addGroup(jPanelAutosustentableLayout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(btn_IngresarAutosustentable, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanelAutosustentableLayout.setVerticalGroup(
-            jPanelAutosustentableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAutosustentableLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelAutosustentableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelAutosustentableLayout.createSequentialGroup()
-                        .addComponent(jLabel45)
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanelAutosustentableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txb_consumoe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel48))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel49)
-                        .addGap(13, 13, 13)
-                        .addGroup(jPanelAutosustentableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(js_energiarecibida, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel47)))
-                    .addGroup(jPanelAutosustentableLayout.createSequentialGroup()
-                        .addComponent(jLabel50)
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanelAutosustentableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txb_energiaalmacenada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel46))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel44)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cb_eficienciaenergetica, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Jd_fecha4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(btn_IngresarAutosustentable, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-        );
+        tblDatoAutosustentable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tblDatoAutosustentable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDatoAutosustentableMouseClicked(evt);
+            }
+        });
+        jScrollPane14.setViewportView(tblDatoAutosustentable);
+
+        jPanelAutosustentable.add(jScrollPane14, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 276, 131));
+
+        jLabel51.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel51.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel51.setText("Energia Almacenada");
+        jPanelAutosustentable.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 84, -1, -1));
+        jPanelAutosustentable.add(txtIDAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 250, 56, -1));
 
         getContentPane().add(jPanelAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 910, 440));
 
         jPanelAmbiente.setBackground(new java.awt.Color(58, 58, 58));
         jPanelAmbiente.setForeground(new java.awt.Color(255, 255, 255));
+        jPanelAmbiente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel33.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(255, 255, 255));
         jLabel33.setText("Lista de hornos ingresados");
+        jPanelAmbiente.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, -1, -1));
 
         btn_IngresarAmbiente.setBackground(new java.awt.Color(51, 153, 0));
         btn_IngresarAmbiente.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
@@ -1186,250 +664,141 @@ public class Pruebita extends javax.swing.JFrame {
                 btn_IngresarAmbienteActionPerformed(evt);
             }
         });
+        jPanelAmbiente.add(btn_IngresarAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 359, 280, 63));
 
         jLabel39.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel39.setForeground(new java.awt.Color(255, 255, 255));
         jLabel39.setText("Dirección del Sol");
+        jPanelAmbiente.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 211, -1, -1));
 
         jLabel40.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel40.setForeground(new java.awt.Color(255, 255, 255));
         jLabel40.setText("Fecha creacion");
+        jPanelAmbiente.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 257, -1, -1));
 
         jLabel41.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel41.setForeground(new java.awt.Color(255, 255, 255));
         jLabel41.setText("°");
+        jPanelAmbiente.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 163, -1, -1));
 
         jLabel42.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel42.setForeground(new java.awt.Color(255, 255, 255));
         jLabel42.setText("Intensidad Solar");
+        jPanelAmbiente.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(182, 134, -1, -1));
 
         jLabel43.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel43.setForeground(new java.awt.Color(255, 255, 255));
         jLabel43.setText("Angulo Solar");
+        jPanelAmbiente.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 129, -1, -1));
 
         jLabel58.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel58.setForeground(new java.awt.Color(255, 255, 255));
         jLabel58.setText("Temperatura");
+        jPanelAmbiente.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 199, -1, -1));
 
         txb_direccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Norte", "Sur", "Este", "Oeste" }));
+        jPanelAmbiente.add(txb_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 239, 130, 32));
 
         txb_angulo.setModel(new javax.swing.SpinnerNumberModel(0, 0, 360, 1));
         txb_angulo.setName(""); // NOI18N
+        jPanelAmbiente.add(txb_angulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 163, 100, 30));
 
         jLabel59.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel59.setForeground(new java.awt.Color(255, 255, 255));
         jLabel59.setText("°C");
+        jPanelAmbiente.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 227, -1, -1));
 
         txb_temperatura.setModel(new javax.swing.SpinnerNumberModel(0, 0, 1000, 1));
         txb_temperatura.setName(""); // NOI18N
+        jPanelAmbiente.add(txb_temperatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 227, 100, 30));
 
         txb_intensidadsolar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Alta", "Media", "Baja" }));
+        jPanelAmbiente.add(txb_intensidadsolar, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 159, 140, 34));
 
         Jd_fecha6.setDateFormatString("yyyy-MM-dd");
+        jPanelAmbiente.add(Jd_fecha6, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 282, 160, 40));
 
-        tblDato4.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblDatoAmbiente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDato4MouseClicked(evt);
+                tblDatoAmbienteMouseClicked(evt);
             }
         });
-        jScrollPane12.setViewportView(tblDato4);
+        jScrollPane12.setViewportView(tblDatoAmbiente);
+
+        jPanelAmbiente.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 220, 187));
+        jPanelAmbiente.add(txtIDAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 150, -1));
 
         jLabel60.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
         jLabel60.setForeground(new java.awt.Color(255, 255, 255));
         jLabel60.setText("Ambiente del Horno");
-
-        javax.swing.GroupLayout jPanelAmbienteLayout = new javax.swing.GroupLayout(jPanelAmbiente);
-        jPanelAmbiente.setLayout(jPanelAmbienteLayout);
-        jPanelAmbienteLayout.setHorizontalGroup(
-            jPanelAmbienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAmbienteLayout.createSequentialGroup()
-                .addGroup(jPanelAmbienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelAmbienteLayout.createSequentialGroup()
-                        .addGap(262, 262, 262)
-                        .addComponent(jLabel60, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelAmbienteLayout.createSequentialGroup()
-                        .addGap(290, 290, 290)
-                        .addComponent(btn_IngresarAmbiente, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelAmbienteLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(jPanelAmbienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Jd_fecha6, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelAmbienteLayout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(jLabel58))
-                            .addGroup(jPanelAmbienteLayout.createSequentialGroup()
-                                .addComponent(txb_temperatura, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel59))
-                            .addGroup(jPanelAmbienteLayout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(jLabel40))
-                            .addComponent(jLabel43)
-                            .addGroup(jPanelAmbienteLayout.createSequentialGroup()
-                                .addComponent(txb_angulo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel41)))
-                        .addGroup(jPanelAmbienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelAmbienteLayout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(txb_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelAmbienteLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanelAmbienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAmbienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel42)
-                                        .addGroup(jPanelAmbienteLayout.createSequentialGroup()
-                                            .addGap(4, 4, 4)
-                                            .addComponent(jLabel39)))
-                                    .addComponent(txb_intensidadsolar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(158, 158, 158)
-                        .addGroup(jPanelAmbienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtID3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(206, 206, Short.MAX_VALUE))
-            .addGroup(jPanelAmbienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelAmbienteLayout.createSequentialGroup()
-                    .addContainerGap(479, Short.MAX_VALUE)
-                    .addComponent(jLabel33)
-                    .addGap(0, 170, Short.MAX_VALUE)))
-        );
-        jPanelAmbienteLayout.setVerticalGroup(
-            jPanelAmbienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAmbienteLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel60)
-                .addGroup(jPanelAmbienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelAmbienteLayout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addGroup(jPanelAmbienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanelAmbienteLayout.createSequentialGroup()
-                                .addComponent(jLabel43)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanelAmbienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txb_angulo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel41))
-                                .addGap(6, 6, 6)
-                                .addGroup(jPanelAmbienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanelAmbienteLayout.createSequentialGroup()
-                                        .addGap(58, 58, 58)
-                                        .addComponent(jLabel40)
-                                        .addGap(3, 3, 3)
-                                        .addComponent(Jd_fecha6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanelAmbienteLayout.createSequentialGroup()
-                                        .addComponent(jLabel58)
-                                        .addGap(6, 6, 6)
-                                        .addGroup(jPanelAmbienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txb_temperatura, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel59)))))
-                            .addGroup(jPanelAmbienteLayout.createSequentialGroup()
-                                .addComponent(jLabel42)
-                                .addGap(3, 3, 3)
-                                .addComponent(txb_intensidadsolar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel39)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txb_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(51, 51, 51)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE))
-                    .addGroup(jPanelAmbienteLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtID3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)))
-                .addComponent(btn_IngresarAmbiente, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
-            .addGroup(jPanelAmbienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelAmbienteLayout.createSequentialGroup()
-                    .addGap(3, 75, Short.MAX_VALUE)
-                    .addComponent(jLabel33)
-                    .addGap(0, 335, Short.MAX_VALUE)))
-        );
+        jPanelAmbiente.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 16, 330, -1));
 
         getContentPane().add(jPanelAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 920, 440));
 
         jPanelPrincipal.setBackground(new java.awt.Color(102, 102, 102));
+        jPanelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnFuncionamiento.setBackground(new java.awt.Color(102, 102, 102));
-        btnFuncionamiento.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnFuncionamiento.setForeground(new java.awt.Color(255, 255, 255));
-        btnFuncionamiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ix - maintenance-filled.png"))); // NOI18N
-        btnFuncionamiento.setText("Funcionamiento");
-        btnFuncionamiento.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnFuncionamiento.setBorderPainted(false);
-        btnFuncionamiento.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnFuncionamiento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFuncionamientoActionPerformed(evt);
+        lblMantenimiento.setBackground(new java.awt.Color(102, 102, 102));
+        lblMantenimiento.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblMantenimiento.setForeground(new java.awt.Color(255, 255, 255));
+        lblMantenimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ix - maintenance-filled.png"))); // NOI18N
+        lblMantenimiento.setText("Mantenimiento");
+        lblMantenimiento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMantenimientoMouseClicked(evt);
             }
         });
+        jPanelPrincipal.add(lblMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 186, 58));
 
-        btnAmbiente.setBackground(new java.awt.Color(102, 102, 102));
-        btnAmbiente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAmbiente.setForeground(new java.awt.Color(255, 255, 255));
-        btnAmbiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/streamline-plump - sun-remix.png"))); // NOI18N
-        btnAmbiente.setText("Ambiente");
-        btnAmbiente.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnAmbiente.setBorderPainted(false);
-        btnAmbiente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnAmbiente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAmbienteActionPerformed(evt);
+        lblHorno.setBackground(new java.awt.Color(102, 102, 102));
+        lblHorno.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblHorno.setForeground(new java.awt.Color(255, 255, 255));
+        lblHorno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ph - oven-fill.png"))); // NOI18N
+        lblHorno.setText("Horno");
+        lblHorno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblHornoMouseClicked(evt);
             }
         });
+        jPanelPrincipal.add(lblHorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 186, 58));
 
-        btnHorno.setBackground(new java.awt.Color(102, 102, 102));
-        btnHorno.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnHorno.setForeground(new java.awt.Color(255, 255, 255));
-        btnHorno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ph - oven-fill.png"))); // NOI18N
-        btnHorno.setText("Gestion Horno");
-        btnHorno.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnHorno.setBorderPainted(false);
-        btnHorno.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnHorno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHornoActionPerformed(evt);
+        lblFuncionamiento.setBackground(new java.awt.Color(102, 102, 102));
+        lblFuncionamiento.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblFuncionamiento.setForeground(new java.awt.Color(255, 255, 255));
+        lblFuncionamiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lsicon - operation-filled.png"))); // NOI18N
+        lblFuncionamiento.setText("Funcionamiento");
+        lblFuncionamiento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblFuncionamientoMouseClicked(evt);
             }
         });
+        jPanelPrincipal.add(lblFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 186, 58));
 
-        btnAutosustentable.setBackground(new java.awt.Color(102, 102, 102));
-        btnAutosustentable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAutosustentable.setForeground(new java.awt.Color(255, 255, 255));
-        btnAutosustentable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carbon - sustainability.png"))); // NOI18N
-        btnAutosustentable.setText("Autosustentable");
-        btnAutosustentable.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnAutosustentable.setBorderPainted(false);
-        btnAutosustentable.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnAutosustentable.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAutosustentableActionPerformed(evt);
+        lblAmbiente.setBackground(new java.awt.Color(102, 102, 102));
+        lblAmbiente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblAmbiente.setForeground(new java.awt.Color(255, 255, 255));
+        lblAmbiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/tdesign - undertake-environment-protection-filled.png"))); // NOI18N
+        lblAmbiente.setText("Ambiente");
+        lblAmbiente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAmbienteMouseClicked(evt);
             }
         });
+        jPanelPrincipal.add(lblAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 186, 58));
 
-        javax.swing.GroupLayout jPanelPrincipalLayout = new javax.swing.GroupLayout(jPanelPrincipal);
-        jPanelPrincipal.setLayout(jPanelPrincipalLayout);
-        jPanelPrincipalLayout.setHorizontalGroup(
-            jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnAmbiente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnFuncionamiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnHorno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnAutosustentable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-        );
-        jPanelPrincipalLayout.setVerticalGroup(
-            jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(btnHorno, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(btnFuncionamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(btnAmbiente, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(btnAutosustentable, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68))
-        );
+        lblAutosustentable.setBackground(new java.awt.Color(102, 102, 102));
+        lblAutosustentable.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblAutosustentable.setForeground(new java.awt.Color(255, 255, 255));
+        lblAutosustentable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carbon - sustainability.png"))); // NOI18N
+        lblAutosustentable.setText("Autosustentable");
+        lblAutosustentable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAutosustentableMouseClicked(evt);
+            }
+        });
+        jPanelPrincipal.add(lblAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 186, 58));
 
-        getContentPane().add(jPanelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 170, 440));
+        getContentPane().add(jPanelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 440));
 
         jPanelFondo.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -1455,44 +824,24 @@ public class Pruebita extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_Ingresar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ingresar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_Ingresar2ActionPerformed
-
-    private void tblDato2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDato2MouseClicked
-  int filaSeleccionada = tblDato.getSelectedRow();
-        DefaultTableModel modelo = (DefaultTableModel) tblDato.getModel();
+    private void tblDatoAmbienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoAmbienteMouseClicked
+        int filaSeleccionada = tblDatoAmbiente.getSelectedRow();
+        DefaultTableModel modelo = (DefaultTableModel) tblDatoAmbiente.getModel();
         Object idObjeto = modelo.getValueAt(filaSeleccionada, 0);
-        txtID.setText(String.valueOf(idObjeto));    }//GEN-LAST:event_tblDato2MouseClicked
-
-    private void btn_Ingresar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ingresar3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_Ingresar3ActionPerformed
-
-    private void tblDato3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDato3MouseClicked
-  int filaSeleccionada = tblDato.getSelectedRow();
-        DefaultTableModel modelo = (DefaultTableModel) tblDato.getModel();
-        Object idObjeto = modelo.getValueAt(filaSeleccionada, 0);
-        txtID.setText(String.valueOf(idObjeto));    }//GEN-LAST:event_tblDato3MouseClicked
-
-    private void tblDato4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDato4MouseClicked
-        int filaSeleccionada = tblDato.getSelectedRow();
-        DefaultTableModel modelo = (DefaultTableModel) tblDato.getModel();
-        Object idObjeto = modelo.getValueAt(filaSeleccionada, 0);
-        txtID.setText(String.valueOf(idObjeto));
-    }//GEN-LAST:event_tblDato4MouseClicked
+        txtIDAmbiente.setText(String.valueOf(idObjeto));
+    }//GEN-LAST:event_tblDatoAmbienteMouseClicked
 
     private void btn_IngresarAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarAmbienteActionPerformed
         // TODO add your handling code here:
         try {
             ClaseConsulta INGA = new ClaseConsulta();
             ambiente  a = new ambiente(
-                Integer.parseInt(txtID.getText()),
+                Integer.parseInt(txtIDAmbiente.getText()),
                 (String) txb_intensidadsolar.getSelectedItem(),
                 (int) txb_angulo.getValue(),
                 (int) txb_temperatura.getValue(),
                 (String) txb_direccion.getSelectedItem(),
-                new SimpleDateFormat("yyyy/MM/dd").format(Jd_fecha.getDate())
+                new SimpleDateFormat("yyyy/MM/dd").format(Jd_fecha6.getDate())
             );
             INGA.IngAmbiente(a);
         } catch (Exception e) {
@@ -1509,11 +858,12 @@ public class Pruebita extends javax.swing.JFrame {
         try {
             ClaseConsulta INAU = new ClaseConsulta();
             autosustentable au = new autosustentable(
+                Integer.parseInt(txtIDAutosustentable.getText()),
                 Integer.parseInt(txb_consumoe.getText()),
                 Integer.parseInt(txb_energiaalmacenada.getText()),
                 (String) cb_eficienciaenergetica.getSelectedItem(),
                 (int) js_energiarecibida.getValue(),
-                new SimpleDateFormat("yyyy/MM/dd").format(Jd_fecha.getDate())
+                new SimpleDateFormat("yyyy/MM/dd").format(Jd_fecha4.getDate())
             );
             INAU.IngresarAutosustentable(au);
             txb_consumoe.setText(null);
@@ -1535,13 +885,13 @@ public class Pruebita extends javax.swing.JFrame {
         try {
             ClaseConsulta INFU = new ClaseConsulta();
             funciones f = new funciones(
-                Integer.parseInt(txtID.getText()),
+                Integer.parseInt(txtIDFuncionamiento.getText()),
                 (int)(js_temperaturai.getValue()),
-                new SimpleDateFormat("HH:mm:ss").format(txb_tiempoc.getDateFormatString()),
+                 new SimpleDateFormat("HH:mm:ss").format(txb_tiempoc.getValue()),
                 (String)cb_tipodealimento.getSelectedItem(),
                 (String) cb_estadohorno.getSelectedItem(),
-                new SimpleDateFormat("yyyy/MM/dd").format(jb_fechaoperacion.getDate()),
-                new SimpleDateFormat("HH:mm:ss").format(js_Hora.getValue())
+                 new SimpleDateFormat("yyyy/MM/dd").format(jb_fechaoperacion.getDate()),
+                  new SimpleDateFormat("HH:mm:ss").format(js_Hora.getValue())
             );
             INFU.InsertarFuncion(f);
 
@@ -1550,36 +900,16 @@ public class Pruebita extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_IngresarFuncionamientoActionPerformed
 
-    private void tblDato5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDato5MouseClicked
-        int filaSeleccionada = tblDato.getSelectedRow();
-        DefaultTableModel modelo = (DefaultTableModel) tblDato.getModel();
+    private void tblDatoFuncionamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoFuncionamientoMouseClicked
+        int filaSeleccionada = tblDatoFuncionamiento.getSelectedRow();
+        DefaultTableModel modelo = (DefaultTableModel) tblDatoFuncionamiento.getModel();
         Object idObjeto = modelo.getValueAt(filaSeleccionada, 0);
-        txtID.setText(String.valueOf(idObjeto));
-    }//GEN-LAST:event_tblDato5MouseClicked
+        txtIDFuncionamiento.setText(String.valueOf(idObjeto));
+    }//GEN-LAST:event_tblDatoFuncionamientoMouseClicked
 
-    private void tblDatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoMouseClicked
-        int filaSeleccionada = tblDato.getSelectedRow();
-        DefaultTableModel modelo = (DefaultTableModel) tblDato.getModel();
-        Object idObjeto = modelo.getValueAt(filaSeleccionada, 0);
-        txtID.setText(String.valueOf(idObjeto));
-    }//GEN-LAST:event_tblDatoMouseClicked
+    private void tblDatoReparacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoReparacionMouseClicked
 
-    private void btn_IngresarMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarMantenimientoActionPerformed
-        try{
-            ClaseConsulta INGM = new ClaseConsulta();
-
-            mantenimiento m = new mantenimiento(
-
-                txb_detallesr.getText(),
-                txb_materialesr.getText(),
-                new SimpleDateFormat("yyyy-MM-dd").format(Jd_fecha.getDate())
-            );
-            INGM.InsertarMante(m);
-        }catch(HeadlessException e) {
-            JOptionPane.showMessageDialog(this, "error: " + e);
-
-        }
-    }//GEN-LAST:event_btn_IngresarMantenimientoActionPerformed
+    }//GEN-LAST:event_tblDatoReparacionMouseClicked
 
     private void txb_dimensionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txb_dimensionesActionPerformed
         // TODO add your handling code here:
@@ -1593,12 +923,14 @@ public class Pruebita extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txb_tipoFocusGained
 
-    private void tblDato1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDato1MouseClicked
-  int filaSeleccionada = tblDato.getSelectedRow();
-        DefaultTableModel modelo = (DefaultTableModel) tblDato.getModel();
+    private void tblDatoHornoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoHornoMouseClicked
+  
+        int filaSeleccionada = tblDatoHorno.getSelectedRow();
+        DefaultTableModel modelo = (DefaultTableModel) tblDatoHorno.getModel();
         Object idObjeto = modelo.getValueAt(filaSeleccionada, 0);
-        txtID.setText(String.valueOf(idObjeto));
-    }//GEN-LAST:event_tblDato1MouseClicked
+        txtIDMantenimiento.setText(String.valueOf(idObjeto));
+        
+    }//GEN-LAST:event_tblDatoHornoMouseClicked
 
     private void btn_IngresarHornosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarHornosActionPerformed
         try{
@@ -1608,57 +940,92 @@ public class Pruebita extends javax.swing.JFrame {
                 txb_tipo.getText(),
                 txb_materiales.getText(),
                 (String)cb_estadohorno.getSelectedItem(),
-                new SimpleDateFormat("yyyy-MM-dd").format(Jd_fecha.getDate()),
+                new SimpleDateFormat("yyyy-MM-dd").format(Jd_fecha1.getDate()),
                 Double.parseDouble(txb_dimensiones.getText())
 
             );
             INH.registrarHorno(h);
-            tblDato.setModel(INH.MostrarHornos());
+            tblDatoReparacion.setModel(INH.MostrarHornos());
 
         }catch(HeadlessException e) {
             JOptionPane.showMessageDialog(this, "error: " + e);
         }
     }//GEN-LAST:event_btn_IngresarHornosActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+    private void lblMantenimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimientoMouseClicked
+ jPanelHornosSolares.setVisible(false );
+    jPanelMantenimiento.setVisible(true);
+    jPanelFuncionamiento.setVisible(false);
+    jPanelAmbiente.setVisible(false);
+    jPanelAutosustentable.setVisible(false); 
 
-    private void btnFuncionamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionamientoActionPerformed
-    jPanelHornosSolares.setVisible(false);
+    }//GEN-LAST:event_lblMantenimientoMouseClicked
+
+    private void lblHornoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHornoMouseClicked
+ jPanelHornosSolares.setVisible(true );
+    jPanelMantenimiento.setVisible(false);
+    jPanelFuncionamiento.setVisible(false);
+    jPanelAmbiente.setVisible(false);
+    jPanelAutosustentable.setVisible(false); 
+    
+    }//GEN-LAST:event_lblHornoMouseClicked
+
+    private void lblFuncionamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFuncionamientoMouseClicked
+ jPanelHornosSolares.setVisible(false );
     jPanelMantenimiento.setVisible(false);
     jPanelFuncionamiento.setVisible(true);
     jPanelAmbiente.setVisible(false);
     jPanelAutosustentable.setVisible(false); 
+    }//GEN-LAST:event_lblFuncionamientoMouseClicked
 
-          }//GEN-LAST:event_btnFuncionamientoActionPerformed
-
-    private void btnAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAmbienteActionPerformed
-    jPanelHornosSolares.setVisible(false);
+    private void lblAmbienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAmbienteMouseClicked
+ jPanelHornosSolares.setVisible(false );
     jPanelMantenimiento.setVisible(false);
     jPanelFuncionamiento.setVisible(false);
     jPanelAmbiente.setVisible(true);
     jPanelAutosustentable.setVisible(false); 
+    }//GEN-LAST:event_lblAmbienteMouseClicked
 
-          }//GEN-LAST:event_btnAmbienteActionPerformed
-
-    private void btnHornoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHornoActionPerformed
-    jPanelHornosSolares.setVisible(true);
-    jPanelMantenimiento.setVisible(false);
-    jPanelFuncionamiento.setVisible(false);
-    jPanelAmbiente.setVisible(false);
-    jPanelAutosustentable.setVisible(false); 
-
-      }//GEN-LAST:event_btnHornoActionPerformed
-
-    private void btnAutosustentableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAutosustentableActionPerformed
-    jPanelHornosSolares.setVisible(false );
+    private void lblAutosustentableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAutosustentableMouseClicked
+ jPanelHornosSolares.setVisible(false );
     jPanelMantenimiento.setVisible(false);
     jPanelFuncionamiento.setVisible(false);
     jPanelAmbiente.setVisible(false);
     jPanelAutosustentable.setVisible(true); 
+    }//GEN-LAST:event_lblAutosustentableMouseClicked
 
-    }//GEN-LAST:event_btnAutosustentableActionPerformed
+    private void tblDatoMantenimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoMantenimientoMouseClicked
+int filaSeleccionada = tblDatoMantenimiento.getSelectedRow();
+        DefaultTableModel modelo = (DefaultTableModel) tblDatoMantenimiento.getModel();
+        Object idObjeto = modelo.getValueAt(filaSeleccionada, 0);
+        txtIDMantenimiento.setText(String.valueOf(idObjeto)); 
+
+    }//GEN-LAST:event_tblDatoMantenimientoMouseClicked
+
+    private void tblDatoAutosustentableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoAutosustentableMouseClicked
+ int filaSeleccionada = tblDatoAutosustentable.getSelectedRow();
+        DefaultTableModel modelo = (DefaultTableModel) tblDatoAutosustentable.getModel();
+        Object idObjeto = modelo.getValueAt(filaSeleccionada, 0);
+        txtIDAutosustentable.setText(String.valueOf(idObjeto));
+
+    }//GEN-LAST:event_tblDatoAutosustentableMouseClicked
+
+    private void btn_IngresarMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarMantenimientoActionPerformed
+   try{
+            ClaseConsulta INGM = new ClaseConsulta();
+
+            mantenimiento m = new mantenimiento(
+                Integer.parseInt(txtIDMantenimiento.getText()),
+                txb_detallesr.getText(),
+                txb_materialesr.getText(),
+                new SimpleDateFormat("yyyy-MM-dd").format(Jd_fecha.getDate())
+            );
+            INGM.InsertarMante(m);
+        }catch(HeadlessException e) {
+            JOptionPane.showMessageDialog(this, "error: " + e);
+
+        }
+    }//GEN-LAST:event_btn_IngresarMantenimientoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1698,32 +1065,19 @@ public class Pruebita extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser Jd_fecha;
     private com.toedter.calendar.JDateChooser Jd_fecha1;
-    private com.toedter.calendar.JDateChooser Jd_fecha2;
-    private com.toedter.calendar.JDateChooser Jd_fecha3;
     private com.toedter.calendar.JDateChooser Jd_fecha4;
     private com.toedter.calendar.JDateChooser Jd_fecha6;
-    private javax.swing.JButton btnAmbiente;
-    private javax.swing.JButton btnAutosustentable;
-    private javax.swing.JButton btnFuncionamiento;
-    private javax.swing.JButton btnHorno;
-    private javax.swing.JButton btn_Ingresar2;
-    private javax.swing.JButton btn_Ingresar3;
     private javax.swing.JButton btn_IngresarAmbiente;
     private javax.swing.JButton btn_IngresarAutosustentable;
     private javax.swing.JButton btn_IngresarFuncionamiento;
     private javax.swing.JButton btn_IngresarHornos;
     private javax.swing.JButton btn_IngresarMantenimiento;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cb_eficienciaenergetica;
     private javax.swing.JComboBox<String> cb_estadohorno;
     private javax.swing.JComboBox<String> cb_estadohorno1;
     private javax.swing.JComboBox<String> cb_tipodealimento;
-    private javax.swing.JButton jButton9;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -1738,13 +1092,8 @@ public class Pruebita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
@@ -1752,7 +1101,6 @@ public class Pruebita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
@@ -1763,8 +1111,8 @@ public class Pruebita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
@@ -1778,55 +1126,49 @@ public class Pruebita extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelFuncionamiento;
     private javax.swing.JPanel jPanelHornosSolares;
     private javax.swing.JPanel jPanelMantenimiento;
-    private javax.swing.JPanel jPanelMantenimiento1;
-    private javax.swing.JPanel jPanelMantenimiento2;
     private javax.swing.JPanel jPanelPrincipal;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane10;
-    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
     private com.toedter.calendar.JDateChooser jb_fechaoperacion;
     private com.toedter.calendar.JSpinnerDateEditor js_Hora;
     private javax.swing.JSpinner js_energiarecibida;
     private javax.swing.JSpinner js_temperaturai;
+    private javax.swing.JLabel lblAmbiente;
+    private javax.swing.JLabel lblAutosustentable;
+    private javax.swing.JLabel lblFuncionamiento;
+    private javax.swing.JLabel lblHorno;
+    private javax.swing.JLabel lblMantenimiento;
     private javax.swing.JRadioButton rbAutomatico;
     private javax.swing.JRadioButton rbManual;
-    private javax.swing.JTable tblDato;
-    private javax.swing.JTable tblDato1;
-    private javax.swing.JTable tblDato2;
-    private javax.swing.JTable tblDato3;
-    private javax.swing.JTable tblDato4;
-    private javax.swing.JTable tblDato5;
+    private javax.swing.JTable tblDatoAmbiente;
+    private javax.swing.JTable tblDatoAutosustentable;
+    private javax.swing.JTable tblDatoFuncionamiento;
+    private javax.swing.JTable tblDatoHorno;
+    private javax.swing.JTable tblDatoMantenimiento;
+    private javax.swing.JTable tblDatoReparacion;
     private javax.swing.JSpinner txb_angulo;
     private javax.swing.JTextField txb_consumoe;
     private javax.swing.JTextArea txb_detallesr;
-    private javax.swing.JTextArea txb_detallesr1;
-    private javax.swing.JTextArea txb_detallesr2;
     private javax.swing.JTextField txb_dimensiones;
     private javax.swing.JComboBox<String> txb_direccion;
     private javax.swing.JTextField txb_energiaalmacenada;
     private javax.swing.JComboBox<String> txb_intensidadsolar;
     private javax.swing.JTextArea txb_materiales;
     private javax.swing.JTextArea txb_materialesr;
-    private javax.swing.JTextArea txb_materialesr1;
-    private javax.swing.JTextArea txb_materialesr2;
     private javax.swing.JTextField txb_reflectores;
     private javax.swing.JSpinner txb_temperatura;
     private com.toedter.calendar.JSpinnerDateEditor txb_tiempoc;
     private javax.swing.JTextField txb_tipo;
-    private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtID1;
-    private javax.swing.JTextField txtID2;
-    private javax.swing.JTextField txtID3;
-    private javax.swing.JTextField txtID4;
+    private javax.swing.JTextField txtIDAmbiente;
+    private javax.swing.JTextField txtIDAutosustentable;
+    private javax.swing.JTextField txtIDFuncionamiento;
+    private javax.swing.JTextField txtIDMantenimiento;
     // End of variables declaration//GEN-END:variables
 }

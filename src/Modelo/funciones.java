@@ -2,12 +2,12 @@
 package Modelo;
 
 public class funciones {
-    private int IDF, temperaturaInterna;
+    private int IDH, temperaturaInterna;
     private String tiempoCoccion, tipoAlimento,estadoHorno, fechaOperacion, horaOperacion;
 
   
-    public funciones(int IDF, int temperaturaInterna, String tiempoCoccion, String tipoAlimento, String estadoHorno, String fechaOperacion, String horaOperacion) {
-        this.IDF = IDF;
+    public funciones(int IDH, int temperaturaInterna, String tiempoCoccion, String tipoAlimento, String estadoHorno, String fechaOperacion, String horaOperacion) {
+        this.IDH = IDH;
         this.temperaturaInterna = temperaturaInterna;
         this.tiempoCoccion = tiempoCoccion;
         this.tipoAlimento = tipoAlimento;
@@ -16,12 +16,12 @@ public class funciones {
         this.horaOperacion = horaOperacion;
     }
 
-    public int getIDF() {
-        return IDF;
+    public int getIDH() {
+        return IDH;
     }
 
-    public void setIDF(int IDF) {
-        this.IDF = IDF;
+    public void setIDH(int IDH) {
+        this.IDH = IDH;
     }
     
     public int getTemperaturaInterna() {

@@ -139,10 +139,10 @@ public void IngresarAutosustentable(autosustentable au){
             String sql;
             ConexionBDD nuevoc=new ConexionBDD();
             Connection con = nuevoc.conectar();        
-            sql="insert into autosustentable(eficiencia_termica, energia_solar_recibida, consumo_energetico, energia_almacenada, fecha_evaluacion) values(?,?,?,?,?,?)";
+            sql="insert into autosustentable(idh, eficiencia_termica, energia_solar_recibida, consumo_energetico, energia_almacenada, fecha_evaluacion) values(?,?,?,?,?,?)";
           
             PreparedStatement pst= con.prepareStatement(sql);
-            
+            pst.setInt(0, au.getIdf());
             pst.setDouble(1, au.getEficiencia_energetica());
             pst.setString(2, au.getEnergia_solar_recibida());
             pst.setInt(3, au.getConsumo_energetico());
@@ -171,7 +171,7 @@ public void InsertarFuncion(funciones f){
             sql="insert into funcionamiento(IDH, temperatura_interna, tiempo_coccion, tipo_alimento, estado_horno, fecha_operacion, hora_operacion) values(?,?,?,?,?,?,?)";
             
             PreparedStatement pst = con.prepareStatement(sql);
-             pst.setInt(1, f.getTemperaturaInterna());
+             pst.setInt(1, f.getIDH());
             pst.setInt(2, f.getTemperaturaInterna());
             pst.setString(3, f.getTiempoCoccion());
             pst.setString(4, f.getTipoAlimento());
@@ -196,12 +196,12 @@ public void InsertarMante(mantenimiento m){
 try{
             ConexionBDD nuevoc=new ConexionBDD();
             Connection con = nuevoc.conectar();        
-          String  sql="insert into mantenimientos(idh, detalles_reparacion, materiales_remplazados, fecha_creacion) values(?,?,?,?)";  
+          String sql="insert into mantenimientos(idh, detalles_reparacion, materiales_remplazados, fecha_creacion) values(?,?,?,?)";  
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setInt(0, m.getIDH());
-            pst.setString(1, m.getDetalles_reparacion());
-            pst.setString(2, m.getMateriales_reemplazados());
-            pst.setString(3, m.getFecha_creacion());
+            pst.setInt(1, m.getIDH());
+            pst.setString(2, m.getDetalles_reparacion());
+            pst.setString(3, m.getMateriales_reemplazados());
+            pst.setString(4, m.getFecha_creacion());
             
             int n = pst.executeUpdate();
             if(n > 0){
@@ -214,8 +214,43 @@ try{
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
 }
+  public DefaultTableModel consultaAutosustentable() {
+  String[] titulos = {"ID", "Tipo Horno"};
+        
+DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; 
+            }
+    };
+        String sql = "SELECT IDF, fecha_operacion FROM `funcionamiento`";
+        
+       
+        ConexionBDD nuevaC = new ConexionBDD();
+        
+        try (Connection con = nuevaC.conectar();
+             PreparedStatement pst = con.prepareStatement(sql);
+             ResultSet rs = pst.executeQuery()) {
 
-    public DefaultTableModel conexionHornos() {
+            // 5. Recorrer el ResultSet y llenar el modelo
+            while (rs.next()) {
+                Object[] fila = new Object[2]; // Correcto (2 columnas)
+                fila[0] = rs.getInt("idf");
+                fila[1] = rs.getString("fecha_operacion");
+                modelo.addRow(fila);
+            }
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, 
+                "Error al consultar datos de hornos: " + e.getMessage(), 
+                "Error de Base de Datos", 
+                JOptionPane.ERROR_MESSAGE);
+           JOptionPane.showMessageDialog(null, "Error al cargar datos de hornos: " + e.getMessage());
+        }
+                return modelo;
+  }
+
+    public DefaultTableModel consultaHornos() {
         
         String[] titulos = {"ID", "Tipo Horno"};
         
@@ -251,7 +286,53 @@ DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
         }
                 return modelo;
     }
+    
+   public DefaultTableModel MostrarReparacion() {
+    
+    // 1. Nuevos títulos para la tabla (Horno + Detalle de Reparación)
+    // Ajusté las columnas a lo que pediste (datos del horno + datos de la reparación)
+    String[] titulos = {"ID Horno", "Tipo Horno", "Detalle Reparación", "Materiales Usados", "Fecha Reparación"};
+    
+    DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false; 
+        }
+    };
 
+    String sql = "SELECT h.idh, h.tipo, m.detalles_reparacion, m.materiales_remplazados, m.fecha_creacion "
+               + "FROM hornos AS h "
+               + "INNER JOIN mantenimientos AS m ON h.idh = m.idh";
+
+    ConexionBDD nuevaC = new ConexionBDD();
+    
+    try (Connection con = nuevaC.conectar();
+         PreparedStatement pst = con.prepareStatement(sql);
+         ResultSet rs = pst.executeQuery()) {
+
+        while (rs.next()) {
+            Object[] fila = new Object[5]; 
+            
+            fila[0] = rs.getInt("idh");
+            fila[1] = rs.getString("tipo");
+            fila[2] = rs.getString("detalles_reparacion");
+            fila[3] = rs.getString("materiales_remplazados");
+            fila[4] = rs.getString("fecha_creacion"); // Esta es la fecha del mantenimiento
+            
+            modelo.addRow(fila);
+        }
+        
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, 
+                "Error al consultar historial de reparaciones: " + e.getMessage(), 
+                "Error de Base de Datos", 
+                JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace(); // Para ver el error en la consola de NetBeans
+    }
+    
+    return modelo;
+}
+     
      public DefaultTableModel MostrarHornos() {
         
         String[] titulos = {"Tipo", "Materiales", "Dimensiones", "Sistema Aislamiento", "Reflectores", "Fecha"};

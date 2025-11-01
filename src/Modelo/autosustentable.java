@@ -2,17 +2,26 @@
 package Modelo;
 
 public class autosustentable {
-    private int consumo_energetico, energia_almacenada;
+    private int idf,consumo_energetico, energia_almacenada;
     private String energia_solar_recibida;
     private double eficiencia_energetica;
     private String fecha_evaluacion;
 
-    public autosustentable(int consumo_energetico, int energia_almacenada, String energia_solar_recibida, double eficiencia_energetica, String fecha_evaluacion) {
+    public autosustentable(int idf, int consumo_energetico, int energia_almacenada, String energia_solar_recibida, double eficiencia_energetica, String fecha_evaluacion) {
+        this.idf = idf;
         this.consumo_energetico = consumo_energetico;
         this.energia_almacenada = energia_almacenada;
         this.energia_solar_recibida = energia_solar_recibida;
         this.eficiencia_energetica = eficiencia_energetica;
         this.fecha_evaluacion = fecha_evaluacion;
+    }
+
+    public int getIdf() {
+        return idf;
+    }
+
+    public void setIdf(int idf) {
+        this.idf = idf;
     }
 
     public int getConsumo_energetico() {

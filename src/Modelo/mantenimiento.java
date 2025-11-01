@@ -4,7 +4,7 @@ public class mantenimiento {
    private int IDH;
    private String detalles_reparacion, materiales_reemplazados, fecha_creacion;
 
-    public mantenimiento(String detalles_reparacion, String materiales_reemplazados, String fecha_creacion) {
+    public mantenimiento(int IDH, String detalles_reparacion, String materiales_reemplazados, String fecha_creacion) {
         this.IDH = IDH;
         this.detalles_reparacion = detalles_reparacion;
         this.materiales_reemplazados = materiales_reemplazados;
