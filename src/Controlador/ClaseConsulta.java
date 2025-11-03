@@ -40,13 +40,13 @@ public class ClaseConsulta {
         }
     }
 
-
-    public void modificarHorno(String tipoOriginal, horno h) {
+    public void modificarHorno(int idh, horno h) { 
         ConexionBDD nuevoc = new ConexionBDD();
         Connection con = nuevoc.conectar();
         PreparedStatement pst = null;
 
-        String sql = "update hornos set tipo=?, materiales=?, sistema_aislamiento=?, fecha=?, dimensiones=?, reflectores=? where tipo=?";
+        // CAMBIAMOS el WHERE
+        String sql = "update hornos set tipo=?, materiales=?, sistema_aislamiento=?, fecha_creacion=?, dimensiones=?, reflectores=? where idh=?";
 
         try {
             pst = con.prepareStatement(sql);
@@ -56,7 +56,7 @@ public class ClaseConsulta {
             pst.setString(4, h.getFecha());
             pst.setDouble(5, h.getDimensiones());
             pst.setInt(6, h.getReflectores());
-            pst.setString(7, tipoOriginal);
+            pst.setInt(7, idh);
 
             int n = pst.executeUpdate();
 
@@ -75,16 +75,17 @@ public class ClaseConsulta {
     }
 
     
-    public void eliminarHorno(String tipoDeHorno) {
+    public void eliminarHorno(int idh) { 
         ConexionBDD nuevoc = new ConexionBDD();
         Connection con = nuevoc.conectar();
         PreparedStatement pst = null;
 
-        String sql = "delete from hornos where tipo=?";
+        // CAMBIAMOS el WHERE
+        String sql = "delete from hornos where idh=?"; 
 
         try {
             pst = con.prepareStatement(sql);
-            pst.setString(1, tipoDeHorno);
+            pst.setInt(1, idh); // <-- Usamos el ID
             
             int n = pst.executeUpdate();
 
@@ -101,9 +102,6 @@ public class ClaseConsulta {
             JOptionPane.showMessageDialog(null, "Error al eliminar: " + e);
         }
     }
-    
- 
- 
     
     
     public void IngAmbiente (ambiente a){
@@ -139,15 +137,15 @@ public void IngresarAutosustentable(autosustentable au){
             String sql;
             ConexionBDD nuevoc=new ConexionBDD();
             Connection con = nuevoc.conectar();        
-            sql="insert into autosustentable(idh, eficiencia_termica, energia_solar_recibida, consumo_energetico, energia_almacenada, fecha_evaluacion) values(?,?,?,?,?,?)";
+            sql="insert into autosustentable(idf, eficiencia_termica, energia_solar_recibida, consumo_energetico, energia_almacenada, fecha_evaluacion) values(?,?,?,?,?,?)";
           
             PreparedStatement pst= con.prepareStatement(sql);
-            pst.setInt(0, au.getIdf());
-            pst.setDouble(1, au.getEficiencia_energetica());
-            pst.setString(2, au.getEnergia_solar_recibida());
-            pst.setInt(3, au.getConsumo_energetico());
-            pst.setInt(4, au.getEnergia_almacenada());
-            pst.setString(5, au.getFecha_evaluacion());
+            pst.setInt(1, au.getIdf());
+            pst.setDouble(2, au.getEficiencia_energetica());
+            pst.setString(3, au.getEnergia_solar_recibida());
+            pst.setInt(4, au.getConsumo_energetico());
+            pst.setInt(5, au.getEnergia_almacenada());
+            pst.setString(6, au.getFecha_evaluacion());
             
             int n = pst.executeUpdate();
             if(n > 0){
@@ -215,7 +213,7 @@ try{
         }
 }
   public DefaultTableModel consultaAutosustentable() {
-  String[] titulos = {"ID", "Tipo Horno"};
+  String[] titulos = {"IDF", "Fecha"};
         
 DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
             @Override
@@ -335,7 +333,7 @@ DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
      
      public DefaultTableModel MostrarHornos() {
         
-        String[] titulos = {"Tipo", "Materiales", "Dimensiones", "Sistema Aislamiento", "Reflectores", "Fecha"};
+        String[] titulos = {"Fecha","Tipo", "Materiales", "Dimensiones", "Sistema Aislamiento", "Reflectores", "IDH"};
         
                
         DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
@@ -345,7 +343,7 @@ DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
             }
     };
         
-        String sql = "SELECT tipo, materiales, dimensiones, sistema_aislamiento, reflectores, fecha_creacion FROM hornos";
+        String sql = "SELECT * FROM hornos";
         ConexionBDD nuevaC = new ConexionBDD();
         
         try (Connection con = nuevaC.conectar();
@@ -353,13 +351,16 @@ DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
              ResultSet rs = pst.executeQuery()) {
 
             while (rs.next()) {
-                Object[] fila = new Object[6]; 
-                fila[0] = rs.getString("tipo");
-                fila[1] = rs.getString("materiales");
-                fila[2] = rs.getString("dimensiones");
-                fila[3] = rs.getString("sistema_aislamiento");
-                fila[4] = rs.getString("reflectores");
-                fila[5] = rs.getString("fecha_creacion");
+                Object[] fila = new Object[7]; 
+                fila[0] = rs.getString("fecha_creacion");
+                fila[1] = rs.getString("tipo");
+                fila[2] = rs.getString("materiales");
+                fila[3] = rs.getString("dimensiones");
+                fila[4] = rs.getString("sistema_aislamiento");
+                fila[5] = rs.getString("reflectores");
+                fila[6] = rs.getInt("IDH");
+
+                
                 modelo.addRow(fila);
             }
             

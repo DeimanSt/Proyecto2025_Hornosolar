@@ -6,12 +6,12 @@ import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Controlador.*;
-public class Pruebita extends javax.swing.JFrame {
+public class Menu extends javax.swing.JFrame {
 
     /**
      * Creates new form Pruebita
      */
-    public Pruebita() {
+    public Menu() {
         
         initComponents();
     jPanelHornosSolares.setVisible(false);
@@ -29,6 +29,10 @@ public class Pruebita extends javax.swing.JFrame {
 
     }
     
+    public void refrescarTablaHornos() {
+    ClaseConsulta misConsultas = new ClaseConsulta();
+    tblDatoHorno.setModel(misConsultas.MostrarHornos());
+}
 
 
     /**
@@ -196,7 +200,7 @@ public class Pruebita extends javax.swing.JFrame {
                 btn_IngresarHornosActionPerformed(evt);
             }
         });
-        jPanelHornosSolares.add(btn_IngresarHornos, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 354, 280, 63));
+        jPanelHornosSolares.add(btn_IngresarHornos, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, 280, 63));
 
         cb_estadohorno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Aislamiento por material", "Doble cubierta transparente", "Sellado hermético", "Aislamiento reflectante" }));
         jPanelHornosSolares.add(cb_estadohorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 183, 153, 40));
@@ -205,16 +209,21 @@ public class Pruebita extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ingreso de los Hornos Solares");
-        jPanelHornosSolares.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 6, -1, -1));
+        jPanelHornosSolares.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, -1));
 
         tblDatoHorno.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblDatoHornoMouseClicked(evt);
             }
         });
+        tblDatoHorno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tblDatoHornoKeyPressed(evt);
+            }
+        });
         jScrollPane5.setViewportView(tblDatoHorno);
 
-        jPanelHornosSolares.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 276, 131));
+        jPanelHornosSolares.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 480, 190));
 
         Jd_fecha1.setDateFormatString("yyyy-MM-dd");
         jPanelHornosSolares.add(Jd_fecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 257, 153, 46));
@@ -236,7 +245,7 @@ public class Pruebita extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Lista de hornos ingresados");
-        jPanelHornosSolares.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(409, 82, -1, -1));
+        jPanelHornosSolares.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, -1, -1));
 
         jLabel16.setBackground(new java.awt.Color(255, 255, 255));
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -291,7 +300,7 @@ public class Pruebita extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Mantenimiento de los hornos");
-        jPanelMantenimiento.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, -1, -1));
+        jPanelMantenimiento.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
@@ -377,7 +386,7 @@ public class Pruebita extends javax.swing.JFrame {
         });
         jScrollPane15.setViewportView(tblDatoFuncionamiento);
 
-        jPanelFuncionamiento.add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(474, 99, 220, 210));
+        jPanelFuncionamiento.add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 410, 210));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
@@ -389,8 +398,8 @@ public class Pruebita extends javax.swing.JFrame {
         jLabel34.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(255, 255, 255));
         jLabel34.setText("Temperatura Interna");
-        jPanelFuncionamiento.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 139, -1, -1));
-        jPanelFuncionamiento.add(txtIDFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(474, 315, 56, -1));
+        jPanelFuncionamiento.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+        jPanelFuncionamiento.add(txtIDFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 340, 56, -1));
 
         jLabel35.setBackground(new java.awt.Color(255, 255, 255));
         jLabel35.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -419,10 +428,10 @@ public class Pruebita extends javax.swing.JFrame {
 
         js_temperaturai.setModel(new javax.swing.SpinnerNumberModel(0, 0, 360, 1));
         js_temperaturai.setName(""); // NOI18N
-        jPanelFuncionamiento.add(js_temperaturai, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 168, 97, 36));
+        jPanelFuncionamiento.add(js_temperaturai, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 97, 36));
 
         cb_tipodealimento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Carnes y Aves", "Pescados y Verduras", "Panadería y", "Repostería", "Pastas", "Arroces y Guisos", "Otros" }));
-        jPanelFuncionamiento.add(cb_tipodealimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 97, 109, 40));
+        jPanelFuncionamiento.add(cb_tipodealimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 109, 40));
 
         cb_estadohorno1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buen Estado", "Estado Decente", "Estado Regular", "Estado mal", "Estado para reparar" }));
         jPanelFuncionamiento.add(cb_estadohorno1, new org.netbeans.lib.awtextra.AbsoluteConstraints(252, 97, 99, 40));
@@ -437,13 +446,13 @@ public class Pruebita extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Lista de hornos ingresados");
-        jPanelFuncionamiento.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(429, 69, -1, -1));
+        jPanelFuncionamiento.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, -1, -1));
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Tipo de Alimento");
-        jPanelFuncionamiento.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 69, -1, -1));
+        jPanelFuncionamiento.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
         rbManual.setForeground(new java.awt.Color(255, 255, 255));
         rbManual.setText("Ingreso manual de fechas");
@@ -580,7 +589,7 @@ public class Pruebita extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Autosustentabilidad del horno");
-        jPanelAutosustentable.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, -1));
+        jPanelAutosustentable.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, 50));
 
         txb_consumoe.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         txb_consumoe.addActionListener(new java.awt.event.ActionListener() {
@@ -617,7 +626,7 @@ public class Pruebita extends javax.swing.JFrame {
         jLabel50.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel50.setForeground(new java.awt.Color(255, 255, 255));
         jLabel50.setText("Lista de funciones");
-        jPanelAutosustentable.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, -1, -1));
+        jPanelAutosustentable.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 70, -1, -1));
 
         tblDatoAutosustentable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -634,13 +643,13 @@ public class Pruebita extends javax.swing.JFrame {
         });
         jScrollPane14.setViewportView(tblDatoAutosustentable);
 
-        jPanelAutosustentable.add(jScrollPane14, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 276, 131));
+        jPanelAutosustentable.add(jScrollPane14, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 110, 370, 180));
 
         jLabel51.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel51.setForeground(new java.awt.Color(255, 255, 255));
         jLabel51.setText("Energia Almacenada");
         jPanelAutosustentable.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 84, -1, -1));
-        jPanelAutosustentable.add(txtIDAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 250, 56, -1));
+        jPanelAutosustentable.add(txtIDAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 300, 56, -1));
 
         getContentPane().add(jPanelAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 910, 440));
 
@@ -651,7 +660,7 @@ public class Pruebita extends javax.swing.JFrame {
         jLabel33.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(255, 255, 255));
         jLabel33.setText("Lista de hornos ingresados");
-        jPanelAmbiente.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, -1, -1));
+        jPanelAmbiente.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, -1, -1));
 
         btn_IngresarAmbiente.setBackground(new java.awt.Color(51, 153, 0));
         btn_IngresarAmbiente.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
@@ -725,13 +734,13 @@ public class Pruebita extends javax.swing.JFrame {
         });
         jScrollPane12.setViewportView(tblDatoAmbiente);
 
-        jPanelAmbiente.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 220, 187));
-        jPanelAmbiente.add(txtIDAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 150, -1));
+        jPanelAmbiente.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 440, 187));
+        jPanelAmbiente.add(txtIDAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 60, -1));
 
         jLabel60.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
         jLabel60.setForeground(new java.awt.Color(255, 255, 255));
         jLabel60.setText("Ambiente del Horno");
-        jPanelAmbiente.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 16, 330, -1));
+        jPanelAmbiente.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 330, -1));
 
         getContentPane().add(jPanelAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 920, 440));
 
@@ -866,6 +875,8 @@ public class Pruebita extends javax.swing.JFrame {
                 new SimpleDateFormat("yyyy/MM/dd").format(Jd_fecha4.getDate())
             );
             INAU.IngresarAutosustentable(au);
+              tblDatoAutosustentable.setModel(INAU.consultaAutosustentable());
+
             txb_consumoe.setText(null);
             txb_energiaalmacenada.setText(null);
         } catch (HeadlessException e) {
@@ -894,6 +905,7 @@ public class Pruebita extends javax.swing.JFrame {
                   new SimpleDateFormat("HH:mm:ss").format(js_Hora.getValue())
             );
             INFU.InsertarFuncion(f);
+            tblDatoFuncionamiento.setModel(INFU.MostrarHornos());
 
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
@@ -924,12 +936,39 @@ public class Pruebita extends javax.swing.JFrame {
     }//GEN-LAST:event_txb_tipoFocusGained
 
     private void tblDatoHornoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoHornoMouseClicked
-  
-        int filaSeleccionada = tblDatoHorno.getSelectedRow();
-        DefaultTableModel modelo = (DefaultTableModel) tblDatoHorno.getModel();
+int filaSeleccionada = tblDatoHorno.getSelectedRow();
+    
+    if (filaSeleccionada == -1) { 
+        return; 
+    }
+    
+    DefaultTableModel modelo = (DefaultTableModel) tblDatoHorno.getModel();
         Object idObjeto = modelo.getValueAt(filaSeleccionada, 0);
-        txtIDMantenimiento.setText(String.valueOf(idObjeto));
+    txtIDMantenimiento.setText(String.valueOf(idObjeto));
+    
+    
+    if (evt.getClickCount() == 2) {
         
+        try {
+            String fecha = modelo.getValueAt(filaSeleccionada, 0).toString();
+            String tipo = modelo.getValueAt(filaSeleccionada, 1).toString();
+            String materiales = modelo.getValueAt(filaSeleccionada, 2).toString();
+            String dimensiones = modelo.getValueAt(filaSeleccionada, 3).toString();
+            String aislamiento = modelo.getValueAt(filaSeleccionada, 4).toString();
+            int reflectores = Integer.parseInt(modelo.getValueAt(filaSeleccionada, 5).toString());
+            int idh = Integer.parseInt(modelo.getValueAt(filaSeleccionada, 6).toString());
+
+            Modificar_Eliminar ventanaEditar = new Modificar_Eliminar(this, fecha, tipo, materiales, dimensiones, aislamiento, reflectores, idh);
+            
+            ventanaEditar.setVisible(true);
+            ventanaEditar.setLocationRelativeTo(this);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al leer datos de la fila: " + e.getMessage());
+            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace(); // Para ver el error en consola
+        }
+    }
     }//GEN-LAST:event_tblDatoHornoMouseClicked
 
     private void btn_IngresarHornosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarHornosActionPerformed
@@ -945,7 +984,7 @@ public class Pruebita extends javax.swing.JFrame {
 
             );
             INH.registrarHorno(h);
-            tblDatoReparacion.setModel(INH.MostrarHornos());
+        tblDatoHorno.setModel(INH.MostrarHornos());            
 
         }catch(HeadlessException e) {
             JOptionPane.showMessageDialog(this, "error: " + e);
@@ -958,6 +997,9 @@ public class Pruebita extends javax.swing.JFrame {
     jPanelFuncionamiento.setVisible(false);
     jPanelAmbiente.setVisible(false);
     jPanelAutosustentable.setVisible(false); 
+       ClaseConsulta misConsultas = new ClaseConsulta(); 
+    tblDatoReparacion.setModel(misConsultas.MostrarReparacion());
+    tblDatoMantenimiento.setModel(misConsultas.consultaHornos());
 
     }//GEN-LAST:event_lblMantenimientoMouseClicked
 
@@ -966,7 +1008,9 @@ public class Pruebita extends javax.swing.JFrame {
     jPanelMantenimiento.setVisible(false);
     jPanelFuncionamiento.setVisible(false);
     jPanelAmbiente.setVisible(false);
-    jPanelAutosustentable.setVisible(false); 
+    jPanelAutosustentable.setVisible(false);
+     ClaseConsulta misConsultas = new ClaseConsulta(); 
+    tblDatoHorno.setModel(misConsultas.MostrarHornos());
     
     }//GEN-LAST:event_lblHornoMouseClicked
 
@@ -975,7 +1019,9 @@ public class Pruebita extends javax.swing.JFrame {
     jPanelMantenimiento.setVisible(false);
     jPanelFuncionamiento.setVisible(true);
     jPanelAmbiente.setVisible(false);
-    jPanelAutosustentable.setVisible(false); 
+    jPanelAutosustentable.setVisible(false);
+      ClaseConsulta misConsultas = new ClaseConsulta(); 
+    tblDatoFuncionamiento.setModel(misConsultas.consultaHornos());
     }//GEN-LAST:event_lblFuncionamientoMouseClicked
 
     private void lblAmbienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAmbienteMouseClicked
@@ -984,6 +1030,8 @@ public class Pruebita extends javax.swing.JFrame {
     jPanelFuncionamiento.setVisible(false);
     jPanelAmbiente.setVisible(true);
     jPanelAutosustentable.setVisible(false); 
+     ClaseConsulta misConsultas = new ClaseConsulta(); 
+    tblDatoAmbiente.setModel(misConsultas.consultaHornos()); 
     }//GEN-LAST:event_lblAmbienteMouseClicked
 
     private void lblAutosustentableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAutosustentableMouseClicked
@@ -992,6 +1040,8 @@ public class Pruebita extends javax.swing.JFrame {
     jPanelFuncionamiento.setVisible(false);
     jPanelAmbiente.setVisible(false);
     jPanelAutosustentable.setVisible(true); 
+     ClaseConsulta misConsultas = new ClaseConsulta(); 
+    tblDatoAutosustentable.setModel(misConsultas.consultaAutosustentable());
     }//GEN-LAST:event_lblAutosustentableMouseClicked
 
     private void tblDatoMantenimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoMantenimientoMouseClicked
@@ -999,7 +1049,7 @@ int filaSeleccionada = tblDatoMantenimiento.getSelectedRow();
         DefaultTableModel modelo = (DefaultTableModel) tblDatoMantenimiento.getModel();
         Object idObjeto = modelo.getValueAt(filaSeleccionada, 0);
         txtIDMantenimiento.setText(String.valueOf(idObjeto)); 
-
+        
     }//GEN-LAST:event_tblDatoMantenimientoMouseClicked
 
     private void tblDatoAutosustentableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoAutosustentableMouseClicked
@@ -1021,11 +1071,16 @@ int filaSeleccionada = tblDatoMantenimiento.getSelectedRow();
                 new SimpleDateFormat("yyyy-MM-dd").format(Jd_fecha.getDate())
             );
             INGM.InsertarMante(m);
+            tblDatoReparacion.setModel(INGM.MostrarReparacion());
         }catch(HeadlessException e) {
             JOptionPane.showMessageDialog(this, "error: " + e);
 
         }
     }//GEN-LAST:event_btn_IngresarMantenimientoActionPerformed
+
+    private void tblDatoHornoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblDatoHornoKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblDatoHornoKeyPressed
 
     /**
      * @param args the command line arguments
@@ -1044,20 +1099,21 @@ int filaSeleccionada = tblDatoMantenimiento.getSelectedRow();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Pruebita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Pruebita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Pruebita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Pruebita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Pruebita().setVisible(true);
+                new Menu().setVisible(true);
             }
         });
     }

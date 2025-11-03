@@ -1,21 +1,44 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vista;
-
+import Controlador.ClaseConsulta;
+import Modelo.horno;
+import Vista.*;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 /**
  *
  * @author d3ima
  */
-public class Modificar_Eliminar extends javax.swing.JDialog {
+public class Modificar_Eliminar extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Modificar_Eliminar
-     */
-    public Modificar_Eliminar(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    private int idh;
+    private Menu menuPadre;
+
+ public Modificar_Eliminar() {
         initComponents();
+    }
+
+    public Modificar_Eliminar(Menu menuPadre, String fecha, String tipo, String materiales, String dimensiones, String aislamiento, int reflectores, int idh) {
+           initComponents(); 
+        this.menuPadre = menuPadre; 
+        this.idh = idh;
+
+        txb_IDH.setText(String.valueOf(idh));
+        txb_IDH.setEditable(false); 
+        txb_tipo.setText(tipo);
+        txb_materiales.setText(materiales);
+        txb_dimensiones.setText(dimensiones);
+        cb_estadohorno.setSelectedItem(aislamiento); 
+        txb_reflectores.setText(String.valueOf(reflectores));
+        try {
+            java.util.Date fechaDate = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
+            Jd_fecha1.setDate(fechaDate); // (Asumiendo nombre de JDateChooser)
+        } catch (java.text.ParseException ex) {
+            Jd_fecha1.setDate(null);
+        }
     }
 
     /**
@@ -27,22 +50,205 @@ public class Modificar_Eliminar extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txb_materiales = new javax.swing.JTextArea();
+        jLabel17 = new javax.swing.JLabel();
+        txb_IDH = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        txb_tipo = new javax.swing.JTextField();
+        txb_reflectores = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        Jd_fecha1 = new com.toedter.calendar.JDateChooser();
+        cb_estadohorno = new javax.swing.JComboBox<>();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        txb_dimensiones = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        btn_ModificarHornos = new javax.swing.JButton();
+        btn_EliminarHornos1 = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txb_materiales.setColumns(20);
+        txb_materiales.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        txb_materiales.setLineWrap(true);
+        txb_materiales.setRows(5);
+        txb_materiales.setWrapStyleWord(true);
+        jScrollPane4.setViewportView(txb_materiales);
+
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 156, 80));
+
+        jLabel17.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("Materiales");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, 40));
+
+        txb_IDH.setEditable(false);
+        txb_IDH.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        txb_IDH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txb_IDHActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txb_IDH, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 150, 50));
+
+        jLabel18.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel18.setText("Dimensiones");
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, 40));
+
+        jLabel16.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Tipo");
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, 40));
+
+        txb_tipo.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        txb_tipo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txb_tipoFocusGained(evt);
+            }
+        });
+        txb_tipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txb_tipoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txb_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 129, 50));
+
+        txb_reflectores.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        getContentPane().add(txb_reflectores, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 153, 50));
+
+        jLabel23.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel23.setText("Reflectores");
+        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, 40));
+
+        Jd_fecha1.setDateFormatString("yyyy-MM-dd");
+        getContentPane().add(Jd_fecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 153, 60));
+
+        cb_estadohorno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Aislamiento por material", "Doble cubierta transparente", "Sellado hermético", "Aislamiento reflectante" }));
+        getContentPane().add(cb_estadohorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 153, 50));
+
+        jLabel24.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel24.setText("Sistema de aislamiento");
+        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, -1, 40));
+
+        jLabel19.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setText("ID Horno");
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, -1, 40));
+
+        txb_dimensiones.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        txb_dimensiones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txb_dimensionesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txb_dimensiones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 129, 50));
+
+        jLabel20.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setText("Fecha creacion");
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, -1, 40));
+
+        btn_ModificarHornos.setBackground(new java.awt.Color(255, 204, 0));
+        btn_ModificarHornos.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
+        btn_ModificarHornos.setForeground(new java.awt.Color(255, 255, 255));
+        btn_ModificarHornos.setText("Modificar");
+        btn_ModificarHornos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_ModificarHornos.setBorderPainted(false);
+        btn_ModificarHornos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ModificarHornosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_ModificarHornos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 180, 63));
+
+        btn_EliminarHornos1.setBackground(new java.awt.Color(153, 0, 0));
+        btn_EliminarHornos1.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
+        btn_EliminarHornos1.setForeground(new java.awt.Color(255, 255, 255));
+        btn_EliminarHornos1.setText("Eliminar");
+        btn_EliminarHornos1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_EliminarHornos1.setBorderPainted(false);
+        btn_EliminarHornos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EliminarHornos1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_EliminarHornos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, 180, 63));
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txb_IDHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txb_IDHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txb_IDHActionPerformed
+
+    private void txb_tipoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txb_tipoFocusGained
+
+    }//GEN-LAST:event_txb_tipoFocusGained
+
+    private void txb_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txb_tipoActionPerformed
+
+    }//GEN-LAST:event_txb_tipoActionPerformed
+
+    private void txb_dimensionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txb_dimensionesActionPerformed
+        
+    }//GEN-LAST:event_txb_dimensionesActionPerformed
+
+    private void btn_ModificarHornosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarHornosActionPerformed
+try {
+        ClaseConsulta MODH = new ClaseConsulta();
+        
+        // 1. Crea un nuevo objeto 'horno' con los datos (posiblemente editados)
+        //    de los campos de texto de la ventana.
+        horno h = new horno(
+            Integer.parseInt(txb_reflectores.getText()),
+            txb_tipo.getText(),
+            txb_materiales.getText(),
+            (String)cb_estadohorno.getSelectedItem(),
+            new SimpleDateFormat("yyyy-MM-dd").format(Jd_fecha1.getDate()),
+            Double.parseDouble(txb_dimensiones.getText())
+        );
+        JOptionPane.showMessageDialog(this, "Horno modificado");
+        MODH.modificarHorno(this.idh, h);
+        menuPadre.refrescarTablaHornos();
+        this.dispose();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al modificar: " + e);
+    }
+
+    }//GEN-LAST:event_btn_ModificarHornosActionPerformed
+
+    private void btn_EliminarHornos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarHornos1ActionPerformed
+    int confirm = JOptionPane.showConfirmDialog(null, "Estas seguro de que quiere borrar horno? <html></br></html> ATENCION: SI USTED BORRA HORNOS, SE PERDERA PERMANENTEMENTE Y SUS DATOS RELACIONADOS A EL SE ELIMINARÁN, DESEA CONTINUAR?", "Eliminar", JOptionPane.YES_NO_OPTION);
+    if(confirm == JOptionPane.YES_OPTION){
+           try{
+    ClaseConsulta ELH = new ClaseConsulta();
+    ELH.eliminarHorno(this.idh);
+    menuPadre.refrescarTablaHornos();
+    this.dispose();
+    }    catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al eliminar: " + e);
+    }
+
+    }else{
+            JOptionPane.showMessageDialog(this, "Cancelado...");
+
+    }
+
+    }//GEN-LAST:event_btn_EliminarHornos1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -71,21 +277,32 @@ public class Modificar_Eliminar extends javax.swing.JDialog {
         }
         //</editor-fold>
 
-        /* Create and display the dialog */
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            
             public void run() {
-                Modificar_Eliminar dialog = new Modificar_Eliminar(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                new Modificar_Eliminar().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser Jd_fecha1;
+    private javax.swing.JButton btn_EliminarHornos1;
+    private javax.swing.JButton btn_ModificarHornos;
+    private javax.swing.JComboBox<String> cb_estadohorno;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextField txb_IDH;
+    private javax.swing.JTextField txb_dimensiones;
+    private javax.swing.JTextArea txb_materiales;
+    private javax.swing.JTextField txb_reflectores;
+    private javax.swing.JTextField txb_tipo;
     // End of variables declaration//GEN-END:variables
 }
