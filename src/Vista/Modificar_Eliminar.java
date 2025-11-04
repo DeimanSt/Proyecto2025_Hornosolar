@@ -21,7 +21,7 @@ public class Modificar_Eliminar extends javax.swing.JFrame {
         initComponents();
     }
 
-    public Modificar_Eliminar(Menu menuPadre, String fecha, String tipo, String materiales, String dimensiones, String aislamiento, int reflectores, int idh) {
+    public Modificar_Eliminar(Menu menuPadre, int idh, String tipo, String materiales, String dimensiones, String aislamiento, int reflectores, String fecha) {
            initComponents(); 
         this.menuPadre = menuPadre; 
         this.idh = idh;
@@ -78,13 +78,13 @@ public class Modificar_Eliminar extends javax.swing.JFrame {
         txb_materiales.setWrapStyleWord(true);
         jScrollPane4.setViewportView(txb_materiales);
 
-        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 156, 80));
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 210, 80));
 
         jLabel17.setBackground(new java.awt.Color(255, 255, 255));
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Materiales");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, 40));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, 40));
 
         txb_IDH.setEditable(false);
         txb_IDH.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
@@ -93,19 +93,19 @@ public class Modificar_Eliminar extends javax.swing.JFrame {
                 txb_IDHActionPerformed(evt);
             }
         });
-        getContentPane().add(txb_IDH, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 150, 50));
+        getContentPane().add(txb_IDH, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 50, 30));
 
         jLabel18.setBackground(new java.awt.Color(255, 255, 255));
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Dimensiones");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, 40));
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, 40));
 
         jLabel16.setBackground(new java.awt.Color(255, 255, 255));
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Tipo");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, 40));
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, -1, 40));
 
         txb_tipo.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
         txb_tipo.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -118,34 +118,34 @@ public class Modificar_Eliminar extends javax.swing.JFrame {
                 txb_tipoActionPerformed(evt);
             }
         });
-        getContentPane().add(txb_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 129, 50));
+        getContentPane().add(txb_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 140, 30));
 
         txb_reflectores.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
-        getContentPane().add(txb_reflectores, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 153, 50));
+        getContentPane().add(txb_reflectores, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 153, 30));
 
         jLabel23.setBackground(new java.awt.Color(255, 255, 255));
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Reflectores");
-        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, 40));
+        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, -1, 40));
 
         Jd_fecha1.setDateFormatString("yyyy-MM-dd");
-        getContentPane().add(Jd_fecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 153, 60));
+        getContentPane().add(Jd_fecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 153, 30));
 
         cb_estadohorno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Aislamiento por material", "Doble cubierta transparente", "Sellado hermético", "Aislamiento reflectante" }));
-        getContentPane().add(cb_estadohorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 153, 50));
+        getContentPane().add(cb_estadohorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 153, 30));
 
         jLabel24.setBackground(new java.awt.Color(255, 255, 255));
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("Sistema de aislamiento");
-        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, -1, 40));
+        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, -1, 40));
 
         jLabel19.setBackground(new java.awt.Color(255, 255, 255));
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("ID Horno");
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, -1, 40));
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, -1, 40));
 
         txb_dimensiones.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
         txb_dimensiones.addActionListener(new java.awt.event.ActionListener() {
@@ -153,13 +153,13 @@ public class Modificar_Eliminar extends javax.swing.JFrame {
                 txb_dimensionesActionPerformed(evt);
             }
         });
-        getContentPane().add(txb_dimensiones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 129, 50));
+        getContentPane().add(txb_dimensiones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 150, 40));
 
         jLabel20.setBackground(new java.awt.Color(255, 255, 255));
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Fecha creacion");
-        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, -1, 40));
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, -1, 40));
 
         btn_ModificarHornos.setBackground(new java.awt.Color(255, 204, 0));
         btn_ModificarHornos.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
@@ -172,7 +172,7 @@ public class Modificar_Eliminar extends javax.swing.JFrame {
                 btn_ModificarHornosActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_ModificarHornos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 180, 63));
+        getContentPane().add(btn_ModificarHornos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 180, 63));
 
         btn_EliminarHornos1.setBackground(new java.awt.Color(153, 0, 0));
         btn_EliminarHornos1.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
@@ -185,7 +185,7 @@ public class Modificar_Eliminar extends javax.swing.JFrame {
                 btn_EliminarHornos1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_EliminarHornos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, 180, 63));
+        getContentPane().add(btn_EliminarHornos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 180, 63));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

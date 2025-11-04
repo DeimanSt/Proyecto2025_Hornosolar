@@ -1,39 +1,64 @@
-
 package Vista;
+
 import Modelo.*;
 import java.awt.HeadlessException;
 import java.text.SimpleDateFormat;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import Controlador.*;
+
 public class Menu extends javax.swing.JFrame {
 
     /**
      * Creates new form Pruebita
      */
     public Menu() {
-        
+
         initComponents();
-    jPanelHornosSolares.setVisible(false);
-    jPanelMantenimiento.setVisible(false);
-    jPanelFuncionamiento.setVisible(false);
-    jPanelAmbiente.setVisible(false);
-    jPanelAutosustentable.setVisible(false);
-    ClaseConsulta misConsultas = new ClaseConsulta();
-    tblDatoHorno.setModel(misConsultas.MostrarHornos());
-    tblDatoReparacion.setModel(misConsultas.MostrarReparacion());
-    tblDatoFuncionamiento.setModel(misConsultas.consultaHornos());        
-    tblDatoAutosustentable.setModel(misConsultas.consultaAutosustentable());
-    tblDatoAmbiente.setModel(misConsultas.consultaHornos());
-    tblDatoMantenimiento.setModel(misConsultas.consultaHornos());
+        //Asignamos los paneles que están en el programa a falsos para que no se vea en el programa.
+        jPanelHornosSolares.setVisible(false);
+        jPanelMantenimiento.setVisible(false);
+        jPanelFuncionamiento.setVisible(false);
+        jPanelAmbiente.setVisible(false);
+        jPanelAutosustentable.setVisible(false);
+
+        //Creamos un objeto consulta donde contendrá todas las consultas de todos los métodos.
+        ClaseConsulta misConsultas = new ClaseConsulta();
+
+        //Cada vez que se inicia el programa, se actualiza las tablas, cada una tendrá su propio metodo,
+        tblDatoHorno.setModel(misConsultas.MostrarHornos());
+        tblDatoReparados.setModel(misConsultas.MostrarReparacion());
+        tblHornoFuncionamiento.setModel(misConsultas.consultaHornos());
+        tblDatoHornoAutosustentable.setModel(misConsultas.consultaFuncion());
+        tblDatHornoAmbiente.setModel(misConsultas.consultaHornos());
+        tblDatoHornoMante.setModel(misConsultas.consultaHornos());
+        tblDatoFuncionamiento.setModel(misConsultas.MostrarFuncionamiento());
+        tblDatoAmbiente.setModel(misConsultas.MostrarAmbiente());
+        tblDatoAutosustentable.setModel(misConsultas.MostrarAutosustentable());
+
+        //Creamos dos grupos para diferentes radio button, uno es para hornos, y otro para parametros operativos
+        //Grupo busqueda para horno 
+        javax.swing.ButtonGroup grupoBusqueda = new javax.swing.ButtonGroup();
+        grupoBusqueda.add(rbPorBusqueda);
+        grupoBusqueda.add(rbPorFecha);
+        rbPorFecha.setSelected(true);
+        txb_buscar.setEnabled(false);
+        //Grupo hora (para elegir si queremos automatico o manual) para parametros operativos
+
+        javax.swing.ButtonGroup grupoHoraMoA = new javax.swing.ButtonGroup();
+        grupoHoraMoA.add(rbManual);
+        grupoHoraMoA.add(rbAutomatico);
+        rbAutomatico.setSelected(true);
+        rbManual.setSelected(false);
+        jb_fechaoperacion.setEnabled(false);
+        js_Hora.setEnabled(false);
 
     }
-    
-    public void refrescarTablaHornos() {
-    ClaseConsulta misConsultas = new ClaseConsulta();
-    tblDatoHorno.setModel(misConsultas.MostrarHornos());
-}
 
+    public void refrescarTablaHornos() {
+        ClaseConsulta misConsultas = new ClaseConsulta();
+        tblDatoHorno.setModel(misConsultas.MostrarHornos());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,23 +71,37 @@ public class Menu extends javax.swing.JFrame {
 
         jPanelHornosSolares = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        txb_reflectores = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         txb_materiales = new javax.swing.JTextArea();
-        btn_IngresarHornos = new javax.swing.JButton();
-        cb_estadohorno = new javax.swing.JComboBox<>();
+        cb_sisAislamiento = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tblDatoHorno = new javax.swing.JTable();
-        Jd_fecha1 = new com.toedter.calendar.JDateChooser();
         txb_tipo = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         txb_dimensiones = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
+        Jd_fechaCreacion = new com.toedter.calendar.JDateChooser();
+        txb_reflectores = new javax.swing.JTextField();
+        btn_IngresarHornos = new javax.swing.JButton();
+        jLabel25 = new javax.swing.JLabel();
+        jDesktopPane2 = new javax.swing.JDesktopPane();
+        rbPorFecha = new javax.swing.JRadioButton();
+        rbPorBusqueda = new javax.swing.JRadioButton();
+        jLabel23 = new javax.swing.JLabel();
+        Jd_FechaFinal = new com.toedter.calendar.JDateChooser();
+        Jd_fechaInicio = new com.toedter.calendar.JDateChooser();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        txb_buscar = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        btn_Buscar = new javax.swing.JButton();
+        btn_Resetear = new javax.swing.JButton();
+        txb_CantidadFilas = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jPanelMantenimiento = new javax.swing.JPanel();
         txtIDMantenimiento = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -72,29 +111,25 @@ public class Menu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tblDatoReparacion = new javax.swing.JTable();
+        tblDatoReparados = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
         txb_detallesr = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         txb_materialesr = new javax.swing.JTextArea();
         jScrollPane13 = new javax.swing.JScrollPane();
-        tblDatoMantenimiento = new javax.swing.JTable();
+        tblDatoHornoMante = new javax.swing.JTable();
         jLabel31 = new javax.swing.JLabel();
         btn_IngresarMantenimiento = new javax.swing.JButton();
         jPanelFuncionamiento = new javax.swing.JPanel();
-        jScrollPane15 = new javax.swing.JScrollPane();
-        tblDatoFuncionamiento = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        txtIDFuncionamiento = new javax.swing.JTextField();
         jLabel35 = new javax.swing.JLabel();
         btn_IngresarFuncionamiento = new javax.swing.JButton();
         txb_tiempoc = new com.toedter.calendar.JSpinnerDateEditor();
         js_temperaturai = new javax.swing.JSpinner();
         cb_tipodealimento = new javax.swing.JComboBox<>();
-        cb_estadohorno1 = new javax.swing.JComboBox<>();
+        cb_estadohorno = new javax.swing.JComboBox<>();
         jLabel37 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         rbManual = new javax.swing.JRadioButton();
@@ -103,27 +138,37 @@ public class Menu extends javax.swing.JFrame {
         jLabel36 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jb_fechaoperacion = new com.toedter.calendar.JDateChooser();
+        jScrollPane15 = new javax.swing.JScrollPane();
+        tblHornoFuncionamiento = new javax.swing.JTable();
+        txtIDFuncionamiento = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tblDatoFuncionamiento = new javax.swing.JTable();
+        jLabel53 = new javax.swing.JLabel();
         jPanelAutosustentable = new javax.swing.JPanel();
         jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
         btn_IngresarAutosustentable = new javax.swing.JButton();
-        js_energiarecibida = new javax.swing.JSpinner();
+        js_EficienciaEnergetica = new javax.swing.JSpinner();
         jLabel47 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txb_consumoe = new javax.swing.JTextField();
         txb_energiaalmacenada = new javax.swing.JTextField();
         Jd_fecha4 = new com.toedter.calendar.JDateChooser();
-        cb_eficienciaenergetica = new javax.swing.JComboBox<>();
+        cb_EnergiaRecibida = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         jScrollPane14 = new javax.swing.JScrollPane();
-        tblDatoAutosustentable = new javax.swing.JTable();
+        tblDatoHornoAutosustentable = new javax.swing.JTable();
         jLabel51 = new javax.swing.JLabel();
         txtIDAutosustentable = new javax.swing.JTextField();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tblDatoAutosustentable = new javax.swing.JTable();
+        jLabel52 = new javax.swing.JLabel();
         jPanelAmbiente = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
         btn_IngresarAmbiente = new javax.swing.JButton();
@@ -140,9 +185,12 @@ public class Menu extends javax.swing.JFrame {
         txb_intensidadsolar = new javax.swing.JComboBox<>();
         Jd_fecha6 = new com.toedter.calendar.JDateChooser();
         jScrollPane12 = new javax.swing.JScrollPane();
-        tblDatoAmbiente = new javax.swing.JTable();
+        tblDatHornoAmbiente = new javax.swing.JTable();
         txtIDAmbiente = new javax.swing.JTextField();
         jLabel60 = new javax.swing.JLabel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        tblDatoAmbiente = new javax.swing.JTable();
+        jLabel11 = new javax.swing.JLabel();
         jPanelPrincipal = new javax.swing.JPanel();
         lblMantenimiento = new javax.swing.JLabel();
         lblHorno = new javax.swing.JLabel();
@@ -163,22 +211,13 @@ public class Menu extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Fecha creacion");
-        jPanelHornosSolares.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 229, -1, -1));
-
-        jLabel23.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel23.setText("Reflectores");
-        jPanelHornosSolares.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 88, -1, -1));
-
-        txb_reflectores.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
-        jPanelHornosSolares.add(txb_reflectores, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 116, 153, -1));
+        jPanelHornosSolares.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, -1, -1));
 
         jLabel24.setBackground(new java.awt.Color(255, 255, 255));
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("Sistema de aislamiento");
-        jPanelHornosSolares.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 155, -1, -1));
+        jPanelHornosSolares.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, -1, -1));
 
         txb_materiales.setColumns(20);
         txb_materiales.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
@@ -187,29 +226,16 @@ public class Menu extends javax.swing.JFrame {
         txb_materiales.setWrapStyleWord(true);
         jScrollPane4.setViewportView(txb_materiales);
 
-        jPanelHornosSolares.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 254, 156, 65));
+        jPanelHornosSolares.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 156, 65));
 
-        btn_IngresarHornos.setBackground(new java.awt.Color(51, 153, 0));
-        btn_IngresarHornos.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
-        btn_IngresarHornos.setForeground(new java.awt.Color(255, 255, 255));
-        btn_IngresarHornos.setText("Ingresar");
-        btn_IngresarHornos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_IngresarHornos.setBorderPainted(false);
-        btn_IngresarHornos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_IngresarHornosActionPerformed(evt);
-            }
-        });
-        jPanelHornosSolares.add(btn_IngresarHornos, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, 280, 63));
-
-        cb_estadohorno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Aislamiento por material", "Doble cubierta transparente", "Sellado hermético", "Aislamiento reflectante" }));
-        jPanelHornosSolares.add(cb_estadohorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 183, 153, 40));
+        cb_sisAislamiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Aislamiento por material", "Doble cubierta transparente", "Sellado hermético", "Aislamiento reflectante" }));
+        jPanelHornosSolares.add(cb_sisAislamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 153, 40));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ingreso de los Hornos Solares");
-        jPanelHornosSolares.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, -1));
+        jPanelHornosSolares.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, -1, -1));
 
         tblDatoHorno.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -223,10 +249,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(tblDatoHorno);
 
-        jPanelHornosSolares.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 480, 190));
-
-        Jd_fecha1.setDateFormatString("yyyy-MM-dd");
-        jPanelHornosSolares.add(Jd_fecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 257, 153, 46));
+        jPanelHornosSolares.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, 630, 180));
 
         txb_tipo.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
         txb_tipo.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -239,25 +262,19 @@ public class Menu extends javax.swing.JFrame {
                 txb_tipoActionPerformed(evt);
             }
         });
-        jPanelHornosSolares.add(txb_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 129, -1));
-
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Lista de hornos ingresados");
-        jPanelHornosSolares.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, -1, -1));
+        jPanelHornosSolares.add(txb_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 129, -1));
 
         jLabel16.setBackground(new java.awt.Color(255, 255, 255));
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Tipo");
-        jPanelHornosSolares.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 82, -1, -1));
+        jPanelHornosSolares.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
 
         jLabel17.setBackground(new java.awt.Color(255, 255, 255));
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Materiales");
-        jPanelHornosSolares.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 226, -1, -1));
+        jPanelHornosSolares.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, -1));
 
         txb_dimensiones.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
         txb_dimensiones.addActionListener(new java.awt.event.ActionListener() {
@@ -265,49 +282,170 @@ public class Menu extends javax.swing.JFrame {
                 txb_dimensionesActionPerformed(evt);
             }
         });
-        jPanelHornosSolares.add(txb_dimensiones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 181, 129, -1));
+        jPanelHornosSolares.add(txb_dimensiones, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 129, -1));
 
         jLabel18.setBackground(new java.awt.Color(255, 255, 255));
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Dimensiones");
-        jPanelHornosSolares.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 149, -1, -1));
+        jPanelHornosSolares.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
 
-        getContentPane().add(jPanelHornosSolares, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 1070, 440));
+        Jd_fechaCreacion.setDateFormatString("yyyy-MM-dd");
+        jPanelHornosSolares.add(Jd_fechaCreacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 153, 46));
+
+        txb_reflectores.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        jPanelHornosSolares.add(txb_reflectores, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 153, -1));
+
+        btn_IngresarHornos.setBackground(new java.awt.Color(51, 153, 0));
+        btn_IngresarHornos.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
+        btn_IngresarHornos.setForeground(new java.awt.Color(255, 255, 255));
+        btn_IngresarHornos.setText("Ingresar");
+        btn_IngresarHornos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_IngresarHornos.setBorderPainted(false);
+        btn_IngresarHornos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_IngresarHornosActionPerformed(evt);
+            }
+        });
+        jPanelHornosSolares.add(btn_IngresarHornos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 300, 60));
+
+        jLabel25.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setText("Reflectores");
+        jPanelHornosSolares.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, -1));
+
+        jDesktopPane2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        rbPorFecha.setForeground(new java.awt.Color(255, 255, 255));
+        rbPorFecha.setText("Por fechas (Inicio/Fin)");
+        rbPorFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbPorFechaActionPerformed(evt);
+            }
+        });
+        jDesktopPane2.add(rbPorFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, -1, 20));
+
+        rbPorBusqueda.setForeground(new java.awt.Color(255, 255, 255));
+        rbPorBusqueda.setText("Por busqueda");
+        rbPorBusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbPorBusquedaActionPerformed(evt);
+            }
+        });
+        jDesktopPane2.add(rbPorBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, -1, 20));
+
+        jLabel23.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel23.setText("Cantidad de filas");
+        jDesktopPane2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 150, 20));
+
+        Jd_FechaFinal.setDateFormatString("yyyy-MM-dd");
+        jDesktopPane2.add(Jd_FechaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 153, 30));
+
+        Jd_fechaInicio.setDateFormatString("yyyy-MM-dd");
+        jDesktopPane2.add(Jd_fechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 153, 30));
+
+        jLabel27.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel27.setText("Fecha inicio");
+        jDesktopPane2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 120, 20));
+
+        jLabel26.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setText("Buscar:");
+        jDesktopPane2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 80, 30));
+
+        txb_buscar.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        jDesktopPane2.add(txb_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 500, 30));
+
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setFont(new java.awt.Font("Candara", 2, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Metodo de busqueda:");
+        jDesktopPane2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, -1, 20));
+
+        btn_Buscar.setBackground(new java.awt.Color(66, 93, 119));
+        btn_Buscar.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
+        btn_Buscar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Buscar.setText("Buscar");
+        btn_Buscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_Buscar.setBorderPainted(false);
+        btn_Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_BuscarActionPerformed(evt);
+            }
+        });
+        jDesktopPane2.add(btn_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 180, 50));
+
+        btn_Resetear.setBackground(new java.awt.Color(55, 87, 125));
+        btn_Resetear.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
+        btn_Resetear.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Resetear.setText("Resetear");
+        btn_Resetear.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_Resetear.setBorderPainted(false);
+        btn_Resetear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ResetearActionPerformed(evt);
+            }
+        });
+        jDesktopPane2.add(btn_Resetear, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, 180, 50));
+
+        txb_CantidadFilas.setEditable(false);
+        jDesktopPane2.add(txb_CantidadFilas, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 110, -1));
+
+        jLabel28.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel28.setText("Fecha final");
+        jDesktopPane2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 120, 20));
+
+        jPanelHornosSolares.add(jDesktopPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 630, 210));
+
+        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel10.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Lista de hornos ingresados");
+        jPanelHornosSolares.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, -1, -1));
+
+        getContentPane().add(jPanelHornosSolares, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 1070, 510));
 
         jPanelMantenimiento.setBackground(new java.awt.Color(91, 91, 91));
         jPanelMantenimiento.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanelMantenimiento.add(txtIDMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, 85, -1));
+        jPanelMantenimiento.add(txtIDMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, 40, -1));
 
         jLabel8.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Hornos reparados");
-        jPanelMantenimiento.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 60, -1, -1));
+        jLabel8.setText("Lista de hornos en reparación");
+        jPanelMantenimiento.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 80, 300, 30));
 
         Jd_fecha.setDateFormatString("yyyy-MM-dd");
-        jPanelMantenimiento.add(Jd_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 313, 194, 33));
+        jPanelMantenimiento.add(Jd_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 194, 33));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Detalles de la Reparacion");
-        jPanelMantenimiento.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 76, -1, -1));
+        jPanelMantenimiento.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Materiales Remplazados");
-        jPanelMantenimiento.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 201, -1, -1));
+        jPanelMantenimiento.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Mantenimiento de los hornos");
-        jPanelMantenimiento.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
+        jPanelMantenimiento.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Fecha creacion");
-        jPanelMantenimiento.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(76, 285, -1, -1));
+        jPanelMantenimiento.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, -1, -1));
 
-        tblDatoReparacion.setModel(new javax.swing.table.DefaultTableModel(
+        tblDatoReparados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -315,42 +453,42 @@ public class Menu extends javax.swing.JFrame {
 
             }
         ));
-        tblDatoReparacion.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblDatoReparados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDatoReparacionMouseClicked(evt);
+                tblDatoReparadosMouseClicked(evt);
             }
         });
-        jScrollPane3.setViewportView(tblDatoReparacion);
+        jScrollPane3.setViewportView(tblDatoReparados);
 
-        jPanelMantenimiento.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 110, 420, 210));
+        jPanelMantenimiento.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 510, 260));
 
         txb_detallesr.setColumns(20);
         txb_detallesr.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txb_detallesr.setRows(5);
         jScrollPane1.setViewportView(txb_detallesr);
 
-        jPanelMantenimiento.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 104, 268, -1));
+        jPanelMantenimiento.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 268, 150));
 
         txb_materialesr.setColumns(20);
         txb_materialesr.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txb_materialesr.setRows(5);
         jScrollPane2.setViewportView(txb_materialesr);
 
-        jPanelMantenimiento.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 229, 268, 50));
+        jPanelMantenimiento.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 268, 150));
 
-        tblDatoMantenimiento.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblDatoHornoMante.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDatoMantenimientoMouseClicked(evt);
+                tblDatoHornoManteMouseClicked(evt);
             }
         });
-        jScrollPane13.setViewportView(tblDatoMantenimiento);
+        jScrollPane13.setViewportView(tblDatoHornoMante);
 
-        jPanelMantenimiento.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 220, 130));
+        jPanelMantenimiento.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, 190, 60));
 
         jLabel31.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(255, 255, 255));
         jLabel31.setText("Lista de hornos ingresados");
-        jPanelMantenimiento.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, -1));
+        jPanelMantenimiento.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, -1, -1));
 
         btn_IngresarMantenimiento.setBackground(new java.awt.Color(51, 153, 0));
         btn_IngresarMantenimiento.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
@@ -363,49 +501,31 @@ public class Menu extends javax.swing.JFrame {
                 btn_IngresarMantenimientoActionPerformed(evt);
             }
         });
-        jPanelMantenimiento.add(btn_IngresarMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, 232, -1));
+        jPanelMantenimiento.add(btn_IngresarMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 330, -1));
 
-        getContentPane().add(jPanelMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 1100, 440));
+        getContentPane().add(jPanelMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 1100, 510));
 
         jPanelFuncionamiento.setBackground(new java.awt.Color(102, 102, 102));
         jPanelFuncionamiento.setForeground(new java.awt.Color(255, 255, 255));
         jPanelFuncionamiento.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tblDatoFuncionamiento.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        tblDatoFuncionamiento.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDatoFuncionamientoMouseClicked(evt);
-            }
-        });
-        jScrollPane15.setViewportView(tblDatoFuncionamiento);
-
-        jPanelFuncionamiento.add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 410, 210));
-
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Funcionamiento del Horno");
-        jPanelFuncionamiento.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, -1, -1));
+        jPanelFuncionamiento.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, -1, -1));
 
         jLabel34.setBackground(new java.awt.Color(255, 255, 255));
         jLabel34.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(255, 255, 255));
         jLabel34.setText("Temperatura Interna");
-        jPanelFuncionamiento.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
-        jPanelFuncionamiento.add(txtIDFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 340, 56, -1));
+        jPanelFuncionamiento.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
         jLabel35.setBackground(new java.awt.Color(255, 255, 255));
         jLabel35.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(255, 255, 255));
         jLabel35.setText("Datos operación");
-        jPanelFuncionamiento.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 219, -1, -1));
+        jPanelFuncionamiento.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, -1, -1));
 
         btn_IngresarFuncionamiento.setBackground(new java.awt.Color(51, 153, 0));
         btn_IngresarFuncionamiento.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
@@ -418,41 +538,37 @@ public class Menu extends javax.swing.JFrame {
                 btn_IngresarFuncionamientoActionPerformed(evt);
             }
         });
-        jPanelFuncionamiento.add(btn_IngresarFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, 280, 63));
+        jPanelFuncionamiento.add(btn_IngresarFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 280, 63));
 
         txb_tiempoc.setDateFormatString("HH:mm:ss");
         txb_tiempoc.setEditor(new javax.swing.JSpinner.DateEditor(txb_tiempoc, "HH:mm:ss"));
         txb_tiempoc.setMaxSelectableDate(new java.util.Date(253370861999000L));
         txb_tiempoc.setMinSelectableDate(new java.util.Date(-62135758800000L));
-        jPanelFuncionamiento.add(txb_tiempoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 167, 100, 39));
+        jPanelFuncionamiento.add(txb_tiempoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 100, 39));
 
         js_temperaturai.setModel(new javax.swing.SpinnerNumberModel(0, 0, 360, 1));
         js_temperaturai.setName(""); // NOI18N
-        jPanelFuncionamiento.add(js_temperaturai, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 97, 36));
+        jPanelFuncionamiento.add(js_temperaturai, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 97, 36));
 
         cb_tipodealimento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Carnes y Aves", "Pescados y Verduras", "Panadería y", "Repostería", "Pastas", "Arroces y Guisos", "Otros" }));
-        jPanelFuncionamiento.add(cb_tipodealimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 109, 40));
+        jPanelFuncionamiento.add(cb_tipodealimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 109, 40));
 
-        cb_estadohorno1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buen Estado", "Estado Decente", "Estado Regular", "Estado mal", "Estado para reparar" }));
-        jPanelFuncionamiento.add(cb_estadohorno1, new org.netbeans.lib.awtextra.AbsoluteConstraints(252, 97, 99, 40));
+        cb_estadohorno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buen Estado", "Estado Decente", "Estado Regular", "Estado mal", "Estado para reparar" }));
+        jPanelFuncionamiento.add(cb_estadohorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 99, 40));
 
         jLabel37.setBackground(new java.awt.Color(255, 255, 255));
         jLabel37.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel37.setForeground(new java.awt.Color(255, 255, 255));
         jLabel37.setText("Estado del Horno");
-        jPanelFuncionamiento.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(227, 69, -1, -1));
-
-        jLabel13.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel13.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Lista de hornos ingresados");
-        jPanelFuncionamiento.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, -1, -1));
+        jPanelFuncionamiento.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, -1, -1));
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Tipo de Alimento");
-        jPanelFuncionamiento.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
+        jPanelFuncionamiento.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+
+        jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         rbManual.setForeground(new java.awt.Color(255, 255, 255));
         rbManual.setText("Ingreso manual de fechas");
@@ -461,6 +577,7 @@ public class Menu extends javax.swing.JFrame {
                 rbManualActionPerformed(evt);
             }
         });
+        jDesktopPane1.add(rbManual, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
 
         rbAutomatico.setForeground(new java.awt.Color(255, 255, 255));
         rbAutomatico.setText("Ingreso automatico de fecha");
@@ -469,82 +586,87 @@ public class Menu extends javax.swing.JFrame {
                 rbAutomaticoActionPerformed(evt);
             }
         });
+        jDesktopPane1.add(rbAutomatico, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 6, -1, -1));
 
         js_Hora.setDateFormatString("HH:mm:ss");
         js_Hora.setEditor(new javax.swing.JSpinner.DateEditor(js_Hora, "HH:mm:ss"));
         js_Hora.setMaxSelectableDate(new java.util.Date(253370861999000L));
         js_Hora.setMinSelectableDate(new java.util.Date(-62135758800000L));
+        jDesktopPane1.add(js_Hora, new org.netbeans.lib.awtextra.AbsoluteConstraints(221, 61, 86, 30));
 
         jLabel36.setBackground(new java.awt.Color(255, 255, 255));
         jLabel36.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
         jLabel36.setText("Fecha Operacion");
+        jDesktopPane1.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 33, -1, -1));
 
         jLabel15.setBackground(new java.awt.Color(255, 255, 255));
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Hora de la Operacion");
+        jDesktopPane1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 33, -1, -1));
 
         jb_fechaoperacion.setDateFormatString("yyyy-MM-dd");
+        jDesktopPane1.add(jb_fechaoperacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 62, -1, 30));
 
-        jDesktopPane1.setLayer(rbManual, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(rbAutomatico, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(js_Hora, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jLabel36, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jLabel15, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jb_fechaoperacion, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        tblHornoFuncionamiento.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(rbManual)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rbAutomatico))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(215, 215, 215)
-                        .addComponent(js_Hora, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(jb_fechaoperacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel36))
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel15)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbManual)
-                    .addComponent(rbAutomatico))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel36)
-                    .addComponent(jLabel15))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jb_fechaoperacion, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(js_Hora, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
+            },
+            new String [] {
 
-        jPanelFuncionamiento.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 247, -1, -1));
+            }
+        ));
+        tblHornoFuncionamiento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblHornoFuncionamientoMouseClicked(evt);
+            }
+        });
+        jScrollPane15.setViewportView(tblHornoFuncionamiento);
+
+        jDesktopPane1.add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 120, 50));
+
+        txtIDFuncionamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDFuncionamientoActionPerformed(evt);
+            }
+        });
+        jDesktopPane1.add(txtIDFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 40, 20));
+
+        jLabel13.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel13.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Lista de hornos ingresados");
+        jDesktopPane1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
+
+        jPanelFuncionamiento.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, 190));
 
         jLabel38.setBackground(new java.awt.Color(255, 255, 255));
         jLabel38.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel38.setForeground(new java.awt.Color(255, 255, 255));
         jLabel38.setText("Tiempo de Coccion");
-        jPanelFuncionamiento.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(227, 139, -1, -1));
+        jPanelFuncionamiento.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
 
-        getContentPane().add(jPanelFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 900, 440));
+        tblDatoFuncionamiento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDatoFuncionamientoMouseClicked(evt);
+            }
+        });
+        tblDatoFuncionamiento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tblDatoFuncionamientoKeyPressed(evt);
+            }
+        });
+        jScrollPane6.setViewportView(tblDatoFuncionamiento);
+
+        jPanelFuncionamiento.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, 600, 290));
+
+        jLabel53.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel53.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel53.setText("Tabla funcionamiento del horno ingresado ");
+        jPanelFuncionamiento.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 90, -1, 30));
+
+        getContentPane().add(jPanelFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 1090, 510));
 
         jPanelAutosustentable.setBackground(new java.awt.Color(71, 71, 71));
         jPanelAutosustentable.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -552,17 +674,17 @@ public class Menu extends javax.swing.JFrame {
         jLabel44.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel44.setForeground(new java.awt.Color(255, 255, 255));
         jLabel44.setText("Eficiencia Energetica");
-        jPanelAutosustentable.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(259, 175, -1, -1));
+        jPanelAutosustentable.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, -1, -1));
 
         jLabel45.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel45.setForeground(new java.awt.Color(255, 255, 255));
         jLabel45.setText("Consumo Energetico");
-        jPanelAutosustentable.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 84, -1, -1));
+        jPanelAutosustentable.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, -1));
 
         jLabel46.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel46.setForeground(new java.awt.Color(255, 255, 255));
         jLabel46.setText("%");
-        jPanelAutosustentable.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 142, -1, -1));
+        jPanelAutosustentable.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, -1, 10));
 
         btn_IngresarAutosustentable.setBackground(new java.awt.Color(51, 153, 0));
         btn_IngresarAutosustentable.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
@@ -575,21 +697,21 @@ public class Menu extends javax.swing.JFrame {
                 btn_IngresarAutosustentableActionPerformed(evt);
             }
         });
-        jPanelAutosustentable.add(btn_IngresarAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 350, 280, 63));
+        jPanelAutosustentable.add(btn_IngresarAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 280, 63));
 
-        js_energiarecibida.setModel(new javax.swing.SpinnerNumberModel(0, 0, 360, 1));
-        js_energiarecibida.setName(""); // NOI18N
-        jPanelAutosustentable.add(js_energiarecibida, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 210, 82, 30));
+        js_EficienciaEnergetica.setModel(new javax.swing.SpinnerNumberModel(0, 0, 360, 1));
+        js_EficienciaEnergetica.setName(""); // NOI18N
+        jPanelAutosustentable.add(js_EficienciaEnergetica, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 90, 30));
 
         jLabel47.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel47.setForeground(new java.awt.Color(255, 255, 255));
         jLabel47.setText("w");
-        jPanelAutosustentable.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 218, -1, -1));
+        jPanelAutosustentable.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 200, -1, 20));
 
         jLabel6.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Autosustentabilidad del horno");
-        jPanelAutosustentable.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, 50));
+        jPanelAutosustentable.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, 50));
 
         txb_consumoe.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         txb_consumoe.addActionListener(new java.awt.event.ActionListener() {
@@ -597,38 +719,38 @@ public class Menu extends javax.swing.JFrame {
                 txb_consumoeActionPerformed(evt);
             }
         });
-        jPanelAutosustentable.add(txb_consumoe, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 129, 79, -1));
+        jPanelAutosustentable.add(txb_consumoe, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 90, 30));
 
         txb_energiaalmacenada.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jPanelAutosustentable.add(txb_energiaalmacenada, new org.netbeans.lib.awtextra.AbsoluteConstraints(312, 129, 84, -1));
+        jPanelAutosustentable.add(txb_energiaalmacenada, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 84, 30));
 
         Jd_fecha4.setDateFormatString("yyyy-MM-dd");
-        jPanelAutosustentable.add(Jd_fecha4, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 289, 229, 38));
+        jPanelAutosustentable.add(Jd_fecha4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 130, 38));
 
-        cb_eficienciaenergetica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Alta", "Media", "Baja" }));
-        jPanelAutosustentable.add(cb_eficienciaenergetica, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 203, 119, 40));
+        cb_EnergiaRecibida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Alta", "Media", "Baja" }));
+        jPanelAutosustentable.add(cb_EnergiaRecibida, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 119, 40));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Fecha creacion");
-        jPanelAutosustentable.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 261, -1, -1));
+        jPanelAutosustentable.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, -1, -1));
 
         jLabel48.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel48.setForeground(new java.awt.Color(255, 255, 255));
         jLabel48.setText("w");
-        jPanelAutosustentable.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 142, -1, -1));
+        jPanelAutosustentable.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, -1, -1));
 
         jLabel49.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel49.setForeground(new java.awt.Color(255, 255, 255));
         jLabel49.setText("Energia Solar Recibida");
-        jPanelAutosustentable.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 175, -1, -1));
+        jPanelAutosustentable.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
 
         jLabel50.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel50.setForeground(new java.awt.Color(255, 255, 255));
         jLabel50.setText("Lista de funciones");
-        jPanelAutosustentable.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 70, -1, -1));
+        jPanelAutosustentable.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, -1, -1));
 
-        tblDatoAutosustentable.setModel(new javax.swing.table.DefaultTableModel(
+        tblDatoHornoAutosustentable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -636,31 +758,50 @@ public class Menu extends javax.swing.JFrame {
 
             }
         ));
+        tblDatoHornoAutosustentable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDatoHornoAutosustentableMouseClicked(evt);
+            }
+        });
+        jScrollPane14.setViewportView(tblDatoHornoAutosustentable);
+
+        jPanelAutosustentable.add(jScrollPane14, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 130, 50));
+
+        jLabel51.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel51.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel51.setText("Tabla autosustentable de horno ingresado");
+        jPanelAutosustentable.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, -1, -1));
+        jPanelAutosustentable.add(txtIDAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 56, -1));
+
         tblDatoAutosustentable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblDatoAutosustentableMouseClicked(evt);
             }
         });
-        jScrollPane14.setViewportView(tblDatoAutosustentable);
+        tblDatoAutosustentable.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tblDatoAutosustentableKeyPressed(evt);
+            }
+        });
+        jScrollPane7.setViewportView(tblDatoAutosustentable);
 
-        jPanelAutosustentable.add(jScrollPane14, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 110, 370, 180));
+        jPanelAutosustentable.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 510, 270));
 
-        jLabel51.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel51.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel51.setText("Energia Almacenada");
-        jPanelAutosustentable.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 84, -1, -1));
-        jPanelAutosustentable.add(txtIDAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 300, 56, -1));
+        jLabel52.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel52.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel52.setText("Energia Almacenada");
+        jPanelAutosustentable.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, -1, -1));
 
-        getContentPane().add(jPanelAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 910, 440));
+        getContentPane().add(jPanelAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 1100, 510));
 
         jPanelAmbiente.setBackground(new java.awt.Color(58, 58, 58));
         jPanelAmbiente.setForeground(new java.awt.Color(255, 255, 255));
         jPanelAmbiente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel33.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
+        jLabel33.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel33.setText("Lista de hornos ingresados");
-        jPanelAmbiente.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, -1, -1));
+        jLabel33.setText("Lista de hornos");
+        jPanelAmbiente.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, -1, -1));
 
         btn_IngresarAmbiente.setBackground(new java.awt.Color(51, 153, 0));
         btn_IngresarAmbiente.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
@@ -673,76 +814,96 @@ public class Menu extends javax.swing.JFrame {
                 btn_IngresarAmbienteActionPerformed(evt);
             }
         });
-        jPanelAmbiente.add(btn_IngresarAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 359, 280, 63));
+        jPanelAmbiente.add(btn_IngresarAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 280, 63));
 
         jLabel39.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel39.setForeground(new java.awt.Color(255, 255, 255));
         jLabel39.setText("Dirección del Sol");
-        jPanelAmbiente.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 211, -1, -1));
+        jPanelAmbiente.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, -1, -1));
 
         jLabel40.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel40.setForeground(new java.awt.Color(255, 255, 255));
         jLabel40.setText("Fecha creacion");
-        jPanelAmbiente.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 257, -1, -1));
+        jPanelAmbiente.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, 20));
 
         jLabel41.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel41.setForeground(new java.awt.Color(255, 255, 255));
         jLabel41.setText("°");
-        jPanelAmbiente.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 163, -1, -1));
+        jPanelAmbiente.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, -1, -1));
 
         jLabel42.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel42.setForeground(new java.awt.Color(255, 255, 255));
         jLabel42.setText("Intensidad Solar");
-        jPanelAmbiente.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(182, 134, -1, -1));
+        jPanelAmbiente.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, -1, -1));
 
         jLabel43.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel43.setForeground(new java.awt.Color(255, 255, 255));
         jLabel43.setText("Angulo Solar");
-        jPanelAmbiente.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 129, -1, -1));
+        jPanelAmbiente.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
 
         jLabel58.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel58.setForeground(new java.awt.Color(255, 255, 255));
         jLabel58.setText("Temperatura");
-        jPanelAmbiente.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 199, -1, -1));
+        jPanelAmbiente.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
 
         txb_direccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Norte", "Sur", "Este", "Oeste" }));
-        jPanelAmbiente.add(txb_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 239, 130, 32));
+        jPanelAmbiente.add(txb_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 130, 32));
 
         txb_angulo.setModel(new javax.swing.SpinnerNumberModel(0, 0, 360, 1));
         txb_angulo.setName(""); // NOI18N
-        jPanelAmbiente.add(txb_angulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 163, 100, 30));
+        jPanelAmbiente.add(txb_angulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 100, 30));
 
         jLabel59.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel59.setForeground(new java.awt.Color(255, 255, 255));
         jLabel59.setText("°C");
-        jPanelAmbiente.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 227, -1, -1));
+        jPanelAmbiente.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, -1));
 
         txb_temperatura.setModel(new javax.swing.SpinnerNumberModel(0, 0, 1000, 1));
         txb_temperatura.setName(""); // NOI18N
-        jPanelAmbiente.add(txb_temperatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 227, 100, 30));
+        jPanelAmbiente.add(txb_temperatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 100, 30));
 
         txb_intensidadsolar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Alta", "Media", "Baja" }));
-        jPanelAmbiente.add(txb_intensidadsolar, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 159, 140, 34));
+        jPanelAmbiente.add(txb_intensidadsolar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 140, 34));
 
         Jd_fecha6.setDateFormatString("yyyy-MM-dd");
-        jPanelAmbiente.add(Jd_fecha6, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 282, 160, 40));
+        jPanelAmbiente.add(Jd_fecha6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 120, 40));
+
+        tblDatHornoAmbiente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDatHornoAmbienteMouseClicked(evt);
+            }
+        });
+        jScrollPane12.setViewportView(tblDatHornoAmbiente);
+
+        jPanelAmbiente.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 130, 50));
+        jPanelAmbiente.add(txtIDAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 60, 20));
+
+        jLabel60.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
+        jLabel60.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel60.setText("Ambiente del Horno");
+        jPanelAmbiente.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 330, -1));
 
         tblDatoAmbiente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblDatoAmbienteMouseClicked(evt);
             }
         });
-        jScrollPane12.setViewportView(tblDatoAmbiente);
+        tblDatoAmbiente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tblDatoAmbienteKeyPressed(evt);
+            }
+        });
+        jScrollPane8.setViewportView(tblDatoAmbiente);
 
-        jPanelAmbiente.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 440, 187));
-        jPanelAmbiente.add(txtIDAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 60, -1));
+        jPanelAmbiente.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 110, 600, 290));
 
-        jLabel60.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
-        jLabel60.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel60.setText("Ambiente del Horno");
-        jPanelAmbiente.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 330, -1));
+        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel11.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Lista ambiente del horno ingresado");
+        jPanelAmbiente.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, -1, -1));
 
-        getContentPane().add(jPanelAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 920, 440));
+        getContentPane().add(jPanelAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 1110, 510));
 
         jPanelPrincipal.setBackground(new java.awt.Color(102, 102, 102));
         jPanelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -757,7 +918,7 @@ public class Menu extends javax.swing.JFrame {
                 lblMantenimientoMouseClicked(evt);
             }
         });
-        jPanelPrincipal.add(lblMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 186, 58));
+        jPanelPrincipal.add(lblMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 186, 58));
 
         lblHorno.setBackground(new java.awt.Color(102, 102, 102));
         lblHorno.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -781,7 +942,7 @@ public class Menu extends javax.swing.JFrame {
                 lblFuncionamientoMouseClicked(evt);
             }
         });
-        jPanelPrincipal.add(lblFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 186, 58));
+        jPanelPrincipal.add(lblFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 186, 58));
 
         lblAmbiente.setBackground(new java.awt.Color(102, 102, 102));
         lblAmbiente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -793,7 +954,7 @@ public class Menu extends javax.swing.JFrame {
                 lblAmbienteMouseClicked(evt);
             }
         });
-        jPanelPrincipal.add(lblAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 186, 58));
+        jPanelPrincipal.add(lblAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 186, 58));
 
         lblAutosustentable.setBackground(new java.awt.Color(102, 102, 102));
         lblAutosustentable.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -805,9 +966,9 @@ public class Menu extends javax.swing.JFrame {
                 lblAutosustentableMouseClicked(evt);
             }
         });
-        jPanelPrincipal.add(lblAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 186, 58));
+        jPanelPrincipal.add(lblAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 180, 58));
 
-        getContentPane().add(jPanelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 440));
+        getContentPane().add(jPanelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 510));
 
         jPanelFondo.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -815,14 +976,14 @@ public class Menu extends javax.swing.JFrame {
         jPanelFondo.setLayout(jPanelFondoLayout);
         jPanelFondoLayout.setHorizontalGroup(
             jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1360, Short.MAX_VALUE)
+            .addGap(0, 1380, Short.MAX_VALUE)
         );
         jPanelFondoLayout.setVerticalGroup(
             jPanelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGap(0, 510, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 1360, 440));
+        getContentPane().add(jPanelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1380, 510));
 
         jLabel3.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -833,24 +994,24 @@ public class Menu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tblDatoAmbienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoAmbienteMouseClicked
-        int filaSeleccionada = tblDatoAmbiente.getSelectedRow();
-        DefaultTableModel modelo = (DefaultTableModel) tblDatoAmbiente.getModel();
+    private void tblDatHornoAmbienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatHornoAmbienteMouseClicked
+        int filaSeleccionada = tblDatHornoAmbiente.getSelectedRow();
+        DefaultTableModel modelo = (DefaultTableModel) tblDatHornoAmbiente.getModel();
         Object idObjeto = modelo.getValueAt(filaSeleccionada, 0);
         txtIDAmbiente.setText(String.valueOf(idObjeto));
-    }//GEN-LAST:event_tblDatoAmbienteMouseClicked
+    }//GEN-LAST:event_tblDatHornoAmbienteMouseClicked
 
     private void btn_IngresarAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarAmbienteActionPerformed
         // TODO add your handling code here:
         try {
             ClaseConsulta INGA = new ClaseConsulta();
-            ambiente  a = new ambiente(
-                Integer.parseInt(txtIDAmbiente.getText()),
-                (String) txb_intensidadsolar.getSelectedItem(),
-                (int) txb_angulo.getValue(),
-                (int) txb_temperatura.getValue(),
-                (String) txb_direccion.getSelectedItem(),
-                new SimpleDateFormat("yyyy/MM/dd").format(Jd_fecha6.getDate())
+            ambiente a = new ambiente(
+                    Integer.parseInt(txtIDAmbiente.getText()),
+                    (String) txb_intensidadsolar.getSelectedItem(),
+                    (int) txb_angulo.getValue(),
+                    (int) txb_temperatura.getValue(),
+                    (String) txb_direccion.getSelectedItem(),
+                    new SimpleDateFormat("yyyy/MM/dd").format(Jd_fecha6.getDate())
             );
             INGA.IngAmbiente(a);
         } catch (Exception e) {
@@ -867,15 +1028,15 @@ public class Menu extends javax.swing.JFrame {
         try {
             ClaseConsulta INAU = new ClaseConsulta();
             autosustentable au = new autosustentable(
-                Integer.parseInt(txtIDAutosustentable.getText()),
-                Integer.parseInt(txb_consumoe.getText()),
-                Integer.parseInt(txb_energiaalmacenada.getText()),
-                (String) cb_eficienciaenergetica.getSelectedItem(),
-                (int) js_energiarecibida.getValue(),
-                new SimpleDateFormat("yyyy/MM/dd").format(Jd_fecha4.getDate())
+                    Integer.parseInt(txtIDAutosustentable.getText()),
+                    Integer.parseInt(txb_consumoe.getText()),
+                    Integer.parseInt(txb_energiaalmacenada.getText()),
+                    (String) cb_EnergiaRecibida.getSelectedItem(),
+                    (int) js_EficienciaEnergetica.getValue(),
+                    new SimpleDateFormat("yyyy/MM/dd").format(Jd_fecha4.getDate())
             );
             INAU.IngresarAutosustentable(au);
-              tblDatoAutosustentable.setModel(INAU.consultaAutosustentable());
+            tblDatoHornoAutosustentable.setModel(INAU.consultaFuncion());
 
             txb_consumoe.setText(null);
             txb_energiaalmacenada.setText(null);
@@ -885,43 +1046,76 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_IngresarAutosustentableActionPerformed
 
     private void rbAutomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAutomaticoActionPerformed
-        // TODO add your handling code here:
+if (rbAutomatico.isSelected()) {
+    jb_fechaoperacion.setEnabled(false);
+    js_Hora.setEnabled(false);
+}
+
+
     }//GEN-LAST:event_rbAutomaticoActionPerformed
 
     private void rbManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbManualActionPerformed
-        // TODO add your handling code here:
+if (rbManual.isSelected()) {
+    jb_fechaoperacion.setEnabled(true);
+    js_Hora.setEnabled(true);
+}
     }//GEN-LAST:event_rbManualActionPerformed
 
     private void btn_IngresarFuncionamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarFuncionamientoActionPerformed
-        try {
+      if(rbAutomatico.isSelected()){
+           String fechaOperacion;
+            String horaOperacion;
+          try {
             ClaseConsulta INFU = new ClaseConsulta();
+            java.util.Date fechaActual = new java.util.Date();
+             fechaOperacion = new SimpleDateFormat("yyyy/MM/dd").format(fechaActual);
+             horaOperacion = new SimpleDateFormat("HH:mm:ss").format(fechaActual);
             funciones f = new funciones(
-                Integer.parseInt(txtIDFuncionamiento.getText()),
-                (int)(js_temperaturai.getValue()),
-                 new SimpleDateFormat("HH:mm:ss").format(txb_tiempoc.getValue()),
-                (String)cb_tipodealimento.getSelectedItem(),
-                (String) cb_estadohorno.getSelectedItem(),
-                 new SimpleDateFormat("yyyy/MM/dd").format(jb_fechaoperacion.getDate()),
-                  new SimpleDateFormat("HH:mm:ss").format(js_Hora.getValue())
+                    Integer.parseInt(txtIDFuncionamiento.getText()),
+                    (int) (js_temperaturai.getValue()),
+                    new SimpleDateFormat("HH:mm:ss").format(txb_tiempoc.getValue()),
+                    (String) cb_tipodealimento.getSelectedItem(),
+                    (String) cb_estadohorno.getSelectedItem(),
+                     fechaOperacion,
+                     horaOperacion
             );
             INFU.InsertarFuncion(f);
-            tblDatoFuncionamiento.setModel(INFU.MostrarHornos());
+            tblHornoFuncionamiento.setModel(INFU.consultaHornos());
 
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
+      }else if(rbManual.isSelected()){
+        try {
+            ClaseConsulta INFU = new ClaseConsulta();
+            funciones f = new funciones(
+                    Integer.parseInt(txtIDFuncionamiento.getText()),
+                    (int) (js_temperaturai.getValue()),
+                    new SimpleDateFormat("HH:mm:ss").format(txb_tiempoc.getValue()),
+                    (String) cb_tipodealimento.getSelectedItem(),
+                    (String) cb_estadohorno.getSelectedItem(),
+                    new SimpleDateFormat("yyyy/MM/dd").format(jb_fechaoperacion.getDate()),
+                    new SimpleDateFormat("HH:mm:ss").format(js_Hora.getValue())
+            );
+            INFU.InsertarFuncion(f);
+            tblHornoFuncionamiento.setModel(INFU.consultaHornos());
+
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e);
+        }
+      }
     }//GEN-LAST:event_btn_IngresarFuncionamientoActionPerformed
 
-    private void tblDatoFuncionamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoFuncionamientoMouseClicked
-        int filaSeleccionada = tblDatoFuncionamiento.getSelectedRow();
-        DefaultTableModel modelo = (DefaultTableModel) tblDatoFuncionamiento.getModel();
+    private void tblHornoFuncionamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHornoFuncionamientoMouseClicked
+        int filaSeleccionada = tblHornoFuncionamiento.getSelectedRow();
+        DefaultTableModel modelo = (DefaultTableModel) tblHornoFuncionamiento.getModel();
         Object idObjeto = modelo.getValueAt(filaSeleccionada, 0);
         txtIDFuncionamiento.setText(String.valueOf(idObjeto));
-    }//GEN-LAST:event_tblDatoFuncionamientoMouseClicked
+    }//GEN-LAST:event_tblHornoFuncionamientoMouseClicked
 
-    private void tblDatoReparacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoReparacionMouseClicked
+    private void tblDatoReparadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoReparadosMouseClicked
 
-    }//GEN-LAST:event_tblDatoReparacionMouseClicked
+    }//GEN-LAST:event_tblDatoReparadosMouseClicked
 
     private void txb_dimensionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txb_dimensionesActionPerformed
         // TODO add your handling code here:
@@ -936,50 +1130,189 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_txb_tipoFocusGained
 
     private void tblDatoHornoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoHornoMouseClicked
-int filaSeleccionada = tblDatoHorno.getSelectedRow();
-    
-    if (filaSeleccionada == -1) { 
-        return; 
-    }
-    
-    DefaultTableModel modelo = (DefaultTableModel) tblDatoHorno.getModel();
-        Object idObjeto = modelo.getValueAt(filaSeleccionada, 0);
-    txtIDMantenimiento.setText(String.valueOf(idObjeto));
-    
-    
-    if (evt.getClickCount() == 2) {
-        
-        try {
-            String fecha = modelo.getValueAt(filaSeleccionada, 0).toString();
-            String tipo = modelo.getValueAt(filaSeleccionada, 1).toString();
-            String materiales = modelo.getValueAt(filaSeleccionada, 2).toString();
-            String dimensiones = modelo.getValueAt(filaSeleccionada, 3).toString();
-            String aislamiento = modelo.getValueAt(filaSeleccionada, 4).toString();
-            int reflectores = Integer.parseInt(modelo.getValueAt(filaSeleccionada, 5).toString());
-            int idh = Integer.parseInt(modelo.getValueAt(filaSeleccionada, 6).toString());
+        int filaSeleccionada = tblDatoHorno.getSelectedRow();
 
-            Modificar_Eliminar ventanaEditar = new Modificar_Eliminar(this, fecha, tipo, materiales, dimensiones, aislamiento, reflectores, idh);
-            
-            ventanaEditar.setVisible(true);
-            ventanaEditar.setLocationRelativeTo(this);
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al leer datos de la fila: " + e.getMessage());
-            System.out.println("Error: " + e.getMessage());
-            e.printStackTrace(); // Para ver el error en consola
+        if (filaSeleccionada == -1) {
+            return;
         }
-    }
+
+        DefaultTableModel modelo = (DefaultTableModel) tblDatoHorno.getModel();
+        Object idObjeto = modelo.getValueAt(filaSeleccionada, 0);
+        txtIDMantenimiento.setText(String.valueOf(idObjeto));
+
+        if (evt.getClickCount() == 2) {
+
+            try {
+                int idh = Integer.parseInt(modelo.getValueAt(filaSeleccionada, 0).toString());
+                String tipo = modelo.getValueAt(filaSeleccionada, 1).toString();
+                String materiales = modelo.getValueAt(filaSeleccionada, 2).toString();
+                String dimensiones = modelo.getValueAt(filaSeleccionada, 3).toString();
+                String aislamiento = modelo.getValueAt(filaSeleccionada, 4).toString();
+                int reflectores = Integer.parseInt(modelo.getValueAt(filaSeleccionada, 5).toString());
+                String fecha = modelo.getValueAt(filaSeleccionada, 6).toString();
+
+
+                Modificar_Eliminar ventanaEditar = new Modificar_Eliminar(this, idh, tipo, materiales, dimensiones, aislamiento, reflectores, fecha);
+
+                ventanaEditar.setVisible(true);
+                ventanaEditar.setLocationRelativeTo(this);
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error al leer datos de la fila: " + e.getMessage());
+            }
+        }
     }//GEN-LAST:event_tblDatoHornoMouseClicked
 
+    private void btn_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarActionPerformed
+    ClaseConsulta miConsulta = new ClaseConsulta();
+    DefaultTableModel modelo; 
+    if (rbPorFecha.isSelected()) {
+        try {
+            if (Jd_fechaInicio.getDate() == null || Jd_FechaFinal.getDate() == null) {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar ambas fechas.", "Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaDesde = sdf.format(Jd_fechaInicio.getDate());
+            String fechaHasta = sdf.format(Jd_FechaFinal.getDate());
+
+            modelo = miConsulta.MostrarHornosPorFecha(fechaDesde, fechaHasta);
+            tblDatoHorno.setModel(modelo);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al buscar por fecha: " + e.getMessage());
+            return;
+        }
+        
+    } else if (rbPorBusqueda.isSelected()) {
+        try {
+            String textoBusqueda = txb_buscar.getText();
+            if (textoBusqueda.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Debe escribir un texto para buscar.", "Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
+            modelo = miConsulta.MostrarHornosPorTipo(textoBusqueda);
+            tblDatoHorno.setModel(modelo);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al buscar por texto: " + e.getMessage());
+            return;
+        }
+    } else {
+        modelo = miConsulta.MostrarHornos();
+        tblDatoHorno.setModel(modelo);
+    }
+    
+    int cantidad = modelo.getRowCount();
+    txb_CantidadFilas.setText(String.valueOf(cantidad));
+    }//GEN-LAST:event_btn_BuscarActionPerformed
+
+    private void lblMantenimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimientoMouseClicked
+        jPanelHornosSolares.setVisible(false);
+        jPanelMantenimiento.setVisible(true);
+        jPanelFuncionamiento.setVisible(false);
+        jPanelAmbiente.setVisible(false);
+        jPanelAutosustentable.setVisible(false);
+        ClaseConsulta misConsultas = new ClaseConsulta();
+        tblDatoReparados.setModel(misConsultas.MostrarReparacion());
+        tblDatoHornoMante.setModel(misConsultas.consultaHornos());
+
+    }//GEN-LAST:event_lblMantenimientoMouseClicked
+
+    private void lblHornoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHornoMouseClicked
+        jPanelHornosSolares.setVisible(true);
+        jPanelMantenimiento.setVisible(false);
+        jPanelFuncionamiento.setVisible(false);
+        jPanelAmbiente.setVisible(false);
+        jPanelAutosustentable.setVisible(false);
+        ClaseConsulta misConsultas = new ClaseConsulta();
+        tblDatoHorno.setModel(misConsultas.MostrarHornos());
+
+    }//GEN-LAST:event_lblHornoMouseClicked
+
+    private void lblFuncionamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFuncionamientoMouseClicked
+        jPanelHornosSolares.setVisible(false);
+        jPanelMantenimiento.setVisible(false);
+        jPanelFuncionamiento.setVisible(true);
+        jPanelAmbiente.setVisible(false);
+        jPanelAutosustentable.setVisible(false);
+        ClaseConsulta misConsultas = new ClaseConsulta();
+        tblHornoFuncionamiento.setModel(misConsultas.consultaHornos());
+        tblDatoFuncionamiento.setModel(misConsultas.MostrarFuncionamiento());
+
+    }//GEN-LAST:event_lblFuncionamientoMouseClicked
+
+    private void lblAmbienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAmbienteMouseClicked
+        jPanelHornosSolares.setVisible(false);
+        jPanelMantenimiento.setVisible(false);
+        jPanelFuncionamiento.setVisible(false);
+        jPanelAmbiente.setVisible(true);
+        jPanelAutosustentable.setVisible(false);
+        ClaseConsulta misConsultas = new ClaseConsulta();
+        tblDatHornoAmbiente.setModel(misConsultas.consultaHornos());
+        tblDatoAmbiente.setModel(misConsultas.MostrarAmbiente());
+
+    }//GEN-LAST:event_lblAmbienteMouseClicked
+
+    private void lblAutosustentableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAutosustentableMouseClicked
+        jPanelHornosSolares.setVisible(false);
+        jPanelMantenimiento.setVisible(false);
+        jPanelFuncionamiento.setVisible(false);
+        jPanelAmbiente.setVisible(false);
+        jPanelAutosustentable.setVisible(true);
+        ClaseConsulta misConsultas = new ClaseConsulta();
+        tblDatoHornoAutosustentable.setModel(misConsultas.consultaFuncion());
+        tblDatoAutosustentable.setModel(misConsultas.MostrarAutosustentable());
+    }//GEN-LAST:event_lblAutosustentableMouseClicked
+
+    private void tblDatoHornoManteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoHornoManteMouseClicked
+        int filaSeleccionada = tblDatoHornoMante.getSelectedRow();
+        DefaultTableModel modelo = (DefaultTableModel) tblDatoHornoMante.getModel();
+        Object idObjeto = modelo.getValueAt(filaSeleccionada, 0);
+        txtIDMantenimiento.setText(String.valueOf(idObjeto));
+
+    }//GEN-LAST:event_tblDatoHornoManteMouseClicked
+
+    private void tblDatoHornoAutosustentableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoHornoAutosustentableMouseClicked
+        int filaSeleccionada = tblDatoHornoAutosustentable.getSelectedRow();
+        DefaultTableModel modelo = (DefaultTableModel) tblDatoHornoAutosustentable.getModel();
+        Object idObjeto = modelo.getValueAt(filaSeleccionada, 0);
+        txtIDAutosustentable.setText(String.valueOf(idObjeto));
+
+    }//GEN-LAST:event_tblDatoHornoAutosustentableMouseClicked
+
+    private void btn_IngresarMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarMantenimientoActionPerformed
+        try {
+            ClaseConsulta INGM = new ClaseConsulta();
+
+            mantenimiento m = new mantenimiento(
+                    Integer.parseInt(txtIDMantenimiento.getText()),
+                    txb_detallesr.getText(),
+                    txb_materialesr.getText(),
+                    new SimpleDateFormat("yyyy-MM-dd").format(Jd_fecha.getDate())
+            );
+            INGM.InsertarMante(m);
+            tblDatoReparados.setModel(INGM.MostrarReparacion());
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(this, "error: " + e);
+
+        }
+    }//GEN-LAST:event_btn_IngresarMantenimientoActionPerformed
+
+    private void tblDatoHornoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblDatoHornoKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblDatoHornoKeyPressed
+
     private void btn_IngresarHornosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarHornosActionPerformed
-        try{
+     try{
             ClaseConsulta INH = new ClaseConsulta();
             horno h= new horno(
                 Integer.parseInt(txb_reflectores.getText()),
                 txb_tipo.getText(),
                 txb_materiales.getText(),
-                (String)cb_estadohorno.getSelectedItem(),
-                new SimpleDateFormat("yyyy-MM-dd").format(Jd_fecha1.getDate()),
+                (String)cb_sisAislamiento.getSelectedItem(),
+                new SimpleDateFormat("yyyy-MM-dd").format(Jd_fechaCreacion.getDate()),
                 Double.parseDouble(txb_dimensiones.getText())
 
             );
@@ -989,98 +1322,68 @@ int filaSeleccionada = tblDatoHorno.getSelectedRow();
         }catch(HeadlessException e) {
             JOptionPane.showMessageDialog(this, "error: " + e);
         }
+
     }//GEN-LAST:event_btn_IngresarHornosActionPerformed
 
-    private void lblMantenimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimientoMouseClicked
- jPanelHornosSolares.setVisible(false );
-    jPanelMantenimiento.setVisible(true);
-    jPanelFuncionamiento.setVisible(false);
-    jPanelAmbiente.setVisible(false);
-    jPanelAutosustentable.setVisible(false); 
-       ClaseConsulta misConsultas = new ClaseConsulta(); 
-    tblDatoReparacion.setModel(misConsultas.MostrarReparacion());
-    tblDatoMantenimiento.setModel(misConsultas.consultaHornos());
+    private void rbPorFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorFechaActionPerformed
+// Si selecciona "Fecha", activamos las fechas y desactivamos el texto
+        Jd_FechaFinal.setEnabled(true);
+        Jd_fechaInicio.setEnabled(true);
+        txb_buscar.setEnabled(false);
 
-    }//GEN-LAST:event_lblMantenimientoMouseClicked
+    }//GEN-LAST:event_rbPorFechaActionPerformed
 
-    private void lblHornoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHornoMouseClicked
- jPanelHornosSolares.setVisible(true );
-    jPanelMantenimiento.setVisible(false);
-    jPanelFuncionamiento.setVisible(false);
-    jPanelAmbiente.setVisible(false);
-    jPanelAutosustentable.setVisible(false);
-     ClaseConsulta misConsultas = new ClaseConsulta(); 
-    tblDatoHorno.setModel(misConsultas.MostrarHornos());
+    private void rbPorBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorBusquedaActionPerformed
+        Jd_FechaFinal.setEnabled(false);
+        Jd_fechaInicio.setEnabled(false);
+        txb_buscar.setEnabled(true);    }//GEN-LAST:event_rbPorBusquedaActionPerformed
+
+    private void btn_ResetearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ResetearActionPerformed
+    ClaseConsulta RH = new ClaseConsulta();
+    DefaultTableModel modelo = RH.MostrarHornos();
+    tblDatoHorno.setModel(modelo);
+ 
+    int cantidad = modelo.getRowCount();
+    txb_CantidadFilas.setText(String.valueOf(cantidad));
     
-    }//GEN-LAST:event_lblHornoMouseClicked
+    Jd_fechaInicio.setDate(null);
+    Jd_FechaFinal.setDate(null);
+    txb_buscar.setText("");
+    
+    rbPorFecha.setSelected(true);
+    Jd_fechaInicio.setEnabled(true);
+    Jd_FechaFinal.setEnabled(true);
+    txb_buscar.setEnabled(false);
+         
+    }//GEN-LAST:event_btn_ResetearActionPerformed
 
-    private void lblFuncionamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFuncionamientoMouseClicked
- jPanelHornosSolares.setVisible(false );
-    jPanelMantenimiento.setVisible(false);
-    jPanelFuncionamiento.setVisible(true);
-    jPanelAmbiente.setVisible(false);
-    jPanelAutosustentable.setVisible(false);
-      ClaseConsulta misConsultas = new ClaseConsulta(); 
-    tblDatoFuncionamiento.setModel(misConsultas.consultaHornos());
-    }//GEN-LAST:event_lblFuncionamientoMouseClicked
+    private void tblDatoFuncionamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoFuncionamientoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblDatoFuncionamientoMouseClicked
 
-    private void lblAmbienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAmbienteMouseClicked
- jPanelHornosSolares.setVisible(false );
-    jPanelMantenimiento.setVisible(false);
-    jPanelFuncionamiento.setVisible(false);
-    jPanelAmbiente.setVisible(true);
-    jPanelAutosustentable.setVisible(false); 
-     ClaseConsulta misConsultas = new ClaseConsulta(); 
-    tblDatoAmbiente.setModel(misConsultas.consultaHornos()); 
-    }//GEN-LAST:event_lblAmbienteMouseClicked
-
-    private void lblAutosustentableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAutosustentableMouseClicked
- jPanelHornosSolares.setVisible(false );
-    jPanelMantenimiento.setVisible(false);
-    jPanelFuncionamiento.setVisible(false);
-    jPanelAmbiente.setVisible(false);
-    jPanelAutosustentable.setVisible(true); 
-     ClaseConsulta misConsultas = new ClaseConsulta(); 
-    tblDatoAutosustentable.setModel(misConsultas.consultaAutosustentable());
-    }//GEN-LAST:event_lblAutosustentableMouseClicked
-
-    private void tblDatoMantenimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoMantenimientoMouseClicked
-int filaSeleccionada = tblDatoMantenimiento.getSelectedRow();
-        DefaultTableModel modelo = (DefaultTableModel) tblDatoMantenimiento.getModel();
-        Object idObjeto = modelo.getValueAt(filaSeleccionada, 0);
-        txtIDMantenimiento.setText(String.valueOf(idObjeto)); 
-        
-    }//GEN-LAST:event_tblDatoMantenimientoMouseClicked
+    private void tblDatoFuncionamientoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblDatoFuncionamientoKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblDatoFuncionamientoKeyPressed
 
     private void tblDatoAutosustentableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoAutosustentableMouseClicked
- int filaSeleccionada = tblDatoAutosustentable.getSelectedRow();
-        DefaultTableModel modelo = (DefaultTableModel) tblDatoAutosustentable.getModel();
-        Object idObjeto = modelo.getValueAt(filaSeleccionada, 0);
-        txtIDAutosustentable.setText(String.valueOf(idObjeto));
-
+        // TODO add your handling code here:
     }//GEN-LAST:event_tblDatoAutosustentableMouseClicked
 
-    private void btn_IngresarMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarMantenimientoActionPerformed
-   try{
-            ClaseConsulta INGM = new ClaseConsulta();
-
-            mantenimiento m = new mantenimiento(
-                Integer.parseInt(txtIDMantenimiento.getText()),
-                txb_detallesr.getText(),
-                txb_materialesr.getText(),
-                new SimpleDateFormat("yyyy-MM-dd").format(Jd_fecha.getDate())
-            );
-            INGM.InsertarMante(m);
-            tblDatoReparacion.setModel(INGM.MostrarReparacion());
-        }catch(HeadlessException e) {
-            JOptionPane.showMessageDialog(this, "error: " + e);
-
-        }
-    }//GEN-LAST:event_btn_IngresarMantenimientoActionPerformed
-
-    private void tblDatoHornoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblDatoHornoKeyPressed
+    private void tblDatoAutosustentableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblDatoAutosustentableKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tblDatoHornoKeyPressed
+    }//GEN-LAST:event_tblDatoAutosustentableKeyPressed
+
+    private void tblDatoAmbienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoAmbienteMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblDatoAmbienteMouseClicked
+
+    private void tblDatoAmbienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblDatoAmbienteKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblDatoAmbienteKeyPressed
+
+    private void txtIDFuncionamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDFuncionamientoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDFuncionamientoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1119,21 +1422,28 @@ int filaSeleccionada = tblDatoMantenimiento.getSelectedRow();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser Jd_FechaFinal;
     private com.toedter.calendar.JDateChooser Jd_fecha;
-    private com.toedter.calendar.JDateChooser Jd_fecha1;
     private com.toedter.calendar.JDateChooser Jd_fecha4;
     private com.toedter.calendar.JDateChooser Jd_fecha6;
+    private com.toedter.calendar.JDateChooser Jd_fechaCreacion;
+    private com.toedter.calendar.JDateChooser Jd_fechaInicio;
+    private javax.swing.JButton btn_Buscar;
     private javax.swing.JButton btn_IngresarAmbiente;
     private javax.swing.JButton btn_IngresarAutosustentable;
     private javax.swing.JButton btn_IngresarFuncionamiento;
     private javax.swing.JButton btn_IngresarHornos;
     private javax.swing.JButton btn_IngresarMantenimiento;
-    private javax.swing.JComboBox<String> cb_eficienciaenergetica;
+    private javax.swing.JButton btn_Resetear;
+    private javax.swing.JComboBox<String> cb_EnergiaRecibida;
     private javax.swing.JComboBox<String> cb_estadohorno;
-    private javax.swing.JComboBox<String> cb_estadohorno1;
+    private javax.swing.JComboBox<String> cb_sisAislamiento;
     private javax.swing.JComboBox<String> cb_tipodealimento;
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -1148,6 +1458,10 @@ int filaSeleccionada = tblDatoMantenimiento.getSelectedRow();
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel33;
@@ -1169,6 +1483,8 @@ int filaSeleccionada = tblDatoMantenimiento.getSelectedRow();
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
@@ -1192,9 +1508,12 @@ int filaSeleccionada = tblDatoMantenimiento.getSelectedRow();
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private com.toedter.calendar.JDateChooser jb_fechaoperacion;
+    private javax.swing.JSpinner js_EficienciaEnergetica;
     private com.toedter.calendar.JSpinnerDateEditor js_Hora;
-    private javax.swing.JSpinner js_energiarecibida;
     private javax.swing.JSpinner js_temperaturai;
     private javax.swing.JLabel lblAmbiente;
     private javax.swing.JLabel lblAutosustentable;
@@ -1203,13 +1522,20 @@ int filaSeleccionada = tblDatoMantenimiento.getSelectedRow();
     private javax.swing.JLabel lblMantenimiento;
     private javax.swing.JRadioButton rbAutomatico;
     private javax.swing.JRadioButton rbManual;
+    private javax.swing.JRadioButton rbPorBusqueda;
+    private javax.swing.JRadioButton rbPorFecha;
+    private javax.swing.JTable tblDatHornoAmbiente;
     private javax.swing.JTable tblDatoAmbiente;
     private javax.swing.JTable tblDatoAutosustentable;
     private javax.swing.JTable tblDatoFuncionamiento;
     private javax.swing.JTable tblDatoHorno;
-    private javax.swing.JTable tblDatoMantenimiento;
-    private javax.swing.JTable tblDatoReparacion;
+    private javax.swing.JTable tblDatoHornoAutosustentable;
+    private javax.swing.JTable tblDatoHornoMante;
+    private javax.swing.JTable tblDatoReparados;
+    private javax.swing.JTable tblHornoFuncionamiento;
+    private javax.swing.JTextField txb_CantidadFilas;
     private javax.swing.JSpinner txb_angulo;
+    private javax.swing.JTextField txb_buscar;
     private javax.swing.JTextField txb_consumoe;
     private javax.swing.JTextArea txb_detallesr;
     private javax.swing.JTextField txb_dimensiones;

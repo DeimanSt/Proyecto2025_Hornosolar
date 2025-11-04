@@ -7,8 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ClaseConsulta {
-
-    public void registrarHorno(horno h) {
+public void registrarHorno(horno h) {
         ConexionBDD nuevoc = new ConexionBDD();
         Connection con = nuevoc.conectar();
         PreparedStatement pst = null;
@@ -39,8 +38,7 @@ public class ClaseConsulta {
             JOptionPane.showMessageDialog(null, "Error al registrar: " + e);
         }
     }
-
-    public void modificarHorno(int idh, horno h) { 
+public void modificarHorno(int idh, horno h) { 
         ConexionBDD nuevoc = new ConexionBDD();
         Connection con = nuevoc.conectar();
         PreparedStatement pst = null;
@@ -73,9 +71,7 @@ public class ClaseConsulta {
             JOptionPane.showMessageDialog(null, "Error al modificar: " + e);
         }
     }
-
-    
-    public void eliminarHorno(int idh) { 
+public void eliminarHorno(int idh) { 
         ConexionBDD nuevoc = new ConexionBDD();
         Connection con = nuevoc.conectar();
         PreparedStatement pst = null;
@@ -102,9 +98,7 @@ public class ClaseConsulta {
             JOptionPane.showMessageDialog(null, "Error al eliminar: " + e);
         }
     }
-    
-    
-    public void IngAmbiente (ambiente a){
+public void IngAmbiente (ambiente a){
         
         ConexionBDD nuevoc = new ConexionBDD();
         Connection con = nuevoc.conectar();
@@ -131,7 +125,6 @@ try{
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
     }
-    
 public void IngresarAutosustentable(autosustentable au){
      try {
             String sql;
@@ -187,7 +180,6 @@ public void InsertarFuncion(funciones f){
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
 }
-
 public void InsertarMante(mantenimiento m){
     
 
@@ -212,7 +204,7 @@ try{
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
 }
-  public DefaultTableModel consultaAutosustentable() {
+public DefaultTableModel consultaFuncion() {
   String[] titulos = {"IDF", "Fecha"};
         
 DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
@@ -247,8 +239,7 @@ DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
         }
                 return modelo;
   }
-
-    public DefaultTableModel consultaHornos() {
+public DefaultTableModel consultaHornos() {
         
         String[] titulos = {"ID", "Tipo Horno"};
         
@@ -283,13 +274,11 @@ DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
            JOptionPane.showMessageDialog(null, "Error al cargar datos de hornos: " + e.getMessage());
         }
                 return modelo;
-    }
+    } 
+public DefaultTableModel MostrarReparacion() {
     
-   public DefaultTableModel MostrarReparacion() {
     
-    // 1. Nuevos títulos para la tabla (Horno + Detalle de Reparación)
-    // Ajusté las columnas a lo que pediste (datos del horno + datos de la reparación)
-    String[] titulos = {"ID Horno", "Tipo Horno", "Detalle Reparación", "Materiales Usados", "Fecha Reparación"};
+    String[] titulos = {"Tipo Horno", "Fecha Reparación", "Materiales Usados", "Detalle Reparación"};
     
     DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
         @Override
@@ -298,9 +287,7 @@ DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
         }
     };
 
-    String sql = "SELECT h.idh, h.tipo, m.detalles_reparacion, m.materiales_remplazados, m.fecha_creacion "
-               + "FROM hornos AS h "
-               + "INNER JOIN mantenimientos AS m ON h.idh = m.idh";
+    String sql = "SELECT  h.tipo, m.fecha_creacion, m.detalles_reparacion, m.materiales_remplazados FROM hornos h INNER JOIN mantenimientos m ON h.idh = m.idh";
 
     ConexionBDD nuevaC = new ConexionBDD();
     
@@ -309,13 +296,12 @@ DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
          ResultSet rs = pst.executeQuery()) {
 
         while (rs.next()) {
-            Object[] fila = new Object[5]; 
-            
-            fila[0] = rs.getInt("idh");
-            fila[1] = rs.getString("tipo");
+            Object[] fila = new Object[4]; 
+            fila[0] = rs.getString("tipo");
+            fila[1] = rs.getString("fecha_creacion"); 
             fila[2] = rs.getString("detalles_reparacion");
             fila[3] = rs.getString("materiales_remplazados");
-            fila[4] = rs.getString("fecha_creacion"); // Esta es la fecha del mantenimiento
+           
             
             modelo.addRow(fila);
         }
@@ -329,11 +315,10 @@ DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
     }
     
     return modelo;
-}
-     
-     public DefaultTableModel MostrarHornos() {
+}  
+public DefaultTableModel MostrarHornos() {
         
-        String[] titulos = {"Fecha","Tipo", "Materiales", "Dimensiones", "Sistema Aislamiento", "Reflectores", "IDH"};
+        String[] titulos = {"IDH","Tipo", "Materiales", "Dimensiones", "Sistema Aislamiento", "Reflectores", "Fecha"};
         
                
         DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
@@ -352,13 +337,13 @@ DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
 
             while (rs.next()) {
                 Object[] fila = new Object[7]; 
-                fila[0] = rs.getString("fecha_creacion");
+                fila[0] = rs.getInt("IDH");
                 fila[1] = rs.getString("tipo");
                 fila[2] = rs.getString("materiales");
                 fila[3] = rs.getString("dimensiones");
                 fila[4] = rs.getString("sistema_aislamiento");
                 fila[5] = rs.getString("reflectores");
-                fila[6] = rs.getInt("IDH");
+                fila[6] = rs.getString("fecha_creacion");
 
                 
                 modelo.addRow(fila);
@@ -374,7 +359,209 @@ DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
         }
                 return modelo;
     }
+public DefaultTableModel MostrarHornosPorFecha(String fechaDesde, String fechaHasta) {
+    String[] titulos = {"ID", "Tipo", "Materiales", "Dimensiones", "Sistema Aislamiento", "Reflectores", "Fecha"};
+    DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
+        @Override
+        public boolean isCellEditable(int row, int column) { return false; }
+    };
 
+    String sql = "SELECT idh, tipo, materiales, dimensiones, sistema_aislamiento, reflectores, fecha_creacion FROM hornos WHERE fecha_creacion >= ? AND fecha_creacion <= ?";    
+    ConexionBDD nuevaC = new ConexionBDD();
     
+    try (Connection con = nuevaC.conectar();
+         PreparedStatement pst = con.prepareStatement(sql)) {
+
+        pst.setString(1, fechaDesde);
+        pst.setString(2, fechaHasta);
+        
+        try (ResultSet rs = pst.executeQuery()) {
+            while (rs.next()) {
+                Object[] fila = new Object[7]; 
+                fila[0] = rs.getInt("idh"); 
+                fila[1] = rs.getString("tipo");
+                fila[2] = rs.getString("materiales");
+                fila[3] = rs.getString("dimensiones");
+                fila[4] = rs.getString("sistema_aislamiento");
+                fila[5] = rs.getInt("reflectores");
+                fila[6] = rs.getString("fecha_creacion");
+                modelo.addRow(fila);
+            }
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al consultar por fecha: " + e.getMessage());
+    }
+    return modelo;
+}
+public DefaultTableModel MostrarHornosPorTipo(String tipo) {
+    String[] titulos = {"ID", "Tipo", "Materiales", "Dimensiones", "Sistema Aislamiento", "Reflectores", "Fecha"};
+    DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
+        @Override
+        public boolean isCellEditable(int row, int column) { return false; }
+    };
+    
+    // Usamos el operador LIKE para buscar coincidencias parciales
+    String sql = "SELECT idh, tipo, materiales, dimensiones, sistema_aislamiento, reflectores, fecha_creacion FROM hornos WHERE tipo LIKE ?";
+    
+    ConexionBDD nuevaC = new ConexionBDD();
+    
+    try (Connection con = nuevaC.conectar();
+         PreparedStatement pst = con.prepareStatement(sql)) {
+
+        // El "%" es un comodín. "%caja%" busca cualquier cosa que contenga "caja"
+        pst.setString(1, "%" + tipo + "%"); 
+        
+        try (ResultSet rs = pst.executeQuery()) {
+            while (rs.next()) {
+                Object[] fila = new Object[7]; 
+                fila[0] = rs.getInt("idh"); 
+                fila[1] = rs.getString("tipo");
+                fila[2] = rs.getString("materiales");
+                fila[3] = rs.getString("dimensiones");
+                fila[4] = rs.getString("sistema_aislamiento");
+                fila[5] = rs.getInt("reflectores");
+                fila[6] = rs.getString("fecha_creacion");
+                modelo.addRow(fila);
+            }
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al consultar por tipo: " + e.getMessage());
+    }
+    return modelo;
+}
+public DefaultTableModel MostrarFuncionamiento() {
+    // Definimos los títulos que tendrá la tabla
+    String[] titulos = {"IDF", "IDH", "Temp. Interna", "T. Cocción", "Alimento", "Estado", "Fecha Op.", "Hora Op."};
+    
+    // Creamos el modelo de la tabla, no editable
+    DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+    
+    // Tu consulta SQL
+    String sql = "SELECT * FROM funcionamiento";
+    
+    // Tu clase de conexión
+    ConexionBDD nuevaC = new ConexionBDD();
+    
+    try (Connection con = nuevaC.conectar();
+         PreparedStatement pst = con.prepareStatement(sql);
+         ResultSet rs = pst.executeQuery()) {
+
+        while (rs.next()) {
+            // 8 columnas
+            Object[] fila = new Object[8];
+            fila[0] = rs.getInt("IDF");
+            fila[1] = rs.getInt("IDH");
+            fila[2] = rs.getInt("temperatura_interna");
+            fila[3] = rs.getString("tiempo_coccion"); // Lo leemos como String
+            fila[4] = rs.getString("tipo_alimento");
+            fila[5] = rs.getString("estado_horno");
+            fila[6] = rs.getString("fecha_operacion"); // O rs.getDate()
+            fila[7] = rs.getString("hora_operacion");  // O rs.getTime()
+
+            modelo.addRow(fila);
+        }
+        
+    } catch (SQLException e) {
+        // Tu manejo de errores
+        JOptionPane.showMessageDialog(null, 
+                "Error al consultar datos de funcionamiento: " + e.getMessage(), 
+                "Error de Base de Datos", 
+                JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Error al cargar datos de funcionamiento: " + e.getMessage());
+    }
+            
+    return modelo;
+}
+public DefaultTableModel MostrarAmbiente() {
+    // Definimos los títulos
+    String[] titulos = {"IDAM", "IDH", "Intensidad", "Temp. Ambiente", "Ángulo", "Dirección Sol", "Fecha Reg."};
+    
+    // Creamos el modelo de la tabla, no editable
+    DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+    
+    String sql = "SELECT * FROM ambiente";
+    ConexionBDD nuevaC = new ConexionBDD();
+    
+    try (Connection con = nuevaC.conectar();
+         PreparedStatement pst = con.prepareStatement(sql);
+         ResultSet rs = pst.executeQuery()) {
+
+        while (rs.next()) {
+            // 7 columnas
+            Object[] fila = new Object[7];
+            fila[0] = rs.getInt("IDAM");
+            fila[1] = rs.getInt("IDH"); // Con tu arreglo del SQL, esto ya no será NULL
+            fila[2] = rs.getString("intensidad_solar");
+            fila[3] = rs.getInt("temperatura_ambiente");
+            fila[4] = rs.getInt("angulo");
+            fila[5] = rs.getString("direccion_sol");
+            fila[6] = rs.getString("fecha_registro"); // O rs.getDate()
+
+            modelo.addRow(fila);
+        }
+        
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, 
+                "Error al consultar datos de ambiente: " + e.getMessage(), 
+                "Error de Base de Datos", 
+                JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Error al cargar datos de ambiente: " + e.getMessage());
+    }
+            
+    return modelo;
+}
+public DefaultTableModel MostrarAutosustentable() {
+    // Definimos los títulos
+    String[] titulos = {"IDAU", "IDF", "Eficiencia", "Energía Recibida", "Consumo", "Energía Almac.", "Fecha Eval."};
+    
+    // Creamos el modelo de la tabla, no editable
+    DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+    
+    String sql = "SELECT * FROM autosustentable";
+    ConexionBDD nuevaC = new ConexionBDD();
+    
+    try (Connection con = nuevaC.conectar();
+         PreparedStatement pst = con.prepareStatement(sql);
+         ResultSet rs = pst.executeQuery()) {
+
+        while (rs.next()) {
+            // 7 columnas
+            Object[] fila = new Object[7];
+            fila[0] = rs.getInt("IDAU");
+            fila[1] = rs.getInt("IDF");
+            fila[2] = rs.getDouble("eficiencia_termica"); // Ojo: es double en tu SQL
+            fila[3] = rs.getString("energia_solar_recibida"); // Es varchar en tu SQL
+            fila[4] = rs.getInt("consumo_energetico");
+            fila[5] = rs.getInt("energia_almacenada");
+            fila[6] = rs.getString("fecha_evaluacion"); // O rs.getDate()
+
+            modelo.addRow(fila);
+        }
+        
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, 
+                "Error al consultar datos de autosustentable: " + e.getMessage(), 
+                "Error de Base de Datos", 
+                JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Error al cargar datos de autosustentable: " + e.getMessage());
+    }
+            
+    return modelo;
+}
  }
 
