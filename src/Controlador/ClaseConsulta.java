@@ -429,6 +429,74 @@ public DefaultTableModel MostrarHornosPorTipo(String tipo) {
     }
     return modelo;
 }
+public DefaultTableModel MostrarMantenimientoPorFecha(String fechaDesde, String fechaHasta) {
+    // Los títulos de tu tabla de Mantenimiento (ajusta si es necesario)
+ String[] titulos = {"Tipo Horno", "Fecha Reparación", "Detalle Reparación", "Materiales Usados"};
+ DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
+        @Override
+        public boolean isCellEditable(int row, int column) { return false; }
+    };
+
+    // La columna de fecha en tu tabla 'mantenimientos' se llama 'fecha'
+    String sql = "SELECT h.tipo, m.fecha_creacion, m.detalles_reparacion, m.materiales_remplazados FROM hornos h INNER JOIN mantenimientos m ON h.idh = m.idh WHERE m.fecha_creacion >= ? AND m.fecha_creacion <= ?";
+    
+    ConexionBDD nuevaC = new ConexionBDD(); // O tu método de conexión
+    
+    try (Connection con = nuevaC.conectar();
+         PreparedStatement pst = con.prepareStatement(sql)) {
+
+        pst.setString(1, fechaDesde);
+        pst.setString(2, fechaHasta);
+        
+        try (ResultSet rs = pst.executeQuery()) {
+            while (rs.next()) {
+            Object[] fila = new Object[4]; 
+            fila[0] = rs.getString("tipo");
+            fila[1] = rs.getString("fecha_creacion"); 
+            fila[2] = rs.getString("detalles_reparacion");
+            fila[3] = rs.getString("materiales_remplazados");
+           
+                modelo.addRow(fila);
+            }
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al consultar mantenimientos por fecha: " + e.getMessage());
+    }
+    return modelo;
+}
+public DefaultTableModel MostrarMantenimientoPorDetalle(String detalle) {
+ String[] titulos = {"Tipo Horno", "Fecha Reparación", "Detalle Reparación", "Materiales Usados"};
+    DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
+        @Override
+        public boolean isCellEditable(int row, int column) { return false; }
+    };
+    
+    // Buscamos en la columna 'detalles_reparacion'
+    String sql = "SELECT h.tipo, m.fecha_creacion, m.detalles_reparacion, m.materiales_remplazados FROM hornos h INNER JOIN mantenimientos m ON h.idh = m.idh WHERE detalles_reparacion LIKE ?";
+    
+    ConexionBDD nuevaC = new ConexionBDD();
+    
+    try (Connection con = nuevaC.conectar();
+         PreparedStatement pst = con.prepareStatement(sql)) {
+
+        pst.setString(1, "%" + detalle + "%"); 
+        
+        try (ResultSet rs = pst.executeQuery()) {
+          while (rs.next()) {
+            Object[] fila = new Object[4]; 
+            fila[0] = rs.getString("tipo");
+            fila[1] = rs.getString("fecha_creacion"); 
+            fila[2] = rs.getString("detalles_reparacion");
+            fila[3] = rs.getString("materiales_remplazados");
+           
+                modelo.addRow(fila);
+            }
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al consultar mantenimientos por detalle: " + e.getMessage());
+    }
+    return modelo;
+}
 public DefaultTableModel MostrarFuncionamiento() {
     // Definimos los títulos que tendrá la tabla
     String[] titulos = {"IDF", "IDH", "Temp. Interna", "T. Cocción", "Alimento", "Estado", "Fecha Op.", "Hora Op."};
@@ -561,6 +629,80 @@ public DefaultTableModel MostrarAutosustentable() {
         JOptionPane.showMessageDialog(null, "Error al cargar datos de autosustentable: " + e.getMessage());
     }
             
+    return modelo;
+}
+public DefaultTableModel MostrarFuncionamientoPorFecha(String fechaDesde, String fechaHasta) {
+    // Títulos (Asegúrate de que coincidan con tu 'consultaFuncionamiento')
+    String[] titulos = {"IDF", "IDH", "Temp. Interna", "T. Cocción", "Alimento", "Estado", "Fecha Op.", "Hora Op."};
+    DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
+        @Override public boolean isCellEditable(int row, int column) { return false; }
+    };
+
+    // Usamos la columna 'fecha_operacion' de la tabla 'funcionamiento'
+    String sql = "SELECT * FROM funcionamiento WHERE fecha_operacion >= ? AND fecha_operacion <= ?";
+
+    ConexionBDD nuevaC = new ConexionBDD();
+    try (Connection con = nuevaC.conectar();
+         PreparedStatement pst = con.prepareStatement(sql)) {
+
+        pst.setString(1, fechaDesde);
+        pst.setString(2, fechaHasta);
+
+        try (ResultSet rs = pst.executeQuery()) {
+            while (rs.next()) {
+            // 8 columnas
+            Object[] fila = new Object[8];
+            fila[0] = rs.getInt("IDF");
+            fila[1] = rs.getInt("IDH");
+            fila[2] = rs.getInt("temperatura_interna");
+            fila[3] = rs.getString("tiempo_coccion"); // Lo leemos como String
+            fila[4] = rs.getString("tipo_alimento");
+            fila[5] = rs.getString("estado_horno");
+            fila[6] = rs.getString("fecha_operacion"); // O rs.getDate()
+            fila[7] = rs.getString("hora_operacion");  // O rs.getTime()
+
+            modelo.addRow(fila);
+        }
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al consultar funcionamiento por fecha: " + e.getMessage());
+    }
+    return modelo;
+}
+public DefaultTableModel MostrarFuncionamientoPorAlimento(String alimento) {
+    String[] titulos = {"IDF", "IDH", "Temp. Interna", "T. Cocción", "Alimento", "Estado", "Fecha Op.", "Hora Op."};
+    DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
+        @Override public boolean isCellEditable(int row, int column) { return false; }
+    };
+
+    // Buscamos usando 'tipo_alimento' [cite: 26]
+    String sql = "SELECT * FROM funcionamiento WHERE tipo_alimento LIKE ?";
+
+    ConexionBDD nuevaC = new ConexionBDD();
+    try (Connection con = nuevaC.conectar();
+         PreparedStatement pst = con.prepareStatement(sql)) {
+
+        pst.setString(1, "%" + alimento + "%");
+
+        try (ResultSet rs = pst.executeQuery()) {
+             while (rs.next()) {
+            // 8 columnas
+            Object[] fila = new Object[8];
+            fila[0] = rs.getInt("IDF");
+            fila[1] = rs.getInt("IDH");
+            fila[2] = rs.getInt("temperatura_interna");
+            fila[3] = rs.getString("tiempo_coccion"); // Lo leemos como String
+            fila[4] = rs.getString("tipo_alimento");
+            fila[5] = rs.getString("estado_horno");
+            fila[6] = rs.getString("fecha_operacion"); // O rs.getDate()
+            fila[7] = rs.getString("hora_operacion");  // O rs.getTime()
+
+            modelo.addRow(fila);
+        }
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al consultar por alimento: " + e.getMessage());
+    }
     return modelo;
 }
  }

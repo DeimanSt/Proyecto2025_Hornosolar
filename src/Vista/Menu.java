@@ -39,10 +39,19 @@ public class Menu extends javax.swing.JFrame {
         //Creamos dos grupos para diferentes radio button, uno es para hornos, y otro para parametros operativos
         //Grupo busqueda para horno 
         javax.swing.ButtonGroup grupoBusqueda = new javax.swing.ButtonGroup();
-        grupoBusqueda.add(rbPorBusqueda);
-        grupoBusqueda.add(rbPorFecha);
-        rbPorFecha.setSelected(true);
-        txb_buscar.setEnabled(false);
+        grupoBusqueda.add(rbPorBusquedaHornos);
+        grupoBusqueda.add(rbPorFechaHornos);
+        rbPorFechaHornos.setSelected(true);
+        txb_buscarHornos.setEnabled(false);
+        grupoBusqueda.add(rbPorBusquedaMantenimiento);
+        grupoBusqueda.add(rbPorFechaMantenimiento);
+        rbPorFechaMantenimiento.setSelected(true);
+        txb_buscarMantenimiento.setEnabled(false);
+        grupoBusqueda.add(rbPorBusquedaFunciones);
+        grupoBusqueda.add(rbPorFechaFunciones);
+        rbPorFechaFunciones.setSelected(true);
+        txb_buscarFuncionamiento.setEnabled(false);
+        
         //Grupo hora (para elegir si queremos automatico o manual) para parametros operativos
 
         javax.swing.ButtonGroup grupoHoraMoA = new javax.swing.ButtonGroup();
@@ -88,18 +97,18 @@ public class Menu extends javax.swing.JFrame {
         btn_IngresarHornos = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
         jDesktopPane2 = new javax.swing.JDesktopPane();
-        rbPorFecha = new javax.swing.JRadioButton();
-        rbPorBusqueda = new javax.swing.JRadioButton();
+        rbPorFechaHornos = new javax.swing.JRadioButton();
+        rbPorBusquedaHornos = new javax.swing.JRadioButton();
         jLabel23 = new javax.swing.JLabel();
         Jd_FechaFinal = new com.toedter.calendar.JDateChooser();
-        Jd_fechaInicio = new com.toedter.calendar.JDateChooser();
+        Jd_fechaInicioHornos = new com.toedter.calendar.JDateChooser();
         jLabel27 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        txb_buscar = new javax.swing.JTextField();
+        txb_buscarHornos = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        btn_Buscar = new javax.swing.JButton();
-        btn_Resetear = new javax.swing.JButton();
-        txb_CantidadFilas = new javax.swing.JTextField();
+        btn_BuscarHorno = new javax.swing.JButton();
+        btn_ResetearHorno = new javax.swing.JButton();
+        txb_CantidadFilasHornos = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jPanelMantenimiento = new javax.swing.JPanel();
@@ -120,6 +129,20 @@ public class Menu extends javax.swing.JFrame {
         tblDatoHornoMante = new javax.swing.JTable();
         jLabel31 = new javax.swing.JLabel();
         btn_IngresarMantenimiento = new javax.swing.JButton();
+        jDesktopPane5 = new javax.swing.JDesktopPane();
+        rbPorFechaMantenimiento = new javax.swing.JRadioButton();
+        rbPorBusquedaMantenimiento = new javax.swing.JRadioButton();
+        jLabel64 = new javax.swing.JLabel();
+        Jd_FechaFinalMantenimiento = new com.toedter.calendar.JDateChooser();
+        Jd_fechaInicioMantenimiento = new com.toedter.calendar.JDateChooser();
+        jLabel65 = new javax.swing.JLabel();
+        jLabel66 = new javax.swing.JLabel();
+        txb_buscarMantenimiento = new javax.swing.JTextField();
+        jLabel67 = new javax.swing.JLabel();
+        btn_BuscarMantenimiento = new javax.swing.JButton();
+        btn_ResetearMantenimiento = new javax.swing.JButton();
+        txb_CantidadFilasMantenimiento = new javax.swing.JTextField();
+        jLabel68 = new javax.swing.JLabel();
         jPanelFuncionamiento = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
@@ -146,6 +169,20 @@ public class Menu extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         tblDatoFuncionamiento = new javax.swing.JTable();
         jLabel53 = new javax.swing.JLabel();
+        jDesktopPane4 = new javax.swing.JDesktopPane();
+        rbPorFechaFunciones = new javax.swing.JRadioButton();
+        rbPorBusquedaFunciones = new javax.swing.JRadioButton();
+        jLabel56 = new javax.swing.JLabel();
+        Jd_FechaFinalFuncionamiento = new com.toedter.calendar.JDateChooser();
+        Jd_fechaInicioFuncionamiento = new com.toedter.calendar.JDateChooser();
+        jLabel57 = new javax.swing.JLabel();
+        jLabel61 = new javax.swing.JLabel();
+        txb_buscarFuncionamiento = new javax.swing.JTextField();
+        jLabel62 = new javax.swing.JLabel();
+        btn_BuscarFuncionamiento = new javax.swing.JButton();
+        btn_ResetearBusquedaFuncionamiento = new javax.swing.JButton();
+        txb_CantidadFilasFunciones = new javax.swing.JTextField();
+        jLabel63 = new javax.swing.JLabel();
         jPanelAutosustentable = new javax.swing.JPanel();
         jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
@@ -169,6 +206,20 @@ public class Menu extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         tblDatoAutosustentable = new javax.swing.JTable();
         jLabel52 = new javax.swing.JLabel();
+        jDesktopPane6 = new javax.swing.JDesktopPane();
+        rbPorFechaAutosustentabilidad = new javax.swing.JRadioButton();
+        rbPorBusquedaAutosustentabilidad = new javax.swing.JRadioButton();
+        jLabel69 = new javax.swing.JLabel();
+        Jd_FechaFinalAutosustentable = new com.toedter.calendar.JDateChooser();
+        Jd_fechaInicioAutosustentable = new com.toedter.calendar.JDateChooser();
+        jLabel70 = new javax.swing.JLabel();
+        jLabel71 = new javax.swing.JLabel();
+        txb_buscarAutosustentable = new javax.swing.JTextField();
+        jLabel72 = new javax.swing.JLabel();
+        btn_BuscarAutosustentable = new javax.swing.JButton();
+        btn_ResetearAutosustentable = new javax.swing.JButton();
+        txb_CantidadFilasAutosustentable = new javax.swing.JTextField();
+        jLabel73 = new javax.swing.JLabel();
         jPanelAmbiente = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
         btn_IngresarAmbiente = new javax.swing.JButton();
@@ -191,6 +242,20 @@ public class Menu extends javax.swing.JFrame {
         jScrollPane8 = new javax.swing.JScrollPane();
         tblDatoAmbiente = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
+        jDesktopPane3 = new javax.swing.JDesktopPane();
+        rbPorFechaAmbiente = new javax.swing.JRadioButton();
+        rbPorBusquedaAmbiente = new javax.swing.JRadioButton();
+        jLabel29 = new javax.swing.JLabel();
+        Jd_FechaFinalAmbiente = new com.toedter.calendar.JDateChooser();
+        Jd_fechaAmbiente = new com.toedter.calendar.JDateChooser();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        txb_buscarAmbiente = new javax.swing.JTextField();
+        jLabel54 = new javax.swing.JLabel();
+        btn_BuscarAmbiente = new javax.swing.JButton();
+        btn_ResetearAmbiente = new javax.swing.JButton();
+        txb_CantidadFilasAmbiente = new javax.swing.JTextField();
+        jLabel55 = new javax.swing.JLabel();
         jPanelPrincipal = new javax.swing.JPanel();
         lblMantenimiento = new javax.swing.JLabel();
         lblHorno = new javax.swing.JLabel();
@@ -249,7 +314,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(tblDatoHorno);
 
-        jPanelHornosSolares.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, 630, 180));
+        jPanelHornosSolares.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 630, 200));
 
         txb_tipo.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
         txb_tipo.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -315,25 +380,26 @@ public class Menu extends javax.swing.JFrame {
         jLabel25.setText("Reflectores");
         jPanelHornosSolares.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, -1));
 
+        jDesktopPane2.setBackground(new java.awt.Color(71, 76, 86));
         jDesktopPane2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        rbPorFecha.setForeground(new java.awt.Color(255, 255, 255));
-        rbPorFecha.setText("Por fechas (Inicio/Fin)");
-        rbPorFecha.addActionListener(new java.awt.event.ActionListener() {
+        rbPorFechaHornos.setForeground(new java.awt.Color(255, 255, 255));
+        rbPorFechaHornos.setText("Por fechas (Inicio/Fin)");
+        rbPorFechaHornos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbPorFechaActionPerformed(evt);
+                rbPorFechaHornosActionPerformed(evt);
             }
         });
-        jDesktopPane2.add(rbPorFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, -1, 20));
+        jDesktopPane2.add(rbPorFechaHornos, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, -1, 20));
 
-        rbPorBusqueda.setForeground(new java.awt.Color(255, 255, 255));
-        rbPorBusqueda.setText("Por busqueda");
-        rbPorBusqueda.addActionListener(new java.awt.event.ActionListener() {
+        rbPorBusquedaHornos.setForeground(new java.awt.Color(255, 255, 255));
+        rbPorBusquedaHornos.setText("Por busqueda");
+        rbPorBusquedaHornos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbPorBusquedaActionPerformed(evt);
+                rbPorBusquedaHornosActionPerformed(evt);
             }
         });
-        jDesktopPane2.add(rbPorBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, -1, 20));
+        jDesktopPane2.add(rbPorBusquedaHornos, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, -1, 20));
 
         jLabel23.setBackground(new java.awt.Color(255, 255, 255));
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -344,8 +410,8 @@ public class Menu extends javax.swing.JFrame {
         Jd_FechaFinal.setDateFormatString("yyyy-MM-dd");
         jDesktopPane2.add(Jd_FechaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 153, 30));
 
-        Jd_fechaInicio.setDateFormatString("yyyy-MM-dd");
-        jDesktopPane2.add(Jd_fechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 153, 30));
+        Jd_fechaInicioHornos.setDateFormatString("yyyy-MM-dd");
+        jDesktopPane2.add(Jd_fechaInicioHornos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 153, 30));
 
         jLabel27.setBackground(new java.awt.Color(255, 255, 255));
         jLabel27.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -359,8 +425,8 @@ public class Menu extends javax.swing.JFrame {
         jLabel26.setText("Buscar:");
         jDesktopPane2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 80, 30));
 
-        txb_buscar.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
-        jDesktopPane2.add(txb_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 500, 30));
+        txb_buscarHornos.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        jDesktopPane2.add(txb_buscarHornos, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 500, 30));
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Candara", 2, 14)); // NOI18N
@@ -368,34 +434,34 @@ public class Menu extends javax.swing.JFrame {
         jLabel9.setText("Metodo de busqueda:");
         jDesktopPane2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, -1, 20));
 
-        btn_Buscar.setBackground(new java.awt.Color(66, 93, 119));
-        btn_Buscar.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
-        btn_Buscar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Buscar.setText("Buscar");
-        btn_Buscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_Buscar.setBorderPainted(false);
-        btn_Buscar.addActionListener(new java.awt.event.ActionListener() {
+        btn_BuscarHorno.setBackground(new java.awt.Color(56, 60, 68));
+        btn_BuscarHorno.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
+        btn_BuscarHorno.setForeground(new java.awt.Color(255, 255, 255));
+        btn_BuscarHorno.setText("Buscar");
+        btn_BuscarHorno.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_BuscarHorno.setBorderPainted(false);
+        btn_BuscarHorno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_BuscarActionPerformed(evt);
+                btn_BuscarHornoActionPerformed(evt);
             }
         });
-        jDesktopPane2.add(btn_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 180, 50));
+        jDesktopPane2.add(btn_BuscarHorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 190, 40));
 
-        btn_Resetear.setBackground(new java.awt.Color(55, 87, 125));
-        btn_Resetear.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
-        btn_Resetear.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Resetear.setText("Resetear");
-        btn_Resetear.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_Resetear.setBorderPainted(false);
-        btn_Resetear.addActionListener(new java.awt.event.ActionListener() {
+        btn_ResetearHorno.setBackground(new java.awt.Color(56, 60, 68));
+        btn_ResetearHorno.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
+        btn_ResetearHorno.setForeground(new java.awt.Color(255, 255, 255));
+        btn_ResetearHorno.setText("Resetear");
+        btn_ResetearHorno.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_ResetearHorno.setBorderPainted(false);
+        btn_ResetearHorno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ResetearActionPerformed(evt);
+                btn_ResetearHornoActionPerformed(evt);
             }
         });
-        jDesktopPane2.add(btn_Resetear, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, 180, 50));
+        jDesktopPane2.add(btn_ResetearHorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 190, 40));
 
-        txb_CantidadFilas.setEditable(false);
-        jDesktopPane2.add(txb_CantidadFilas, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 110, -1));
+        txb_CantidadFilasHornos.setEditable(false);
+        jDesktopPane2.add(txb_CantidadFilasHornos, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 110, -1));
 
         jLabel28.setBackground(new java.awt.Color(255, 255, 255));
         jLabel28.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -403,7 +469,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel28.setText("Fecha final");
         jDesktopPane2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 120, 20));
 
-        jPanelHornosSolares.add(jDesktopPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 630, 210));
+        jPanelHornosSolares.add(jDesktopPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 630, 200));
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
@@ -415,25 +481,25 @@ public class Menu extends javax.swing.JFrame {
 
         jPanelMantenimiento.setBackground(new java.awt.Color(91, 91, 91));
         jPanelMantenimiento.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanelMantenimiento.add(txtIDMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, 40, -1));
+        jPanelMantenimiento.add(txtIDMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Lista de hornos en reparación");
-        jPanelMantenimiento.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 80, 300, 30));
+        jLabel8.setText("Lista de hornos en reparación / reparados");
+        jPanelMantenimiento.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 60, 420, 30));
 
         Jd_fecha.setDateFormatString("yyyy-MM-dd");
-        jPanelMantenimiento.add(Jd_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 194, 33));
+        jPanelMantenimiento.add(Jd_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 150, 33));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Detalles de la Reparacion");
-        jPanelMantenimiento.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
+        jPanelMantenimiento.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 230, -1));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Materiales Remplazados");
-        jPanelMantenimiento.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
+        jPanelMantenimiento.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 220, -1));
 
         jLabel1.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -443,7 +509,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Fecha creacion");
-        jPanelMantenimiento.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, -1, -1));
+        jPanelMantenimiento.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 150, -1));
 
         tblDatoReparados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -460,21 +526,21 @@ public class Menu extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tblDatoReparados);
 
-        jPanelMantenimiento.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 510, 260));
+        jPanelMantenimiento.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 290, 610, 200));
 
         txb_detallesr.setColumns(20);
         txb_detallesr.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txb_detallesr.setRows(5);
         jScrollPane1.setViewportView(txb_detallesr);
 
-        jPanelMantenimiento.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 268, 150));
+        jPanelMantenimiento.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 190, 100));
 
         txb_materialesr.setColumns(20);
         txb_materialesr.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txb_materialesr.setRows(5);
         jScrollPane2.setViewportView(txb_materialesr);
 
-        jPanelMantenimiento.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 268, 150));
+        jPanelMantenimiento.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 190, 100));
 
         tblDatoHornoMante.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -483,12 +549,12 @@ public class Menu extends javax.swing.JFrame {
         });
         jScrollPane13.setViewportView(tblDatoHornoMante);
 
-        jPanelMantenimiento.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, 190, 60));
+        jPanelMantenimiento.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 150, 60));
 
         jLabel31.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(255, 255, 255));
         jLabel31.setText("Lista de hornos ingresados");
-        jPanelMantenimiento.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, -1, -1));
+        jPanelMantenimiento.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 280, -1));
 
         btn_IngresarMantenimiento.setBackground(new java.awt.Color(51, 153, 0));
         btn_IngresarMantenimiento.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
@@ -501,7 +567,98 @@ public class Menu extends javax.swing.JFrame {
                 btn_IngresarMantenimientoActionPerformed(evt);
             }
         });
-        jPanelMantenimiento.add(btn_IngresarMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 330, -1));
+        jPanelMantenimiento.add(btn_IngresarMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 400, 330, -1));
+
+        jDesktopPane5.setBackground(new java.awt.Color(213, 167, 99));
+        jDesktopPane5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        rbPorFechaMantenimiento.setForeground(new java.awt.Color(255, 255, 255));
+        rbPorFechaMantenimiento.setText("Por fechas (Inicio/Fin)");
+        rbPorFechaMantenimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbPorFechaMantenimientoActionPerformed(evt);
+            }
+        });
+        jDesktopPane5.add(rbPorFechaMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, -1, 20));
+
+        rbPorBusquedaMantenimiento.setForeground(new java.awt.Color(255, 255, 255));
+        rbPorBusquedaMantenimiento.setText("Por busqueda");
+        rbPorBusquedaMantenimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbPorBusquedaMantenimientoActionPerformed(evt);
+            }
+        });
+        jDesktopPane5.add(rbPorBusquedaMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, -1, 20));
+
+        jLabel64.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel64.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel64.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel64.setText("Cantidad de filas");
+        jDesktopPane5.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 150, 20));
+
+        Jd_FechaFinalMantenimiento.setDateFormatString("yyyy-MM-dd");
+        jDesktopPane5.add(Jd_FechaFinalMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 153, 30));
+
+        Jd_fechaInicioMantenimiento.setDateFormatString("yyyy-MM-dd");
+        jDesktopPane5.add(Jd_fechaInicioMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 153, 30));
+
+        jLabel65.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel65.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel65.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel65.setText("Fecha inicio");
+        jDesktopPane5.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 120, 20));
+
+        jLabel66.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel66.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel66.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel66.setText("Buscar:");
+        jDesktopPane5.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 80, 30));
+
+        txb_buscarMantenimiento.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        jDesktopPane5.add(txb_buscarMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 490, 30));
+
+        jLabel67.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel67.setFont(new java.awt.Font("Candara", 2, 14)); // NOI18N
+        jLabel67.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel67.setText("Metodo de busqueda:");
+        jDesktopPane5.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, -1, 20));
+
+        btn_BuscarMantenimiento.setBackground(new java.awt.Color(182, 149, 98));
+        btn_BuscarMantenimiento.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
+        btn_BuscarMantenimiento.setForeground(new java.awt.Color(255, 255, 255));
+        btn_BuscarMantenimiento.setText("Buscar");
+        btn_BuscarMantenimiento.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_BuscarMantenimiento.setBorderPainted(false);
+        btn_BuscarMantenimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_BuscarMantenimientoActionPerformed(evt);
+            }
+        });
+        jDesktopPane5.add(btn_BuscarMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 190, 40));
+
+        btn_ResetearMantenimiento.setBackground(new java.awt.Color(182, 149, 98));
+        btn_ResetearMantenimiento.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
+        btn_ResetearMantenimiento.setForeground(new java.awt.Color(255, 255, 255));
+        btn_ResetearMantenimiento.setText("Resetear");
+        btn_ResetearMantenimiento.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_ResetearMantenimiento.setBorderPainted(false);
+        btn_ResetearMantenimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ResetearMantenimientoActionPerformed(evt);
+            }
+        });
+        jDesktopPane5.add(btn_ResetearMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 160, 180, 40));
+
+        txb_CantidadFilasMantenimiento.setEditable(false);
+        jDesktopPane5.add(txb_CantidadFilasMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 110, -1));
+
+        jLabel68.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel68.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel68.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel68.setText("Fecha final");
+        jDesktopPane5.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 120, 20));
+
+        jPanelMantenimiento.add(jDesktopPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, 610, 200));
 
         getContentPane().add(jPanelMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 1100, 510));
 
@@ -568,6 +725,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel14.setText("Tipo de Alimento");
         jPanelFuncionamiento.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
+        jDesktopPane1.setBackground(new java.awt.Color(89, 49, 49));
         jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         rbManual.setForeground(new java.awt.Color(255, 255, 255));
@@ -639,7 +797,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel13.setText("Lista de hornos ingresados");
         jDesktopPane1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
 
-        jPanelFuncionamiento.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, 190));
+        jPanelFuncionamiento.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 380, 190));
 
         jLabel38.setBackground(new java.awt.Color(255, 255, 255));
         jLabel38.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -659,12 +817,103 @@ public class Menu extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(tblDatoFuncionamiento);
 
-        jPanelFuncionamiento.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, 600, 290));
+        jPanelFuncionamiento.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 280, 620, 220));
 
         jLabel53.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel53.setForeground(new java.awt.Color(255, 255, 255));
         jLabel53.setText("Tabla funcionamiento del horno ingresado ");
-        jPanelFuncionamiento.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 90, -1, 30));
+        jPanelFuncionamiento.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 40, -1, 30));
+
+        jDesktopPane4.setBackground(new java.awt.Color(89, 49, 49));
+        jDesktopPane4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        rbPorFechaFunciones.setForeground(new java.awt.Color(255, 255, 255));
+        rbPorFechaFunciones.setText("Por fechas (Inicio/Fin)");
+        rbPorFechaFunciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbPorFechaFuncionesActionPerformed(evt);
+            }
+        });
+        jDesktopPane4.add(rbPorFechaFunciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, -1, 20));
+
+        rbPorBusquedaFunciones.setForeground(new java.awt.Color(255, 255, 255));
+        rbPorBusquedaFunciones.setText("Por busqueda");
+        rbPorBusquedaFunciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbPorBusquedaFuncionesActionPerformed(evt);
+            }
+        });
+        jDesktopPane4.add(rbPorBusquedaFunciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, -1, 20));
+
+        jLabel56.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel56.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel56.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel56.setText("Cantidad de filas");
+        jDesktopPane4.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 150, 20));
+
+        Jd_FechaFinalFuncionamiento.setDateFormatString("yyyy-MM-dd");
+        jDesktopPane4.add(Jd_FechaFinalFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 153, 30));
+
+        Jd_fechaInicioFuncionamiento.setDateFormatString("yyyy-MM-dd");
+        jDesktopPane4.add(Jd_fechaInicioFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 153, 30));
+
+        jLabel57.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel57.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel57.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel57.setText("Fecha inicio");
+        jDesktopPane4.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 120, 20));
+
+        jLabel61.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel61.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel61.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel61.setText("Buscar:");
+        jDesktopPane4.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 80, 30));
+
+        txb_buscarFuncionamiento.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        jDesktopPane4.add(txb_buscarFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 500, 30));
+
+        jLabel62.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel62.setFont(new java.awt.Font("Candara", 2, 14)); // NOI18N
+        jLabel62.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel62.setText("Metodo de busqueda:");
+        jDesktopPane4.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, -1, 20));
+
+        btn_BuscarFuncionamiento.setBackground(new java.awt.Color(104, 56, 56));
+        btn_BuscarFuncionamiento.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
+        btn_BuscarFuncionamiento.setForeground(new java.awt.Color(255, 255, 255));
+        btn_BuscarFuncionamiento.setText("Buscar");
+        btn_BuscarFuncionamiento.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_BuscarFuncionamiento.setBorderPainted(false);
+        btn_BuscarFuncionamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_BuscarFuncionamientoActionPerformed(evt);
+            }
+        });
+        jDesktopPane4.add(btn_BuscarFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 190, 40));
+
+        btn_ResetearBusquedaFuncionamiento.setBackground(new java.awt.Color(104, 56, 56));
+        btn_ResetearBusquedaFuncionamiento.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
+        btn_ResetearBusquedaFuncionamiento.setForeground(new java.awt.Color(255, 255, 255));
+        btn_ResetearBusquedaFuncionamiento.setText("Resetear");
+        btn_ResetearBusquedaFuncionamiento.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_ResetearBusquedaFuncionamiento.setBorderPainted(false);
+        btn_ResetearBusquedaFuncionamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ResetearBusquedaFuncionamientoActionPerformed(evt);
+            }
+        });
+        jDesktopPane4.add(btn_ResetearBusquedaFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 160, 190, 40));
+
+        txb_CantidadFilasFunciones.setEditable(false);
+        jDesktopPane4.add(txb_CantidadFilasFunciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 110, -1));
+
+        jLabel63.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel63.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel63.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel63.setText("Fecha final");
+        jDesktopPane4.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 120, 20));
+
+        jPanelFuncionamiento.add(jDesktopPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 620, 200));
 
         getContentPane().add(jPanelFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 1090, 510));
 
@@ -770,7 +1019,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel51.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel51.setForeground(new java.awt.Color(255, 255, 255));
         jLabel51.setText("Tabla autosustentable de horno ingresado");
-        jPanelAutosustentable.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, -1, -1));
+        jPanelAutosustentable.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 80, -1, -1));
         jPanelAutosustentable.add(txtIDAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 56, -1));
 
         tblDatoAutosustentable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -785,12 +1034,103 @@ public class Menu extends javax.swing.JFrame {
         });
         jScrollPane7.setViewportView(tblDatoAutosustentable);
 
-        jPanelAutosustentable.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 510, 270));
+        jPanelAutosustentable.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, 610, 170));
 
         jLabel52.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel52.setForeground(new java.awt.Color(255, 255, 255));
         jLabel52.setText("Energia Almacenada");
         jPanelAutosustentable.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, -1, -1));
+
+        jDesktopPane6.setBackground(new java.awt.Color(71, 139, 93));
+        jDesktopPane6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        rbPorFechaAutosustentabilidad.setForeground(new java.awt.Color(255, 255, 255));
+        rbPorFechaAutosustentabilidad.setText("Por fechas (Inicio/Fin)");
+        rbPorFechaAutosustentabilidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbPorFechaAutosustentabilidadActionPerformed(evt);
+            }
+        });
+        jDesktopPane6.add(rbPorFechaAutosustentabilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, -1, 20));
+
+        rbPorBusquedaAutosustentabilidad.setForeground(new java.awt.Color(255, 255, 255));
+        rbPorBusquedaAutosustentabilidad.setText("Por busqueda");
+        rbPorBusquedaAutosustentabilidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbPorBusquedaAutosustentabilidadActionPerformed(evt);
+            }
+        });
+        jDesktopPane6.add(rbPorBusquedaAutosustentabilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, -1, 20));
+
+        jLabel69.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel69.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel69.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel69.setText("Cantidad de filas");
+        jDesktopPane6.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 150, 20));
+
+        Jd_FechaFinalAutosustentable.setDateFormatString("yyyy-MM-dd");
+        jDesktopPane6.add(Jd_FechaFinalAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 153, 30));
+
+        Jd_fechaInicioAutosustentable.setDateFormatString("yyyy-MM-dd");
+        jDesktopPane6.add(Jd_fechaInicioAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 153, 30));
+
+        jLabel70.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel70.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel70.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel70.setText("Fecha inicio");
+        jDesktopPane6.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 120, 20));
+
+        jLabel71.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel71.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel71.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel71.setText("Buscar:");
+        jDesktopPane6.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 80, 30));
+
+        txb_buscarAutosustentable.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        jDesktopPane6.add(txb_buscarAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 490, 30));
+
+        jLabel72.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel72.setFont(new java.awt.Font("Candara", 2, 14)); // NOI18N
+        jLabel72.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel72.setText("Metodo de busqueda:");
+        jDesktopPane6.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, -1, 20));
+
+        btn_BuscarAutosustentable.setBackground(new java.awt.Color(27, 109, 163));
+        btn_BuscarAutosustentable.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
+        btn_BuscarAutosustentable.setForeground(new java.awt.Color(255, 255, 255));
+        btn_BuscarAutosustentable.setText("Buscar");
+        btn_BuscarAutosustentable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_BuscarAutosustentable.setBorderPainted(false);
+        btn_BuscarAutosustentable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_BuscarAutosustentableActionPerformed(evt);
+            }
+        });
+        jDesktopPane6.add(btn_BuscarAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 190, 40));
+
+        btn_ResetearAutosustentable.setBackground(new java.awt.Color(27, 109, 163));
+        btn_ResetearAutosustentable.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
+        btn_ResetearAutosustentable.setForeground(new java.awt.Color(255, 255, 255));
+        btn_ResetearAutosustentable.setText("Resetear");
+        btn_ResetearAutosustentable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_ResetearAutosustentable.setBorderPainted(false);
+        btn_ResetearAutosustentable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ResetearAutosustentableActionPerformed(evt);
+            }
+        });
+        jDesktopPane6.add(btn_ResetearAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 190, 40));
+
+        txb_CantidadFilasAutosustentable.setEditable(false);
+        jDesktopPane6.add(txb_CantidadFilasAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 110, -1));
+
+        jLabel73.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel73.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel73.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel73.setText("Fecha final");
+        jDesktopPane6.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 120, 20));
+
+        jPanelAutosustentable.add(jDesktopPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 610, 210));
 
         getContentPane().add(jPanelAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 1100, 510));
 
@@ -895,13 +1235,104 @@ public class Menu extends javax.swing.JFrame {
         });
         jScrollPane8.setViewportView(tblDatoAmbiente);
 
-        jPanelAmbiente.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 110, 600, 290));
+        jPanelAmbiente.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, 660, 180));
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("Candara", 1, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Lista ambiente del horno ingresado");
-        jPanelAmbiente.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, -1, -1));
+        jPanelAmbiente.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 70, -1, -1));
+
+        jDesktopPane3.setBackground(new java.awt.Color(144, 176, 150));
+        jDesktopPane3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        rbPorFechaAmbiente.setForeground(new java.awt.Color(255, 255, 255));
+        rbPorFechaAmbiente.setText("Por fechas (Inicio/Fin)");
+        rbPorFechaAmbiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbPorFechaAmbienteActionPerformed(evt);
+            }
+        });
+        jDesktopPane3.add(rbPorFechaAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, -1, 20));
+
+        rbPorBusquedaAmbiente.setForeground(new java.awt.Color(255, 255, 255));
+        rbPorBusquedaAmbiente.setText("Por busqueda");
+        rbPorBusquedaAmbiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbPorBusquedaAmbienteActionPerformed(evt);
+            }
+        });
+        jDesktopPane3.add(rbPorBusquedaAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, -1, 20));
+
+        jLabel29.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel29.setText("Cantidad de filas");
+        jDesktopPane3.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 150, 20));
+
+        Jd_FechaFinalAmbiente.setDateFormatString("yyyy-MM-dd");
+        jDesktopPane3.add(Jd_FechaFinalAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 153, 30));
+
+        Jd_fechaAmbiente.setDateFormatString("yyyy-MM-dd");
+        jDesktopPane3.add(Jd_fechaAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 153, 30));
+
+        jLabel30.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel30.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel30.setText("Fecha inicio");
+        jDesktopPane3.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 120, 20));
+
+        jLabel32.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel32.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel32.setText("Buscar:");
+        jDesktopPane3.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 80, 30));
+
+        txb_buscarAmbiente.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
+        jDesktopPane3.add(txb_buscarAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 500, 30));
+
+        jLabel54.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel54.setFont(new java.awt.Font("Candara", 2, 14)); // NOI18N
+        jLabel54.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel54.setText("Metodo de busqueda:");
+        jDesktopPane3.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, -1, 20));
+
+        btn_BuscarAmbiente.setBackground(new java.awt.Color(135, 157, 185));
+        btn_BuscarAmbiente.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
+        btn_BuscarAmbiente.setForeground(new java.awt.Color(255, 255, 255));
+        btn_BuscarAmbiente.setText("Buscar");
+        btn_BuscarAmbiente.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_BuscarAmbiente.setBorderPainted(false);
+        btn_BuscarAmbiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_BuscarAmbienteActionPerformed(evt);
+            }
+        });
+        jDesktopPane3.add(btn_BuscarAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 190, 40));
+
+        btn_ResetearAmbiente.setBackground(new java.awt.Color(135, 157, 185));
+        btn_ResetearAmbiente.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
+        btn_ResetearAmbiente.setForeground(new java.awt.Color(255, 255, 255));
+        btn_ResetearAmbiente.setText("Resetear");
+        btn_ResetearAmbiente.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_ResetearAmbiente.setBorderPainted(false);
+        btn_ResetearAmbiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ResetearAmbienteActionPerformed(evt);
+            }
+        });
+        jDesktopPane3.add(btn_ResetearAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 200, 40));
+
+        txb_CantidadFilasAmbiente.setEditable(false);
+        jDesktopPane3.add(txb_CantidadFilasAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 110, -1));
+
+        jLabel55.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel55.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel55.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel55.setText("Fecha final");
+        jDesktopPane3.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 120, 20));
+
+        jPanelAmbiente.add(jDesktopPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 660, 210));
 
         getContentPane().add(jPanelAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 1110, 510));
 
@@ -1081,6 +1512,7 @@ if (rbManual.isSelected()) {
             );
             INFU.InsertarFuncion(f);
             tblHornoFuncionamiento.setModel(INFU.consultaHornos());
+            tblDatoFuncionamiento.setModel(INFU.MostrarFuncionamiento());
 
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
@@ -1163,17 +1595,17 @@ if (rbManual.isSelected()) {
         }
     }//GEN-LAST:event_tblDatoHornoMouseClicked
 
-    private void btn_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarActionPerformed
+    private void btn_BuscarHornoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarHornoActionPerformed
     ClaseConsulta miConsulta = new ClaseConsulta();
     DefaultTableModel modelo; 
-    if (rbPorFecha.isSelected()) {
+    if (rbPorFechaHornos.isSelected()) {
         try {
-            if (Jd_fechaInicio.getDate() == null || Jd_FechaFinal.getDate() == null) {
+            if (Jd_fechaInicioHornos.getDate() == null || Jd_FechaFinal.getDate() == null) {
                 JOptionPane.showMessageDialog(this, "Debe seleccionar ambas fechas.", "Error", JOptionPane.WARNING_MESSAGE);
                 return;
             }
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String fechaDesde = sdf.format(Jd_fechaInicio.getDate());
+            String fechaDesde = sdf.format(Jd_fechaInicioHornos.getDate());
             String fechaHasta = sdf.format(Jd_FechaFinal.getDate());
 
             modelo = miConsulta.MostrarHornosPorFecha(fechaDesde, fechaHasta);
@@ -1184,9 +1616,9 @@ if (rbManual.isSelected()) {
             return;
         }
         
-    } else if (rbPorBusqueda.isSelected()) {
+    } else if (rbPorBusquedaHornos.isSelected()) {
         try {
-            String textoBusqueda = txb_buscar.getText();
+            String textoBusqueda = txb_buscarHornos.getText();
             if (textoBusqueda.trim().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Debe escribir un texto para buscar.", "Error", JOptionPane.WARNING_MESSAGE);
                 return;
@@ -1205,8 +1637,8 @@ if (rbManual.isSelected()) {
     }
     
     int cantidad = modelo.getRowCount();
-    txb_CantidadFilas.setText(String.valueOf(cantidad));
-    }//GEN-LAST:event_btn_BuscarActionPerformed
+    txb_CantidadFilasHornos.setText(String.valueOf(cantidad));
+    }//GEN-LAST:event_btn_BuscarHornoActionPerformed
 
     private void lblMantenimientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMantenimientoMouseClicked
         jPanelHornosSolares.setVisible(false);
@@ -1325,37 +1757,37 @@ if (rbManual.isSelected()) {
 
     }//GEN-LAST:event_btn_IngresarHornosActionPerformed
 
-    private void rbPorFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorFechaActionPerformed
+    private void rbPorFechaHornosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorFechaHornosActionPerformed
 // Si selecciona "Fecha", activamos las fechas y desactivamos el texto
         Jd_FechaFinal.setEnabled(true);
-        Jd_fechaInicio.setEnabled(true);
-        txb_buscar.setEnabled(false);
+        Jd_fechaInicioHornos.setEnabled(true);
+        txb_buscarHornos.setEnabled(false);
 
-    }//GEN-LAST:event_rbPorFechaActionPerformed
+    }//GEN-LAST:event_rbPorFechaHornosActionPerformed
 
-    private void rbPorBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorBusquedaActionPerformed
+    private void rbPorBusquedaHornosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorBusquedaHornosActionPerformed
         Jd_FechaFinal.setEnabled(false);
-        Jd_fechaInicio.setEnabled(false);
-        txb_buscar.setEnabled(true);    }//GEN-LAST:event_rbPorBusquedaActionPerformed
+        Jd_fechaInicioHornos.setEnabled(false);
+        txb_buscarHornos.setEnabled(true);    }//GEN-LAST:event_rbPorBusquedaHornosActionPerformed
 
-    private void btn_ResetearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ResetearActionPerformed
+    private void btn_ResetearHornoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ResetearHornoActionPerformed
     ClaseConsulta RH = new ClaseConsulta();
     DefaultTableModel modelo = RH.MostrarHornos();
     tblDatoHorno.setModel(modelo);
  
     int cantidad = modelo.getRowCount();
-    txb_CantidadFilas.setText(String.valueOf(cantidad));
+    txb_CantidadFilasHornos.setText(String.valueOf(cantidad));
     
-    Jd_fechaInicio.setDate(null);
+    Jd_fechaInicioHornos.setDate(null);
     Jd_FechaFinal.setDate(null);
-    txb_buscar.setText("");
+    txb_buscarHornos.setText("");
     
-    rbPorFecha.setSelected(true);
-    Jd_fechaInicio.setEnabled(true);
+    rbPorFechaHornos.setSelected(true);
+    Jd_fechaInicioHornos.setEnabled(true);
     Jd_FechaFinal.setEnabled(true);
-    txb_buscar.setEnabled(false);
+    txb_buscarHornos.setEnabled(false);
          
-    }//GEN-LAST:event_btn_ResetearActionPerformed
+    }//GEN-LAST:event_btn_ResetearHornoActionPerformed
 
     private void tblDatoFuncionamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoFuncionamientoMouseClicked
         // TODO add your handling code here:
@@ -1384,6 +1816,200 @@ if (rbManual.isSelected()) {
     private void txtIDFuncionamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDFuncionamientoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDFuncionamientoActionPerformed
+
+    private void rbPorFechaAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorFechaAmbienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbPorFechaAmbienteActionPerformed
+
+    private void rbPorBusquedaAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorBusquedaAmbienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbPorBusquedaAmbienteActionPerformed
+
+    private void btn_BuscarAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarAmbienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_BuscarAmbienteActionPerformed
+
+    private void btn_ResetearAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ResetearAmbienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_ResetearAmbienteActionPerformed
+
+    private void rbPorFechaFuncionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorFechaFuncionesActionPerformed
+Jd_FechaFinalFuncionamiento.setEnabled(true);
+        Jd_fechaInicioFuncionamiento.setEnabled(true);
+        txb_buscarFuncionamiento.setEnabled(false);    }//GEN-LAST:event_rbPorFechaFuncionesActionPerformed
+
+    private void rbPorBusquedaFuncionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorBusquedaFuncionesActionPerformed
+Jd_FechaFinalFuncionamiento.setEnabled(false);
+        Jd_fechaInicioFuncionamiento.setEnabled(false);
+        txb_buscarFuncionamiento.setEnabled(true);    }//GEN-LAST:event_rbPorBusquedaFuncionesActionPerformed
+
+    private void btn_BuscarFuncionamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarFuncionamientoActionPerformed
+ClaseConsulta miConsulta = new ClaseConsulta();
+    DefaultTableModel modelo; 
+    
+    if (rbPorFechaFunciones.isSelected()) { 
+        try {
+            if (Jd_fechaInicioFuncionamiento.getDate() == null || Jd_FechaFinalFuncionamiento.getDate() == null) { 
+                JOptionPane.showMessageDialog(this, "Debe seleccionar ambas fechas.", "Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaDesde = sdf.format(Jd_fechaInicioFuncionamiento.getDate());
+            String fechaHasta = sdf.format(Jd_FechaFinalFuncionamiento.getDate());
+
+            // Llama al NUEVO método
+            modelo = miConsulta.MostrarFuncionamientoPorFecha(fechaDesde, fechaHasta);
+            tblDatoFuncionamiento.setModel(modelo); // Carga en la tabla de Mantenimiento
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al buscar por fecha: " + e.getMessage());
+            return;
+        }
+        
+    } else if (rbPorBusquedaFunciones.isSelected()) { // RadioButton de Mantenimiento
+        try {
+            String textoBusqueda = txb_buscarFuncionamiento.getText(); // Usa el JTextField de Mantenimiento
+            if (textoBusqueda.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Debe escribir un texto para buscar.", "Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
+            // Llama al NUEVO método
+            modelo = miConsulta.MostrarFuncionamientoPorAlimento(textoBusqueda);
+            tblDatoFuncionamiento.setModel(modelo); // Carga en la tabla de Mantenimiento
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al buscar por texto: " + e.getMessage());
+            return;
+        }
+    } else {
+        // Tu método de mostrar todos los mantenimientos (yo lo llamé MostrarReparacion en el pasado)
+        modelo = miConsulta.MostrarFuncionamiento(); 
+        tblDatoFuncionamiento.setModel(modelo);
+    }
+    
+    // Actualiza el contador de Mantenimiento
+    int cantidad = modelo.getRowCount();
+    txb_CantidadFilasFunciones.setText(String.valueOf(cantidad));
+    }//GEN-LAST:event_btn_BuscarFuncionamientoActionPerformed
+
+    private void btn_ResetearBusquedaFuncionamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ResetearBusquedaFuncionamientoActionPerformed
+ClaseConsulta RH = new ClaseConsulta();
+    // Llama al método que muestra TODOS los mantenimientos
+    DefaultTableModel modelo = RH.MostrarFuncionamiento(); 
+    tblDatoFuncionamiento.setModel(modelo);
+
+    int cantidad = modelo.getRowCount();
+    txb_CantidadFilasFunciones.setText(String.valueOf(cantidad));
+    
+    // Limpia los componentes de Mantenimiento
+    Jd_fechaInicioFuncionamiento.setDate(null);
+    Jd_FechaFinalFuncionamiento.setDate(null);
+    txb_buscarFuncionamiento.setText("");
+    
+    rbPorFechaFunciones.setSelected(true);
+    Jd_fechaInicioFuncionamiento.setEnabled(true);
+    Jd_FechaFinalFuncionamiento.setEnabled(true);
+    txb_buscarFuncionamiento.setEnabled(false);    }//GEN-LAST:event_btn_ResetearBusquedaFuncionamientoActionPerformed
+
+    private void btn_BuscarMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarMantenimientoActionPerformed
+ClaseConsulta miConsulta = new ClaseConsulta();
+    DefaultTableModel modelo; 
+    
+    if (rbPorFechaMantenimiento.isSelected()) { 
+        try {
+            if (Jd_fechaInicioMantenimiento.getDate() == null || Jd_FechaFinalMantenimiento.getDate() == null) { 
+                JOptionPane.showMessageDialog(this, "Debe seleccionar ambas fechas.", "Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaDesde = sdf.format(Jd_fechaInicioMantenimiento.getDate());
+            String fechaHasta = sdf.format(Jd_FechaFinalMantenimiento.getDate());
+
+            // Llama al NUEVO método
+            modelo = miConsulta.MostrarMantenimientoPorFecha(fechaDesde, fechaHasta);
+            tblDatoReparados.setModel(modelo); // Carga en la tabla de Mantenimiento
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al buscar por fecha: " + e.getMessage());
+            return;
+        }
+        
+    } else if (rbPorBusquedaMantenimiento.isSelected()) { // RadioButton de Mantenimiento
+        try {
+            String textoBusqueda = txb_buscarMantenimiento.getText(); // Usa el JTextField de Mantenimiento
+            if (textoBusqueda.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Debe escribir un texto para buscar.", "Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
+            // Llama al NUEVO método
+            modelo = miConsulta.MostrarMantenimientoPorDetalle(textoBusqueda);
+            tblDatoReparados.setModel(modelo); // Carga en la tabla de Mantenimiento
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al buscar por texto: " + e.getMessage());
+            return;
+        }
+    } else {
+        // Tu método de mostrar todos los mantenimientos (yo lo llamé MostrarReparacion en el pasado)
+        modelo = miConsulta.MostrarReparacion(); 
+        tblDatoReparados.setModel(modelo);
+    }
+    
+    // Actualiza el contador de Mantenimiento
+    int cantidad = modelo.getRowCount();
+    txb_CantidadFilasMantenimiento.setText(String.valueOf(cantidad));
+
+    }//GEN-LAST:event_btn_BuscarMantenimientoActionPerformed
+
+    private void rbPorFechaMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorFechaMantenimientoActionPerformed
+        Jd_FechaFinalMantenimiento.setEnabled(true);
+        Jd_fechaInicioMantenimiento.setEnabled(true);
+        txb_buscarMantenimiento.setEnabled(false);
+    }//GEN-LAST:event_rbPorFechaMantenimientoActionPerformed
+    
+    private void btn_ResetearMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ResetearMantenimientoActionPerformed
+ClaseConsulta RH = new ClaseConsulta();
+    // Llama al método que muestra TODOS los mantenimientos
+    DefaultTableModel modelo = RH.MostrarReparacion(); 
+    tblDatoReparados.setModel(modelo);
+
+    int cantidad = modelo.getRowCount();
+    txb_CantidadFilasMantenimiento.setText(String.valueOf(cantidad));
+    
+    // Limpia los componentes de Mantenimiento
+    Jd_fechaInicioMantenimiento.setDate(null);
+    Jd_FechaFinalMantenimiento.setDate(null);
+    txb_buscarMantenimiento.setText("");
+    
+    rbPorFechaMantenimiento.setSelected(true);
+    Jd_fechaInicioMantenimiento.setEnabled(true);
+    Jd_FechaFinalMantenimiento.setEnabled(true);
+    txb_buscarMantenimiento.setEnabled(false);
+    }//GEN-LAST:event_btn_ResetearMantenimientoActionPerformed
+
+    private void rbPorBusquedaMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorBusquedaMantenimientoActionPerformed
+   Jd_FechaFinalMantenimiento.setEnabled(false);
+        Jd_fechaInicioMantenimiento.setEnabled(false);
+        txb_buscarMantenimiento.setEnabled(true);
+    }//GEN-LAST:event_rbPorBusquedaMantenimientoActionPerformed
+
+    private void rbPorFechaAutosustentabilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorFechaAutosustentabilidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbPorFechaAutosustentabilidadActionPerformed
+
+    private void rbPorBusquedaAutosustentabilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorBusquedaAutosustentabilidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbPorBusquedaAutosustentabilidadActionPerformed
+
+    private void btn_BuscarAutosustentableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarAutosustentableActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_BuscarAutosustentableActionPerformed
+
+    private void btn_ResetearAutosustentableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ResetearAutosustentableActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_ResetearAutosustentableActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1423,24 +2049,44 @@ if (rbManual.isSelected()) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser Jd_FechaFinal;
+    private com.toedter.calendar.JDateChooser Jd_FechaFinalAmbiente;
+    private com.toedter.calendar.JDateChooser Jd_FechaFinalAutosustentable;
+    private com.toedter.calendar.JDateChooser Jd_FechaFinalFuncionamiento;
+    private com.toedter.calendar.JDateChooser Jd_FechaFinalMantenimiento;
     private com.toedter.calendar.JDateChooser Jd_fecha;
     private com.toedter.calendar.JDateChooser Jd_fecha4;
     private com.toedter.calendar.JDateChooser Jd_fecha6;
+    private com.toedter.calendar.JDateChooser Jd_fechaAmbiente;
     private com.toedter.calendar.JDateChooser Jd_fechaCreacion;
-    private com.toedter.calendar.JDateChooser Jd_fechaInicio;
-    private javax.swing.JButton btn_Buscar;
+    private com.toedter.calendar.JDateChooser Jd_fechaInicioAutosustentable;
+    private com.toedter.calendar.JDateChooser Jd_fechaInicioFuncionamiento;
+    private com.toedter.calendar.JDateChooser Jd_fechaInicioHornos;
+    private com.toedter.calendar.JDateChooser Jd_fechaInicioMantenimiento;
+    private javax.swing.JButton btn_BuscarAmbiente;
+    private javax.swing.JButton btn_BuscarAutosustentable;
+    private javax.swing.JButton btn_BuscarFuncionamiento;
+    private javax.swing.JButton btn_BuscarHorno;
+    private javax.swing.JButton btn_BuscarMantenimiento;
     private javax.swing.JButton btn_IngresarAmbiente;
     private javax.swing.JButton btn_IngresarAutosustentable;
     private javax.swing.JButton btn_IngresarFuncionamiento;
     private javax.swing.JButton btn_IngresarHornos;
     private javax.swing.JButton btn_IngresarMantenimiento;
-    private javax.swing.JButton btn_Resetear;
+    private javax.swing.JButton btn_ResetearAmbiente;
+    private javax.swing.JButton btn_ResetearAutosustentable;
+    private javax.swing.JButton btn_ResetearBusquedaFuncionamiento;
+    private javax.swing.JButton btn_ResetearHorno;
+    private javax.swing.JButton btn_ResetearMantenimiento;
     private javax.swing.JComboBox<String> cb_EnergiaRecibida;
     private javax.swing.JComboBox<String> cb_estadohorno;
     private javax.swing.JComboBox<String> cb_sisAislamiento;
     private javax.swing.JComboBox<String> cb_tipodealimento;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JDesktopPane jDesktopPane2;
+    private javax.swing.JDesktopPane jDesktopPane3;
+    private javax.swing.JDesktopPane jDesktopPane4;
+    private javax.swing.JDesktopPane jDesktopPane5;
+    private javax.swing.JDesktopPane jDesktopPane6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1462,8 +2108,11 @@ if (rbManual.isSelected()) {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
@@ -1485,11 +2134,28 @@ if (rbManual.isSelected()) {
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
+    private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanelAmbiente;
@@ -1522,8 +2188,16 @@ if (rbManual.isSelected()) {
     private javax.swing.JLabel lblMantenimiento;
     private javax.swing.JRadioButton rbAutomatico;
     private javax.swing.JRadioButton rbManual;
-    private javax.swing.JRadioButton rbPorBusqueda;
-    private javax.swing.JRadioButton rbPorFecha;
+    private javax.swing.JRadioButton rbPorBusquedaAmbiente;
+    private javax.swing.JRadioButton rbPorBusquedaAutosustentabilidad;
+    private javax.swing.JRadioButton rbPorBusquedaFunciones;
+    private javax.swing.JRadioButton rbPorBusquedaHornos;
+    private javax.swing.JRadioButton rbPorBusquedaMantenimiento;
+    private javax.swing.JRadioButton rbPorFechaAmbiente;
+    private javax.swing.JRadioButton rbPorFechaAutosustentabilidad;
+    private javax.swing.JRadioButton rbPorFechaFunciones;
+    private javax.swing.JRadioButton rbPorFechaHornos;
+    private javax.swing.JRadioButton rbPorFechaMantenimiento;
     private javax.swing.JTable tblDatHornoAmbiente;
     private javax.swing.JTable tblDatoAmbiente;
     private javax.swing.JTable tblDatoAutosustentable;
@@ -1533,9 +2207,17 @@ if (rbManual.isSelected()) {
     private javax.swing.JTable tblDatoHornoMante;
     private javax.swing.JTable tblDatoReparados;
     private javax.swing.JTable tblHornoFuncionamiento;
-    private javax.swing.JTextField txb_CantidadFilas;
+    private javax.swing.JTextField txb_CantidadFilasAmbiente;
+    private javax.swing.JTextField txb_CantidadFilasAutosustentable;
+    private javax.swing.JTextField txb_CantidadFilasFunciones;
+    private javax.swing.JTextField txb_CantidadFilasHornos;
+    private javax.swing.JTextField txb_CantidadFilasMantenimiento;
     private javax.swing.JSpinner txb_angulo;
-    private javax.swing.JTextField txb_buscar;
+    private javax.swing.JTextField txb_buscarAmbiente;
+    private javax.swing.JTextField txb_buscarAutosustentable;
+    private javax.swing.JTextField txb_buscarFuncionamiento;
+    private javax.swing.JTextField txb_buscarHornos;
+    private javax.swing.JTextField txb_buscarMantenimiento;
     private javax.swing.JTextField txb_consumoe;
     private javax.swing.JTextArea txb_detallesr;
     private javax.swing.JTextField txb_dimensiones;
