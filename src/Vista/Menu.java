@@ -44,68 +44,94 @@ public class Menu extends javax.swing.JFrame {
         ClaseConsulta misConsultas = new ClaseConsulta();
         tblDatoHorno.setModel(misConsultas.MostrarHornos());
     }
+/**
+ * Arreglo de tu función. 
+ * Esta UNICA función maneja la visibilidad de P1, P2 y todos
+ * los componentes internos, basándose en CUALQUIER radio button.
+ */
 private void actualizarVisibilidadAutosustentable() {
 
-    if (rbPorFechaAutosustentabilidad.isSelected()) {
-        // --- MODO FECHA ACTIVO ---
-        
-        // MOSTRAR componentes de fecha
-        Jd_fechaInicioAutosustentable.setVisible(true);
-        Jd_FechaFinalAutosustentable.setVisible(true);
-        jl_Hasta.setVisible(true);
-        jl_Desde.setVisible(true);
+    // --- PASO 1: RESETEO TOTAL (El truco "anti-paja") ---
+    // Ocultamos todo primero para no olvidarnos de nada.
+    
+    // Paneles
+    JP_AutoP1.setVisible(true);
+    JP_AutoP2.setVisible(false);
 
-        // OCULTAR componentes de texto
-        txb_buscarAutosustentable.setVisible(false); 
-        jlBuscar.setVisible(false);
-
-        // OCULTAR componentes de análisis
-        btn_EstadisticasGenerales.setVisible(false);
-        btn_AnalisisComparativo.setVisible(false);
-        jl_VerAnalisis.setVisible(false);
-        jl_CalcularEstadisticas.setVisible(false);
-        btn_BuscarAutosustentable.setVisible(true);
-        btn_ResetearAutosustentable.setVisible(true);
-        
-    } else if (rbPorBusquedaAutosustentabilidad.isSelected()) {
-       // OCULTAR componentes de fecha
+    // Componentes de P1 (Fecha y Texto)
     Jd_fechaInicioAutosustentable.setVisible(false);
     Jd_FechaFinalAutosustentable.setVisible(false);
-    jl_Hasta.setVisible(false);      // <-- FALTABA OCULTAR ESTO
-    jl_Desde.setVisible(false);      // <-- FALTABA OCULTAR ESTO
-     btn_BuscarAutosustentable.setVisible(true);
-     btn_ResetearAutosustentable.setVisible(true);
+    jl_Hasta.setVisible(false);
+    jl_Desde.setVisible(false);
+    txb_buscarAutosustentable.setVisible(false);
+    jlBuscar.setVisible(false);
+    btn_BuscarAutosustentable.setVisible(false);
+    btn_ResetearAutosustentable.setVisible(false);
 
-    // MOSTRAR componentes de texto
-    txb_buscarAutosustentable.setVisible(true);
-    jlBuscar.setVisible(true);           // <-- ¡ESTA ES LA LÍNEA CLAVE QUE FALTABA!
-
-    // OCULTAR componentes de análisis
+    // Componentes de P2 (Análisis)
     btn_EstadisticasGenerales.setVisible(false);
     btn_AnalisisComparativo.setVisible(false);
     jl_VerAnalisis.setVisible(false);
     jl_CalcularEstadisticas.setVisible(false);
 
-    } else if (rbAnalisisComparativo.isSelected()) { // (Asumo que este es el JRadioButton para el modo "Análisis")
-        // --- MODO ANÁLISIS ACTIVO ---
+    
+    // --- PASO 2: VEMOS QUÉ MODO ESTÁ ACTIVO Y MOSTRAMOS LO QUE VA ---
+
+    // Usamos OR (||) para chequear el botón de P1 O el de P2
+    
+    // ****** ¡¡MIRÁ ACÁ!! ******
+    if (rbPorFechaAutosustentabilidad.isSelected() || rbPorFechaAutosustentabilidad1.isSelected()) {
         
-        // OCULTAR componentes de fecha
-        Jd_fechaInicioAutosustentable.setVisible(false);
-        Jd_FechaFinalAutosustentable.setVisible(false);
-        btn_BuscarAutosustentable.setVisible(false);
-        btn_ResetearAutosustentable.setVisible(false);
-        jl_Hasta.setVisible(false);      // <-- FALTABA ESTO
-        jl_Desde.setVisible(false);      // <-- FALTABA ESTO
+        // --- MODO: FECHA (en Panel 1) ---
+        JP_AutoP1.setVisible(true); // Mostramos P1
 
-        // OCULTAR componentes de texto
-        txb_buscarAutosustentable.setVisible(false);
-        jlBuscar.setVisible(false);           // <-- FALTABA ESTO
+        // Mostramos componentes de Fecha
+        Jd_fechaInicioAutosustentable.setVisible(true);
+        Jd_FechaFinalAutosustentable.setVisible(true);
+        jl_Hasta.setVisible(true);
+        jl_Desde.setVisible(true);
+        
+        // Mostramos botones de acción de P1
+        btn_BuscarAutosustentable.setVisible(true);
+        btn_ResetearAutosustentable.setVisible(true);
+        
+        // Sincronizamos (clave): marcamos los dos botones de "Fecha"
+        rbPorFechaAutosustentabilidad.setSelected(true);
+        rbPorFechaAutosustentabilidad1.setSelected(true); // <-- ¡¡USA EL BOTÓN CON 1!!
 
-        // MOSTRAR componentes de análisis
-        btn_EstadisticasGenerales.setVisible(true); // <-- FALTABA ESTO
-        btn_AnalisisComparativo.setVisible(true); // <-- FALTABA ESTO
+    // ****** ¡¡Y ACÁ!! ******
+    } else if (rbPorBusquedaAutosustentabilidad.isSelected() || rbPorBusquedaAutosustentabilidad1.isSelected()) {
+        
+        // --- MODO: BÚSQUEDA (en Panel 1) ---
+        JP_AutoP1.setVisible(true); // Mostramos P1
+
+        // Mostramos componentes de Texto
+        txb_buscarAutosustentable.setVisible(true);
+        jlBuscar.setVisible(true);
+        
+        // Mostramos botones de acción de P1
+        btn_BuscarAutosustentable.setVisible(true);
+        btn_ResetearAutosustentable.setVisible(true);
+
+        // Sincronizamos: marcamos los dos botones de "Búsqueda"
+        rbPorBusquedaAutosustentabilidad.setSelected(true);
+        rbPorBusquedaAutosustentabilidad1.setSelected(true); // <-- ¡¡USA EL BOTÓN CON 1!!
+
+    // ****** ¡¡Y ACÁ!! ******
+    } else if (rbAnalisisComparativo.isSelected() || rbAnalisisComparativo1.isSelected()) {
+        
+        // --- MODO: ANÁLISIS (en Panel 2) ---
+        JP_AutoP2.setVisible(true); // Mostramos P2
+
+        // Mostramos componentes de Análisis
+        btn_EstadisticasGenerales.setVisible(true);
+        btn_AnalisisComparativo.setVisible(true); 
         jl_VerAnalisis.setVisible(true);
         jl_CalcularEstadisticas.setVisible(true);
+        
+        // Sincronizamos: marcamos los dos botones de "Análisis"
+        rbAnalisisComparativo.setSelected(true);
+        rbAnalisisComparativo1.setSelected(true); // <-- ¡¡USA EL BOTÓN CON 1!!
     }
 }
 
@@ -118,6 +144,7 @@ private void actualizarVisibilidadAutosustentable() {
         buttonGroup4 = new javax.swing.ButtonGroup();
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup5 = new javax.swing.ButtonGroup();
+        buttonGroup6 = new javax.swing.ButtonGroup();
         jPanelHornosSolares = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
@@ -223,6 +250,7 @@ private void actualizarVisibilidadAutosustentable() {
         btn_ResetearBusquedaFuncionamiento = new javax.swing.JButton();
         txb_CantidadFilasFunciones = new javax.swing.JTextField();
         jLabel63 = new javax.swing.JLabel();
+        jLabel69 = new javax.swing.JLabel();
         jPanelAutosustentable = new javax.swing.JPanel();
         jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
@@ -246,7 +274,7 @@ private void actualizarVisibilidadAutosustentable() {
         jScrollPane7 = new javax.swing.JScrollPane();
         tblDatoAutosustentable = new javax.swing.JTable();
         jLabel52 = new javax.swing.JLabel();
-        jDesktopPane6 = new javax.swing.JDesktopPane();
+        JP_AutoP1 = new javax.swing.JDesktopPane();
         rbPorFechaAutosustentabilidad = new javax.swing.JRadioButton();
         rbAnalisisComparativo = new javax.swing.JRadioButton();
         jl_CantFilas = new javax.swing.JLabel();
@@ -256,14 +284,21 @@ private void actualizarVisibilidadAutosustentable() {
         jlBuscar = new javax.swing.JLabel();
         txb_buscarAutosustentable = new javax.swing.JTextField();
         jLabel72 = new javax.swing.JLabel();
-        btn_AnalisisComparativo = new javax.swing.JButton();
-        btn_EstadisticasGenerales = new javax.swing.JButton();
         txb_CantidadFilasAutosustentable = new javax.swing.JTextField();
-        jl_CalcularEstadisticas = new javax.swing.JLabel();
         rbPorBusquedaAutosustentabilidad = new javax.swing.JRadioButton();
         btn_BuscarAutosustentable = new javax.swing.JButton();
         btn_ResetearAutosustentable = new javax.swing.JButton();
         jl_Hasta = new javax.swing.JLabel();
+        JP_AutoP2 = new javax.swing.JDesktopPane();
+        rbPorFechaAutosustentabilidad1 = new javax.swing.JRadioButton();
+        rbAnalisisComparativo1 = new javax.swing.JRadioButton();
+        jl_CantFilas1 = new javax.swing.JLabel();
+        jLabel73 = new javax.swing.JLabel();
+        txb_CantidadFilasAutosustentable1 = new javax.swing.JTextField();
+        rbPorBusquedaAutosustentabilidad1 = new javax.swing.JRadioButton();
+        btn_EstadisticasGenerales = new javax.swing.JButton();
+        btn_AnalisisComparativo = new javax.swing.JButton();
+        jl_CalcularEstadisticas = new javax.swing.JLabel();
         jl_VerAnalisis = new javax.swing.JLabel();
         jPanelAmbiente = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
@@ -279,7 +314,7 @@ private void actualizarVisibilidadAutosustentable() {
         jLabel59 = new javax.swing.JLabel();
         txb_temperatura = new javax.swing.JSpinner();
         txb_intensidadsolar = new javax.swing.JComboBox<>();
-        Jd_fecha6 = new com.toedter.calendar.JDateChooser();
+        Jd_fechaAmbiente = new com.toedter.calendar.JDateChooser();
         jScrollPane12 = new javax.swing.JScrollPane();
         tblDatHornoAmbiente = new javax.swing.JTable();
         txtIDAmbiente = new javax.swing.JTextField();
@@ -292,7 +327,7 @@ private void actualizarVisibilidadAutosustentable() {
         rbPorBusquedaAmbiente = new javax.swing.JRadioButton();
         jLabel29 = new javax.swing.JLabel();
         Jd_FechaFinalAmbiente = new com.toedter.calendar.JDateChooser();
-        Jd_fechaAmbiente = new com.toedter.calendar.JDateChooser();
+        Jd_fechaDesdeAmbiente = new com.toedter.calendar.JDateChooser();
         jLabel30 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         txb_buscarAmbiente = new javax.swing.JTextField();
@@ -404,7 +439,7 @@ private void actualizarVisibilidadAutosustentable() {
         jPanelHornosSolares.add(Jd_fechaCreacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 153, 46));
 
         txb_reflectores.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
-        jPanelHornosSolares.add(txb_reflectores, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 153, -1));
+        jPanelHornosSolares.add(txb_reflectores, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 133, 153, 30));
 
         btn_IngresarHornos.setBackground(new java.awt.Color(51, 153, 0));
         btn_IngresarHornos.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
@@ -966,6 +1001,11 @@ private void actualizarVisibilidadAutosustentable() {
 
         jPanelFuncionamiento.add(jDesktopPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 620, 200));
 
+        jLabel69.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel69.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel69.setText("°C");
+        jPanelFuncionamiento.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
+
         getContentPane().add(jPanelFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 1090, 510));
 
         jPanelAutosustentable.setBackground(new java.awt.Color(71, 71, 71));
@@ -1092,8 +1132,8 @@ private void actualizarVisibilidadAutosustentable() {
         jLabel52.setText("Energia Almacenada");
         jPanelAutosustentable.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, -1, -1));
 
-        jDesktopPane6.setBackground(new java.awt.Color(71, 139, 93));
-        jDesktopPane6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        JP_AutoP1.setBackground(new java.awt.Color(71, 139, 93));
+        JP_AutoP1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         buttonGroup4.add(rbPorFechaAutosustentabilidad);
         rbPorFechaAutosustentabilidad.setForeground(new java.awt.Color(255, 255, 255));
@@ -1104,7 +1144,7 @@ private void actualizarVisibilidadAutosustentable() {
                 rbPorFechaAutosustentabilidadActionPerformed(evt);
             }
         });
-        jDesktopPane6.add(rbPorFechaAutosustentabilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, -1, 20));
+        JP_AutoP1.add(rbPorFechaAutosustentabilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, -1, 20));
 
         buttonGroup4.add(rbAnalisisComparativo);
         rbAnalisisComparativo.setForeground(new java.awt.Color(255, 255, 255));
@@ -1114,75 +1154,43 @@ private void actualizarVisibilidadAutosustentable() {
                 rbAnalisisComparativoActionPerformed(evt);
             }
         });
-        jDesktopPane6.add(rbAnalisisComparativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, -1, 20));
+        JP_AutoP1.add(rbAnalisisComparativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, -1, 20));
 
         jl_CantFilas.setBackground(new java.awt.Color(255, 255, 255));
         jl_CantFilas.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jl_CantFilas.setForeground(new java.awt.Color(255, 255, 255));
         jl_CantFilas.setText("Cantidad de filas");
-        jDesktopPane6.add(jl_CantFilas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 150, 20));
+        JP_AutoP1.add(jl_CantFilas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 150, 20));
 
         Jd_FechaFinalAutosustentable.setDateFormatString("yyyy-MM-dd");
-        jDesktopPane6.add(Jd_FechaFinalAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 153, 30));
+        JP_AutoP1.add(Jd_FechaFinalAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 153, 30));
 
         Jd_fechaInicioAutosustentable.setDateFormatString("yyyy-MM-dd");
-        jDesktopPane6.add(Jd_fechaInicioAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 153, 30));
+        JP_AutoP1.add(Jd_fechaInicioAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 153, 30));
 
         jl_Desde.setBackground(new java.awt.Color(255, 255, 255));
         jl_Desde.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jl_Desde.setForeground(new java.awt.Color(255, 255, 255));
         jl_Desde.setText("Fecha desde");
-        jDesktopPane6.add(jl_Desde, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 120, 20));
+        JP_AutoP1.add(jl_Desde, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 120, 20));
 
         jlBuscar.setBackground(new java.awt.Color(255, 255, 255));
         jlBuscar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jlBuscar.setForeground(new java.awt.Color(255, 255, 255));
         jlBuscar.setText("Buscar:");
-        jDesktopPane6.add(jlBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 80, 30));
+        JP_AutoP1.add(jlBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 80, 30));
 
         txb_buscarAutosustentable.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
-        jDesktopPane6.add(txb_buscarAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 510, 30));
+        JP_AutoP1.add(txb_buscarAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 510, 30));
 
         jLabel72.setBackground(new java.awt.Color(255, 255, 255));
         jLabel72.setFont(new java.awt.Font("Candara", 2, 14)); // NOI18N
         jLabel72.setForeground(new java.awt.Color(255, 255, 255));
         jLabel72.setText("Metodo de busqueda:");
-        jDesktopPane6.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, -1, 20));
-
-        btn_AnalisisComparativo.setBackground(new java.awt.Color(27, 109, 163));
-        btn_AnalisisComparativo.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
-        btn_AnalisisComparativo.setForeground(new java.awt.Color(255, 255, 255));
-        btn_AnalisisComparativo.setText("Analizar");
-        btn_AnalisisComparativo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_AnalisisComparativo.setBorderPainted(false);
-        btn_AnalisisComparativo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AnalisisComparativoActionPerformed(evt);
-            }
-        });
-        jDesktopPane6.add(btn_AnalisisComparativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 190, 40));
-
-        btn_EstadisticasGenerales.setBackground(new java.awt.Color(27, 109, 163));
-        btn_EstadisticasGenerales.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
-        btn_EstadisticasGenerales.setForeground(new java.awt.Color(255, 255, 255));
-        btn_EstadisticasGenerales.setText("Calcular");
-        btn_EstadisticasGenerales.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_EstadisticasGenerales.setBorderPainted(false);
-        btn_EstadisticasGenerales.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_EstadisticasGeneralesActionPerformed(evt);
-            }
-        });
-        jDesktopPane6.add(btn_EstadisticasGenerales, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 190, 40));
+        JP_AutoP1.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, -1, 20));
 
         txb_CantidadFilasAutosustentable.setEditable(false);
-        jDesktopPane6.add(txb_CantidadFilasAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 110, -1));
-
-        jl_CalcularEstadisticas.setBackground(new java.awt.Color(255, 255, 255));
-        jl_CalcularEstadisticas.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jl_CalcularEstadisticas.setForeground(new java.awt.Color(255, 255, 255));
-        jl_CalcularEstadisticas.setText("Calcular Estadísticas");
-        jDesktopPane6.add(jl_CalcularEstadisticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, 340, 20));
+        JP_AutoP1.add(txb_CantidadFilasAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 110, -1));
 
         buttonGroup4.add(rbPorBusquedaAutosustentabilidad);
         rbPorBusquedaAutosustentabilidad.setForeground(new java.awt.Color(255, 255, 255));
@@ -1192,7 +1200,7 @@ private void actualizarVisibilidadAutosustentable() {
                 rbPorBusquedaAutosustentabilidadActionPerformed(evt);
             }
         });
-        jDesktopPane6.add(rbPorBusquedaAutosustentabilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, -1, 20));
+        JP_AutoP1.add(rbPorBusquedaAutosustentabilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, -1, 20));
 
         btn_BuscarAutosustentable.setBackground(new java.awt.Color(27, 109, 163));
         btn_BuscarAutosustentable.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
@@ -1205,7 +1213,7 @@ private void actualizarVisibilidadAutosustentable() {
                 btn_BuscarAutosustentableActionPerformed(evt);
             }
         });
-        jDesktopPane6.add(btn_BuscarAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 190, 40));
+        JP_AutoP1.add(btn_BuscarAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 190, 40));
 
         btn_ResetearAutosustentable.setBackground(new java.awt.Color(27, 109, 163));
         btn_ResetearAutosustentable.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
@@ -1218,21 +1226,103 @@ private void actualizarVisibilidadAutosustentable() {
                 btn_ResetearAutosustentableActionPerformed(evt);
             }
         });
-        jDesktopPane6.add(btn_ResetearAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 190, 40));
+        JP_AutoP1.add(btn_ResetearAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 190, 40));
 
         jl_Hasta.setBackground(new java.awt.Color(255, 255, 255));
         jl_Hasta.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jl_Hasta.setForeground(new java.awt.Color(255, 255, 255));
         jl_Hasta.setText("Fecha hasta");
-        jDesktopPane6.add(jl_Hasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 120, 20));
+        JP_AutoP1.add(jl_Hasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 120, 20));
+
+        jPanelAutosustentable.add(JP_AutoP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 610, 210));
+
+        JP_AutoP2.setBackground(new java.awt.Color(41, 146, 75));
+        JP_AutoP2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        buttonGroup6.add(rbPorFechaAutosustentabilidad1);
+        rbPorFechaAutosustentabilidad1.setForeground(new java.awt.Color(255, 255, 255));
+        rbPorFechaAutosustentabilidad1.setText("Por fechas (Desde/Hasta)");
+        rbPorFechaAutosustentabilidad1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbPorFechaAutosustentabilidad1ActionPerformed(evt);
+            }
+        });
+        JP_AutoP2.add(rbPorFechaAutosustentabilidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, -1, 20));
+
+        buttonGroup6.add(rbAnalisisComparativo1);
+        rbAnalisisComparativo1.setForeground(new java.awt.Color(255, 255, 255));
+        rbAnalisisComparativo1.setText("Analisis Comparativo");
+        rbAnalisisComparativo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbAnalisisComparativo1ActionPerformed(evt);
+            }
+        });
+        JP_AutoP2.add(rbAnalisisComparativo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, -1, 20));
+
+        jl_CantFilas1.setBackground(new java.awt.Color(255, 255, 255));
+        jl_CantFilas1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jl_CantFilas1.setForeground(new java.awt.Color(255, 255, 255));
+        jl_CantFilas1.setText("Cantidad de filas");
+        JP_AutoP2.add(jl_CantFilas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 150, 20));
+
+        jLabel73.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel73.setFont(new java.awt.Font("Candara", 2, 14)); // NOI18N
+        jLabel73.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel73.setText("Metodo de busqueda:");
+        JP_AutoP2.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, -1, 20));
+
+        txb_CantidadFilasAutosustentable1.setEditable(false);
+        JP_AutoP2.add(txb_CantidadFilasAutosustentable1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 110, -1));
+
+        buttonGroup6.add(rbPorBusquedaAutosustentabilidad1);
+        rbPorBusquedaAutosustentabilidad1.setForeground(new java.awt.Color(255, 255, 255));
+        rbPorBusquedaAutosustentabilidad1.setText("Por busqueda");
+        rbPorBusquedaAutosustentabilidad1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbPorBusquedaAutosustentabilidad1ActionPerformed(evt);
+            }
+        });
+        JP_AutoP2.add(rbPorBusquedaAutosustentabilidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, -1, 20));
+
+        btn_EstadisticasGenerales.setBackground(new java.awt.Color(27, 109, 163));
+        btn_EstadisticasGenerales.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
+        btn_EstadisticasGenerales.setForeground(new java.awt.Color(255, 255, 255));
+        btn_EstadisticasGenerales.setText("Calcular");
+        btn_EstadisticasGenerales.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_EstadisticasGenerales.setBorderPainted(false);
+        btn_EstadisticasGenerales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EstadisticasGeneralesActionPerformed(evt);
+            }
+        });
+        JP_AutoP2.add(btn_EstadisticasGenerales, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 190, 40));
+
+        btn_AnalisisComparativo.setBackground(new java.awt.Color(27, 109, 163));
+        btn_AnalisisComparativo.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
+        btn_AnalisisComparativo.setForeground(new java.awt.Color(255, 255, 255));
+        btn_AnalisisComparativo.setText("Analizar");
+        btn_AnalisisComparativo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_AnalisisComparativo.setBorderPainted(false);
+        btn_AnalisisComparativo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AnalisisComparativoActionPerformed(evt);
+            }
+        });
+        JP_AutoP2.add(btn_AnalisisComparativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 190, 40));
+
+        jl_CalcularEstadisticas.setBackground(new java.awt.Color(255, 255, 255));
+        jl_CalcularEstadisticas.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jl_CalcularEstadisticas.setForeground(new java.awt.Color(255, 255, 255));
+        jl_CalcularEstadisticas.setText("Calcular Estadísticas");
+        JP_AutoP2.add(jl_CalcularEstadisticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 340, 20));
 
         jl_VerAnalisis.setBackground(new java.awt.Color(255, 255, 255));
         jl_VerAnalisis.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jl_VerAnalisis.setForeground(new java.awt.Color(255, 255, 255));
         jl_VerAnalisis.setText("Ver analisis comparativo");
-        jDesktopPane6.add(jl_VerAnalisis, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 240, 20));
+        JP_AutoP2.add(jl_VerAnalisis, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 240, 20));
 
-        jPanelAutosustentable.add(jDesktopPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 610, 210));
+        jPanelAutosustentable.add(JP_AutoP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 610, 250));
 
         getContentPane().add(jPanelAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 1100, 510));
 
@@ -1307,8 +1397,8 @@ private void actualizarVisibilidadAutosustentable() {
         txb_intensidadsolar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Alta", "Media", "Baja" }));
         jPanelAmbiente.add(txb_intensidadsolar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 140, 34));
 
-        Jd_fecha6.setDateFormatString("yyyy-MM-dd");
-        jPanelAmbiente.add(Jd_fecha6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 120, 40));
+        Jd_fechaAmbiente.setDateFormatString("yyyy-MM-dd");
+        jPanelAmbiente.add(Jd_fechaAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 120, 40));
 
         tblDatHornoAmbiente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1378,8 +1468,8 @@ private void actualizarVisibilidadAutosustentable() {
         Jd_FechaFinalAmbiente.setDateFormatString("yyyy-MM-dd");
         jDesktopPane3.add(Jd_FechaFinalAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 153, 30));
 
-        Jd_fechaAmbiente.setDateFormatString("yyyy-MM-dd");
-        jDesktopPane3.add(Jd_fechaAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 153, 30));
+        Jd_fechaDesdeAmbiente.setDateFormatString("yyyy-MM-dd");
+        jDesktopPane3.add(Jd_fechaDesdeAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 153, 30));
 
         jLabel30.setBackground(new java.awt.Color(255, 255, 255));
         jLabel30.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -1547,9 +1637,11 @@ private void actualizarVisibilidadAutosustentable() {
                     (int) txb_angulo.getValue(),
                     (int) txb_temperatura.getValue(),
                     (String) txb_direccion.getSelectedItem(),
-                    new SimpleDateFormat("yyyy/MM/dd").format(Jd_fecha6.getDate())
+                    new SimpleDateFormat("yyyy/MM/dd").format(Jd_fechaAmbiente.getDate())
             );
             INGA.IngAmbiente(a);
+            tblDatoAmbiente.setModel(INGA.MostrarAmbiente());
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
@@ -1572,7 +1664,7 @@ private void actualizarVisibilidadAutosustentable() {
                     new SimpleDateFormat("yyyy/MM/dd").format(Jd_fecha4.getDate())
             );
             INAU.IngresarAutosustentable(au);
-            tblDatoHornoAutosustentable.setModel(INAU.consultaFuncion());
+            tblDatoHornoAutosustentable.setModel(INAU.MostrarAutosustentable());
 
             txb_consumoe.setText(null);
             txb_energiaalmacenada.setText(null);
@@ -1793,6 +1885,8 @@ private void actualizarVisibilidadAutosustentable() {
         tblDatoHornoAutosustentable.setModel(misConsultas.consultaFuncion());
         tblDatoAutosustentable.setModel(misConsultas.MostrarAutosustentable());
         actualizarVisibilidadAutosustentable();
+        JP_AutoP1.setVisible(true);
+        JP_AutoP2.setVisible(false);
     }//GEN-LAST:event_lblAutosustentableMouseClicked
 
     private void tblDatoHornoManteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoHornoManteMouseClicked
@@ -2154,7 +2248,7 @@ private void actualizarVisibilidadAutosustentable() {
     }//GEN-LAST:event_tblHornoFuncionamientoMouseClicked
 
     private void rbPorBusquedaAutosustentabilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorBusquedaAutosustentabilidadActionPerformed
-        // TODO add your handling code here:
+ actualizarVisibilidadAutosustentable();
     }//GEN-LAST:event_rbPorBusquedaAutosustentabilidadActionPerformed
 
     private void btn_BuscarAutosustentableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarAutosustentableActionPerformed
@@ -2164,6 +2258,18 @@ private void actualizarVisibilidadAutosustentable() {
     private void btn_ResetearAutosustentableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ResetearAutosustentableActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_ResetearAutosustentableActionPerformed
+
+    private void rbPorFechaAutosustentabilidad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorFechaAutosustentabilidad1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbPorFechaAutosustentabilidad1ActionPerformed
+
+    private void rbAnalisisComparativo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAnalisisComparativo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbAnalisisComparativo1ActionPerformed
+
+    private void rbPorBusquedaAutosustentabilidad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorBusquedaAutosustentabilidad1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbPorBusquedaAutosustentabilidad1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2202,6 +2308,8 @@ private void actualizarVisibilidadAutosustentable() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane JP_AutoP1;
+    private javax.swing.JDesktopPane JP_AutoP2;
     private com.toedter.calendar.JDateChooser Jd_FechaFinal;
     private com.toedter.calendar.JDateChooser Jd_FechaFinalAmbiente;
     private com.toedter.calendar.JDateChooser Jd_FechaFinalAutosustentable;
@@ -2209,9 +2317,9 @@ private void actualizarVisibilidadAutosustentable() {
     private com.toedter.calendar.JDateChooser Jd_FechaFinalMantenimiento;
     private com.toedter.calendar.JDateChooser Jd_fecha;
     private com.toedter.calendar.JDateChooser Jd_fecha4;
-    private com.toedter.calendar.JDateChooser Jd_fecha6;
     private com.toedter.calendar.JDateChooser Jd_fechaAmbiente;
     private com.toedter.calendar.JDateChooser Jd_fechaCreacion;
+    private com.toedter.calendar.JDateChooser Jd_fechaDesdeAmbiente;
     private com.toedter.calendar.JDateChooser Jd_fechaInicioAutosustentable;
     private com.toedter.calendar.JDateChooser Jd_fechaInicioFuncionamiento;
     private com.toedter.calendar.JDateChooser Jd_fechaInicioHornos;
@@ -2238,6 +2346,7 @@ private void actualizarVisibilidadAutosustentable() {
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.ButtonGroup buttonGroup5;
+    private javax.swing.ButtonGroup buttonGroup6;
     private javax.swing.JComboBox<String> cb_EnergiaRecibida;
     private javax.swing.JComboBox<String> cb_estadohorno;
     private javax.swing.JComboBox<String> cb_sisAislamiento;
@@ -2247,7 +2356,6 @@ private void actualizarVisibilidadAutosustentable() {
     private javax.swing.JDesktopPane jDesktopPane3;
     private javax.swing.JDesktopPane jDesktopPane4;
     private javax.swing.JDesktopPane jDesktopPane5;
-    private javax.swing.JDesktopPane jDesktopPane6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2311,8 +2419,10 @@ private void actualizarVisibilidadAutosustentable() {
     private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanelAmbiente;
@@ -2338,6 +2448,7 @@ private void actualizarVisibilidadAutosustentable() {
     private javax.swing.JLabel jlBuscar;
     private javax.swing.JLabel jl_CalcularEstadisticas;
     private javax.swing.JLabel jl_CantFilas;
+    private javax.swing.JLabel jl_CantFilas1;
     private javax.swing.JLabel jl_Desde;
     private javax.swing.JLabel jl_Hasta;
     private javax.swing.JLabel jl_VerAnalisis;
@@ -2350,15 +2461,18 @@ private void actualizarVisibilidadAutosustentable() {
     private javax.swing.JLabel lblHorno;
     private javax.swing.JLabel lblMantenimiento;
     private javax.swing.JRadioButton rbAnalisisComparativo;
+    private javax.swing.JRadioButton rbAnalisisComparativo1;
     private javax.swing.JRadioButton rbAutomatico;
     private javax.swing.JRadioButton rbManual;
     private javax.swing.JRadioButton rbPorBusquedaAmbiente;
     private javax.swing.JRadioButton rbPorBusquedaAutosustentabilidad;
+    private javax.swing.JRadioButton rbPorBusquedaAutosustentabilidad1;
     private javax.swing.JRadioButton rbPorBusquedaFunciones;
     private javax.swing.JRadioButton rbPorBusquedaHornos;
     private javax.swing.JRadioButton rbPorBusquedaMantenimiento;
     private javax.swing.JRadioButton rbPorFechaAmbiente;
     private javax.swing.JRadioButton rbPorFechaAutosustentabilidad;
+    private javax.swing.JRadioButton rbPorFechaAutosustentabilidad1;
     private javax.swing.JRadioButton rbPorFechaFunciones;
     private javax.swing.JRadioButton rbPorFechaHornos;
     private javax.swing.JRadioButton rbPorFechaMantenimiento;
@@ -2373,6 +2487,7 @@ private void actualizarVisibilidadAutosustentable() {
     private javax.swing.JTable tblHornoFuncionamiento;
     private javax.swing.JTextField txb_CantidadFilasAmbiente;
     private javax.swing.JTextField txb_CantidadFilasAutosustentable;
+    private javax.swing.JTextField txb_CantidadFilasAutosustentable1;
     private javax.swing.JTextField txb_CantidadFilasFunciones;
     private javax.swing.JTextField txb_CantidadFilasHornos;
     private javax.swing.JTextField txb_CantidadFilasMantenimiento;
