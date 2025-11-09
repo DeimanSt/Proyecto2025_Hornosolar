@@ -3,8 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- (Generado por IA - Estructura Limpia)
---
+-- Tiempo de generación: 09-11-2025 a las 03:26:17
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -19,9 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `proyecto`
 --
-DROP DATABASE IF EXISTS `proyecto`;
-CREATE DATABASE IF NOT EXISTS `proyecto` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `proyecto`;
 
 -- --------------------------------------------------------
 
@@ -148,31 +146,31 @@ ALTER TABLE `mantenimientos`
 -- AUTO_INCREMENT de la tabla `ambiente`
 --
 ALTER TABLE `ambiente`
-  MODIFY `IDAM` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDAM` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `autosustentable`
 --
 ALTER TABLE `autosustentable`
-  MODIFY `IDAU` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDAU` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `funcionamiento`
 --
 ALTER TABLE `funcionamiento`
-  MODIFY `IDF` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDF` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `hornos`
 --
 ALTER TABLE `hornos`
-  MODIFY `IDH` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDH` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `mantenimientos`
 --
 ALTER TABLE `mantenimientos`
-  MODIFY `IDM` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDM` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
