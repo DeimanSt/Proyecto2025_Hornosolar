@@ -706,14 +706,18 @@ public DefaultTableModel MostrarAutosustentable() {
     return modelo;
 }
 public DefaultTableModel MostrarAutosustentablePorFecha(String fechaDesde, String fechaHasta) {
-    // Títulos (Asegúrate de que coincidan con tu 'consultaFuncionamiento')
-    String[] titulos = {"Intensidad solar","Temperatura ambiente", "Angulo", "Direccion del sol", "Fecha registro"};
+    // ¡Títulos corregidos! (7 columnas)
+    String[] titulos = {"IDAU", "IDF", "Eficiencia", "Energía Recibida", "Consumo", "Energía Almac.", "Fecha Eval."};
+    
     DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
         @Override public boolean isCellEditable(int row, int column) { return false; }
     };
 
-    // Usamos la columna 'fecha_operacion' de la tabla 'funcionamiento'
-    String sql = "SELECT intensidad_solar, temperatura_ambiente, angulo, direccion_sol, fecha_registro FROM autosustentable WHERE fecha_registro >= ? AND fecha_registro <= ?";
+    // ¡Consulta corregida! Usamos las columnas de autosustentable
+    // y filtramos por 'fecha_evaluacion'
+    String sql = "SELECT IDAU, IDF, eficiencia_termica, energia_solar_recibida, consumo_energetico, " +
+                 "energia_almacenada, fecha_evaluacion " +
+                 "FROM autosustentable WHERE fecha_evaluacion >= ? AND fecha_evaluacion <= ?";
 
     ConexionBDD nuevaC = new ConexionBDD();
     try (Connection con = nuevaC.conectar();
@@ -724,123 +728,286 @@ public DefaultTableModel MostrarAutosustentablePorFecha(String fechaDesde, Strin
 
         try (ResultSet rs = pst.executeQuery()) {
             while (rs.next()) {
-            Object[] fila = new Object[6];
-            fila[1] = rs.getString("intensidad_solar"); 
-            fila[2] = rs.getString("temperatura_ambiente");
-            fila[3] = rs.getString("angulo");
-            fila[4] = rs.getString("fecha_operacion"); 
-            fila[5] = rs.getString("direccion_sol");  
-            fila[6] = rs.getString("fecha_registro");  
+                // ¡Array de 7 elementos, índices 0 a 6!
+                Object[] fila = new Object[7]; 
+                fila[0] = rs.getInt("IDAU");
+                fila[1] = rs.getInt("IDF");
+                fila[2] = rs.getDouble("eficiencia_termica");
+                fila[3] = rs.getString("energia_solar_recibida");
+                fila[4] = rs.getInt("consumo_energetico");
+                fila[5] = rs.getInt("energia_almacenada");
+                fila[6] = rs.getString("fecha_evaluacion"); // O rs.getDate()
 
-            modelo.addRow(fila);
-        }
+                modelo.addRow(fila);
+            }
         }
     } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error al consultar funcionamiento por fecha: " + e.getMessage());
+        // Mensaje de error corregido
+        JOptionPane.showMessageDialog(null, "Error al consultar autosustentable por fecha: " + e.getMessage());
     }
     return modelo;
 }
-public DefaultTableModel MostrarAutosustentablePorBusqueda(String busqueda) {
- String[] titulos = {"Intensidad solar","Temperatura ambiente", "Angulo", "Direccion del sol", "Fecha registro"};
+public DefaultTableModel MostrarAutosustentable_JOIN_Funcion() {
+    
+    // ¡Títulos de la vista vinculada! (7 columnas)
+    String[] titulos = {"Alimento", "Horno", "Fecha", "Eficiencia", "Consumo", "Temp. Interna", "Tiempo Cocción"};
+    
     DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
         @Override public boolean isCellEditable(int row, int column) { return false; }
     };
-    // Usamos la columna 'fecha_operacion' de la tabla 'funcionamiento'
-    String sql = "SELECT intensidad_solar, temperatura_ambiente, angulo, direccion_sol, fecha_registro FROM autosustentable WHERE intensidad_solar LIKE ?";
+    
+    // --- ¡LA CONSULTA CON JOIN, SIN 'WHERE'! ---
+    // (¡¡REVISÁ LAS CLAVES FORÁNEAS EN LOS 'ON'!!)
+    String sql = "SELECT f.tipo_alimento, h.tipo, a.fecha_evaluacion, a.eficiencia_termica, a.consumo_energetico, " +
+                 "f.temperatura_interna, f.tiempo_coccion " +
+                 "FROM autosustentable a " +
+                 // ¡AJUSTA ESTE 'ON'! ¿Cómo se une 'a' con 'p'?
+                 "JOIN funcionamiento f ON a.IDF = f.IDF " + 
+                 // ¡AJUSTA ESTE 'ON'! ¿Cómo se une 'p' con 'h'?
+                 "JOIN hornos h ON f.idh = h.idh"; 
+
+    ConexionBDD nuevaC = new ConexionBDD();
+    try (Connection con = nuevaC.conectar();
+         PreparedStatement pst = con.prepareStatement(sql);
+         ResultSet rs = pst.executeQuery()) { // No hay parámetros que setear
+
+        while (rs.next()) {
+            Object[] fila = new Object[7]; // 7 columnas
+            fila[0] = rs.getString("tipo_alimento");
+            fila[1] = rs.getString("tipo");
+            fila[2] = rs.getString("fecha_evaluacion");
+            fila[3] = rs.getDouble("eficiencia_termica");
+            fila[4] = rs.getInt("consumo_energetico");
+            fila[5] = rs.getString("temperatura_interna"); // Dato de 'parametros'
+            fila[6] = rs.getString("tiempo_coccion");     // Dato de 'parametros'
+            modelo.addRow(fila);
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al cargar análisis vinculado completo: " + e.getMessage());
+    }
+    return modelo;
+}
+public DefaultTableModel MostrarAutosustentablePorFecha_JOIN_Funcion(String fechaDesde, String fechaHasta) {
+// ¡Títulos de la vista vinculada! (7 columnas)
+    String[] titulos = {"Alimento", "Horno", "Fecha", "Eficiencia", "Consumo", "Temp. Interna", "Tiempo Cocción"};
+    
+    DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
+        @Override public boolean isCellEditable(int row, int column) { return false; }
+    };
+
+    // Fíjate en la última línea (el WHERE)
+    String sql = "SELECT f.tipo_alimento, h.tipo, a.fecha_evaluacion, a.eficiencia_termica, a.consumo_energetico, " +
+                 "f.temperatura_interna, f.tiempo_coccion " +
+                 "FROM autosustentable a " +
+                 "JOIN funcionamiento f ON a.IDF = f.IDF " + 
+                 "JOIN hornos h ON f.idh = h.idh " +
+                 "WHERE a.fecha_evaluacion >= ? AND a.fecha_evaluacion <= ?"; // <-- ¡AQUÍ ESTÁ LA CORRECCIÓN!
 
     ConexionBDD nuevaC = new ConexionBDD();
     try (Connection con = nuevaC.conectar();
          PreparedStatement pst = con.prepareStatement(sql)) {
 
-        pst.setString(1, "%" + busqueda + "%");
+        pst.setString(1, fechaDesde);
+        pst.setString(2, fechaHasta);
 
         try (ResultSet rs = pst.executeQuery()) {
-             while (rs.next()) {
-     Object[] fila = new Object[6];
-            fila[1] = rs.getString("intensidad_solar"); 
-            fila[2] = rs.getString("temperatura_ambiente");
-            fila[3] = rs.getString("angulo");
-            fila[4] = rs.getString("fecha_operacion"); 
-            fila[5] = rs.getString("direccion_sol");  
-            fila[6] = rs.getString("fecha_registro");  
-
-            modelo.addRow(fila);
-        }
+            while (rs.next()) {
+                Object[] fila = new Object[7]; // 7 columnas
+                fila[0] = rs.getString("tipo_alimento");
+                fila[1] = rs.getString("tipo");
+                fila[2] = rs.getString("fecha_evaluacion");
+                fila[3] = rs.getDouble("eficiencia_termica");
+                fila[4] = rs.getInt("consumo_energetico");
+                // Tuve que cambiar "temperatura_interna" y "tiempo_coccion" a String
+                // porque así los lee tu método MostrarAutosustentablePorBusqueda_JOIN_Funcion.
+                // Si son numéricos en la BD, puedes usar rs.getInt() o rs.getDouble().
+                fila[5] = rs.getString("temperatura_interna"); 
+                fila[6] = rs.getString("tiempo_coccion");     
+                modelo.addRow(fila);
+            }
         }
     } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error al consultar por alimento: " + e.getMessage());
+        JOptionPane.showMessageDialog(null, "Error al consultar análisis vinculado por fecha: " + e.getMessage());
     }
     return modelo;
 }
-public DefaultTableModel MostrarAnalisisComparativo(int idHorno) {
-        String[] titulos = {"ID Horno", "Tipo de Horno", "Gasto Promedio (Consumo)"};
+public DefaultTableModel MostrarAutosustentablePorBusqueda_JOIN_Funcion(String busqueda) {
+    
+    // ¡Mismos títulos! (7 columnas)
+    String[] titulos = {"Alimento", "Horno", "Fecha", "Eficiencia", "Consumo", "Temp. Interna", "Tiempo Cocción"};
+    
     DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            return false; // Hacemos que la tabla no sea editable
-        }
+        @Override public boolean isCellEditable(int row, int column) { return false; }
     };
+    
+    // --- ¡LA CONSULTA CON JOIN! ---
+    // (¡¡REVISÁ LOS 'ON'!!)
+    String sql = "SELECT f.tipo_alimento, h.tipo, a.fecha_evaluacion, a.eficiencia_termica, a.consumo_energetico, " +
+                 "f.temperatura_interna, f.tiempo_coccion " +
+                 "FROM autosustentable a " +
+                 "JOIN funcionamiento f ON a.IDF = f.IDF " + // ¡AJUSTA ESTE 'ON'!
+                 "JOIN hornos h ON f.idh = h.idh " + // ¡AJUSTA ESTE 'ON'!
+                 "WHERE h.tipo LIKE ? OR f.tipo_alimento LIKE ?"; // Ejemplo: busca en 2 columnas
 
-    // Esta es la consulta SQL que agrupa por horno y calcula el promedio
-    String sql = "SELECT h.idh, h.tipo, AVG(a.consumo_energetico) AS GastoPromedio FROM autosustentable a JOIN funcionamiento f ON f.IDF = a.IDF JOIN hornos h ON h.IDH = f.IDH GROUP BY h.idh, h.tipo";
-    
-    ConexionBDD nuevaC = new ConexionBDD(); // Usamos tu clase de conexión
-    
+    ConexionBDD nuevaC = new ConexionBDD();
     try (Connection con = nuevaC.conectar();
-         PreparedStatement pst = con.prepareStatement(sql);
-         ResultSet rs = pst.executeQuery()) {
+         PreparedStatement pst = con.prepareStatement(sql)) {
 
-        while (rs.next()) {
-            Object[] fila = new Object[3]; // Un objeto para 3 columnas
-            
-            fila[0] = rs.getInt("idh");
-            fila[1] = rs.getString("tipo");
-            fila[2] = rs.getDouble("GastoPromedio"); // Es un AVG (promedio), así que usamos getDouble
-            
-            modelo.addRow(fila);
+        // Ponemos el parámetro para los dos '?'
+        pst.setString(1, "%" + busqueda + "%"); 
+        pst.setString(2, "%" + busqueda + "%");
+
+        try (ResultSet rs = pst.executeQuery()) {
+            while (rs.next()) {
+                // ... (Copiá y pegá el mismo loop 'while' del método anterior) ...
+                Object[] fila = new Object[7]; 
+                fila[0] = rs.getString("tipo_alimento");
+                fila[1] = rs.getString("tipo");
+                fila[2] = rs.getString("fecha_evaluacion");
+                fila[3] = rs.getDouble("eficiencia_termica");
+                fila[4] = rs.getInt("consumo_energetico");
+                fila[5] = rs.getString("temperatura_interna");
+                fila[6] = rs.getString("tiempo_coccion");
+                modelo.addRow(fila);
+            }
         }
     } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error al calcular análisis comparativo: " + e.getMessage());
-        e.printStackTrace(); // Bueno para depurar
+        JOptionPane.showMessageDialog(null, "Error al consultar análisis vinculado por búsqueda: " + e.getMessage());
     }
-    
-    return modelo; // Devolvemos el modelo (lleno o vacío)
+    return modelo;
 }
-public String CalcularEstadisticasGenerales() {
-    
-    String sql = "SELECT " +
-                 "AVG(eficiencia_termica) AS prom_eficiencia, " +
-                 "MAX(energia_solar_recibida) AS max_energia, " +
-                 "MIN(consumo_energetico) AS min_consumo " +
-                 "FROM autosustentable";
-    
-    ConexionBDD nuevaC = new ConexionBDD(); // Tu clase de conexión
-    String resultado = "No se pudieron calcular las estadísticas.";
-    
-    try (Connection con = nuevaC.conectar();
-         PreparedStatement pst = con.prepareStatement(sql);
-         ResultSet rs = pst.executeQuery()) {
+public double calcularEstadisticaGlobal(String funcionSQL) {
+        if (!funcionSQL.equalsIgnoreCase("AVG") && !funcionSQL.equalsIgnoreCase("MAX") && !funcionSQL.equalsIgnoreCase("MIN")) {
+            throw new IllegalArgumentException("Función no válida. Solo se permite AVG, MAX o MIN.");
+        }
+
+        String sql = "SELECT " + funcionSQL + "(eficiencia_termica) AS resultado FROM autosustentable";
+        double resultado = 0.0;
+        ConexionBDD nuevaC = new ConexionBDD();
+
+        try (Connection con = nuevaC.conectar();
+             PreparedStatement pst = con.prepareStatement(sql);
+             ResultSet rs = pst.executeQuery()) {
+
+            if (rs.next()) {
+                resultado = rs.getDouble("resultado");
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al calcular estadística global: " + e.getMessage());
+        }
+        return resultado;
+    }
+public DefaultTableModel consultaHornosConDatosAutosustentables() {
         
-        if (rs.next()) {
-            double promEficiencia = rs.getDouble("prom_eficiencia");
-            // OJO: Si energia_solar_recibida es VARCHAR en tu BD, usa rs.getString()
-            int maxEnergia = rs.getInt("max_energia"); 
-            int minConsumo = rs.getInt("consumo_energetico");
+        String[] titulos = {"ID", "Tipo Horno"};
+        
+        DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; 
+            }
+        };
+        
+        // Esta consulta usa JOIN y DISTINCT para encontrar solo hornos
+        // que tienen una conexión final con la tabla 'autosustentable'.
+        String sql = "SELECT DISTINCT h.idh, h.tipo " +
+                     "FROM hornos h " +
+                     "JOIN funcionamiento f ON h.idh = f.idh " +
+                     "JOIN autosustentable a ON f.IDF = a.IDF";
+        
+        ConexionBDD nuevaC = new ConexionBDD();
+        
+        try (Connection con = nuevaC.conectar();
+             PreparedStatement pst = con.prepareStatement(sql);
+             ResultSet rs = pst.executeQuery()) {
+
+            while (rs.next()) {
+                Object[] fila = new Object[2];
+                fila[0] = rs.getInt("idh");
+                fila[1] = rs.getString("tipo");
+                modelo.addRow(fila);
+            }
             
-            // Formateamos el texto que se mostrará
-            resultado = String.format(
-                "--- Estadísticas Generales del Sistema ---\n\n" +
-                "Promedio Eficiencia Térmica: %.2f\n" +
-                "Máxima Energía Solar Recibida: %d\n" +
-                "Mínimo Consumo Energético: %d",
-                promEficiencia, maxEnergia, minConsumo
-            );
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, 
+                "Error al consultar hornos con datos: " + e.getMessage(), 
+                "Error de Base de Datos", 
+                JOptionPane.ERROR_MESSAGE);
         }
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error al calcular estadísticas: " + e.getMessage());
-        e.printStackTrace();
+        return modelo;
     }
-    return resultado; // Devuelve el texto
-}
+public double calcularEstadisticaDosHornos(String funcionSQL, int idh1, int idh2) {
+        // Validamos la función
+        if (!funcionSQL.equalsIgnoreCase("AVG") && !funcionSQL.equalsIgnoreCase("MAX") && !funcionSQL.equalsIgnoreCase("MIN")) {
+            throw new IllegalArgumentException("Función no válida. Solo se permite AVG, MAX o MIN.");
+        }
+
+        // Usamos el JOIN que ya tenías para vincular autosustentable -> funcionamiento -> hornos
+        String sql = "SELECT " + funcionSQL + "(a.eficiencia_termica) AS resultado " +
+                     "FROM autosustentable a " +
+                     "JOIN funcionamiento f ON a.IDF = f.IDF " +
+                     "WHERE f.idh = ? OR f.idh = ?";
+        
+        double resultado = 0.0;
+        ConexionBDD nuevaC = new ConexionBDD();
+
+        try (Connection con = nuevaC.conectar();
+             PreparedStatement pst = con.prepareStatement(sql)) {
+
+            pst.setInt(1, idh1);
+            pst.setInt(2, idh2);
+
+            try (ResultSet rs = pst.executeQuery()) {
+                if (rs.next()) {
+                    resultado = rs.getDouble("resultado");
+                }
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al calcular estadística de dos hornos: " + e.getMessage());
+        }
+        return resultado;
+    }
+public DefaultTableModel MostrarAmbientePorFecha(String fechaDesde, String fechaHasta) {
+        // Títulos (los mismos de tu 'MostrarAmbiente')
+        String[] titulos = {"IDAM", "IDH", "Intensidad", "Temp. Ambiente", "Ángulo", "Dirección Sol", "Fecha Reg."};
+        
+        DefaultTableModel modelo = new DefaultTableModel(null, titulos) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        // Filtramos por 'fecha_registro'
+        String sql = "SELECT * FROM ambiente WHERE fecha_registro >= ? AND fecha_registro <= ?";
+
+        ConexionBDD nuevaC = new ConexionBDD();
+        try (Connection con = nuevaC.conectar();
+             PreparedStatement pst = con.prepareStatement(sql)) {
+
+            pst.setString(1, fechaDesde);
+            pst.setString(2, fechaHasta);
+
+            try (ResultSet rs = pst.executeQuery()) {
+                while (rs.next()) {
+                    Object[] fila = new Object[7];
+                    fila[0] = rs.getInt("IDAM");
+                    fila[1] = rs.getInt("IDH");
+                    fila[2] = rs.getString("intensidad_solar");
+                    fila[3] = rs.getInt("temperatura_ambiente");
+                    fila[4] = rs.getInt("angulo");
+                    fila[5] = rs.getString("direccion_sol");
+                    fila[6] = rs.getString("fecha_registro");
+
+                    modelo.addRow(fila);
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al consultar ambiente por fecha: " + e.getMessage());
+        }
+        return modelo;
+    }
 }
 

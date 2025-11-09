@@ -8,27 +8,39 @@ import javax.swing.table.DefaultTableModel;
 import Controlador.*;
 
 public class Menu extends javax.swing.JFrame {
-
+    private int idHornoCalc1 = -1; 
+    private int idHornoCalc2 = -1;
     /**
      * Creates new form Pruebita
      */
     public Menu() {
 
         initComponents();
+    
         //Asignamos los paneles que están en el programa a falsos para que no se vea en el programa.
         jPanelHornosSolares.setVisible(false);
         jPanelMantenimiento.setVisible(false);
         jPanelFuncionamiento.setVisible(false);
         jPanelAmbiente.setVisible(false);
         jPanelAutosustentable.setVisible(false);
-
         //Creamos un objeto consulta donde contendrá todas las consultas de todos los métodos.
-        txb_buscarAmbiente.setEnabled(false);
         txb_buscarAutosustentable.setEnabled(false);
         txb_buscarFuncionamiento.setEnabled(false);
         txb_buscarHornos.setEnabled(false);
         txb_buscarMantenimiento.setEnabled(false);
-
+        
+       // 1. El CheckBox arranca desmarcado
+        cb_AnalisisDesempeño.setSelected(false);
+        
+        // 2. El modo "Por Búsqueda" arranca DESHABILITADO
+        rbPorBusquedaAutosustentabilidad.setVisible(false);
+        txb_buscarAutosustentable.setEnabled(false);
+        
+        // 3. El modo "Por Fecha" arranca Habilitado (por si acaso)
+        rbPorFechaAutosustentabilidad.setSelected(true); // Seleccionado por defecto
+        Jd_fechaInicioAutosustentable.setEnabled(true);
+        Jd_FechaFinalAutosustentable.setEnabled(true);
+        actualizarVisibilidadAutosustentable();
         //Grupo hora (para elegir si queremos automatico o manual) para parametros operativos
         javax.swing.ButtonGroup grupoHoraMoA = new javax.swing.ButtonGroup();
         grupoHoraMoA.add(rbManual);
@@ -44,107 +56,58 @@ public class Menu extends javax.swing.JFrame {
         ClaseConsulta misConsultas = new ClaseConsulta();
         tblDatoHorno.setModel(misConsultas.MostrarHornos());
     }
-/**
- * Arreglo de tu función. 
- * Esta UNICA función maneja la visibilidad de P1, P2 y todos
- * los componentes internos, basándose en CUALQUIER radio button.
- */
+
+    
 private void actualizarVisibilidadAutosustentable() {
+    if (rbPorFechaAutosustentabilidad.isSelected()) {
+        Jd_fechaInicioAutosustentable.setEnabled(true);
+        Jd_FechaFinalAutosustentable.setEnabled(true);
+        txb_buscarAutosustentable.setEnabled(false);
 
-    // --- PASO 1: RESETEO TOTAL (El truco "anti-paja") ---
-    // Ocultamos todo primero para no olvidarnos de nada.
-    
-    // Paneles
-    JP_AutoP1.setVisible(true);
-    JP_AutoP2.setVisible(false);
-
-    // Componentes de P1 (Fecha y Texto)
-    Jd_fechaInicioAutosustentable.setVisible(false);
-    Jd_FechaFinalAutosustentable.setVisible(false);
-    jl_Hasta.setVisible(false);
-    jl_Desde.setVisible(false);
-    txb_buscarAutosustentable.setVisible(false);
-    jlBuscar.setVisible(false);
-    btn_BuscarAutosustentable.setVisible(false);
-    btn_ResetearAutosustentable.setVisible(false);
-
-    // Componentes de P2 (Análisis)
-    btn_EstadisticasGenerales.setVisible(false);
-    btn_AnalisisComparativo.setVisible(false);
-    jl_VerAnalisis.setVisible(false);
-    jl_CalcularEstadisticas.setVisible(false);
-
-    
-    // --- PASO 2: VEMOS QUÉ MODO ESTÁ ACTIVO Y MOSTRAMOS LO QUE VA ---
-
-    // Usamos OR (||) para chequear el botón de P1 O el de P2
-    
-    // ****** ¡¡MIRÁ ACÁ!! ******
-    if (rbPorFechaAutosustentabilidad.isSelected() || rbPorFechaAutosustentabilidad1.isSelected()) {
-        
-        // --- MODO: FECHA (en Panel 1) ---
-        JP_AutoP1.setVisible(true); // Mostramos P1
-
-        // Mostramos componentes de Fecha
-        Jd_fechaInicioAutosustentable.setVisible(true);
-        Jd_FechaFinalAutosustentable.setVisible(true);
-        jl_Hasta.setVisible(true);
-        jl_Desde.setVisible(true);
-        
-        // Mostramos botones de acción de P1
-        btn_BuscarAutosustentable.setVisible(true);
-        btn_ResetearAutosustentable.setVisible(true);
-        
-        // Sincronizamos (clave): marcamos los dos botones de "Fecha"
-        rbPorFechaAutosustentabilidad.setSelected(true);
-        rbPorFechaAutosustentabilidad1.setSelected(true); // <-- ¡¡USA EL BOTÓN CON 1!!
-
-    // ****** ¡¡Y ACÁ!! ******
-    } else if (rbPorBusquedaAutosustentabilidad.isSelected() || rbPorBusquedaAutosustentabilidad1.isSelected()) {
-        
-        // --- MODO: BÚSQUEDA (en Panel 1) ---
-        JP_AutoP1.setVisible(true); // Mostramos P1
-
-        // Mostramos componentes de Texto
-        txb_buscarAutosustentable.setVisible(true);
-        jlBuscar.setVisible(true);
-        
-        // Mostramos botones de acción de P1
-        btn_BuscarAutosustentable.setVisible(true);
-        btn_ResetearAutosustentable.setVisible(true);
-
-        // Sincronizamos: marcamos los dos botones de "Búsqueda"
-        rbPorBusquedaAutosustentabilidad.setSelected(true);
-        rbPorBusquedaAutosustentabilidad1.setSelected(true); // <-- ¡¡USA EL BOTÓN CON 1!!
-
-    // ****** ¡¡Y ACÁ!! ******
-    } else if (rbAnalisisComparativo.isSelected() || rbAnalisisComparativo1.isSelected()) {
-        
-        // --- MODO: ANÁLISIS (en Panel 2) ---
-        JP_AutoP2.setVisible(true); // Mostramos P2
-
-        // Mostramos componentes de Análisis
-        btn_EstadisticasGenerales.setVisible(true);
-        btn_AnalisisComparativo.setVisible(true); 
-        jl_VerAnalisis.setVisible(true);
-        jl_CalcularEstadisticas.setVisible(true);
-        
-        // Sincronizamos: marcamos los dos botones de "Análisis"
-        rbAnalisisComparativo.setSelected(true);
-        rbAnalisisComparativo1.setSelected(true); // <-- ¡¡USA EL BOTÓN CON 1!!
+    } else if (rbPorBusquedaAutosustentabilidad.isSelected()) {
+        txb_buscarAutosustentable.setEnabled(true);
+        Jd_fechaInicioAutosustentable.setEnabled(false);
+        Jd_FechaFinalAutosustentable.setEnabled(false);
+  
     }
 }
+/**
+ * Habilita o deshabilita las tablas de selección de hornos en el panel 
+ * de Cálculos, basado en el método de comparación seleccionado.
+ */
+private void actualizarDisponibilidadTablasCalculo() {
+    if (rbCompararTodoslosHornos.isSelected()) {
+        // Si comparamos TODOS, deshabilitamos las tablas
+        tblDatoHornoAutosustentable.setEnabled(false);
+        tblDatoHornoAutosustentable2.setEnabled(false);
+        jl_Desde1.setEnabled(false); // La etiqueta "Segundo horno"
+        jl_Desde2.setEnabled(false); // La etiqueta "Primer horno"
+        
+        // Opcional: Limpiar selecciones para evitar confusiones
+        tblDatoHornoAutosustentable.clearSelection();
+        tblDatoHornoAutosustentable2.clearSelection();
+        idHornoCalc1 = -1;
+        idHornoCalc2 = -1;
 
+    } else if (rbComparVariosHornos.isSelected()) {
+        // Si comparamos DOS, habilitamos todo
+        tblDatoHornoAutosustentable.setEnabled(true);
+        tblDatoHornoAutosustentable2.setEnabled(true);
+        jl_Desde1.setEnabled(true);
+        jl_Desde2.setEnabled(true);
+    }
+}
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        buttonGroup3 = new javax.swing.ButtonGroup();
-        buttonGroup4 = new javax.swing.ButtonGroup();
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup5 = new javax.swing.ButtonGroup();
-        buttonGroup6 = new javax.swing.ButtonGroup();
+        GrupoHornos = new javax.swing.ButtonGroup();
+        GrupoMantenimiento = new javax.swing.ButtonGroup();
+        GrupoAutosustentabilidad = new javax.swing.ButtonGroup();
+        GrupoFunciones = new javax.swing.ButtonGroup();
+        GrupoModoAutosustentable = new javax.swing.ButtonGroup();
+        GrupoMetodoCompararAutoHorno = new javax.swing.ButtonGroup();
+        GrupoMetodoCalculoAutoHorno = new javax.swing.ButtonGroup();
         jPanelHornosSolares = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
@@ -268,38 +231,49 @@ private void actualizarVisibilidadAutosustentable() {
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         jScrollPane14 = new javax.swing.JScrollPane();
-        tblDatoHornoAutosustentable = new javax.swing.JTable();
-        jLabel51 = new javax.swing.JLabel();
+        tblDatoFuncionAutosustentable = new javax.swing.JTable();
         txtIDAutosustentable = new javax.swing.JTextField();
         jScrollPane7 = new javax.swing.JScrollPane();
         tblDatoAutosustentable = new javax.swing.JTable();
         jLabel52 = new javax.swing.JLabel();
         JP_AutoP1 = new javax.swing.JDesktopPane();
         rbPorFechaAutosustentabilidad = new javax.swing.JRadioButton();
-        rbAnalisisComparativo = new javax.swing.JRadioButton();
         jl_CantFilas = new javax.swing.JLabel();
         Jd_FechaFinalAutosustentable = new com.toedter.calendar.JDateChooser();
         Jd_fechaInicioAutosustentable = new com.toedter.calendar.JDateChooser();
         jl_Desde = new javax.swing.JLabel();
         jlBuscar = new javax.swing.JLabel();
         txb_buscarAutosustentable = new javax.swing.JTextField();
-        jLabel72 = new javax.swing.JLabel();
         txb_CantidadFilasAutosustentable = new javax.swing.JTextField();
         rbPorBusquedaAutosustentabilidad = new javax.swing.JRadioButton();
         btn_BuscarAutosustentable = new javax.swing.JButton();
         btn_ResetearAutosustentable = new javax.swing.JButton();
         jl_Hasta = new javax.swing.JLabel();
-        JP_AutoP2 = new javax.swing.JDesktopPane();
-        rbPorFechaAutosustentabilidad1 = new javax.swing.JRadioButton();
-        rbAnalisisComparativo1 = new javax.swing.JRadioButton();
-        jl_CantFilas1 = new javax.swing.JLabel();
         jLabel73 = new javax.swing.JLabel();
-        txb_CantidadFilasAutosustentable1 = new javax.swing.JTextField();
-        rbPorBusquedaAutosustentabilidad1 = new javax.swing.JRadioButton();
+        cb_AnalisisDesempeño = new javax.swing.JCheckBox();
+        jLabel74 = new javax.swing.JLabel();
+        jlBuscar1 = new javax.swing.JLabel();
+        JP_AutoP2 = new javax.swing.JDesktopPane();
         btn_EstadisticasGenerales = new javax.swing.JButton();
-        btn_AnalisisComparativo = new javax.swing.JButton();
         jl_CalcularEstadisticas = new javax.swing.JLabel();
-        jl_VerAnalisis = new javax.swing.JLabel();
+        jScrollPane16 = new javax.swing.JScrollPane();
+        tblDatoHornoAutosustentable2 = new javax.swing.JTable();
+        jScrollPane17 = new javax.swing.JScrollPane();
+        tblDatoHornoAutosustentable = new javax.swing.JTable();
+        jl_Desde1 = new javax.swing.JLabel();
+        jl_Desde2 = new javax.swing.JLabel();
+        rbCompararTodoslosHornos = new javax.swing.JRadioButton();
+        rbComparVariosHornos = new javax.swing.JRadioButton();
+        jLabel76 = new javax.swing.JLabel();
+        btn_ResetearCalculoAuto = new javax.swing.JButton();
+        jLabel77 = new javax.swing.JLabel();
+        rbCalcularMinimo = new javax.swing.JRadioButton();
+        rbCalcularPromedio = new javax.swing.JRadioButton();
+        rbCalcularMaximo = new javax.swing.JRadioButton();
+        jLabel51 = new javax.swing.JLabel();
+        rb_Calculos = new javax.swing.JRadioButton();
+        rb_ConsultaDatos = new javax.swing.JRadioButton();
+        jLabel75 = new javax.swing.JLabel();
         jPanelAmbiente = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
         btn_IngresarAmbiente = new javax.swing.JButton();
@@ -323,15 +297,10 @@ private void actualizarVisibilidadAutosustentable() {
         tblDatoAmbiente = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
         jDesktopPane3 = new javax.swing.JDesktopPane();
-        rbPorFechaAmbiente = new javax.swing.JRadioButton();
-        rbPorBusquedaAmbiente = new javax.swing.JRadioButton();
         jLabel29 = new javax.swing.JLabel();
         Jd_FechaFinalAmbiente = new com.toedter.calendar.JDateChooser();
         Jd_fechaDesdeAmbiente = new com.toedter.calendar.JDateChooser();
         jLabel30 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        txb_buscarAmbiente = new javax.swing.JTextField();
-        jLabel54 = new javax.swing.JLabel();
         btn_BuscarAmbiente = new javax.swing.JButton();
         btn_ResetearAmbiente = new javax.swing.JButton();
         txb_CantidadFilasAmbiente = new javax.swing.JTextField();
@@ -374,6 +343,11 @@ private void actualizarVisibilidadAutosustentable() {
         jPanelHornosSolares.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 156, 65));
 
         cb_sisAislamiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Aislamiento por material", "Doble cubierta transparente", "Sellado hermético", "Aislamiento reflectante" }));
+        cb_sisAislamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_sisAislamientoActionPerformed(evt);
+            }
+        });
         jPanelHornosSolares.add(cb_sisAislamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 153, 40));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -463,8 +437,9 @@ private void actualizarVisibilidadAutosustentable() {
         jDesktopPane2.setBackground(new java.awt.Color(71, 76, 86));
         jDesktopPane2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        buttonGroup2.add(rbPorFechaHornos);
+        GrupoHornos.add(rbPorFechaHornos);
         rbPorFechaHornos.setForeground(new java.awt.Color(255, 255, 255));
+        rbPorFechaHornos.setSelected(true);
         rbPorFechaHornos.setText("Por fechas (Inicio/Fin)");
         rbPorFechaHornos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -474,7 +449,7 @@ private void actualizarVisibilidadAutosustentable() {
         jDesktopPane2.setLayer(rbPorFechaHornos, javax.swing.JLayeredPane.DRAG_LAYER);
         jDesktopPane2.add(rbPorFechaHornos, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, -1, 20));
 
-        buttonGroup2.add(rbPorBusquedaHornos);
+        GrupoHornos.add(rbPorBusquedaHornos);
         rbPorBusquedaHornos.setForeground(new java.awt.Color(255, 255, 255));
         rbPorBusquedaHornos.setText("Por busqueda");
         rbPorBusquedaHornos.addActionListener(new java.awt.event.ActionListener() {
@@ -655,7 +630,7 @@ private void actualizarVisibilidadAutosustentable() {
         jDesktopPane5.setBackground(new java.awt.Color(213, 167, 99));
         jDesktopPane5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        buttonGroup3.add(rbPorFechaMantenimiento);
+        GrupoMantenimiento.add(rbPorFechaMantenimiento);
         rbPorFechaMantenimiento.setForeground(new java.awt.Color(255, 255, 255));
         rbPorFechaMantenimiento.setSelected(true);
         rbPorFechaMantenimiento.setText("Por fechas (Desde/Hasta)");
@@ -666,7 +641,7 @@ private void actualizarVisibilidadAutosustentable() {
         });
         jDesktopPane5.add(rbPorFechaMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, -1, 20));
 
-        buttonGroup3.add(rbPorBusquedaMantenimiento);
+        GrupoMantenimiento.add(rbPorBusquedaMantenimiento);
         rbPorBusquedaMantenimiento.setForeground(new java.awt.Color(255, 255, 255));
         rbPorBusquedaMantenimiento.setText("Por busqueda");
         rbPorBusquedaMantenimiento.addActionListener(new java.awt.event.ActionListener() {
@@ -913,7 +888,9 @@ private void actualizarVisibilidadAutosustentable() {
         jDesktopPane4.setBackground(new java.awt.Color(89, 49, 49));
         jDesktopPane4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        GrupoFunciones.add(rbPorFechaFunciones);
         rbPorFechaFunciones.setForeground(new java.awt.Color(255, 255, 255));
+        rbPorFechaFunciones.setSelected(true);
         rbPorFechaFunciones.setText("Por fechas (Desde/Hasta)");
         rbPorFechaFunciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -922,6 +899,7 @@ private void actualizarVisibilidadAutosustentable() {
         });
         jDesktopPane4.add(rbPorFechaFunciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, -1, 20));
 
+        GrupoFunciones.add(rbPorBusquedaFunciones);
         rbPorBusquedaFunciones.setForeground(new java.awt.Color(255, 255, 255));
         rbPorBusquedaFunciones.setText("Por busqueda");
         rbPorBusquedaFunciones.addActionListener(new java.awt.event.ActionListener() {
@@ -1014,17 +992,17 @@ private void actualizarVisibilidadAutosustentable() {
         jLabel44.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel44.setForeground(new java.awt.Color(255, 255, 255));
         jLabel44.setText("Eficiencia Energetica");
-        jPanelAutosustentable.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, -1, -1));
+        jPanelAutosustentable.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, -1, -1));
 
         jLabel45.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel45.setForeground(new java.awt.Color(255, 255, 255));
         jLabel45.setText("Consumo Energetico");
-        jPanelAutosustentable.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, -1));
+        jPanelAutosustentable.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
 
         jLabel46.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel46.setForeground(new java.awt.Color(255, 255, 255));
         jLabel46.setText("%");
-        jPanelAutosustentable.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, -1, 10));
+        jPanelAutosustentable.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, -1, 10));
 
         btn_IngresarAutosustentable.setBackground(new java.awt.Color(51, 153, 0));
         btn_IngresarAutosustentable.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
@@ -1037,21 +1015,21 @@ private void actualizarVisibilidadAutosustentable() {
                 btn_IngresarAutosustentableActionPerformed(evt);
             }
         });
-        jPanelAutosustentable.add(btn_IngresarAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 280, 63));
+        jPanelAutosustentable.add(btn_IngresarAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 280, 63));
 
         js_EficienciaEnergetica.setModel(new javax.swing.SpinnerNumberModel(0, 0, 360, 1));
         js_EficienciaEnergetica.setName(""); // NOI18N
-        jPanelAutosustentable.add(js_EficienciaEnergetica, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 90, 30));
+        jPanelAutosustentable.add(js_EficienciaEnergetica, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, 90, 30));
 
         jLabel47.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel47.setForeground(new java.awt.Color(255, 255, 255));
         jLabel47.setText("w");
-        jPanelAutosustentable.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 200, -1, 20));
+        jPanelAutosustentable.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, -1, 20));
 
         jLabel6.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Autosustentabilidad del horno");
-        jPanelAutosustentable.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, 50));
+        jPanelAutosustentable.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, 40));
 
         txb_consumoe.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         txb_consumoe.addActionListener(new java.awt.event.ActionListener() {
@@ -1059,38 +1037,38 @@ private void actualizarVisibilidadAutosustentable() {
                 txb_consumoeActionPerformed(evt);
             }
         });
-        jPanelAutosustentable.add(txb_consumoe, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 90, 30));
+        jPanelAutosustentable.add(txb_consumoe, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 90, 30));
 
         txb_energiaalmacenada.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jPanelAutosustentable.add(txb_energiaalmacenada, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 84, 30));
+        jPanelAutosustentable.add(txb_energiaalmacenada, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 84, 30));
 
         Jd_fecha4.setDateFormatString("yyyy-MM-dd");
-        jPanelAutosustentable.add(Jd_fecha4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 130, 38));
+        jPanelAutosustentable.add(Jd_fecha4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 130, 38));
 
         cb_EnergiaRecibida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Alta", "Media", "Baja" }));
-        jPanelAutosustentable.add(cb_EnergiaRecibida, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 119, 40));
+        jPanelAutosustentable.add(cb_EnergiaRecibida, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 119, 40));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Fecha creacion");
-        jPanelAutosustentable.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, -1, -1));
+        jPanelAutosustentable.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
 
         jLabel48.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel48.setForeground(new java.awt.Color(255, 255, 255));
         jLabel48.setText("w");
-        jPanelAutosustentable.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, -1, -1));
+        jPanelAutosustentable.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, -1, -1));
 
         jLabel49.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel49.setForeground(new java.awt.Color(255, 255, 255));
         jLabel49.setText("Energia Solar Recibida");
-        jPanelAutosustentable.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
+        jPanelAutosustentable.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, -1, -1));
 
         jLabel50.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel50.setForeground(new java.awt.Color(255, 255, 255));
         jLabel50.setText("Lista de funciones");
-        jPanelAutosustentable.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, -1, -1));
+        jPanelAutosustentable.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, -1, -1));
 
-        tblDatoHornoAutosustentable.setModel(new javax.swing.table.DefaultTableModel(
+        tblDatoFuncionAutosustentable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -1098,20 +1076,15 @@ private void actualizarVisibilidadAutosustentable() {
 
             }
         ));
-        tblDatoHornoAutosustentable.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblDatoFuncionAutosustentable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDatoHornoAutosustentableMouseClicked(evt);
+                tblDatoFuncionAutosustentableMouseClicked(evt);
             }
         });
-        jScrollPane14.setViewportView(tblDatoHornoAutosustentable);
+        jScrollPane14.setViewportView(tblDatoFuncionAutosustentable);
 
-        jPanelAutosustentable.add(jScrollPane14, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 160, 70));
-
-        jLabel51.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel51.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel51.setText("Tabla autosustentable de horno ingresado");
-        jPanelAutosustentable.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 80, -1, -1));
-        jPanelAutosustentable.add(txtIDAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 160, -1));
+        jPanelAutosustentable.add(jScrollPane14, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 150, 70));
+        jPanelAutosustentable.add(txtIDAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 330, 150, -1));
 
         tblDatoAutosustentable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1125,17 +1098,17 @@ private void actualizarVisibilidadAutosustentable() {
         });
         jScrollPane7.setViewportView(tblDatoAutosustentable);
 
-        jPanelAutosustentable.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, 610, 170));
+        jPanelAutosustentable.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 570, 170));
 
         jLabel52.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel52.setForeground(new java.awt.Color(255, 255, 255));
         jLabel52.setText("Energia Almacenada");
-        jPanelAutosustentable.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, -1, -1));
+        jPanelAutosustentable.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
 
         JP_AutoP1.setBackground(new java.awt.Color(71, 139, 93));
         JP_AutoP1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        buttonGroup4.add(rbPorFechaAutosustentabilidad);
+        GrupoAutosustentabilidad.add(rbPorFechaAutosustentabilidad);
         rbPorFechaAutosustentabilidad.setForeground(new java.awt.Color(255, 255, 255));
         rbPorFechaAutosustentabilidad.setSelected(true);
         rbPorFechaAutosustentabilidad.setText("Por fechas (Desde/Hasta)");
@@ -1144,26 +1117,16 @@ private void actualizarVisibilidadAutosustentable() {
                 rbPorFechaAutosustentabilidadActionPerformed(evt);
             }
         });
-        JP_AutoP1.add(rbPorFechaAutosustentabilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, -1, 20));
-
-        buttonGroup4.add(rbAnalisisComparativo);
-        rbAnalisisComparativo.setForeground(new java.awt.Color(255, 255, 255));
-        rbAnalisisComparativo.setText("Analisis Comparativo");
-        rbAnalisisComparativo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbAnalisisComparativoActionPerformed(evt);
-            }
-        });
-        JP_AutoP1.add(rbAnalisisComparativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, -1, 20));
+        JP_AutoP1.add(rbPorFechaAutosustentabilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, -1, -1));
 
         jl_CantFilas.setBackground(new java.awt.Color(255, 255, 255));
         jl_CantFilas.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jl_CantFilas.setForeground(new java.awt.Color(255, 255, 255));
         jl_CantFilas.setText("Cantidad de filas");
-        JP_AutoP1.add(jl_CantFilas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 150, 20));
+        JP_AutoP1.add(jl_CantFilas, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 150, 20));
 
         Jd_FechaFinalAutosustentable.setDateFormatString("yyyy-MM-dd");
-        JP_AutoP1.add(Jd_FechaFinalAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 153, 30));
+        JP_AutoP1.add(Jd_FechaFinalAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 153, 30));
 
         Jd_fechaInicioAutosustentable.setDateFormatString("yyyy-MM-dd");
         JP_AutoP1.add(Jd_fechaInicioAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 153, 30));
@@ -1177,30 +1140,24 @@ private void actualizarVisibilidadAutosustentable() {
         jlBuscar.setBackground(new java.awt.Color(255, 255, 255));
         jlBuscar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jlBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        jlBuscar.setText("Buscar:");
-        JP_AutoP1.add(jlBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 80, 30));
+        jlBuscar.setText("y por horno:");
+        JP_AutoP1.add(jlBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 230, 30));
 
         txb_buscarAutosustentable.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
-        JP_AutoP1.add(txb_buscarAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 510, 30));
-
-        jLabel72.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel72.setFont(new java.awt.Font("Candara", 2, 14)); // NOI18N
-        jLabel72.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel72.setText("Metodo de busqueda:");
-        JP_AutoP1.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, -1, 20));
+        JP_AutoP1.add(txb_buscarAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 360, 30));
 
         txb_CantidadFilasAutosustentable.setEditable(false);
-        JP_AutoP1.add(txb_CantidadFilasAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 110, -1));
+        JP_AutoP1.add(txb_CantidadFilasAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 110, -1));
 
-        buttonGroup4.add(rbPorBusquedaAutosustentabilidad);
+        GrupoAutosustentabilidad.add(rbPorBusquedaAutosustentabilidad);
         rbPorBusquedaAutosustentabilidad.setForeground(new java.awt.Color(255, 255, 255));
-        rbPorBusquedaAutosustentabilidad.setText("Por busqueda");
+        rbPorBusquedaAutosustentabilidad.setText("Por funcion");
         rbPorBusquedaAutosustentabilidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbPorBusquedaAutosustentabilidadActionPerformed(evt);
             }
         });
-        JP_AutoP1.add(rbPorBusquedaAutosustentabilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, -1, 20));
+        JP_AutoP1.add(rbPorBusquedaAutosustentabilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, -1, -1));
 
         btn_BuscarAutosustentable.setBackground(new java.awt.Color(27, 109, 163));
         btn_BuscarAutosustentable.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
@@ -1226,63 +1183,45 @@ private void actualizarVisibilidadAutosustentable() {
                 btn_ResetearAutosustentableActionPerformed(evt);
             }
         });
-        JP_AutoP1.add(btn_ResetearAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 190, 40));
+        JP_AutoP1.add(btn_ResetearAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 190, 40));
 
         jl_Hasta.setBackground(new java.awt.Color(255, 255, 255));
         jl_Hasta.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jl_Hasta.setForeground(new java.awt.Color(255, 255, 255));
         jl_Hasta.setText("Fecha hasta");
-        JP_AutoP1.add(jl_Hasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 120, 20));
-
-        jPanelAutosustentable.add(JP_AutoP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 610, 210));
-
-        JP_AutoP2.setBackground(new java.awt.Color(41, 146, 75));
-        JP_AutoP2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        buttonGroup6.add(rbPorFechaAutosustentabilidad1);
-        rbPorFechaAutosustentabilidad1.setForeground(new java.awt.Color(255, 255, 255));
-        rbPorFechaAutosustentabilidad1.setText("Por fechas (Desde/Hasta)");
-        rbPorFechaAutosustentabilidad1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbPorFechaAutosustentabilidad1ActionPerformed(evt);
-            }
-        });
-        JP_AutoP2.add(rbPorFechaAutosustentabilidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, -1, 20));
-
-        buttonGroup6.add(rbAnalisisComparativo1);
-        rbAnalisisComparativo1.setForeground(new java.awt.Color(255, 255, 255));
-        rbAnalisisComparativo1.setText("Analisis Comparativo");
-        rbAnalisisComparativo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbAnalisisComparativo1ActionPerformed(evt);
-            }
-        });
-        JP_AutoP2.add(rbAnalisisComparativo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, -1, 20));
-
-        jl_CantFilas1.setBackground(new java.awt.Color(255, 255, 255));
-        jl_CantFilas1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jl_CantFilas1.setForeground(new java.awt.Color(255, 255, 255));
-        jl_CantFilas1.setText("Cantidad de filas");
-        JP_AutoP2.add(jl_CantFilas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 150, 20));
+        JP_AutoP1.add(jl_Hasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 120, 20));
 
         jLabel73.setBackground(new java.awt.Color(255, 255, 255));
         jLabel73.setFont(new java.awt.Font("Candara", 2, 14)); // NOI18N
         jLabel73.setForeground(new java.awt.Color(255, 255, 255));
         jLabel73.setText("Metodo de busqueda:");
-        JP_AutoP2.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, -1, 20));
+        JP_AutoP1.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, -1, 20));
 
-        txb_CantidadFilasAutosustentable1.setEditable(false);
-        JP_AutoP2.add(txb_CantidadFilasAutosustentable1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 110, -1));
-
-        buttonGroup6.add(rbPorBusquedaAutosustentabilidad1);
-        rbPorBusquedaAutosustentabilidad1.setForeground(new java.awt.Color(255, 255, 255));
-        rbPorBusquedaAutosustentabilidad1.setText("Por busqueda");
-        rbPorBusquedaAutosustentabilidad1.addActionListener(new java.awt.event.ActionListener() {
+        cb_AnalisisDesempeño.setForeground(new java.awt.Color(255, 255, 255));
+        cb_AnalisisDesempeño.setText("Analisis de desempeño");
+        cb_AnalisisDesempeño.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbPorBusquedaAutosustentabilidad1ActionPerformed(evt);
+                cb_AnalisisDesempeñoActionPerformed(evt);
             }
         });
-        JP_AutoP2.add(rbPorBusquedaAutosustentabilidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, -1, 20));
+        JP_AutoP1.add(cb_AnalisisDesempeño, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, -1, 20));
+
+        jLabel74.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel74.setFont(new java.awt.Font("Candara", 2, 14)); // NOI18N
+        jLabel74.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel74.setText("Vincular con Funciones");
+        JP_AutoP1.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, -1, 20));
+
+        jlBuscar1.setBackground(new java.awt.Color(255, 255, 255));
+        jlBuscar1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jlBuscar1.setForeground(new java.awt.Color(255, 255, 255));
+        jlBuscar1.setText("Buscar por Alimento");
+        JP_AutoP1.add(jlBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 230, 30));
+
+        jPanelAutosustentable.add(JP_AutoP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 570, 210));
+
+        JP_AutoP2.setBackground(new java.awt.Color(41, 146, 75));
+        JP_AutoP2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btn_EstadisticasGenerales.setBackground(new java.awt.Color(27, 109, 163));
         btn_EstadisticasGenerales.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
@@ -1295,34 +1234,154 @@ private void actualizarVisibilidadAutosustentable() {
                 btn_EstadisticasGeneralesActionPerformed(evt);
             }
         });
-        JP_AutoP2.add(btn_EstadisticasGenerales, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 190, 40));
-
-        btn_AnalisisComparativo.setBackground(new java.awt.Color(27, 109, 163));
-        btn_AnalisisComparativo.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
-        btn_AnalisisComparativo.setForeground(new java.awt.Color(255, 255, 255));
-        btn_AnalisisComparativo.setText("Analizar");
-        btn_AnalisisComparativo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_AnalisisComparativo.setBorderPainted(false);
-        btn_AnalisisComparativo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AnalisisComparativoActionPerformed(evt);
-            }
-        });
-        JP_AutoP2.add(btn_AnalisisComparativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 190, 40));
+        JP_AutoP2.add(btn_EstadisticasGenerales, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 190, 40));
 
         jl_CalcularEstadisticas.setBackground(new java.awt.Color(255, 255, 255));
         jl_CalcularEstadisticas.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jl_CalcularEstadisticas.setForeground(new java.awt.Color(255, 255, 255));
         jl_CalcularEstadisticas.setText("Calcular Estadísticas");
-        JP_AutoP2.add(jl_CalcularEstadisticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 340, 20));
+        JP_AutoP2.add(jl_CalcularEstadisticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 190, 20));
 
-        jl_VerAnalisis.setBackground(new java.awt.Color(255, 255, 255));
-        jl_VerAnalisis.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jl_VerAnalisis.setForeground(new java.awt.Color(255, 255, 255));
-        jl_VerAnalisis.setText("Ver analisis comparativo");
-        JP_AutoP2.add(jl_VerAnalisis, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 240, 20));
+        tblDatoHornoAutosustentable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDatoHornoAutosustentable2MouseClicked(evt);
+            }
+        });
+        jScrollPane16.setViewportView(tblDatoHornoAutosustentable2);
 
-        jPanelAutosustentable.add(JP_AutoP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 610, 250));
+        JP_AutoP2.add(jScrollPane16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 150, 70));
+
+        tblDatoHornoAutosustentable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDatoHornoAutosustentableMouseClicked(evt);
+            }
+        });
+        jScrollPane17.setViewportView(tblDatoHornoAutosustentable);
+
+        JP_AutoP2.add(jScrollPane17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 150, 70));
+
+        jl_Desde1.setBackground(new java.awt.Color(255, 255, 255));
+        jl_Desde1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jl_Desde1.setForeground(new java.awt.Color(255, 255, 255));
+        jl_Desde1.setText("Segundo horno");
+        JP_AutoP2.add(jl_Desde1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 140, 30));
+
+        jl_Desde2.setBackground(new java.awt.Color(255, 255, 255));
+        jl_Desde2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jl_Desde2.setForeground(new java.awt.Color(255, 255, 255));
+        jl_Desde2.setText("Primer horno");
+        JP_AutoP2.add(jl_Desde2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 120, 30));
+
+        GrupoMetodoCalculoAutoHorno.add(rbCompararTodoslosHornos);
+        rbCompararTodoslosHornos.setForeground(new java.awt.Color(255, 255, 255));
+        rbCompararTodoslosHornos.setText("Comparar todos los hornos");
+        rbCompararTodoslosHornos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbCompararTodoslosHornosActionPerformed(evt);
+            }
+        });
+        JP_AutoP2.add(rbCompararTodoslosHornos, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, -1, -1));
+
+        GrupoMetodoCalculoAutoHorno.add(rbComparVariosHornos);
+        rbComparVariosHornos.setForeground(new java.awt.Color(255, 255, 255));
+        rbComparVariosHornos.setSelected(true);
+        rbComparVariosHornos.setText("Comparar dos hornos");
+        rbComparVariosHornos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbComparVariosHornosActionPerformed(evt);
+            }
+        });
+        JP_AutoP2.add(rbComparVariosHornos, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, -1, -1));
+
+        jLabel76.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel76.setFont(new java.awt.Font("Candara", 2, 14)); // NOI18N
+        jLabel76.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel76.setText("Metodo de comparación:");
+        JP_AutoP2.add(jLabel76, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, -1, -1));
+
+        btn_ResetearCalculoAuto.setBackground(new java.awt.Color(27, 109, 163));
+        btn_ResetearCalculoAuto.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
+        btn_ResetearCalculoAuto.setForeground(new java.awt.Color(255, 255, 255));
+        btn_ResetearCalculoAuto.setText("Resetear");
+        btn_ResetearCalculoAuto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_ResetearCalculoAuto.setBorderPainted(false);
+        btn_ResetearCalculoAuto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ResetearCalculoAutoActionPerformed(evt);
+            }
+        });
+        JP_AutoP2.add(btn_ResetearCalculoAuto, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 190, 40));
+
+        jLabel77.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel77.setFont(new java.awt.Font("Candara", 2, 14)); // NOI18N
+        jLabel77.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel77.setText("Metodo de calculo:");
+        JP_AutoP2.add(jLabel77, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, -1, -1));
+
+        GrupoMetodoCompararAutoHorno.add(rbCalcularMinimo);
+        rbCalcularMinimo.setForeground(new java.awt.Color(255, 255, 255));
+        rbCalcularMinimo.setText("Calcular Minimo");
+        rbCalcularMinimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbCalcularMinimoActionPerformed(evt);
+            }
+        });
+        JP_AutoP2.add(rbCalcularMinimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, -1, -1));
+
+        GrupoMetodoCompararAutoHorno.add(rbCalcularPromedio);
+        rbCalcularPromedio.setForeground(new java.awt.Color(255, 255, 255));
+        rbCalcularPromedio.setSelected(true);
+        rbCalcularPromedio.setText("Calcular Promedio");
+        rbCalcularPromedio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbCalcularPromedioActionPerformed(evt);
+            }
+        });
+        JP_AutoP2.add(rbCalcularPromedio, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, -1, -1));
+
+        GrupoMetodoCompararAutoHorno.add(rbCalcularMaximo);
+        rbCalcularMaximo.setForeground(new java.awt.Color(255, 255, 255));
+        rbCalcularMaximo.setText("Calcular  Maximo");
+        rbCalcularMaximo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbCalcularMaximoActionPerformed(evt);
+            }
+        });
+        JP_AutoP2.add(rbCalcularMaximo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, -1, -1));
+
+        jPanelAutosustentable.add(JP_AutoP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, 570, 230));
+
+        jLabel51.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel51.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel51.setText("Tabla autosustentable ingresado");
+        jPanelAutosustentable.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, -1, -1));
+
+        GrupoModoAutosustentable.add(rb_Calculos);
+        rb_Calculos.setForeground(new java.awt.Color(255, 255, 255));
+        rb_Calculos.setText("Cálculos y Estadísticas");
+        rb_Calculos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rb_CalculosActionPerformed(evt);
+            }
+        });
+        jPanelAutosustentable.add(rb_Calculos, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, -1, 20));
+
+        GrupoModoAutosustentable.add(rb_ConsultaDatos);
+        rb_ConsultaDatos.setForeground(new java.awt.Color(255, 255, 255));
+        rb_ConsultaDatos.setSelected(true);
+        rb_ConsultaDatos.setText("Consulta");
+        rb_ConsultaDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rb_ConsultaDatosActionPerformed(evt);
+            }
+        });
+        jPanelAutosustentable.add(rb_ConsultaDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, -1, 20));
+
+        jLabel75.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel75.setFont(new java.awt.Font("Candara", 2, 14)); // NOI18N
+        jLabel75.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel75.setText("Modo de Análisis");
+        jPanelAutosustentable.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, -1, 20));
 
         getContentPane().add(jPanelAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 1100, 510));
 
@@ -1438,27 +1497,6 @@ private void actualizarVisibilidadAutosustentable() {
         jDesktopPane3.setBackground(new java.awt.Color(144, 176, 150));
         jDesktopPane3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        buttonGroup5.add(rbPorFechaAmbiente);
-        rbPorFechaAmbiente.setForeground(new java.awt.Color(255, 255, 255));
-        rbPorFechaAmbiente.setSelected(true);
-        rbPorFechaAmbiente.setText("Por fechas (Inicio/Fin)");
-        rbPorFechaAmbiente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbPorFechaAmbienteActionPerformed(evt);
-            }
-        });
-        jDesktopPane3.add(rbPorFechaAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, -1, 20));
-
-        buttonGroup5.add(rbPorBusquedaAmbiente);
-        rbPorBusquedaAmbiente.setForeground(new java.awt.Color(255, 255, 255));
-        rbPorBusquedaAmbiente.setText("Por busqueda");
-        rbPorBusquedaAmbiente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbPorBusquedaAmbienteActionPerformed(evt);
-            }
-        });
-        jDesktopPane3.add(rbPorBusquedaAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, -1, 20));
-
         jLabel29.setBackground(new java.awt.Color(255, 255, 255));
         jLabel29.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(255, 255, 255));
@@ -1466,31 +1504,16 @@ private void actualizarVisibilidadAutosustentable() {
         jDesktopPane3.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 150, 20));
 
         Jd_FechaFinalAmbiente.setDateFormatString("yyyy-MM-dd");
-        jDesktopPane3.add(Jd_FechaFinalAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 153, 30));
+        jDesktopPane3.add(Jd_FechaFinalAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 190, 50));
 
         Jd_fechaDesdeAmbiente.setDateFormatString("yyyy-MM-dd");
-        jDesktopPane3.add(Jd_fechaDesdeAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 153, 30));
+        jDesktopPane3.add(Jd_fechaDesdeAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 190, 50));
 
         jLabel30.setBackground(new java.awt.Color(255, 255, 255));
         jLabel30.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(255, 255, 255));
         jLabel30.setText("Fecha desde");
-        jDesktopPane3.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 120, 20));
-
-        jLabel32.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel32.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel32.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel32.setText("Buscar:");
-        jDesktopPane3.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 80, 30));
-
-        txb_buscarAmbiente.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
-        jDesktopPane3.add(txb_buscarAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 500, 30));
-
-        jLabel54.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel54.setFont(new java.awt.Font("Candara", 2, 14)); // NOI18N
-        jLabel54.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel54.setText("Metodo de busqueda:");
-        jDesktopPane3.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, -1, 20));
+        jDesktopPane3.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 160, 50));
 
         btn_BuscarAmbiente.setBackground(new java.awt.Color(135, 157, 185));
         btn_BuscarAmbiente.setFont(new java.awt.Font("Gadugi", 1, 38)); // NOI18N
@@ -1525,7 +1548,7 @@ private void actualizarVisibilidadAutosustentable() {
         jLabel55.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel55.setForeground(new java.awt.Color(255, 255, 255));
         jLabel55.setText("Fecha hasta");
-        jDesktopPane3.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 120, 20));
+        jDesktopPane3.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, 120, 20));
 
         jPanelAmbiente.add(jDesktopPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 660, 210));
 
@@ -1652,7 +1675,7 @@ private void actualizarVisibilidadAutosustentable() {
     }//GEN-LAST:event_txb_consumoeActionPerformed
 
     private void btn_IngresarAutosustentableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarAutosustentableActionPerformed
-        // TODO add your handling code here:
+            cb_AnalisisDesempeño.setSelected(false);
         try {
             ClaseConsulta INAU = new ClaseConsulta();
             autosustentable au = new autosustentable(
@@ -1664,8 +1687,7 @@ private void actualizarVisibilidadAutosustentable() {
                     new SimpleDateFormat("yyyy/MM/dd").format(Jd_fecha4.getDate())
             );
             INAU.IngresarAutosustentable(au);
-            tblDatoHornoAutosustentable.setModel(INAU.MostrarAutosustentable());
-
+            tblDatoAutosustentable.setModel(INAU.MostrarAutosustentable());
             txb_consumoe.setText(null);
             txb_energiaalmacenada.setText(null);
         } catch (HeadlessException e) {
@@ -1882,11 +1904,16 @@ private void actualizarVisibilidadAutosustentable() {
         jPanelAmbiente.setVisible(false);
         jPanelAutosustentable.setVisible(true);
         ClaseConsulta misConsultas = new ClaseConsulta();
-        tblDatoHornoAutosustentable.setModel(misConsultas.consultaFuncion());
+        tblDatoFuncionAutosustentable.setModel(misConsultas.consultaFuncion());
         tblDatoAutosustentable.setModel(misConsultas.MostrarAutosustentable());
         actualizarVisibilidadAutosustentable();
         JP_AutoP1.setVisible(true);
         JP_AutoP2.setVisible(false);
+        cb_AnalisisDesempeño.setSelected(false);
+         rbPorBusquedaAutosustentabilidad.setVisible(false);
+         txb_buscarAutosustentable.setEnabled(false);
+         rb_ConsultaDatos.setSelected(true);
+         rb_Calculos.setSelected(false);
     }//GEN-LAST:event_lblAutosustentableMouseClicked
 
     private void tblDatoHornoManteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoHornoManteMouseClicked
@@ -1897,13 +1924,13 @@ private void actualizarVisibilidadAutosustentable() {
 
     }//GEN-LAST:event_tblDatoHornoManteMouseClicked
 
-    private void tblDatoHornoAutosustentableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoHornoAutosustentableMouseClicked
-        int filaSeleccionada = tblDatoHornoAutosustentable.getSelectedRow();
-        DefaultTableModel modelo = (DefaultTableModel) tblDatoHornoAutosustentable.getModel();
+    private void tblDatoFuncionAutosustentableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoFuncionAutosustentableMouseClicked
+        int filaSeleccionada = tblDatoFuncionAutosustentable.getSelectedRow();
+        DefaultTableModel modelo = (DefaultTableModel) tblDatoFuncionAutosustentable.getModel();
         Object idObjeto = modelo.getValueAt(filaSeleccionada, 0);
         txtIDAutosustentable.setText(String.valueOf(idObjeto));
 
-    }//GEN-LAST:event_tblDatoHornoAutosustentableMouseClicked
+    }//GEN-LAST:event_tblDatoFuncionAutosustentableMouseClicked
 
     private void btn_IngresarMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarMantenimientoActionPerformed
         try {
@@ -2003,20 +2030,51 @@ private void actualizarVisibilidadAutosustentable() {
         // TODO add your handling code here:
     }//GEN-LAST:event_tblDatoAmbienteKeyPressed
 
-    private void rbPorFechaAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorFechaAmbienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbPorFechaAmbienteActionPerformed
-
-    private void rbPorBusquedaAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorBusquedaAmbienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbPorBusquedaAmbienteActionPerformed
-
     private void btn_BuscarAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarAmbienteActionPerformed
-        // TODO add your handling code here:
+ClaseConsulta miConsulta = new ClaseConsulta();
+        DefaultTableModel modelo;
+
+        try {
+            // 1. Validar que las fechas no estén vacías
+            if (Jd_fechaDesdeAmbiente.getDate() == null || Jd_FechaFinalAmbiente.getDate() == null) {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar ambas fechas (Desde y Hasta).", "Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            // 2. Formatear las fechas
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaDesde = sdf.format(Jd_fechaDesdeAmbiente.getDate());
+            String fechaHasta = sdf.format(Jd_FechaFinalAmbiente.getDate());
+
+            // 3. Llamar al nuevo método de consulta
+            modelo = miConsulta.MostrarAmbientePorFecha(fechaDesde, fechaHasta);
+            tblDatoAmbiente.setModel(modelo);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al buscar por fecha: " + e.getMessage());
+            modelo = miConsulta.MostrarAmbiente(); // Si falla, muestra todo
+            tblDatoAmbiente.setModel(modelo);
+        }
+
+        // 4. Actualizar el contador de filas
+        int cantidad = modelo.getRowCount();
+        txb_CantidadFilasAmbiente.setText(String.valueOf(cantidad));
     }//GEN-LAST:event_btn_BuscarAmbienteActionPerformed
 
     private void btn_ResetearAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ResetearAmbienteActionPerformed
-        // TODO add your handling code here:
+ClaseConsulta RA = new ClaseConsulta();
+        
+        // 1. Cargar el modelo con TODOS los datos
+        DefaultTableModel modelo = RA.MostrarAmbiente();
+        tblDatoAmbiente.setModel(modelo);
+
+        // 2. Actualizar el contador
+        int cantidad = modelo.getRowCount();
+        txb_CantidadFilasAmbiente.setText(String.valueOf(cantidad));
+
+        // 3. Limpiar los calendarios
+        Jd_fechaDesdeAmbiente.setDate(null);
+        Jd_FechaFinalAmbiente.setDate(null);
     }//GEN-LAST:event_btn_ResetearAmbienteActionPerformed
 
     private void rbPorFechaFuncionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorFechaFuncionesActionPerformed
@@ -2183,59 +2241,6 @@ private void actualizarVisibilidadAutosustentable() {
     actualizarVisibilidadAutosustentable();
     }//GEN-LAST:event_rbPorFechaAutosustentabilidadActionPerformed
 
-    private void btn_AnalisisComparativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AnalisisComparativoActionPerformed
-// 1. Obtenemos el ID del horno seleccionado en el panel HORNOS
-    int filaSeleccionada = tblDatoHorno.getSelectedRow(); // Tabla de Hornos
-
-    if (filaSeleccionada == -1) {
-        JOptionPane.showMessageDialog(this, "Por favor, seleccione un horno de la lista de hornos.", "Error", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
-
-    // 3. Obtenemos el ID del horno (asumiendo que el ID está en la columna 0)
-    int idHorno = (int) tblDatoHorno.getModel().getValueAt(filaSeleccionada, 0);
-
-    ClaseConsulta miConsulta = new ClaseConsulta();
-    
-    // 4. Llamamos al NUEVO método
-    DefaultTableModel modeloAnalisis = miConsulta.MostrarAnalisisComparativo(idHorno);
-    
-    // 5. --- ¡LA MAGIA! ---
-    // Cambiamos al panel de Autosustentabilidad (simulando clic)
-    lblAutosustentableMouseClicked(null);
-    
-    // 6. Activamos el "Modo: Analizar" en ese panel
-    rbAnalisisComparativo.setSelected(true);
-    
-    // 7. Ejecutamos el método que oculta los otros componentes
-    actualizarVisibilidadAutosustentable(); // El método que creamos antes
-    
-    // 8. Cargamos el resultado en la tabla DE ESE OTRO PANEL
-    tblDatoAutosustentable.setModel(modeloAnalisis);      
-    }//GEN-LAST:event_btn_AnalisisComparativoActionPerformed
-
-    private void btn_EstadisticasGeneralesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EstadisticasGeneralesActionPerformed
-        ClaseConsulta RH = new ClaseConsulta();
-        DefaultTableModel modelo = RH.MostrarAutosustentable();
-        tblDatoAutosustentable.setModel(modelo);
-
-        int cantidad = modelo.getRowCount();
-        txb_CantidadFilasAutosustentable.setText(String.valueOf(cantidad));
-
-        Jd_fechaInicioAutosustentable.setDate(null);
-        Jd_FechaFinalAutosustentable.setDate(null);
-        txb_buscarAutosustentable.setText("");
-
-        rbPorFechaAutosustentabilidad.setSelected(true);
-        Jd_fechaInicioAutosustentable.setEnabled(true);
-        Jd_FechaFinalAutosustentable.setEnabled(true);
-        txb_buscarAutosustentable.setEnabled(false);
-    }//GEN-LAST:event_btn_EstadisticasGeneralesActionPerformed
-
-    private void rbAnalisisComparativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAnalisisComparativoActionPerformed
- actualizarVisibilidadAutosustentable();
-    }//GEN-LAST:event_rbAnalisisComparativoActionPerformed
-
     private void txtIDFuncionamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDFuncionamientoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDFuncionamientoActionPerformed
@@ -2248,28 +2253,265 @@ private void actualizarVisibilidadAutosustentable() {
     }//GEN-LAST:event_tblHornoFuncionamientoMouseClicked
 
     private void rbPorBusquedaAutosustentabilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorBusquedaAutosustentabilidadActionPerformed
- actualizarVisibilidadAutosustentable();
+        if(cb_AnalisisDesempeño.isSelected()){
+            rbPorBusquedaAutosustentabilidad.setVisible(true);
+            txb_buscarAutosustentable.setVisible(true);
+             actualizarVisibilidadAutosustentable();
+        }else{
+             actualizarVisibilidadAutosustentable();  
+        }
+        
+        
     }//GEN-LAST:event_rbPorBusquedaAutosustentabilidadActionPerformed
 
     private void btn_BuscarAutosustentableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarAutosustentableActionPerformed
-        // TODO add your handling code here:
+    ClaseConsulta miConsulta = new ClaseConsulta();
+    DefaultTableModel modelo;
+
+    // 1. Obtenemos los valores de los filtros (los necesitemos o no)
+    String busqueda = txb_buscarAutosustentable.getText().trim();
+    java.util.Date fechaDesdeUtil = Jd_fechaInicioAutosustentable.getDate();
+    java.util.Date fechaHastaUtil = Jd_FechaFinalAutosustentable.getDate();
+
+    try {
+        if (cb_AnalisisDesempeño.isSelected()) {
+          
+            if (rbPorFechaAutosustentabilidad.isSelected()) {
+                // --- CASO A: JOIN + Filtro por Fecha ---
+                if (fechaDesdeUtil == null || fechaHastaUtil == null) {
+                    JOptionPane.showMessageDialog(this, "Debe seleccionar ambas fechas."); return;
+                }
+                String fechaDesde = new SimpleDateFormat("yyyy-MM-dd").format(fechaDesdeUtil);
+                String fechaHasta = new SimpleDateFormat("yyyy-MM-dd").format(fechaHastaUtil);
+                modelo = miConsulta.MostrarAutosustentablePorFecha_JOIN_Funcion(fechaDesde, fechaHasta);
+
+            } else { // (rbPorBusquedaAutosustentabilidad.isSelected())
+                // --- CASO B: JOIN + Filtro por Búsqueda ---
+                if (busqueda.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Debe escribir un texto para buscar."); return;
+                }
+                // ¡Llama al método CON JOIN de Búsqueda!
+                modelo = miConsulta.MostrarAutosustentablePorBusqueda_JOIN_Funcion(busqueda);
+            }
+
+        } else {
+            if (fechaDesdeUtil == null || fechaHastaUtil == null) {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar ambas fechas."); return;
+            }
+            String fechaDesde = new SimpleDateFormat("yyyy-MM-dd").format(fechaDesdeUtil);
+            String fechaHasta = new SimpleDateFormat("yyyy-MM-dd").format(fechaHastaUtil);
+            
+            // ¡Llama al método SIMPLE de Fecha!
+            modelo = miConsulta.MostrarAutosustentablePorFecha(fechaDesde, fechaHasta);
+        }
+        
+        tblDatoAutosustentable.setModel(modelo); 
+
+       int cantidad = modelo.getRowCount();
+       txb_CantidadFilasAutosustentable.setText(String.valueOf(cantidad));
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al buscar: " + e.getMessage());
+        e.printStackTrace();
+    }
     }//GEN-LAST:event_btn_BuscarAutosustentableActionPerformed
 
     private void btn_ResetearAutosustentableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ResetearAutosustentableActionPerformed
-        // TODO add your handling code here:
+    ClaseConsulta RA = new ClaseConsulta();
+        DefaultTableModel modelo = RA.MostrarAutosustentable();
+        tblDatoAutosustentable.setModel(modelo);
+
+        int cantidad = modelo.getRowCount();
+        txb_CantidadFilasAutosustentable.setText(String.valueOf(cantidad));
+
+        Jd_fechaInicioAutosustentable.setDate(null);
+        Jd_FechaFinalAutosustentable.setDate(null);
+        txb_buscarAutosustentable.setText("");
+        cb_AnalisisDesempeño.setSelected(false);
+        rbPorFechaAutosustentabilidad.setSelected(true);
+        Jd_fechaInicioAutosustentable.setEnabled(true);
+        Jd_FechaFinalAutosustentable.setEnabled(true);
+        rbPorBusquedaAutosustentabilidad.setVisible(false);
+        txb_buscarAutosustentable.setEnabled(false);
     }//GEN-LAST:event_btn_ResetearAutosustentableActionPerformed
 
-    private void rbPorFechaAutosustentabilidad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorFechaAutosustentabilidad1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbPorFechaAutosustentabilidad1ActionPerformed
+    private void btn_EstadisticasGeneralesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EstadisticasGeneralesActionPerformed
+    ClaseConsulta miConsulta = new ClaseConsulta();
+        String funcionSQL = "";
+        String funcionNombre = "";
+        double resultado = 0.0;
 
-    private void rbAnalisisComparativo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAnalisisComparativo1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbAnalisisComparativo1ActionPerformed
+        // 1. Determinar la FUNCIÓN (AVG, MAX, MIN)
+        // (Usamos los nombres de tus radio buttons)
+        if (rbCalcularPromedio.isSelected()) { // Calcular Promedio
+            funcionSQL = "AVG";
+            funcionNombre = "Promedio";
+        } else if (rbCalcularMaximo.isSelected()) { // Calcular Maximo
+            funcionSQL = "MAX";
+            funcionNombre = "Máximo";
+        } else if (rbCalcularMinimo.isSelected()) { // Calcular Minimo
+            funcionSQL = "MIN";
+            funcionNombre = "Mínimo";
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione un tipo de cálculo (Promedio, Máximo o Mínimo).", "Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
-    private void rbPorBusquedaAutosustentabilidad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorBusquedaAutosustentabilidad1ActionPerformed
+        // 2. Determinar el ALCANCE (Todos vs. Dos)
+        try {
+            if (rbCompararTodoslosHornos.isSelected()) { // Comparar TODOS
+                
+                resultado = miConsulta.calcularEstadisticaGlobal(funcionSQL);
+                // Mostramos el resultado formateado a 2 decimales
+                JOptionPane.showMessageDialog(this, 
+                        "El " + funcionNombre + " de eficiencia térmica (Todos los hornos) es: " + String.format("%.2f", resultado), 
+                        "Resultado Global", 
+                        JOptionPane.INFORMATION_MESSAGE);
+
+            } else if (rbComparVariosHornos.isSelected()) { // Comparar DOS
+                
+                // Validar que se seleccionaron los hornos
+                if (idHornoCalc1 == -1 || idHornoCalc2 == -1) {
+                    JOptionPane.showMessageDialog(this, "Por favor, seleccione un horno de cada tabla para comparar.", "Error", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                
+                resultado = miConsulta.calcularEstadisticaDosHornos(funcionSQL, idHornoCalc1, idHornoCalc2);
+                JOptionPane.showMessageDialog(this, 
+                        "El " + funcionNombre + " de eficiencia térmica (Hornos ID " + idHornoCalc1 + " y " + idHornoCalc2 + ") es: " + String.format("%.2f", resultado), 
+                        "Resultado Comparativo", 
+                        JOptionPane.INFORMATION_MESSAGE);
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Por favor, seleccione un método de comparación (Todos o Dos hornos).", "Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al calcular la estadística: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_EstadisticasGeneralesActionPerformed
+
+    private void cb_sisAislamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_sisAislamientoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rbPorBusquedaAutosustentabilidad1ActionPerformed
+    }//GEN-LAST:event_cb_sisAislamientoActionPerformed
+
+    private void cb_AnalisisDesempeñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_AnalisisDesempeñoActionPerformed
+    ClaseConsulta miConsulta = new ClaseConsulta();
+    DefaultTableModel modelo;
+
+    if (cb_AnalisisDesempeño.isSelected()) {
+        rbPorBusquedaAutosustentabilidad.setEnabled(true);
+        rbPorBusquedaAutosustentabilidad.setVisible(true);
+
+        // 2. ¡¡RECARGAMOS LA TABLA!! (Como pediste)
+        // Llamamos al método nuevo que acabamos de crear
+        modelo = miConsulta.MostrarAutosustentable_JOIN_Funcion();
+        tblDatoAutosustentable.setModel(modelo); // (Ajusta el nombre de tu tabla)
+        
+    } else {
+        
+        // --- MODO "SIMPLE" ACTIVADO ---
+        
+        // 1. Deshabilitamos el Radio Button de "Búsqueda"
+        rbPorBusquedaAutosustentabilidad.setEnabled(false);
+                rbPorBusquedaAutosustentabilidad.setVisible(false);
+
+        // 2. Forzamos que vuelva al modo "Fecha" (por seguridad)
+        rbPorFechaAutosustentabilidad.setSelected(true); 
+        
+        // 3. ¡¡RECARGAMOS LA TABLA!!
+        // Llamamos al método simple original (el que no tiene JOIN)
+        modelo = miConsulta.MostrarAutosustentable(); // (El que muestra todo simple)
+        tblDatoAutosustentable.setModel(modelo);
+    }
+    
+    // 4. (Opcional) Actualizamos los controles de filtros (para que se muestren/oculten)
+    actualizarVisibilidadAutosustentable();
+    
+   int cantidad = modelo.getRowCount();
+    txb_CantidadFilasAutosustentable.setText(String.valueOf(cantidad));
+    }//GEN-LAST:event_cb_AnalisisDesempeñoActionPerformed
+
+    private void rb_CalculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_CalculosActionPerformed
+        JP_AutoP1.setVisible(false);
+        JP_AutoP2.setVisible(true);
+        
+        // ¡NUEVO! Cargar los hornos en las tablas de selección
+        try {
+            ClaseConsulta misConsultas = new ClaseConsulta();
+            DefaultTableModel modeloHornos = misConsultas.consultaHornosConDatosAutosustentables();
+            
+            // Asignamos el modelo a la primera tabla
+            tblDatoHornoAutosustentable.setModel(modeloHornos);
+
+            // ¡IMPORTANTE! Volvemos a llamar al método para la segunda tabla
+            // (No podemos usar el mismo objeto 'modeloHornos' para las dos)
+            DefaultTableModel modeloHornos2 = misConsultas.consultaHornosConDatosAutosustentables();
+            tblDatoHornoAutosustentable2.setModel(modeloHornos2);
+            
+            // Reseteamos las selecciones
+            idHornoCalc1 = -1;
+            idHornoCalc2 = -1;
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar las tablas de hornos: " + e.getMessage());
+        }
+    }//GEN-LAST:event_rb_CalculosActionPerformed
+
+    private void rb_ConsultaDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_ConsultaDatosActionPerformed
+JP_AutoP1.setVisible(true);
+    JP_AutoP2.setVisible(false);
+    }//GEN-LAST:event_rb_ConsultaDatosActionPerformed
+
+    private void tblDatoHornoAutosustentable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoHornoAutosustentable2MouseClicked
+int fila = tblDatoHornoAutosustentable2.getSelectedRow();
+        if (fila >= 0) {
+             try {
+                // Asumimos que el ID del horno está en la columna 0
+                this.idHornoCalc2 = (int) tblDatoHornoAutosustentable2.getValueAt(fila, 0);
+             } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error al seleccionar el horno 2.");
+            }
+        }
+
+    }//GEN-LAST:event_tblDatoHornoAutosustentable2MouseClicked
+
+    private void tblDatoHornoAutosustentableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoHornoAutosustentableMouseClicked
+int fila = tblDatoHornoAutosustentable.getSelectedRow();
+        if (fila >= 0) {
+            try {
+                // Asumimos que el ID del horno está en la columna 0
+                this.idHornoCalc1 = (int) tblDatoHornoAutosustentable.getValueAt(fila, 0);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error al seleccionar el horno 1.");
+            }
+        }
+    }//GEN-LAST:event_tblDatoHornoAutosustentableMouseClicked
+
+    private void rbCompararTodoslosHornosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCompararTodoslosHornosActionPerformed
+actualizarDisponibilidadTablasCalculo();
+    }//GEN-LAST:event_rbCompararTodoslosHornosActionPerformed
+
+    private void rbComparVariosHornosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbComparVariosHornosActionPerformed
+actualizarDisponibilidadTablasCalculo();
+    }//GEN-LAST:event_rbComparVariosHornosActionPerformed
+
+    private void btn_ResetearCalculoAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ResetearCalculoAutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_ResetearCalculoAutoActionPerformed
+
+    private void rbCalcularMinimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCalcularMinimoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbCalcularMinimoActionPerformed
+
+    private void rbCalcularPromedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCalcularPromedioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbCalcularPromedioActionPerformed
+
+    private void rbCalcularMaximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCalcularMaximoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbCalcularMaximoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2308,6 +2550,13 @@ private void actualizarVisibilidadAutosustentable() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup GrupoAutosustentabilidad;
+    private javax.swing.ButtonGroup GrupoFunciones;
+    private javax.swing.ButtonGroup GrupoHornos;
+    private javax.swing.ButtonGroup GrupoMantenimiento;
+    private javax.swing.ButtonGroup GrupoMetodoCalculoAutoHorno;
+    private javax.swing.ButtonGroup GrupoMetodoCompararAutoHorno;
+    private javax.swing.ButtonGroup GrupoModoAutosustentable;
     private javax.swing.JDesktopPane JP_AutoP1;
     private javax.swing.JDesktopPane JP_AutoP2;
     private com.toedter.calendar.JDateChooser Jd_FechaFinal;
@@ -2324,7 +2573,6 @@ private void actualizarVisibilidadAutosustentable() {
     private com.toedter.calendar.JDateChooser Jd_fechaInicioFuncionamiento;
     private com.toedter.calendar.JDateChooser Jd_fechaInicioHornos;
     private com.toedter.calendar.JDateChooser Jd_fechaInicioMantenimiento;
-    private javax.swing.JButton btn_AnalisisComparativo;
     private javax.swing.JButton btn_BuscarAmbiente;
     private javax.swing.JButton btn_BuscarAutosustentable;
     private javax.swing.JButton btn_BuscarFuncionamiento;
@@ -2339,14 +2587,10 @@ private void actualizarVisibilidadAutosustentable() {
     private javax.swing.JButton btn_ResetearAmbiente;
     private javax.swing.JButton btn_ResetearAutosustentable;
     private javax.swing.JButton btn_ResetearBusquedaFuncionamiento;
+    private javax.swing.JButton btn_ResetearCalculoAuto;
     private javax.swing.JButton btn_ResetearHorno;
     private javax.swing.JButton btn_ResetearMantenimiento;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.ButtonGroup buttonGroup4;
-    private javax.swing.ButtonGroup buttonGroup5;
-    private javax.swing.ButtonGroup buttonGroup6;
+    private javax.swing.JCheckBox cb_AnalisisDesempeño;
     private javax.swing.JComboBox<String> cb_EnergiaRecibida;
     private javax.swing.JComboBox<String> cb_estadohorno;
     private javax.swing.JComboBox<String> cb_sisAislamiento;
@@ -2381,7 +2625,6 @@ private void actualizarVisibilidadAutosustentable() {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
@@ -2403,7 +2646,6 @@ private void actualizarVisibilidadAutosustentable() {
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
-    private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
@@ -2421,8 +2663,11 @@ private void actualizarVisibilidadAutosustentable() {
     private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel73;
+    private javax.swing.JLabel jLabel74;
+    private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel76;
+    private javax.swing.JLabel jLabel77;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanelAmbiente;
@@ -2437,6 +2682,8 @@ private void actualizarVisibilidadAutosustentable() {
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
+    private javax.swing.JScrollPane jScrollPane16;
+    private javax.swing.JScrollPane jScrollPane17;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2446,12 +2693,13 @@ private void actualizarVisibilidadAutosustentable() {
     private javax.swing.JScrollPane jScrollPane8;
     private com.toedter.calendar.JDateChooser jb_fechaoperacion;
     private javax.swing.JLabel jlBuscar;
+    private javax.swing.JLabel jlBuscar1;
     private javax.swing.JLabel jl_CalcularEstadisticas;
     private javax.swing.JLabel jl_CantFilas;
-    private javax.swing.JLabel jl_CantFilas1;
     private javax.swing.JLabel jl_Desde;
+    private javax.swing.JLabel jl_Desde1;
+    private javax.swing.JLabel jl_Desde2;
     private javax.swing.JLabel jl_Hasta;
-    private javax.swing.JLabel jl_VerAnalisis;
     private javax.swing.JSpinner js_EficienciaEnergetica;
     private com.toedter.calendar.JSpinnerDateEditor js_Hora;
     private javax.swing.JSpinner js_temperaturai;
@@ -2460,39 +2708,40 @@ private void actualizarVisibilidadAutosustentable() {
     private javax.swing.JLabel lblFuncionamiento;
     private javax.swing.JLabel lblHorno;
     private javax.swing.JLabel lblMantenimiento;
-    private javax.swing.JRadioButton rbAnalisisComparativo;
-    private javax.swing.JRadioButton rbAnalisisComparativo1;
     private javax.swing.JRadioButton rbAutomatico;
+    private javax.swing.JRadioButton rbCalcularMaximo;
+    private javax.swing.JRadioButton rbCalcularMinimo;
+    private javax.swing.JRadioButton rbCalcularPromedio;
+    private javax.swing.JRadioButton rbComparVariosHornos;
+    private javax.swing.JRadioButton rbCompararTodoslosHornos;
     private javax.swing.JRadioButton rbManual;
-    private javax.swing.JRadioButton rbPorBusquedaAmbiente;
     private javax.swing.JRadioButton rbPorBusquedaAutosustentabilidad;
-    private javax.swing.JRadioButton rbPorBusquedaAutosustentabilidad1;
     private javax.swing.JRadioButton rbPorBusquedaFunciones;
     private javax.swing.JRadioButton rbPorBusquedaHornos;
     private javax.swing.JRadioButton rbPorBusquedaMantenimiento;
-    private javax.swing.JRadioButton rbPorFechaAmbiente;
     private javax.swing.JRadioButton rbPorFechaAutosustentabilidad;
-    private javax.swing.JRadioButton rbPorFechaAutosustentabilidad1;
     private javax.swing.JRadioButton rbPorFechaFunciones;
     private javax.swing.JRadioButton rbPorFechaHornos;
     private javax.swing.JRadioButton rbPorFechaMantenimiento;
+    private javax.swing.JRadioButton rb_Calculos;
+    private javax.swing.JRadioButton rb_ConsultaDatos;
     private javax.swing.JTable tblDatHornoAmbiente;
     private javax.swing.JTable tblDatoAmbiente;
     private javax.swing.JTable tblDatoAutosustentable;
+    private javax.swing.JTable tblDatoFuncionAutosustentable;
     private javax.swing.JTable tblDatoFuncionamiento;
     private javax.swing.JTable tblDatoHorno;
     private javax.swing.JTable tblDatoHornoAutosustentable;
+    private javax.swing.JTable tblDatoHornoAutosustentable2;
     private javax.swing.JTable tblDatoHornoMante;
     private javax.swing.JTable tblDatoReparados;
     private javax.swing.JTable tblHornoFuncionamiento;
     private javax.swing.JTextField txb_CantidadFilasAmbiente;
     private javax.swing.JTextField txb_CantidadFilasAutosustentable;
-    private javax.swing.JTextField txb_CantidadFilasAutosustentable1;
     private javax.swing.JTextField txb_CantidadFilasFunciones;
     private javax.swing.JTextField txb_CantidadFilasHornos;
     private javax.swing.JTextField txb_CantidadFilasMantenimiento;
     private javax.swing.JSpinner txb_angulo;
-    private javax.swing.JTextField txb_buscarAmbiente;
     private javax.swing.JTextField txb_buscarAutosustentable;
     private javax.swing.JTextField txb_buscarFuncionamiento;
     private javax.swing.JTextField txb_buscarHornos;
