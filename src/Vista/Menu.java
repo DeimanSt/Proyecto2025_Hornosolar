@@ -108,6 +108,12 @@ private void actualizarDisponibilidadTablasCalculo() {
         GrupoModoAutosustentable = new javax.swing.ButtonGroup();
         GrupoMetodoCompararAutoHorno = new javax.swing.ButtonGroup();
         GrupoMetodoCalculoAutoHorno = new javax.swing.ButtonGroup();
+        jPanelPrincipal = new javax.swing.JPanel();
+        lblMantenimiento = new javax.swing.JLabel();
+        lblHorno = new javax.swing.JLabel();
+        lblFuncionamiento = new javax.swing.JLabel();
+        lblAmbiente = new javax.swing.JLabel();
+        lblAutosustentable = new javax.swing.JLabel();
         jPanelHornosSolares = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
@@ -305,18 +311,77 @@ private void actualizarDisponibilidadTablasCalculo() {
         btn_ResetearAmbiente = new javax.swing.JButton();
         txb_CantidadFilasAmbiente = new javax.swing.JTextField();
         jLabel55 = new javax.swing.JLabel();
-        jPanelPrincipal = new javax.swing.JPanel();
-        lblMantenimiento = new javax.swing.JLabel();
-        lblHorno = new javax.swing.JLabel();
-        lblFuncionamiento = new javax.swing.JLabel();
-        lblAmbiente = new javax.swing.JLabel();
-        lblAutosustentable = new javax.swing.JLabel();
         jPanelFondo = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanelPrincipal.setBackground(new java.awt.Color(102, 102, 102));
+        jPanelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblMantenimiento.setBackground(new java.awt.Color(102, 102, 102));
+        lblMantenimiento.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblMantenimiento.setForeground(new java.awt.Color(255, 255, 255));
+        lblMantenimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ix - maintenance-filled.png"))); // NOI18N
+        lblMantenimiento.setText("Mantenimiento");
+        lblMantenimiento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMantenimientoMouseClicked(evt);
+            }
+        });
+        jPanelPrincipal.add(lblMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 186, 58));
+
+        lblHorno.setBackground(new java.awt.Color(102, 102, 102));
+        lblHorno.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblHorno.setForeground(new java.awt.Color(255, 255, 255));
+        lblHorno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ph - oven-fill.png"))); // NOI18N
+        lblHorno.setText("Horno");
+        lblHorno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblHornoMouseClicked(evt);
+            }
+        });
+        jPanelPrincipal.add(lblHorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 186, 58));
+
+        lblFuncionamiento.setBackground(new java.awt.Color(102, 102, 102));
+        lblFuncionamiento.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblFuncionamiento.setForeground(new java.awt.Color(255, 255, 255));
+        lblFuncionamiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lsicon - operation-filled.png"))); // NOI18N
+        lblFuncionamiento.setText("Funcionamiento");
+        lblFuncionamiento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblFuncionamientoMouseClicked(evt);
+            }
+        });
+        jPanelPrincipal.add(lblFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 186, 58));
+
+        lblAmbiente.setBackground(new java.awt.Color(102, 102, 102));
+        lblAmbiente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblAmbiente.setForeground(new java.awt.Color(255, 255, 255));
+        lblAmbiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/tdesign - undertake-environment-protection-filled.png"))); // NOI18N
+        lblAmbiente.setText("Ambiente");
+        lblAmbiente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAmbienteMouseClicked(evt);
+            }
+        });
+        jPanelPrincipal.add(lblAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 186, 58));
+
+        lblAutosustentable.setBackground(new java.awt.Color(102, 102, 102));
+        lblAutosustentable.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblAutosustentable.setForeground(new java.awt.Color(255, 255, 255));
+        lblAutosustentable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carbon - sustainability.png"))); // NOI18N
+        lblAutosustentable.setText("Autosustentable");
+        lblAutosustentable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAutosustentableMouseClicked(evt);
+            }
+        });
+        jPanelPrincipal.add(lblAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 180, 58));
+
+        getContentPane().add(jPanelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 510));
 
         jPanelHornosSolares.setBackground(new java.awt.Color(102, 102, 102));
         jPanelHornosSolares.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -535,7 +600,7 @@ private void actualizarDisponibilidadTablasCalculo() {
         jLabel10.setText("Lista de hornos ingresados");
         jPanelHornosSolares.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, -1, -1));
 
-        getContentPane().add(jPanelHornosSolares, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 1090, 510));
+        getContentPane().add(jPanelHornosSolares, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 1130, 510));
 
         jPanelMantenimiento.setBackground(new java.awt.Color(91, 91, 91));
         jPanelMantenimiento.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -721,7 +786,7 @@ private void actualizarDisponibilidadTablasCalculo() {
 
         jPanelMantenimiento.add(jDesktopPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, 610, 200));
 
-        getContentPane().add(jPanelMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 1100, 510));
+        getContentPane().add(jPanelMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 1130, 510));
 
         jPanelFuncionamiento.setBackground(new java.awt.Color(102, 102, 102));
         jPanelFuncionamiento.setForeground(new java.awt.Color(255, 255, 255));
@@ -984,7 +1049,7 @@ private void actualizarDisponibilidadTablasCalculo() {
         jLabel69.setText("°C");
         jPanelFuncionamiento.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
 
-        getContentPane().add(jPanelFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 1090, 510));
+        getContentPane().add(jPanelFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 1110, 510));
 
         jPanelAutosustentable.setBackground(new java.awt.Color(71, 71, 71));
         jPanelAutosustentable.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1383,7 +1448,7 @@ private void actualizarDisponibilidadTablasCalculo() {
         jLabel75.setText("Modo de Análisis");
         jPanelAutosustentable.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, -1, 20));
 
-        getContentPane().add(jPanelAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 1100, 510));
+        getContentPane().add(jPanelAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 1110, 510));
 
         jPanelAmbiente.setBackground(new java.awt.Color(58, 58, 58));
         jPanelAmbiente.setForeground(new java.awt.Color(255, 255, 255));
@@ -1553,71 +1618,6 @@ private void actualizarDisponibilidadTablasCalculo() {
         jPanelAmbiente.add(jDesktopPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 660, 210));
 
         getContentPane().add(jPanelAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 1110, 510));
-
-        jPanelPrincipal.setBackground(new java.awt.Color(102, 102, 102));
-        jPanelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblMantenimiento.setBackground(new java.awt.Color(102, 102, 102));
-        lblMantenimiento.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblMantenimiento.setForeground(new java.awt.Color(255, 255, 255));
-        lblMantenimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ix - maintenance-filled.png"))); // NOI18N
-        lblMantenimiento.setText("Mantenimiento");
-        lblMantenimiento.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblMantenimientoMouseClicked(evt);
-            }
-        });
-        jPanelPrincipal.add(lblMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 186, 58));
-
-        lblHorno.setBackground(new java.awt.Color(102, 102, 102));
-        lblHorno.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblHorno.setForeground(new java.awt.Color(255, 255, 255));
-        lblHorno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ph - oven-fill.png"))); // NOI18N
-        lblHorno.setText("Horno");
-        lblHorno.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblHornoMouseClicked(evt);
-            }
-        });
-        jPanelPrincipal.add(lblHorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 186, 58));
-
-        lblFuncionamiento.setBackground(new java.awt.Color(102, 102, 102));
-        lblFuncionamiento.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblFuncionamiento.setForeground(new java.awt.Color(255, 255, 255));
-        lblFuncionamiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lsicon - operation-filled.png"))); // NOI18N
-        lblFuncionamiento.setText("Funcionamiento");
-        lblFuncionamiento.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblFuncionamientoMouseClicked(evt);
-            }
-        });
-        jPanelPrincipal.add(lblFuncionamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 186, 58));
-
-        lblAmbiente.setBackground(new java.awt.Color(102, 102, 102));
-        lblAmbiente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblAmbiente.setForeground(new java.awt.Color(255, 255, 255));
-        lblAmbiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/tdesign - undertake-environment-protection-filled.png"))); // NOI18N
-        lblAmbiente.setText("Ambiente");
-        lblAmbiente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblAmbienteMouseClicked(evt);
-            }
-        });
-        jPanelPrincipal.add(lblAmbiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 186, 58));
-
-        lblAutosustentable.setBackground(new java.awt.Color(102, 102, 102));
-        lblAutosustentable.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblAutosustentable.setForeground(new java.awt.Color(255, 255, 255));
-        lblAutosustentable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carbon - sustainability.png"))); // NOI18N
-        lblAutosustentable.setText("Autosustentable");
-        lblAutosustentable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblAutosustentableMouseClicked(evt);
-            }
-        });
-        jPanelPrincipal.add(lblAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 180, 58));
-
-        getContentPane().add(jPanelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 510));
 
         jPanelFondo.setBackground(new java.awt.Color(51, 51, 51));
 
