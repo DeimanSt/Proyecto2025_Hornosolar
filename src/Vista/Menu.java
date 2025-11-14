@@ -8,40 +8,36 @@ import javax.swing.table.DefaultTableModel;
 import Controlador.*;
 
 public class Menu extends javax.swing.JFrame {
-    private int idHornoCalc1 = -1; 
+
+    private int idHornoCalc1 = -1;
     private int idHornoCalc2 = -1;
+
     /**
      * Creates new form Pruebita
      */
     public Menu() {
 
         initComponents();
-    
-        //Asignamos los paneles que están en el programa a falsos para que no se vea en el programa.
+
         jPanelHornosSolares.setVisible(false);
         jPanelMantenimiento.setVisible(false);
         jPanelFuncionamiento.setVisible(false);
         jPanelAmbiente.setVisible(false);
         jPanelAutosustentable.setVisible(false);
-        //Creamos un objeto consulta donde contendrá todas las consultas de todos los métodos.
         txb_buscarAutosustentable.setEnabled(false);
         txb_buscarFuncionamiento.setEnabled(false);
         txb_buscarHornos.setEnabled(false);
         txb_buscarMantenimiento.setEnabled(false);
-        
-       // 1. El CheckBox arranca desmarcado
+
         cb_AnalisisDesempeño.setSelected(false);
-        
-        // 2. El modo "Por Búsqueda" arranca DESHABILITADO
+
         rbPorBusquedaAutosustentabilidad.setVisible(false);
         txb_buscarAutosustentable.setEnabled(false);
-        
-        // 3. El modo "Por Fecha" arranca Habilitado (por si acaso)
-        rbPorFechaAutosustentabilidad.setSelected(true); // Seleccionado por defecto
+
+        rbPorFechaAutosustentabilidad.setSelected(true);
         Jd_fechaInicioAutosustentable.setEnabled(true);
         Jd_FechaFinalAutosustentable.setEnabled(true);
         actualizarVisibilidadAutosustentable();
-        //Grupo hora (para elegir si queremos automatico o manual) para parametros operativos
         javax.swing.ButtonGroup grupoHoraMoA = new javax.swing.ButtonGroup();
         grupoHoraMoA.add(rbManual);
         grupoHoraMoA.add(rbAutomatico);
@@ -57,46 +53,44 @@ public class Menu extends javax.swing.JFrame {
         tblDatoHorno.setModel(misConsultas.MostrarHornos());
     }
 
-    
-private void actualizarVisibilidadAutosustentable() {
-    if (rbPorFechaAutosustentabilidad.isSelected()) {
-        Jd_fechaInicioAutosustentable.setEnabled(true);
-        Jd_FechaFinalAutosustentable.setEnabled(true);
-        txb_buscarAutosustentable.setEnabled(false);
+    private void actualizarVisibilidadAutosustentable() {
+        if (rbPorFechaAutosustentabilidad.isSelected()) {
+            Jd_fechaInicioAutosustentable.setEnabled(true);
+            Jd_FechaFinalAutosustentable.setEnabled(true);
+            txb_buscarAutosustentable.setEnabled(false);
 
-    } else if (rbPorBusquedaAutosustentabilidad.isSelected()) {
-        txb_buscarAutosustentable.setEnabled(true);
-        Jd_fechaInicioAutosustentable.setEnabled(false);
-        Jd_FechaFinalAutosustentable.setEnabled(false);
-  
-    }
-}
-/**
- * Habilita o deshabilita las tablas de selección de hornos en el panel 
- * de Cálculos, basado en el método de comparación seleccionado.
- */
-private void actualizarDisponibilidadTablasCalculo() {
-    if (rbCompararTodoslosHornos.isSelected()) {
-        // Si comparamos TODOS, deshabilitamos las tablas
-        tblDatoHornoAutosustentable.setEnabled(false);
-        tblDatoHornoAutosustentable2.setEnabled(false);
-        jl_Desde1.setEnabled(false); // La etiqueta "Segundo horno"
-        jl_Desde2.setEnabled(false); // La etiqueta "Primer horno"
-        
-        // Opcional: Limpiar selecciones para evitar confusiones
-        tblDatoHornoAutosustentable.clearSelection();
-        tblDatoHornoAutosustentable2.clearSelection();
-        idHornoCalc1 = -1;
-        idHornoCalc2 = -1;
+        } else if (rbPorBusquedaAutosustentabilidad.isSelected()) {
+            txb_buscarAutosustentable.setEnabled(true);
+            Jd_fechaInicioAutosustentable.setEnabled(false);
+            Jd_FechaFinalAutosustentable.setEnabled(false);
 
-    } else if (rbComparVariosHornos.isSelected()) {
-        // Si comparamos DOS, habilitamos todo
-        tblDatoHornoAutosustentable.setEnabled(true);
-        tblDatoHornoAutosustentable2.setEnabled(true);
-        jl_Desde1.setEnabled(true);
-        jl_Desde2.setEnabled(true);
+        }
     }
-}
+
+    /**
+     * Habilita o deshabilita las tablas de selección de hornos en el panel de
+     * Cálculos, basado en el método de comparación seleccionado.
+     */
+    private void actualizarDisponibilidadTablasCalculo() {
+        if (rbCompararTodoslosHornos.isSelected()) {
+            tblDatoHornoAutosustentable.setEnabled(false);
+            tblDatoHornoAutosustentable2.setEnabled(false);
+            jl_Desde1.setEnabled(false);
+
+            jl_Desde2.setEnabled(false);
+            tblDatoHornoAutosustentable.clearSelection();
+            tblDatoHornoAutosustentable2.clearSelection();
+            idHornoCalc1 = -1;
+            idHornoCalc2 = -1;
+
+        } else if (rbComparVariosHornos.isSelected()) {
+            tblDatoHornoAutosustentable.setEnabled(true);
+            tblDatoHornoAutosustentable2.setEnabled(true);
+            jl_Desde1.setEnabled(true);
+            jl_Desde2.setEnabled(true);
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -128,7 +122,7 @@ private void actualizarDisponibilidadTablasCalculo() {
         jLabel17 = new javax.swing.JLabel();
         txb_dimensiones = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        Jd_fechaCreacion = new com.toedter.calendar.JDateChooser();
+        Jd_fechaHorno = new com.toedter.calendar.JDateChooser();
         txb_reflectores = new javax.swing.JTextField();
         btn_IngresarHornos = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
@@ -150,7 +144,7 @@ private void actualizarDisponibilidadTablasCalculo() {
         jPanelMantenimiento = new javax.swing.JPanel();
         txtIDMantenimiento = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        Jd_fecha = new com.toedter.calendar.JDateChooser();
+        Jd_fechaMantenimiento = new com.toedter.calendar.JDateChooser();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -230,7 +224,7 @@ private void actualizarDisponibilidadTablasCalculo() {
         jLabel6 = new javax.swing.JLabel();
         txb_consumoe = new javax.swing.JTextField();
         txb_energiaalmacenada = new javax.swing.JTextField();
-        Jd_fecha4 = new com.toedter.calendar.JDateChooser();
+        Jd_fechaAutosustentable = new com.toedter.calendar.JDateChooser();
         cb_EnergiaRecibida = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
@@ -474,8 +468,8 @@ private void actualizarDisponibilidadTablasCalculo() {
         jLabel18.setText("Dimensiones");
         jPanelHornosSolares.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
 
-        Jd_fechaCreacion.setDateFormatString("yyyy-MM-dd");
-        jPanelHornosSolares.add(Jd_fechaCreacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 153, 46));
+        Jd_fechaHorno.setDateFormatString("yyyy-MM-dd");
+        jPanelHornosSolares.add(Jd_fechaHorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 153, 46));
 
         txb_reflectores.setFont(new java.awt.Font("Arial", 0, 23)); // NOI18N
         jPanelHornosSolares.add(txb_reflectores, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 133, 153, 30));
@@ -611,8 +605,8 @@ private void actualizarDisponibilidadTablasCalculo() {
         jLabel8.setText("Lista de hornos en reparación / reparados");
         jPanelMantenimiento.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 60, 420, 30));
 
-        Jd_fecha.setDateFormatString("yyyy-MM-dd");
-        jPanelMantenimiento.add(Jd_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 150, 33));
+        Jd_fechaMantenimiento.setDateFormatString("yyyy-MM-dd");
+        jPanelMantenimiento.add(Jd_fechaMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 150, 33));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
@@ -833,10 +827,10 @@ private void actualizarDisponibilidadTablasCalculo() {
         js_temperaturai.setName(""); // NOI18N
         jPanelFuncionamiento.add(js_temperaturai, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 97, 36));
 
-        cb_tipodealimento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Carnes y Aves", "Pescados y Verduras", "Panadería y", "Repostería", "Pastas", "Arroces y Guisos", "Otros" }));
+        cb_tipodealimento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Carnes y Aves", "Pescados y Verduras", "Panadería y", "Repostería", "Pastas", "Arroces y Guisos", "Otros" }));
         jPanelFuncionamiento.add(cb_tipodealimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 109, 40));
 
-        cb_estadohorno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buen Estado", "Estado Decente", "Estado Regular", "Estado mal", "Estado para reparar" }));
+        cb_estadohorno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Buen Estado", "Estado Decente", "Estado Regular", "Estado mal", "Estado para reparar" }));
         jPanelFuncionamiento.add(cb_estadohorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 99, 40));
 
         jLabel37.setBackground(new java.awt.Color(255, 255, 255));
@@ -1107,8 +1101,8 @@ private void actualizarDisponibilidadTablasCalculo() {
         txb_energiaalmacenada.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jPanelAutosustentable.add(txb_energiaalmacenada, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 84, 30));
 
-        Jd_fecha4.setDateFormatString("yyyy-MM-dd");
-        jPanelAutosustentable.add(Jd_fecha4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 130, 38));
+        Jd_fechaAutosustentable.setDateFormatString("yyyy-MM-dd");
+        jPanelAutosustentable.add(Jd_fechaAutosustentable, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 130, 38));
 
         cb_EnergiaRecibida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Alta", "Media", "Baja" }));
         jPanelAutosustentable.add(cb_EnergiaRecibida, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 119, 40));
@@ -1505,7 +1499,7 @@ private void actualizarDisponibilidadTablasCalculo() {
         txb_direccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Norte", "Sur", "Este", "Oeste" }));
         jPanelAmbiente.add(txb_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 130, 32));
 
-        txb_angulo.setModel(new javax.swing.SpinnerNumberModel(0, 0, 360, 1));
+        txb_angulo.setModel(new javax.swing.SpinnerNumberModel(0, 0, 180, 1));
         txb_angulo.setName(""); // NOI18N
         jPanelAmbiente.add(txb_angulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 100, 30));
 
@@ -1514,7 +1508,7 @@ private void actualizarDisponibilidadTablasCalculo() {
         jLabel59.setText("°C");
         jPanelAmbiente.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, -1));
 
-        txb_temperatura.setModel(new javax.swing.SpinnerNumberModel(0, 0, 1000, 1));
+        txb_temperatura.setModel(new javax.swing.SpinnerNumberModel(0, -20, 60, 1));
         txb_temperatura.setName(""); // NOI18N
         jPanelAmbiente.add(txb_temperatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 100, 30));
 
@@ -1651,31 +1645,47 @@ private void actualizarDisponibilidadTablasCalculo() {
     }//GEN-LAST:event_tblDatHornoAmbienteMouseClicked
 
     private void btn_IngresarAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarAmbienteActionPerformed
-        // TODO add your handling code here:
-        try {
-            ClaseConsulta INGA = new ClaseConsulta();
-            ambiente a = new ambiente(
-                    Integer.parseInt(txtIDAmbiente.getText()),
-                    (String) txb_intensidadsolar.getSelectedItem(),
-                    (int) txb_angulo.getValue(),
-                    (int) txb_temperatura.getValue(),
-                    (String) txb_direccion.getSelectedItem(),
-                    new SimpleDateFormat("yyyy/MM/dd").format(Jd_fechaAmbiente.getDate())
-            );
-            INGA.IngAmbiente(a);
-            tblDatoAmbiente.setModel(INGA.MostrarAmbiente());
+        if (txtIDAmbiente.getText().trim().isEmpty()
+                || txb_intensidadsolar.getSelectedIndex() <= 0
+                || txb_direccion.getSelectedIndex() <= 0
+                || Jd_fechaAmbiente.getDate() == null) {
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error: " + e);
+            JOptionPane.showMessageDialog(this, "Error: Debe seleccionar un Horno, una fecha y completar los combos.", "Campos Vacíos", JOptionPane.ERROR_MESSAGE);
+            return;
+        } else {
+            try {
+                ClaseConsulta INGA = new ClaseConsulta();
+                ambiente a = new ambiente(
+                        Integer.parseInt(txtIDAmbiente.getText()),
+                        (String) txb_intensidadsolar.getSelectedItem(),
+                        (int) txb_angulo.getValue(),
+                        (int) txb_temperatura.getValue(),
+                        (String) txb_direccion.getSelectedItem(),
+                        new SimpleDateFormat("yyyy/MM/dd").format(Jd_fechaAmbiente.getDate())
+                );
+                INGA.IngAmbiente(a);
+                tblDatoAmbiente.setModel(INGA.MostrarAmbiente());
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error: " + e);
+            }
         }
     }//GEN-LAST:event_btn_IngresarAmbienteActionPerformed
 
     private void txb_consumoeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txb_consumoeActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txb_consumoeActionPerformed
 
     private void btn_IngresarAutosustentableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarAutosustentableActionPerformed
-            cb_AnalisisDesempeño.setSelected(false);
+if (txtIDAutosustentable.getText().trim().isEmpty() ||
+    txb_consumoe.getText().trim().isEmpty() ||
+    txb_energiaalmacenada.getText().trim().isEmpty() ||
+    cb_EnergiaRecibida.getSelectedIndex() <= 0 ||
+    Jd_fechaAutosustentable.getDate() == null) {
+    
+    JOptionPane.showMessageDialog(this, "Error: Todos los campos de Autosustentable deben estar completos.", "Campos Vacíos", JOptionPane.ERROR_MESSAGE);
+    return; 
+}else{
+       cb_AnalisisDesempeño.setSelected(false);
         try {
             ClaseConsulta INAU = new ClaseConsulta();
             autosustentable au = new autosustentable(
@@ -1684,7 +1694,7 @@ private void actualizarDisponibilidadTablasCalculo() {
                     Integer.parseInt(txb_energiaalmacenada.getText()),
                     (String) cb_EnergiaRecibida.getSelectedItem(),
                     (int) js_EficienciaEnergetica.getValue(),
-                    new SimpleDateFormat("yyyy/MM/dd").format(Jd_fecha4.getDate())
+                    new SimpleDateFormat("yyyy/MM/dd").format(Jd_fechaAutosustentable.getDate())
             );
             INAU.IngresarAutosustentable(au);
             tblDatoAutosustentable.setModel(INAU.MostrarAutosustentable());
@@ -1693,6 +1703,8 @@ private void actualizarDisponibilidadTablasCalculo() {
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
+}
+     
     }//GEN-LAST:event_btn_IngresarAutosustentableActionPerformed
 
     private void rbAutomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAutomaticoActionPerformed
@@ -1713,46 +1725,61 @@ private void actualizarDisponibilidadTablasCalculo() {
 
     private void btn_IngresarFuncionamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarFuncionamientoActionPerformed
         if (rbAutomatico.isSelected()) {
-            String fechaOperacion;
-            String horaOperacion;
-            try {
-                ClaseConsulta INFU = new ClaseConsulta();
-                java.util.Date fechaActual = new java.util.Date();
-                fechaOperacion = new SimpleDateFormat("yyyy/MM/dd").format(fechaActual);
-                horaOperacion = new SimpleDateFormat("HH:mm:ss").format(fechaActual);
-                funciones f = new funciones(
-                    Integer.parseInt(txtIDFuncionamiento.getText()),
-                        (int) (js_temperaturai.getValue()),
-                        new SimpleDateFormat("HH:mm:ss").format(txb_tiempoc.getValue()),
-                        (String) cb_tipodealimento.getSelectedItem(),
-                        (String) cb_estadohorno.getSelectedItem(),
-                        fechaOperacion,
-                        horaOperacion
-                );
-                INFU.InsertarFuncion(f);
-                tblDatoFuncionamiento.setModel(INFU.MostrarFuncionamiento());
+            if (txtIDFuncionamiento.getText().trim().isEmpty()
+                    || cb_tipodealimento.getSelectedIndex() <= 0
+                    || cb_estadohorno.getSelectedIndex() <= 0) {
 
-            } catch (HeadlessException e) {
-                JOptionPane.showMessageDialog(null, "Error: " + e);
+                JOptionPane.showMessageDialog(this, "Error: Debe seleccionar un Horno y completar los combos de alimento y estado.", "Campos Vacíos", JOptionPane.ERROR_MESSAGE);
+                return; 
+            } else {
+                String fechaOperacion;
+                String horaOperacion;
+                try {
+                    ClaseConsulta INFU = new ClaseConsulta();
+                    java.util.Date fechaActual = new java.util.Date();
+                    fechaOperacion = new SimpleDateFormat("yyyy/MM/dd").format(fechaActual);
+                    horaOperacion = new SimpleDateFormat("HH:mm:ss").format(fechaActual);
+                    funciones f = new funciones(
+                            Integer.parseInt(txtIDFuncionamiento.getText()),
+                            (int) (js_temperaturai.getValue()),
+                            new SimpleDateFormat("HH:mm:ss").format(txb_tiempoc.getValue()),
+                            (String) cb_tipodealimento.getSelectedItem(),
+                            (String) cb_estadohorno.getSelectedItem(),
+                            fechaOperacion,
+                            horaOperacion
+                    );
+                    INFU.InsertarFuncion(f);
+                    tblDatoFuncionamiento.setModel(INFU.MostrarFuncionamiento());
+
+                } catch (HeadlessException e) {
+                    JOptionPane.showMessageDialog(null, "Error: " + e);
+                }
             }
+
         } else if (rbManual.isSelected()) {
-            try {
-                ClaseConsulta INFU = new ClaseConsulta();
-                funciones f = new funciones(
-                        Integer.parseInt(txb_CantidadFilasFunciones.getText()),
-                        (int) (js_temperaturai.getValue()),
-                        new SimpleDateFormat("HH:mm:ss").format(txb_tiempoc.getValue()),
-                        (String) cb_tipodealimento.getSelectedItem(),
-                        (String) cb_estadohorno.getSelectedItem(),
-                        new SimpleDateFormat("yyyy/MM/dd").format(jb_fechaoperacion.getDate()),
-                        new SimpleDateFormat("HH:mm:ss").format(js_Hora.getValue())
-                );
-                INFU.InsertarFuncion(f);
-                 tblDatoFuncionamiento.setModel(INFU.MostrarFuncionamiento());
+            if (jb_fechaoperacion.getDate() == null || js_Hora.getValue() == null) {
+                JOptionPane.showMessageDialog(this, "Error: En modo Manual, debe seleccionar fecha y hora de operación.", "Campos Vacíos", JOptionPane.ERROR_MESSAGE);
+                return;
+            } else {
+                try {
+                    ClaseConsulta INFU = new ClaseConsulta();
+                    funciones f = new funciones(
+                            Integer.parseInt(txb_CantidadFilasFunciones.getText()),
+                            (int) (js_temperaturai.getValue()),
+                            new SimpleDateFormat("HH:mm:ss").format(txb_tiempoc.getValue()),
+                            (String) cb_tipodealimento.getSelectedItem(),
+                            (String) cb_estadohorno.getSelectedItem(),
+                            new SimpleDateFormat("yyyy/MM/dd").format(jb_fechaoperacion.getDate()),
+                            new SimpleDateFormat("HH:mm:ss").format(js_Hora.getValue())
+                    );
+                    INFU.InsertarFuncion(f);
+                    tblDatoFuncionamiento.setModel(INFU.MostrarFuncionamiento());
 
-            } catch (HeadlessException e) {
-                JOptionPane.showMessageDialog(null, "Error: " + e);
+                } catch (HeadlessException e) {
+                    JOptionPane.showMessageDialog(null, "Error: " + e);
+                }
             }
+
         }
     }//GEN-LAST:event_btn_IngresarFuncionamientoActionPerformed
 
@@ -1761,7 +1788,7 @@ private void actualizarDisponibilidadTablasCalculo() {
     }//GEN-LAST:event_tblDatoReparadosMouseClicked
 
     private void txb_dimensionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txb_dimensionesActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txb_dimensionesActionPerformed
 
     private void txb_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txb_tipoActionPerformed
@@ -1910,10 +1937,10 @@ private void actualizarDisponibilidadTablasCalculo() {
         JP_AutoP1.setVisible(true);
         JP_AutoP2.setVisible(false);
         cb_AnalisisDesempeño.setSelected(false);
-         rbPorBusquedaAutosustentabilidad.setVisible(false);
-         txb_buscarAutosustentable.setEnabled(false);
-         rb_ConsultaDatos.setSelected(true);
-         rb_Calculos.setSelected(false);
+        rbPorBusquedaAutosustentabilidad.setVisible(false);
+        txb_buscarAutosustentable.setEnabled(false);
+        rb_ConsultaDatos.setSelected(true);
+        rb_Calculos.setSelected(false);
     }//GEN-LAST:event_lblAutosustentableMouseClicked
 
     private void tblDatoHornoManteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoHornoManteMouseClicked
@@ -1933,49 +1960,68 @@ private void actualizarDisponibilidadTablasCalculo() {
     }//GEN-LAST:event_tblDatoFuncionAutosustentableMouseClicked
 
     private void btn_IngresarMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarMantenimientoActionPerformed
-        try {
-            ClaseConsulta INGM = new ClaseConsulta();
+        if (txtIDMantenimiento.getText().trim().isEmpty()
+                || txb_detallesr.getText().trim().isEmpty()
+                || txb_materialesr.getText().trim().isEmpty()
+                || Jd_fechaMantenimiento.getDate() == null) {
 
-            mantenimiento m = new mantenimiento(
-                    Integer.parseInt(txtIDMantenimiento.getText()),
-                    txb_detallesr.getText(),
-                    txb_materialesr.getText(),
-                    new SimpleDateFormat("yyyy-MM-dd").format(Jd_fecha.getDate())
-            );
-            INGM.InsertarMante(m);
-            tblDatoReparados.setModel(INGM.MostrarReparacion());
-        } catch (HeadlessException e) {
-            JOptionPane.showMessageDialog(this, "error: " + e);
+            JOptionPane.showMessageDialog(this, "Error: Debe seleccionar un Horno de la tabla y completar todos los campos.", "Campos Vacíos", JOptionPane.ERROR_MESSAGE);
+            return;
+        } else {
+            try {
+                ClaseConsulta INGM = new ClaseConsulta();
 
+                mantenimiento m = new mantenimiento(
+                        Integer.parseInt(txtIDMantenimiento.getText()),
+                        txb_detallesr.getText(),
+                        txb_materialesr.getText(),
+                        new SimpleDateFormat("yyyy-MM-dd").format(Jd_fechaMantenimiento.getDate())
+                );
+                INGM.InsertarMante(m);
+                tblDatoReparados.setModel(INGM.MostrarReparacion());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "error: " + e);
+
+            }
         }
+
     }//GEN-LAST:event_btn_IngresarMantenimientoActionPerformed
 
     private void tblDatoHornoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblDatoHornoKeyPressed
-        // TODO add your handling code here:
     }//GEN-LAST:event_tblDatoHornoKeyPressed
 
     private void btn_IngresarHornosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarHornosActionPerformed
-        try {
-            ClaseConsulta INH = new ClaseConsulta();
-            horno h = new horno(
-                    Integer.parseInt(txb_reflectores.getText()),
-                    txb_tipo.getText(),
-                    txb_materiales.getText(),
-                    (String) cb_sisAislamiento.getSelectedItem(),
-                    new SimpleDateFormat("yyyy-MM-dd").format(Jd_fechaCreacion.getDate()),
-                    Double.parseDouble(txb_dimensiones.getText())
-            );
-            INH.registrarHorno(h);
-            tblDatoHorno.setModel(INH.MostrarHornos());
+        if (txb_tipo.getText().trim().isEmpty()
+                || txb_materiales.getText().trim().isEmpty()
+                || txb_dimensiones.getText().trim().isEmpty()
+                || txb_reflectores.getText().trim().isEmpty()
+                || Jd_fechaHorno.getDate() == null
+                || cb_sisAislamiento.getSelectedIndex() <= 0) {
+            JOptionPane.showMessageDialog(null, "Uno de los campos de textos está vacío");
+            return;
+        } else {
+            try {
+                ClaseConsulta INH = new ClaseConsulta();
+                horno h = new horno(
+                        Integer.parseInt(txb_reflectores.getText()),
+                        txb_tipo.getText(),
+                        txb_materiales.getText(),
+                        (String) cb_sisAislamiento.getSelectedItem(),
+                        new SimpleDateFormat("yyyy-MM-dd").format(Jd_fechaHorno.getDate()),
+                        Double.parseDouble(txb_dimensiones.getText())
+                );
+                INH.registrarHorno(h);
+                tblDatoHorno.setModel(INH.MostrarHornos());
 
-        } catch (HeadlessException e) {
-            JOptionPane.showMessageDialog(this, "error: " + e);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "error: " + e);
+            }
         }
+
 
     }//GEN-LAST:event_btn_IngresarHornosActionPerformed
 
     private void rbPorFechaHornosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorFechaHornosActionPerformed
-// Si selecciona "Fecha", activamos las fechas y desactivamos el texto
         Jd_FechaFinal.setEnabled(true);
         Jd_fechaInicioHornos.setEnabled(true);
         txb_buscarHornos.setEnabled(false);
@@ -2007,72 +2053,59 @@ private void actualizarDisponibilidadTablasCalculo() {
     }//GEN-LAST:event_btn_ResetearHornoActionPerformed
 
     private void tblDatoFuncionamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoFuncionamientoMouseClicked
-        // TODO add your handling code here:
     }//GEN-LAST:event_tblDatoFuncionamientoMouseClicked
 
     private void tblDatoFuncionamientoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblDatoFuncionamientoKeyPressed
-        // TODO add your handling code here:
     }//GEN-LAST:event_tblDatoFuncionamientoKeyPressed
 
     private void tblDatoAutosustentableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoAutosustentableMouseClicked
-        // TODO add your handling code here:
     }//GEN-LAST:event_tblDatoAutosustentableMouseClicked
 
     private void tblDatoAutosustentableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblDatoAutosustentableKeyPressed
-        // TODO add your handling code here:
     }//GEN-LAST:event_tblDatoAutosustentableKeyPressed
 
     private void tblDatoAmbienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoAmbienteMouseClicked
-        // TODO add your handling code here:
     }//GEN-LAST:event_tblDatoAmbienteMouseClicked
 
     private void tblDatoAmbienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblDatoAmbienteKeyPressed
-        // TODO add your handling code here:
     }//GEN-LAST:event_tblDatoAmbienteKeyPressed
 
     private void btn_BuscarAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarAmbienteActionPerformed
-ClaseConsulta miConsulta = new ClaseConsulta();
+        ClaseConsulta miConsulta = new ClaseConsulta();
         DefaultTableModel modelo;
 
         try {
-            // 1. Validar que las fechas no estén vacías
             if (Jd_fechaDesdeAmbiente.getDate() == null || Jd_FechaFinalAmbiente.getDate() == null) {
                 JOptionPane.showMessageDialog(this, "Debe seleccionar ambas fechas (Desde y Hasta).", "Error", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
-            // 2. Formatear las fechas
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String fechaDesde = sdf.format(Jd_fechaDesdeAmbiente.getDate());
             String fechaHasta = sdf.format(Jd_FechaFinalAmbiente.getDate());
 
-            // 3. Llamar al nuevo método de consulta
             modelo = miConsulta.MostrarAmbientePorFecha(fechaDesde, fechaHasta);
             tblDatoAmbiente.setModel(modelo);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al buscar por fecha: " + e.getMessage());
-            modelo = miConsulta.MostrarAmbiente(); // Si falla, muestra todo
+            modelo = miConsulta.MostrarAmbiente();
             tblDatoAmbiente.setModel(modelo);
         }
 
-        // 4. Actualizar el contador de filas
         int cantidad = modelo.getRowCount();
         txb_CantidadFilasAmbiente.setText(String.valueOf(cantidad));
     }//GEN-LAST:event_btn_BuscarAmbienteActionPerformed
 
     private void btn_ResetearAmbienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ResetearAmbienteActionPerformed
-ClaseConsulta RA = new ClaseConsulta();
-        
-        // 1. Cargar el modelo con TODOS los datos
+        ClaseConsulta RA = new ClaseConsulta();
+
         DefaultTableModel modelo = RA.MostrarAmbiente();
         tblDatoAmbiente.setModel(modelo);
 
-        // 2. Actualizar el contador
         int cantidad = modelo.getRowCount();
         txb_CantidadFilasAmbiente.setText(String.valueOf(cantidad));
 
-        // 3. Limpiar los calendarios
         Jd_fechaDesdeAmbiente.setDate(null);
         Jd_FechaFinalAmbiente.setDate(null);
     }//GEN-LAST:event_btn_ResetearAmbienteActionPerformed
@@ -2101,52 +2134,45 @@ ClaseConsulta RA = new ClaseConsulta();
                 String fechaDesde = sdf.format(Jd_fechaInicioFuncionamiento.getDate());
                 String fechaHasta = sdf.format(Jd_FechaFinalFuncionamiento.getDate());
 
-                // Llama al NUEVO método
                 modelo = miConsulta.MostrarFuncionamientoPorFecha(fechaDesde, fechaHasta);
-                tblDatoFuncionamiento.setModel(modelo); // Carga en la tabla de Mantenimiento
+                tblDatoFuncionamiento.setModel(modelo);
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Error al buscar por fecha: " + e.getMessage());
                 return;
             }
 
-        } else if (rbPorBusquedaFunciones.isSelected()) { // RadioButton de Mantenimiento
+        } else if (rbPorBusquedaFunciones.isSelected()) {
             try {
-                String textoBusqueda = txb_buscarFuncionamiento.getText(); // Usa el JTextField de Mantenimiento
+                String textoBusqueda = txb_buscarFuncionamiento.getText();
                 if (textoBusqueda.trim().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Debe escribir un texto para buscar.", "Error", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
 
-                // Llama al NUEVO método
                 modelo = miConsulta.MostrarFuncionamientoPorAlimento(textoBusqueda);
-                tblDatoFuncionamiento.setModel(modelo); // Carga en la tabla de Mantenimiento
+                tblDatoFuncionamiento.setModel(modelo);
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Error al buscar por texto: " + e.getMessage());
                 return;
             }
         } else {
-            // Tu método de mostrar todos los mantenimientos (yo lo llamé MostrarReparacion en el pasado)
             modelo = miConsulta.MostrarFuncionamiento();
             tblDatoFuncionamiento.setModel(modelo);
         }
-
-        // Actualiza el contador de Mantenimiento
         int cantidad = modelo.getRowCount();
         txb_CantidadFilasFunciones.setText(String.valueOf(cantidad));
     }//GEN-LAST:event_btn_BuscarFuncionamientoActionPerformed
 
     private void btn_ResetearBusquedaFuncionamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ResetearBusquedaFuncionamientoActionPerformed
         ClaseConsulta RH = new ClaseConsulta();
-        // Llama al método que muestra TODOS los mantenimientos
         DefaultTableModel modelo = RH.MostrarFuncionamiento();
         tblDatoFuncionamiento.setModel(modelo);
 
         int cantidad = modelo.getRowCount();
         txb_CantidadFilasFunciones.setText(String.valueOf(cantidad));
 
-        // Limpia los componentes de Mantenimiento
         Jd_fechaInicioFuncionamiento.setDate(null);
         Jd_FechaFinalFuncionamiento.setDate(null);
         txb_buscarFuncionamiento.setText("");
@@ -2170,38 +2196,34 @@ ClaseConsulta RA = new ClaseConsulta();
                 String fechaDesde = sdf.format(Jd_fechaInicioMantenimiento.getDate());
                 String fechaHasta = sdf.format(Jd_FechaFinalMantenimiento.getDate());
 
-                // Llama al NUEVO método
                 modelo = miConsulta.MostrarMantenimientoPorFecha(fechaDesde, fechaHasta);
-                tblDatoReparados.setModel(modelo); // Carga en la tabla de Mantenimiento
+                tblDatoReparados.setModel(modelo);
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Error al buscar por fecha: " + e.getMessage());
                 return;
             }
 
-        } else if (rbPorBusquedaMantenimiento.isSelected()) { // RadioButton de Mantenimiento
+        } else if (rbPorBusquedaMantenimiento.isSelected()) {
             try {
-                String textoBusqueda = txb_buscarMantenimiento.getText(); // Usa el JTextField de Mantenimiento
+                String textoBusqueda = txb_buscarMantenimiento.getText();
                 if (textoBusqueda.trim().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Debe escribir un texto para buscar.", "Error", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
 
-                // Llama al NUEVO método
                 modelo = miConsulta.MostrarMantenimientoPorDetalle(textoBusqueda);
-                tblDatoReparados.setModel(modelo); // Carga en la tabla de Mantenimiento
+                tblDatoReparados.setModel(modelo);
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Error al buscar por texto: " + e.getMessage());
                 return;
             }
         } else {
-            // Tu método de mostrar todos los mantenimientos (yo lo llamé MostrarReparacion en el pasado)
             modelo = miConsulta.MostrarReparacion();
             tblDatoReparados.setModel(modelo);
         }
 
-        // Actualiza el contador de Mantenimiento
         int cantidad = modelo.getRowCount();
         txb_CantidadFilasMantenimiento.setText(String.valueOf(cantidad));
 
@@ -2215,14 +2237,12 @@ ClaseConsulta RA = new ClaseConsulta();
 
     private void btn_ResetearMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ResetearMantenimientoActionPerformed
         ClaseConsulta RH = new ClaseConsulta();
-        // Llama al método que muestra TODOS los mantenimientos
         DefaultTableModel modelo = RH.MostrarReparacion();
         tblDatoReparados.setModel(modelo);
 
         int cantidad = modelo.getRowCount();
         txb_CantidadFilasMantenimiento.setText(String.valueOf(cantidad));
 
-        // Limpia los componentes de Mantenimiento
         Jd_fechaInicioMantenimiento.setDate(null);
         Jd_FechaFinalMantenimiento.setDate(null);
         txb_buscarMantenimiento.setText("");
@@ -2234,15 +2254,14 @@ ClaseConsulta RA = new ClaseConsulta();
     }//GEN-LAST:event_btn_ResetearMantenimientoActionPerformed
 
     private void rbPorBusquedaMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorBusquedaMantenimientoActionPerformed
- actualizarVisibilidadAutosustentable();
+        actualizarVisibilidadAutosustentable();
     }//GEN-LAST:event_rbPorBusquedaMantenimientoActionPerformed
 
     private void rbPorFechaAutosustentabilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorFechaAutosustentabilidadActionPerformed
-    actualizarVisibilidadAutosustentable();
+        actualizarVisibilidadAutosustentable();
     }//GEN-LAST:event_rbPorFechaAutosustentabilidadActionPerformed
 
     private void txtIDFuncionamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDFuncionamientoActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txtIDFuncionamientoActionPerformed
 
     private void tblHornoFuncionamientoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHornoFuncionamientoMouseClicked
@@ -2253,71 +2272,69 @@ ClaseConsulta RA = new ClaseConsulta();
     }//GEN-LAST:event_tblHornoFuncionamientoMouseClicked
 
     private void rbPorBusquedaAutosustentabilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPorBusquedaAutosustentabilidadActionPerformed
-        if(cb_AnalisisDesempeño.isSelected()){
+        if (cb_AnalisisDesempeño.isSelected()) {
             rbPorBusquedaAutosustentabilidad.setVisible(true);
             txb_buscarAutosustentable.setVisible(true);
-             actualizarVisibilidadAutosustentable();
-        }else{
-             actualizarVisibilidadAutosustentable();  
+            actualizarVisibilidadAutosustentable();
+        } else {
+            actualizarVisibilidadAutosustentable();
         }
-        
-        
+
+
     }//GEN-LAST:event_rbPorBusquedaAutosustentabilidadActionPerformed
 
     private void btn_BuscarAutosustentableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarAutosustentableActionPerformed
-    ClaseConsulta miConsulta = new ClaseConsulta();
-    DefaultTableModel modelo;
+        ClaseConsulta miConsulta = new ClaseConsulta();
+        DefaultTableModel modelo;
 
-    // 1. Obtenemos los valores de los filtros (los necesitemos o no)
-    String busqueda = txb_buscarAutosustentable.getText().trim();
-    java.util.Date fechaDesdeUtil = Jd_fechaInicioAutosustentable.getDate();
-    java.util.Date fechaHastaUtil = Jd_FechaFinalAutosustentable.getDate();
+        String busqueda = txb_buscarAutosustentable.getText().trim();
+        java.util.Date fechaDesdeUtil = Jd_fechaInicioAutosustentable.getDate();
+        java.util.Date fechaHastaUtil = Jd_FechaFinalAutosustentable.getDate();
 
-    try {
-        if (cb_AnalisisDesempeño.isSelected()) {
-          
-            if (rbPorFechaAutosustentabilidad.isSelected()) {
-                // --- CASO A: JOIN + Filtro por Fecha ---
+        try {
+            if (cb_AnalisisDesempeño.isSelected()) {
+
+                if (rbPorFechaAutosustentabilidad.isSelected()) {
+                    if (fechaDesdeUtil == null || fechaHastaUtil == null) {
+                        JOptionPane.showMessageDialog(this, "Debe seleccionar ambas fechas.");
+                        return;
+                    }
+                    String fechaDesde = new SimpleDateFormat("yyyy-MM-dd").format(fechaDesdeUtil);
+                    String fechaHasta = new SimpleDateFormat("yyyy-MM-dd").format(fechaHastaUtil);
+                    modelo = miConsulta.MostrarAutosustentablePorFecha_JOIN_Funcion(fechaDesde, fechaHasta);
+
+                } else {
+                    if (busqueda.isEmpty()) {
+                        JOptionPane.showMessageDialog(this, "Debe escribir un texto para buscar.");
+                        return;
+                    }
+                    modelo = miConsulta.MostrarAutosustentablePorBusqueda_JOIN_Funcion(busqueda);
+                }
+
+            } else {
                 if (fechaDesdeUtil == null || fechaHastaUtil == null) {
-                    JOptionPane.showMessageDialog(this, "Debe seleccionar ambas fechas."); return;
+                    JOptionPane.showMessageDialog(this, "Debe seleccionar ambas fechas.");
+                    return;
                 }
                 String fechaDesde = new SimpleDateFormat("yyyy-MM-dd").format(fechaDesdeUtil);
                 String fechaHasta = new SimpleDateFormat("yyyy-MM-dd").format(fechaHastaUtil);
-                modelo = miConsulta.MostrarAutosustentablePorFecha_JOIN_Funcion(fechaDesde, fechaHasta);
 
-            } else { // (rbPorBusquedaAutosustentabilidad.isSelected())
-                // --- CASO B: JOIN + Filtro por Búsqueda ---
-                if (busqueda.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Debe escribir un texto para buscar."); return;
-                }
-                // ¡Llama al método CON JOIN de Búsqueda!
-                modelo = miConsulta.MostrarAutosustentablePorBusqueda_JOIN_Funcion(busqueda);
+                modelo = miConsulta.MostrarAutosustentablePorFecha(fechaDesde, fechaHasta);
             }
 
-        } else {
-            if (fechaDesdeUtil == null || fechaHastaUtil == null) {
-                JOptionPane.showMessageDialog(this, "Debe seleccionar ambas fechas."); return;
-            }
-            String fechaDesde = new SimpleDateFormat("yyyy-MM-dd").format(fechaDesdeUtil);
-            String fechaHasta = new SimpleDateFormat("yyyy-MM-dd").format(fechaHastaUtil);
-            
-            // ¡Llama al método SIMPLE de Fecha!
-            modelo = miConsulta.MostrarAutosustentablePorFecha(fechaDesde, fechaHasta);
+            tblDatoAutosustentable.setModel(modelo);
+
+            int cantidad = modelo.getRowCount();
+            txb_CantidadFilasAutosustentable.setText(String.valueOf(cantidad));
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al buscar: " + e.getMessage());
+            e.printStackTrace();
         }
-        
-        tblDatoAutosustentable.setModel(modelo); 
-
-       int cantidad = modelo.getRowCount();
-       txb_CantidadFilasAutosustentable.setText(String.valueOf(cantidad));
-
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error al buscar: " + e.getMessage());
-        e.printStackTrace();
-    }
     }//GEN-LAST:event_btn_BuscarAutosustentableActionPerformed
 
     private void btn_ResetearAutosustentableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ResetearAutosustentableActionPerformed
-    ClaseConsulta RA = new ClaseConsulta();
+        ClaseConsulta RA = new ClaseConsulta();
         DefaultTableModel modelo = RA.MostrarAutosustentable();
         tblDatoAutosustentable.setModel(modelo);
 
@@ -2336,20 +2353,18 @@ ClaseConsulta RA = new ClaseConsulta();
     }//GEN-LAST:event_btn_ResetearAutosustentableActionPerformed
 
     private void btn_EstadisticasGeneralesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EstadisticasGeneralesActionPerformed
-    ClaseConsulta miConsulta = new ClaseConsulta();
+        ClaseConsulta miConsulta = new ClaseConsulta();
         String funcionSQL = "";
         String funcionNombre = "";
         double resultado = 0.0;
 
-        // 1. Determinar la FUNCIÓN (AVG, MAX, MIN)
-        // (Usamos los nombres de tus radio buttons)
-        if (rbCalcularPromedio.isSelected()) { // Calcular Promedio
+        if (rbCalcularPromedio.isSelected()) {
             funcionSQL = "AVG";
             funcionNombre = "Promedio";
-        } else if (rbCalcularMaximo.isSelected()) { // Calcular Maximo
+        } else if (rbCalcularMaximo.isSelected()) {
             funcionSQL = "MAX";
             funcionNombre = "Máximo";
-        } else if (rbCalcularMinimo.isSelected()) { // Calcular Minimo
+        } else if (rbCalcularMinimo.isSelected()) {
             funcionSQL = "MIN";
             funcionNombre = "Mínimo";
         } else {
@@ -2357,120 +2372,99 @@ ClaseConsulta RA = new ClaseConsulta();
             return;
         }
 
-        // 2. Determinar el ALCANCE (Todos vs. Dos)
         try {
-            if (rbCompararTodoslosHornos.isSelected()) { // Comparar TODOS
-                
+            if (rbCompararTodoslosHornos.isSelected()) {
+
                 resultado = miConsulta.calcularEstadisticaGlobal(funcionSQL);
-                // Mostramos el resultado formateado a 2 decimales
-                JOptionPane.showMessageDialog(this, 
-                        "El " + funcionNombre + " de eficiencia térmica (Todos los hornos) es: " + String.format("%.2f", resultado), 
-                        "Resultado Global", 
+                JOptionPane.showMessageDialog(this,
+                        "El " + funcionNombre + " de eficiencia térmica (Todos los hornos) es: " + String.format("%.2f", resultado),
+                        "Resultado Global",
                         JOptionPane.INFORMATION_MESSAGE);
 
-            } else if (rbComparVariosHornos.isSelected()) { // Comparar DOS
-                
-                // Validar que se seleccionaron los hornos
+            } else if (rbComparVariosHornos.isSelected()) {
                 if (idHornoCalc1 == -1 || idHornoCalc2 == -1) {
                     JOptionPane.showMessageDialog(this, "Por favor, seleccione un horno de cada tabla para comparar.", "Error", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
-                
+
                 resultado = miConsulta.calcularEstadisticaDosHornos(funcionSQL, idHornoCalc1, idHornoCalc2);
-                JOptionPane.showMessageDialog(this, 
-                        "El " + funcionNombre + " de eficiencia térmica (Hornos ID " + idHornoCalc1 + " y " + idHornoCalc2 + ") es: " + String.format("%.2f", resultado), 
-                        "Resultado Comparativo", 
+                JOptionPane.showMessageDialog(this,
+                        "El " + funcionNombre + " de eficiencia térmica (Hornos ID " + idHornoCalc1 + " y " + idHornoCalc2 + ") es: " + String.format("%.2f", resultado),
+                        "Resultado Comparativo",
                         JOptionPane.INFORMATION_MESSAGE);
 
             } else {
                 JOptionPane.showMessageDialog(this, "Por favor, seleccione un método de comparación (Todos o Dos hornos).", "Error", JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al calcular la estadística: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btn_EstadisticasGeneralesActionPerformed
 
     private void cb_sisAislamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_sisAislamientoActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_cb_sisAislamientoActionPerformed
 
     private void cb_AnalisisDesempeñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_AnalisisDesempeñoActionPerformed
-    ClaseConsulta miConsulta = new ClaseConsulta();
-    DefaultTableModel modelo;
+        ClaseConsulta miConsulta = new ClaseConsulta();
+        DefaultTableModel modelo;
 
-    if (cb_AnalisisDesempeño.isSelected()) {
-        rbPorBusquedaAutosustentabilidad.setEnabled(true);
-        rbPorBusquedaAutosustentabilidad.setVisible(true);
+        if (cb_AnalisisDesempeño.isSelected()) {
+            rbPorBusquedaAutosustentabilidad.setEnabled(true);
+            rbPorBusquedaAutosustentabilidad.setVisible(true);
 
-        // 2. ¡¡RECARGAMOS LA TABLA!! (Como pediste)
-        // Llamamos al método nuevo que acabamos de crear
-        modelo = miConsulta.MostrarAutosustentable_JOIN_Funcion();
-        tblDatoAutosustentable.setModel(modelo); // (Ajusta el nombre de tu tabla)
-        
-    } else {
-        
-        // --- MODO "SIMPLE" ACTIVADO ---
-        
-        // 1. Deshabilitamos el Radio Button de "Búsqueda"
-        rbPorBusquedaAutosustentabilidad.setEnabled(false);
-                rbPorBusquedaAutosustentabilidad.setVisible(false);
+            modelo = miConsulta.MostrarAutosustentable_JOIN_Funcion();
+            tblDatoAutosustentable.setModel(modelo);
 
-        // 2. Forzamos que vuelva al modo "Fecha" (por seguridad)
-        rbPorFechaAutosustentabilidad.setSelected(true); 
-        
-        // 3. ¡¡RECARGAMOS LA TABLA!!
-        // Llamamos al método simple original (el que no tiene JOIN)
-        modelo = miConsulta.MostrarAutosustentable(); // (El que muestra todo simple)
-        tblDatoAutosustentable.setModel(modelo);
-    }
-    
-    // 4. (Opcional) Actualizamos los controles de filtros (para que se muestren/oculten)
-    actualizarVisibilidadAutosustentable();
-    
-   int cantidad = modelo.getRowCount();
-    txb_CantidadFilasAutosustentable.setText(String.valueOf(cantidad));
+        } else {
+
+            rbPorBusquedaAutosustentabilidad.setEnabled(false);
+            rbPorBusquedaAutosustentabilidad.setVisible(false);
+
+            rbPorFechaAutosustentabilidad.setSelected(true);
+            modelo = miConsulta.MostrarAutosustentable();
+            tblDatoAutosustentable.setModel(modelo);
+        }
+
+        actualizarVisibilidadAutosustentable();
+
+        int cantidad = modelo.getRowCount();
+        txb_CantidadFilasAutosustentable.setText(String.valueOf(cantidad));
     }//GEN-LAST:event_cb_AnalisisDesempeñoActionPerformed
 
     private void rb_CalculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_CalculosActionPerformed
         JP_AutoP1.setVisible(false);
         JP_AutoP2.setVisible(true);
-        
-        // ¡NUEVO! Cargar los hornos en las tablas de selección
+
         try {
             ClaseConsulta misConsultas = new ClaseConsulta();
             DefaultTableModel modeloHornos = misConsultas.consultaHornosConDatosAutosustentables();
-            
-            // Asignamos el modelo a la primera tabla
+
             tblDatoHornoAutosustentable.setModel(modeloHornos);
 
-            // ¡IMPORTANTE! Volvemos a llamar al método para la segunda tabla
-            // (No podemos usar el mismo objeto 'modeloHornos' para las dos)
             DefaultTableModel modeloHornos2 = misConsultas.consultaHornosConDatosAutosustentables();
             tblDatoHornoAutosustentable2.setModel(modeloHornos2);
-            
-            // Reseteamos las selecciones
+
             idHornoCalc1 = -1;
             idHornoCalc2 = -1;
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al cargar las tablas de hornos: " + e.getMessage());
         }
     }//GEN-LAST:event_rb_CalculosActionPerformed
 
     private void rb_ConsultaDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_ConsultaDatosActionPerformed
-JP_AutoP1.setVisible(true);
-    JP_AutoP2.setVisible(false);
+        JP_AutoP1.setVisible(true);
+        JP_AutoP2.setVisible(false);
     }//GEN-LAST:event_rb_ConsultaDatosActionPerformed
 
     private void tblDatoHornoAutosustentable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoHornoAutosustentable2MouseClicked
-int fila = tblDatoHornoAutosustentable2.getSelectedRow();
+        int fila = tblDatoHornoAutosustentable2.getSelectedRow();
         if (fila >= 0) {
-             try {
-                // Asumimos que el ID del horno está en la columna 0
+            try {
                 this.idHornoCalc2 = (int) tblDatoHornoAutosustentable2.getValueAt(fila, 0);
-             } catch (Exception e) {
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Error al seleccionar el horno 2.");
             }
         }
@@ -2478,10 +2472,9 @@ int fila = tblDatoHornoAutosustentable2.getSelectedRow();
     }//GEN-LAST:event_tblDatoHornoAutosustentable2MouseClicked
 
     private void tblDatoHornoAutosustentableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDatoHornoAutosustentableMouseClicked
-int fila = tblDatoHornoAutosustentable.getSelectedRow();
+        int fila = tblDatoHornoAutosustentable.getSelectedRow();
         if (fila >= 0) {
             try {
-                // Asumimos que el ID del horno está en la columna 0
                 this.idHornoCalc1 = (int) tblDatoHornoAutosustentable.getValueAt(fila, 0);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Error al seleccionar el horno 1.");
@@ -2490,23 +2483,20 @@ int fila = tblDatoHornoAutosustentable.getSelectedRow();
     }//GEN-LAST:event_tblDatoHornoAutosustentableMouseClicked
 
     private void rbCompararTodoslosHornosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCompararTodoslosHornosActionPerformed
-actualizarDisponibilidadTablasCalculo();
+        actualizarDisponibilidadTablasCalculo();
     }//GEN-LAST:event_rbCompararTodoslosHornosActionPerformed
 
     private void rbComparVariosHornosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbComparVariosHornosActionPerformed
-actualizarDisponibilidadTablasCalculo();
+        actualizarDisponibilidadTablasCalculo();
     }//GEN-LAST:event_rbComparVariosHornosActionPerformed
 
     private void btn_ResetearCalculoAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ResetearCalculoAutoActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_btn_ResetearCalculoAutoActionPerformed
 
     private void rbCalcularMinimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCalcularMinimoActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_rbCalcularMinimoActionPerformed
 
     private void rbCalcularPromedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCalcularPromedioActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_rbCalcularPromedioActionPerformed
 
     private void rbCalcularMaximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCalcularMaximoActionPerformed
@@ -2564,15 +2554,15 @@ actualizarDisponibilidadTablasCalculo();
     private com.toedter.calendar.JDateChooser Jd_FechaFinalAutosustentable;
     private com.toedter.calendar.JDateChooser Jd_FechaFinalFuncionamiento;
     private com.toedter.calendar.JDateChooser Jd_FechaFinalMantenimiento;
-    private com.toedter.calendar.JDateChooser Jd_fecha;
-    private com.toedter.calendar.JDateChooser Jd_fecha4;
     private com.toedter.calendar.JDateChooser Jd_fechaAmbiente;
-    private com.toedter.calendar.JDateChooser Jd_fechaCreacion;
+    private com.toedter.calendar.JDateChooser Jd_fechaAutosustentable;
     private com.toedter.calendar.JDateChooser Jd_fechaDesdeAmbiente;
+    private com.toedter.calendar.JDateChooser Jd_fechaHorno;
     private com.toedter.calendar.JDateChooser Jd_fechaInicioAutosustentable;
     private com.toedter.calendar.JDateChooser Jd_fechaInicioFuncionamiento;
     private com.toedter.calendar.JDateChooser Jd_fechaInicioHornos;
     private com.toedter.calendar.JDateChooser Jd_fechaInicioMantenimiento;
+    private com.toedter.calendar.JDateChooser Jd_fechaMantenimiento;
     private javax.swing.JButton btn_BuscarAmbiente;
     private javax.swing.JButton btn_BuscarAutosustentable;
     private javax.swing.JButton btn_BuscarFuncionamiento;
