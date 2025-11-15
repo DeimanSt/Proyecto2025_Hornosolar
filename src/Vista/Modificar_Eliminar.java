@@ -35,7 +35,7 @@ public class Modificar_Eliminar extends javax.swing.JFrame {
         txb_reflectores.setText(String.valueOf(reflectores));
         try {
             java.util.Date fechaDate = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
-            Jd_fecha1.setDate(fechaDate); // (Asumiendo nombre de JDateChooser)
+            Jd_fecha1.setDate(fechaDate); 
         } catch (java.text.ParseException ex) {
             Jd_fecha1.setDate(null);
         }
@@ -232,7 +232,7 @@ try {
     }//GEN-LAST:event_btn_ModificarHornosActionPerformed
 
     private void btn_EliminarHornos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarHornos1ActionPerformed
-    int confirm = JOptionPane.showConfirmDialog(null, "Estas seguro de que quiere borrar horno? <html></br></html> ATENCION: SI USTED BORRA HORNOS, SE PERDERA PERMANENTEMENTE Y SUS DATOS RELACIONADOS A EL SE ELIMINARÁN, DESEA CONTINUAR?", "Eliminar", JOptionPane.YES_NO_OPTION);
+    int confirm = JOptionPane.showConfirmDialog(null, "Estas seguro de que quiere borrar horno?\nATENCION:\nSI USTED BORRA HORNOS, SE PERDERA PERMANENTEMENTE\n Y SUS DATOS RELACIONADOS A EL SE ELIMINARÁN,\n DESEA CONTINUAR?", "Eliminar", JOptionPane.YES_NO_OPTION);
     if(confirm == JOptionPane.YES_OPTION){
            try{
     ClaseConsulta ELH = new ClaseConsulta();
