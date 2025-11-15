@@ -405,7 +405,7 @@ private void actualizarDisponibilidadTablasCalculo() {
         txb_materiales.setWrapStyleWord(true);
         jScrollPane4.setViewportView(txb_materiales);
 
-        jPanelHornosSolares.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 156, 65));
+        jPanelHornosSolares.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 156, 65));
 
         cb_sisAislamiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Aislamiento por material", "Doble cubierta transparente", "Sellado hermético", "Aislamiento reflectante" }));
         cb_sisAislamiento.addActionListener(new java.awt.event.ActionListener() {
